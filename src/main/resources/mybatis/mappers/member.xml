@@ -21,10 +21,8 @@
  		<result property="comp_fax" column="comp_fax"/>
  		<result property="comp_email" column="comp_email"/>
  		<result property="user_auth" column="user_auth"/>
-<!-- 퀴리문 작성 -->
- 		
- 		
- 	
+
  	</resultMap>
+<!-- 퀴리문 작성 -->
 
 </mapper>
