@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.order">
+<!-- 리절트 맵 정의 -->	
+	<resultMap id="rentEquipResult" type="RentVO">
+	    <result property="Resq_num" column="Resq_num" />
+		<result property="User_id" column="User_id" />
+		<result property="Eq_serial" column="Eq_serial" />
+		<result property="Resq_start" column="Resq_start" />
+		<result property="Resq_end" column="Resq_end" />
+		<result property="Resq_date" column="Resq_date" />
+		
+		
+		<result property="Res_num" column="Res_num" />
+		<result property="Res_start" column="Res_start" />
+		<result property="Res_end" column="Res_end" />
+		<result property="Res_Status" column="Res_Status" />
+		
+		<result property="Return_num" column="Return_num" />
+		<result property="Express_num" column="Express_num" />
+		<result property="Return_date" column="Return_date" />
+		<result property="Return_Status" column="Return_Status" />
+		
+		<result property="Log_num" column="Log_num" />
+		<result property="Status" column="Status" />
+		<result property="Log_maker" column="Log_maker" />
+		<result property="Log_date" column="Log_date" />
+	    <result property="Cate_name" column="Cate_name" />
+		<result property="Eq_name" column="Eq_name" />
+	</resultMap>
+	<!-- 예약신청 메서드 -->
+	<insert id="reservationrequest1"  parameterType="rentVO">
+	 <![CDATA[
+			insert into Resq (Resq_num, User_id, Eq_serial, Resq_start, Resq_end) 
+			values (#[Resq_num],#[User_id],#[Eq_serial],#[Resq_start],#[Resq_end]);
+			
+		]]>
+	</insert>
+	
+	<insert id="reservationrequest2"  parameterType="rentVO">
+	 <![CDATA[
+			
+			insert into Log (Log_num,Resq_num,User_id, Log_maker,Res_start,Res_end,Eq_name,Cate_name,Eq_serial) 
+			values (#[Log_num],#[Resq_num],#[User_id],#[Log_maker],#[Res_start],#[Res_end],#[Eq_name],#[Cate_name],#[Eq_serial]);
+			
+		]]>
+	</insert>
+	
+	<insert id="reqationauthor1"  parameterType="rentVO">
+	 <![CDATA[
+	 insert into Reserve (Res_num, User_id, Eq_serial, Res_start, Res_end, Res_Status) 
+			values (#[Res_num],#[User_id],#[Eq_serial],#[Res_start],#[Res_end],#[Res_Status]);
+	 ]]>
+	</insert>
+	
+	<!-- 예약신청승인 메서드 -->
+	<insert id="reqationauthor2"  parameterType="rentVO">
+	 <![CDATA[
+	 	insert into Log (Log_num,, Res_num, User_id, Status, Log_maker,Res_start,Res_end,Eq_name,Cate_name,Eq_serial) 
+			values (#[Log_num],#[Res_num],#[User_id],#[Status],#[Log_maker],#[Res_start],#[Res_end],#[Eq_name],#[Cate_name],#[Eq_serial]);
+	 ]]>
+	</insert>
+	
+	<delete id="reqationauthor3"  parameterType="rentVO">
+	     <![CDATA[
+	        delete from resq
+	    where Resq_num=#{Resq_num};
+	    	 ]]>
+	</delete>
+	
+	<!-- 예약승인 메서드 -->
+	
+	<insert id="reservationauthor1"  parameterType="rentVO">
+	 <![CDATA[
+	 	update Reserve set (Res_Status) 
+			values (#[Res_Status]);
+	 ]]>
+	</insert>
+	
+	<insert id="reservationauthor2"  parameterType="rentVO">
+	 <![CDATA[
+	 	insert into Log (Log_num,, Res_num, User_id, Status, Log_maker,Res_start,Res_end,Log_date,Eq_name,Cate_name,Eq_serial) 
+			values (#[Log_num],#[Res_num],#[User_id],#[Status],#[Log_maker],#[Res_start],#[Res_end],#[Log_date],#[Eq_name],#[Cate_name],#[Eq_serial]);
+	 ]]>
+	</insert>
+	
+	<!-- 반납 메서드 -->
+	
+	<insert id="returnauthor1"  parameterType="rentVO">
+	 <![CDATA[
+	 	insert into Return (Return_num,, Res_num, Express_num,Return_Status) 
+			values (#[Return_num],#[Res_num],#[Express_num],#[Return_Status]);
+	 ]]>
+	</insert>
+	
+	<insert id="returnauthor2"  parameterType="rentVO">
+	 <![CDATA[
+	 	insert into Log (Log_num,, Return_num, User_id, Status, Log_maker,Res_start,Res_end,,Eq_name,Cate_name,Eq_serial) 
+			values (#[Log_num],#[Return_num],#[User_id],#[Status],#[Log_maker],#[Res_start],#[Res_end],#[Eq_name],#[Cate_name],#[Eq_serial]);
+	 ]]>
+	</insert>
+	
+	<delete id="returnauthor3"  parameterType="rentVO">
+	     <![CDATA[
+	        delete from Reserve
+	    where Res_num=#{Res_num};
+	    	 ]]>
+	</delete>
+	
+	<!-- 예약신청취소 메서드 -->
+		<insert id="reqcancle"  parameterType="rentVO">
+	 <![CDATA[
+	 	insert into Log (Log_num,, Resq_num, User_id, Status, Log_maker,Resq_start,Resq_end,,Eq_name,Cate_name,Eq_serial) 
+			values (#[Log_num],#[Resq_num],#[User_id],#[Status],#[Log_maker],#[Resq_start],#[Resq_end],#[Eq_name],#[Cate_name],#[Eq_serial]);
+	 ]]>
+	</insert>
+	
+	
+	<!-- 예약취소 메서드 -->
+	<insert id="rescancle"  parameterType="rentVO">
+	 <![CDATA[
+	 	insert into Log (Log_num,, Res_num, User_id, Status, Log_maker,Res_start,Res_end,,Eq_name,Cate_name,Eq_serial) 
+			values (#[Log_num],#[Res_num],#[User_id],#[Status],#[Log_maker],#[Res_start],#[Res_end],#[Eq_name],#[Cate_name],#[Eq_serial]);
+	 ]]>
+	</insert>
+</mapper>
