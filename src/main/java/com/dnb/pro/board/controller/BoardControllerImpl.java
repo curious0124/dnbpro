@@ -32,6 +32,7 @@ import com.dnb.pro.board.vo.ArticleVO;
 //import com.myspring.pro30.member.vo.MemberVO;
 
 @Controller("boardController")
+@RequestMapping(value="/board")
 public class BoardControllerImpl implements BoardController{
 	private static final Logger logger = LoggerFactory.getLogger(BoardControllerImpl.class);
 	
