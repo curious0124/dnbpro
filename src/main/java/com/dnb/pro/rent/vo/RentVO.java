@@ -22,7 +22,85 @@ import org.springframework.stereotype.Component;
 		private int Res_num;
 		private String Res_start;
 		private Date Res_end;
-		private String Status;
+		private String Res_Status;
+		
+		//배송반납
+		private int Return_num;
+		private int Express_num;
+		private Date Return_date;
+		private String Return_Status;
+		
+		//예약로그
+		    private int Log_num;
+			private String Status;
+			private String Log_maker;
+			private Date Log_date;
+			private Date Cate_name;
+			private Date Eq_name;
+		
+			
+			public String getRes_Status() {
+				return Res_Status;
+			}
+			public void setRes_Status(String res_Status) {
+				Res_Status = res_Status;
+			}
+			public int getReturn_num() {
+				return Return_num;
+			}
+			public void setReturn_num(int return_num) {
+				Return_num = return_num;
+			}
+			public int getExpress_num() {
+				return Express_num;
+			}
+			public void setExpress_num(int express_num) {
+				Express_num = express_num;
+			}
+			public Date getReturn_date() {
+				return Return_date;
+			}
+			public void setReturn_date(Date return_date) {
+				Return_date = return_date;
+			}
+			public String getReturn_Status() {
+				return Return_Status;
+			}
+			public void setReturn_Status(String return_Status) {
+				Return_Status = return_Status;
+			}
+			public int getLog_num() {
+				return Log_num;
+			}
+			public void setLog_num(int log_num) {
+				Log_num = log_num;
+			}
+			public String getLog_maker() {
+				return Log_maker;
+			}
+			public void setLog_maker(String log_maker) {
+				Log_maker = log_maker;
+			}
+			public Date getLog_date() {
+				return Log_date;
+			}
+			public void setLog_date(Date log_date) {
+				Log_date = log_date;
+			}
+			public Date getCate_name() {
+				return Cate_name;
+			}
+			public void setCate_name(Date cate_name) {
+				Cate_name = cate_name;
+			}
+			public Date getEq_name() {
+				return Eq_name;
+			}
+			public void setEq_name(Date eq_name) {
+				Eq_name = eq_name;
+			}
+			
+		
 		public int getResq_num() {
 			return Resq_num;
 		}
