@@ -1,4 +1,4 @@
-package com.dnb.pro.education;
+package com.dnb.pro.education.vo;
 
 import java.sql.Date;
 
