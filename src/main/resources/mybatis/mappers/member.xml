@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="mapper.member">
+<!--  리절트 맵 정의 -->
+ 	<resultMap id="memberResult" type="MemberVO">
+ 		<result property="user_id" column="user_id"/>
+ 		<result property="user_pwd" column="user_pwd"/>
+ 		<result property="user_name" column="user_name"/>
+ 		<result property="user_identity" column="user_identity"/>
+ 		<result property="user_addr" column="user_addr"/>
+ 		<result property="user_phone" column="user_phone"/>
+ 		<result property="user_fax" column="user_fax"/>
+ 		<result property="user_email" column="user_email"/>
+ 		<result property="user_comp" column="user_comp"/>
+ 		<result property="comp_addr" column="comp_addr"/>
+ 		<result property="comp_num" column="comp_num"/>
+ 		<result property="comp_phon" column="comp_phon"/>
+ 		<result property="comp_fax" column="comp_fax"/>
+ 		<result property="comp_email" column="comp_email"/>
+ 		<result property="user_auth" column="user_auth"/>
+<!-- 퀴리문 작성 -->
+ 		
+ 		
+ 	
+ 	</resultMap>
+
+</mapper>
