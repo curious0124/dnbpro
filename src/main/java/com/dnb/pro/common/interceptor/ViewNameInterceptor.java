@@ -1,4 +1,4 @@
-package com.dnb.pro.common.intercepter;
+package com.dnb.pro.common.interceptor;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
