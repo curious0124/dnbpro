@@ -1,8 +1,10 @@
 package com.dnb.pro.education.vo;
 
 import java.sql.Date;
+import org.springframework.stereotype.Component;
 
-public class edu_vo {
+@Component("educationVO")
+public class educationVO {
 	private int edu_num;
 	private String edu_eq_name;
 	private String edu_title;
