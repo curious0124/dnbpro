@@ -2,33 +2,34 @@
 <!DOCTYPE mapper
 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-
+	
 <mapper namespace="mapper.board">
-<!-- 리절트맵 정의 -->
-	<resultMap id="articleResult" type="articleVO" >
-		<result property="brd_num" column="brd_num"/>
-		<result property="brd_name" column="brd_name"/>
-		
-		<result property="board_num" column="board_num"/>
-		<result property="board_title" column="board_title"/>
-		<result property="board_content" column="board_content"/>
-		<result property="board_file" column="board_file"/>
-		<result property="board_img" column="board_img"/>
-		<result property="board_img" column="board_img"/>
-		<result property="board_writer" column="board_writer"/>
-	
-		
-			
-	</resultMap>
-	
-	<!-- 쿼리문 작성 -->	
-	<select id="selectAllArticlesList" resultMap="articlesResult">
+<!--  리절트 맵 정의 -->
+ 	<resultMap id="articlesResult" type="ArticleVO">
+ 		<result property="brd_num" column="brd_num"/>
+ 		<result property="brd_name" column="brd_name"/>
+ 		<result property="board_num" column="board_num"/>
+ 		<result property="board_title" column="board_title"/>
+ 		<result property="board_content" column="board_content"/>
+ 		<result property="board_file" column="board_file"/>
+ 		<result property="board_img" column="board_img"/>
+ 		<result property="board_writer" column="board_writer"/>
+ 		<result property="board_date" column="board_date"/>
+ 		
+ 	</resultMap>
+<!-- 쿼리문 작성 -->
+<select id="selectAllArticlesList" resultMap="articlesResult">
   		<![CDATA[
-  			select board_num, board_title, board_content, board_file, board_img, board_writer, board_date 
+  			select brd_name, board_num, board_title, board_content, board_file, board_img, board_writer, board_date 
 			from brd_detail, board 
 			where brd_detail.brd_num=board.brd_num 
-  			ORDER BY board_num DESC  
+			ORDER BY board_num DESC     
+  			
   			
   		]]>
   	</select>
-	</mapper>
+
+
+
+
+</mapper>
