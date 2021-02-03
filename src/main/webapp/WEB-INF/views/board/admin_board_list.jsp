@@ -140,7 +140,7 @@
       ${articleNum.count}
     </div>
     <div class="col_list" id='brd_div3'>
-        <a href="#">${article.title }</a>
+        <a href="#">${article.board_title }</a>
     </div>
     <div class="col_list" id='brd_div4'>
       ${article.board_writer }

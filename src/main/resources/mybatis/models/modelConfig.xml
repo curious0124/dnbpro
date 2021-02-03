@@ -6,7 +6,11 @@
   <typeAliases>
     <typeAlias type="com.dnb.pro.member.vo.MemberVO" alias="memberVO" />
     <typeAlias type="com.dnb.pro.rent.vo.RentVO" alias="rentVO" />
+<<<<<<< HEAD
     <typeAlias type="com.dnb.pro.education.vo.educationVO" alias="educationVO" />
     
+=======
+    <typeAlias type="com.dnb.pro.board.vo.ArticleVO" alias="articleVO" />
+>>>>>>> branch 'develop' of https://github.com/curious0124/dnbpro.git
   </typeAliases>
 </configuration>
