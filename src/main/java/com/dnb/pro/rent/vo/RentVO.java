@@ -3,12 +3,7 @@ package com.dnb.pro.rent.vo;
 import java.util.Date;
 
 import org.springframework.stereotype.Component;
-
-
-
-	
-	
-	@Component("rentVO")
+@Component("rentVO")
 	public class RentVO {
        // 예약신청 목록
         private int Resq_num;
@@ -31,12 +26,12 @@ import org.springframework.stereotype.Component;
 		private String Return_Status;
 		
 		//예약로그
-		    private int Log_num;
-			private String Status;
-			private String Log_maker;
-			private Date Log_date;
-			private Date Cate_name;
-			private Date Eq_name;
+	    private int Log_num;
+		private String Status;
+		private String Log_maker;
+		private Date Log_date;
+		private Date Cate_name;
+		private Date Eq_name;
 		
 			
 			public String getRes_Status() {
