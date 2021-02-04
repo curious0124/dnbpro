@@ -1,41 +1,23 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"
+    isELIgnored="false" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%
+  request.setCharacterEncoding("UTF-8");
+%> 
+<c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>admin_index</title>
-</head><script src="/WEB-INF/js/jquery-3.5.1.min.js"></script>
-<script>
-    var path;
-    $(function(){
-        $('#side_menu_bar').load('admin_menubar.jsp'); 
-        $('#content_section_view').load('admin_main.jsp'); 
-       
-//        $("#addarticle").click(function(){
-//               path="admin_board_articleForm.html";
-//                evn();
-//            });
-        
-        
-        
-       
-         
-        
-    });
-     
-//    function evn(){
-//           $.ajax({
-//                    type: "get",
-//                    url: path,
-//                    success: function(data){
-//                       $("#content_section_view").html(data); 
-//                    },
-//                    error: function(){
-//                        alert('에러');
-//                    }
-//                })   
-//        }
-       
-</script>
+ 
+ <script src="${contextPath}/resources/js/jquery-3.5.1.min.js"> </script>
+    
+</head>
+
     
 <style>
     
@@ -59,9 +41,11 @@
         
     </style>
 <body>
+
+
    <div id='container'>
-   <div id='menuandcontents'>
-    <div id=side_menu_bar>
+   <div id='menuANDcontents'>
+    <div id="side_menu_bar">
     </div>
     <div id="content_section_view">
         
@@ -69,5 +53,27 @@
     </div>
     
     </div>
+    <script src="${contextPath}/resources/js/jquery-3.5.1.min.js"> </script>
+    <script>
+        $.ajax({
+        	type:"POST",
+        	url:"${contextPath}/resources/js/admin_menubar.jsp",
+        	success: function(data){
+        		$('#side_menu_bar').html(data);
+        	},
+        	error: function(){
+        		alert('aaaaa')
+        		$('#side_menu_bar').html('Error!!!');
+        	}
+        });
+       
+       // $('#side_menu_bar').load('${contextPath}/WEB-INF/views/board/admin_menubar.jsp'); 
+        
+        $('#content_section_view').load('${contextPath}/resources/js/NewFile.html'); 
+   
+
+       
+</script>
+   
 </body>
 </html>
