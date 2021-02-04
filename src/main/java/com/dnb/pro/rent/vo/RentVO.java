@@ -3,7 +3,12 @@ package com.dnb.pro.rent.vo;
 import java.util.Date;
 
 import org.springframework.stereotype.Component;
-@Component("rentVO")
+
+
+
+	
+	
+	@Component("rentVO")
 	public class RentVO {
        // 예약신청 목록
         private int Resq_num;
@@ -15,7 +20,7 @@ import org.springframework.stereotype.Component;
 		
 		// 예약 목록
 		private int Res_num;
-		private String Res_start;
+		private Date Res_start;
 		private Date Res_end;
 		private String Res_Status;
 		
@@ -26,14 +31,24 @@ import org.springframework.stereotype.Component;
 		private String Return_Status;
 		
 		//예약로그
-	    private int Log_num;
-		private String Status;
-		private String Log_maker;
-		private Date Log_date;
-		private Date Cate_name;
-		private Date Eq_name;
+		    private int Log_num;
+			private String Status;
+			private String Log_maker;
+			private Date Log_date;
+			private String Cate_name;
+			private String Eq_name;
 		
+
+
 			
+			
+			
+			public Date getRes_start() {
+				return Res_start;
+			}
+			public void setRes_start(Date res_start) {
+				Res_start = res_start;
+			}
 			public String getRes_Status() {
 				return Res_Status;
 			}
@@ -82,16 +97,16 @@ import org.springframework.stereotype.Component;
 			public void setLog_date(Date log_date) {
 				Log_date = log_date;
 			}
-			public Date getCate_name() {
+			public String getCate_name() {
 				return Cate_name;
 			}
-			public void setCate_name(Date cate_name) {
+			public void setCate_name(String cate_name) {
 				Cate_name = cate_name;
 			}
-			public Date getEq_name() {
+			public String getEq_name() {
 				return Eq_name;
 			}
-			public void setEq_name(Date eq_name) {
+			public void setEq_name(String eq_name) {
 				Eq_name = eq_name;
 			}
 			
@@ -138,12 +153,7 @@ import org.springframework.stereotype.Component;
 		public void setRes_num(int res_num) {
 			Res_num = res_num;
 		}
-		public String getRes_start() {
-			return Res_start;
-		}
-		public void setRes_start(String res_start) {
-			Res_start = res_start;
-		}
+		
 		public Date getRes_end() {
 			return Res_end;
 		}
