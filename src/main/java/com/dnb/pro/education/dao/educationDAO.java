@@ -2,10 +2,11 @@ package com.dnb.pro.education.dao;
 
 import java.util.List;
 
+import org.springframework.dao.DataAccessException;
+
 import com.dnb.pro.education.vo.educationVO;
 
 public interface educationDAO {
-
-	List<educationVO> selectEducationList (educationVO educationVO) throws Exception;
-	educationVO selecteducationByCode(educationVO educationVO) throws Exception;	
+	
+	public List selectEducationList() throws DataAccessException;
 }

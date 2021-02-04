@@ -8,30 +8,32 @@
 <resultMap id="educationResult" type="educationVO">
  <!-- DB에 있는 이름 그대로 -->
 		<result property="edu_num" column="edu_num" />
-		<result property="edu_eq_name" column="edu_eq_name" />
+		<result property="eq_name" column="eq_name" />
 		<result property="edu_title" column="edu_title" />
-		<result property="edu_content" column="edu_content" />
+		<result property="cate_name" column="cate_name" />
+ 		<result property="edu_content" column="edu_content" />
 		<result property="edu_pub_date" column="edu_pub_date" />
-		<result property="edu_writer" column="edu_writer" />
-		<result property="edu_thuming" column="edu_thuming" />
+		<result property="edu_writer" column="edu_writer" /> 
+	<result property="edu_thuming" column="edu_thuming" /> 
 </resultMap>
   
-  
+  <!-- select * from EDUCATION -->
   <!-- 교육 리스트 조회 -->
-  <select id="selectEducationList" parameterType="educationVO" >
+  <select id="selectEducationList"  resultMap="educationResult" >
         <![CDATA[
-        select * from EDUCATION
+        select edu_num, cate_name, eq_name, edu_title, edu_content, edu_pub_date, edu_writer, edu_thuming from education ORDER BY edu_num DESC;
         ]]>
     </select>
   
   
-<!--  
+<!--  교육 번호 조회  -->
   <select id="selectEducationByCode" parameterType="educationVO" resultType="com.dnb.pro.education.vo.educationVO">
     <![CDATA[
-        select * from EDUCATION
-        where
-            EDU_NUM = #{edu_num}
+	SELECT
+	count(*) as edu_num
+	FROM
+	education;
             	]]>
-    </select> -->
+    </select>
 </mapper>
 
