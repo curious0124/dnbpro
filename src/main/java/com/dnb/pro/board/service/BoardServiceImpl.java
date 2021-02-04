@@ -21,23 +21,4 @@ public class BoardServiceImpl implements BoardService {
 		List<ArticleVO> articlesList = boardDAO.selectAllArticlesList();
 		return articlesList;
 	}
-
-//	@Override
-//	public int addNewArticle(Map articleMap) throws Exception {
-//		
-//		return boardDAO.insertNewArticle(articleMap);
-//	}
-//
-//	@Override
-//	public ArticleVO viewArticle(int articleNO) throws Exception {
-//		ArticleVO articleVO = boardDAO.selectArticle(articleNO);
-//		return articleVO;
-//	}
-//
-//	@Override
-//	public void modArticle(Map articleMap) throws Exception {
-//		boardDAO.updateArticle(articleMap);
-//	}
-
-	
 }

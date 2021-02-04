@@ -17,23 +17,25 @@
 	<result property="edu_thuming" column="edu_thuming" /> 
 </resultMap>
   
-  <!-- select * from EDUCATION -->
+  <!--  
+          select edu_num, cate_name, eq_name, edu_title, edu_content, edu_pub_date, edu_writer, edu_thuming from education 
+        ORDER BY edu_num DESC;-->
   <!-- 교육 리스트 조회 -->
   <select id="selectEducationList"  resultMap="educationResult" >
         <![CDATA[
-        select edu_num, cate_name, eq_name, edu_title, edu_content, edu_pub_date, edu_writer, edu_thuming from education ORDER BY edu_num DESC;
+select edu_num, cate_name, eq_name, edu_title, edu_content, edu_pub_date, edu_writer, edu_thuming from education ORDER BY edu_num DESC
         ]]>
     </select>
   
   
 <!--  교육 번호 조회  -->
-  <select id="selectEducationByCode" parameterType="educationVO" resultType="com.dnb.pro.education.vo.educationVO">
+   <select id="selectEducationByCode" parameterType="educationVO" resultType="com.dnb.pro.education.vo.educationVO">
     <![CDATA[
 	SELECT
 	count(*) as edu_num
 	FROM
-	education;
+	education
             	]]>
-    </select>
+    </select> 
 </mapper>
 

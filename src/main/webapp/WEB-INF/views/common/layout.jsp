@@ -35,8 +35,8 @@
       #content {
         width: 75%;
         padding: 5px;
-        margin-right: 5px;
-        float: left;
+        
+        margin: 0 auto;
         border: 0px solid #bcbcbc;
       }
       #footer {

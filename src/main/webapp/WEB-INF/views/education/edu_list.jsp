@@ -50,16 +50,15 @@
 									</c:forEach>
 								</c:when>  --%>
 								
-<%-- 								<c:forEach items="${educationList}" var="list" varStatus="educationNum">
+ 								<c:forEach items="${educationList}" var="list" varStatus="educationNum">
 								<tr>
 									<td>${educationNum.count}</td>
-									<td> ${list.edu_num}</td>	
 									<td> ${list.edu_thuming}</td>		
 									<td> ${list.edu_title}</td>	
 									<td> ${list.cate_name}</td>	
 									
 								</tr>
-								</c:forEach> --%>
+								</c:forEach>
 								
 
 							</tbody>
