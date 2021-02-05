@@ -8,9 +8,12 @@ import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.dnb.pro.board.service.BoardService;
@@ -30,7 +33,12 @@ private static final Logger logger = LoggerFactory.getLogger(BoardControllerImpl
 	@Autowired
 	private ArticleVO articleVO;
 	
+
 	@RequestMapping(value = "/test2.do", method = {RequestMethod.GET, RequestMethod.POST})
+
+
+	
+
 	public ModelAndView test2(HttpServletRequest request, HttpServletResponse response) throws Exception{
 		String viewName = (String)request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView();
@@ -46,21 +54,52 @@ private static final Logger logger = LoggerFactory.getLogger(BoardControllerImpl
 	}
 	@Override
 	@RequestMapping(value="/admin_board_list.do", method = {RequestMethod.GET, RequestMethod.POST})
-	public ModelAndView admin_board_list(HttpServletRequest request, HttpServletResponse response) throws Exception{
+	public ModelAndView admin_board_list(@RequestParam("brd_num") int brd_num, HttpServletRequest request, HttpServletResponse response) throws Exception{
 		String viewName = (String)request.getAttribute("viewName");
-		logger.info("info ·¹º§: viewName = "+viewName);
-		logger.debug("debug ·¹º§: viewName = "+viewName);
+		logger.info("info ï¿½ï¿½ï¿½ï¿½: viewName = "+viewName);
+		logger.debug("debug ï¿½ï¿½ï¿½ï¿½: viewName = "+viewName);
 		
-		List articlesList = boardService.listArticles();	
+		List articlesList = boardService.listArticles(brd_num);	
 		
 		ModelAndView mav = new ModelAndView(viewName);
 		mav.addObject("articlesList",articlesList);
 		return mav;
-		
-		
-//		String viewName = (String)request.getAttribute("viewName");
-//		ModelAndView mav = new ModelAndView();
-//		mav.setViewName(viewName);
-//		return mav;
+
 	}
+	
+	@RequestMapping(value = "/admin_board_articleForm.do", method = RequestMethod.GET)
+	public ModelAndView admin_board_articleForm(HttpServletRequest request, HttpServletResponse response) throws Exception{
+		String viewName = (String)request.getAttribute("viewName");
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName(viewName);
+		return mav;
+	}
+	
+	@RequestMapping(value="/viewArticle.do", method = RequestMethod.GET)
+	public ModelAndView viewArticle(@RequestParam("board_num") int board_num, //ï¿½ï¿½È¸ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½È£ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+									HttpServletRequest request,
+									HttpServletResponse response) throws Exception{
+		String viewName = (String)request.getAttribute("viewName");
+		articleVO = boardService.viewArticle(board_num); 	//ï¿½ï¿½È¸ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ articleVOï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName(viewName);
+		mav.addObject("article",articleVO);		
+		return mav;
+	}
+	
+	
+//	@Override
+//	@RequestMapping(value="/addNewArticle.do" ,method = {RequestMethod.POST,RequestMethod.GET})
+//	public ResponseEntity addNewArticle(MultipartHttpServletRequest multipartRequest,
+//			HttpServletResponse response) throws Exception{
+//multipartRequest.setCharacterEncoding("utf-8");
+//
+//		int result = 0;
+//		result = boardService.addNewArticle(article);
+//		ModelAndView mav = new ModelAndView("redirect:/board/admin_board_list.do?brd_name="+article.getBrd_name());
+//		return mav;
+//	}
+	
+	
+	
 }
