@@ -92,7 +92,7 @@
                   분류 
             </div>
             <select class="form-select form-select-sm" aria-label=".form-select-sm example"name="brd_num">
-                  <option value="${article.brd_num }" selected>${article.brd_name }</option>
+                  <option value="${article.brd_num }" selected disabled>${article.brd_name }</option>
                   <option value="1">공지사항</option>
                   <option value="2">FAQ</option>
                   <option value="3">배너</option>

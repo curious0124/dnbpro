@@ -24,5 +24,6 @@ public class educationServiceImpl implements educationService {
 	public educationVO vieweducation(int edu_num) throws Exception {
 		educationVO educationVO = educationDAO.selecteducation(edu_num);
 		return educationVO;
+		
 	}
 }

@@ -6,4 +6,6 @@ public interface RentService {
 
 	
 	public List listlogs() throws Exception;
+	
+	public List listresqs() throws Exception;
 }

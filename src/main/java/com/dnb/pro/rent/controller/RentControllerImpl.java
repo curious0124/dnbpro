@@ -55,6 +55,22 @@ import com.dnb.pro.rent.vo.RentVO;
 		}
 		
 	
+		@Override
+		@RequestMapping(value="/admin_Eq_reserv_apply.do" ,method = {RequestMethod.GET,RequestMethod.POST})
+		public ModelAndView listresqs(HttpServletRequest request, HttpServletResponse response) throws Exception {
+			String viewName = (String)request.getAttribute("viewName");
+			
+			
+			logger.info("info 레벨: viewName = "+viewName);
+			logger.debug("debug 레벨: viewName = "+viewName);
+			
+			
+			List listresqs = rentService.listresqs();
+			ModelAndView mav = new ModelAndView(viewName);
+			mav.addObject("listresqs", listresqs);
+			return mav;
+		}
+		
 		
 
 	

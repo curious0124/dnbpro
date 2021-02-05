@@ -14,8 +14,134 @@
 
 <head>
     <meta charset="UTF-8">
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
     <title>Document</title>
     <style>
+     #board_content{
+            margin: 0 auto;
+            width: 1650px;
+            border:1px solid red;
+        }
+        #admin_menu{
+            margin: 0;
+            font-size: 0.9em;
+            padding: 0;
+            width:200px;
+            margin-top: 45px;
+            float: left;
+        }
+        #admin_menugroup{
+            width:200px;
+            text-indent: 10px;
+            margin: 0;
+            padding: 0;
+        }
+        #main_menu{
+            margin-bottom:  5px;
+        }
+        #admin_menugroup li{
+            list-style: none;
+        }
+        .admin_menutitle{
+            height: 35px;
+            line-height: 35px;
+            background: #FA8072;
+            cursor: pointer;
+            font-size:1.1em;
+            color: white;
+            font-weight: bold;
+            text-align: left;
+        }
+        .admin_menusub{
+            margin: 0;
+            padding: 0;
+        }
+        .admin_menusub li{
+            margin-bottom: 2px;
+            height: 35px;
+            line-height: 35px;
+            background: #a4a4a4;
+            text-align: left;
+/*            margin-left: -32px;*/
+        }
+        .admin_menusub li a{
+            text-decoration: none;
+            display: block;
+            width:100%;
+            height:100%;
+            color: white;
+            text-indent: 40px;
+        }
+        .admin_menusub li a:hover{
+            background: #FFF5EE;
+            color: black;
+            font-weight: bold;
+        }
+        a{
+            color: black;
+            text-decoration: none;
+        }
+        .board_container{
+            margin:0 auto;
+            float: left;
+            width: 825px;
+        }
+        .listrow{
+            width: 825px;
+            clear:both;
+            text-align: center;
+            
+            
+            
+        }
+        .col_top{
+            float: left;
+            background: #FA8072;
+            color: white;
+            font-weight: bold;
+            
+        }
+        .col_list{
+            float: left;
+            background: #FFF5EE;
+            padding: 0px 0px 0px 0px;
+           
+        }
+        
+        #brd_div1{
+            width: 30px;
+        }
+        #brd_div2{
+            width: 90px;
+        }
+        #brd_div3{
+            width: 400px;
+        }
+        #brd_div4{
+            width: 100px;
+        }
+        #brd_div5{
+            width: 120px;
+        }
+        #brd_div6{
+            width: 80px;
+        }
+        #top_buttonbox{
+            min-width: 800px;
+            text-align: right;
+            padding-right: 50px;
+            margin-bottom: 8px;
+        }
+        #brd_btn{
+            font-size:0.5em;
+            width:50px;
+            height:10px;
+            padding: 2px;
+            line-height:5px;
+            
+        }
+    
         .s1 {
             float: right;
         }
@@ -31,11 +157,24 @@
 
     </style>
 </head>
-<script src="js/jquery-3.5.1.min.js"></script>
+
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
+<script src="${contextPath}/resources/js/jquery-3.5.1.min.js"> </script>
+<script>
+    
+    $(function(){           
+            $('#menucontent').load("${contextPath}/resources/subjsp/admin_menubar.jsp")
 
+        
+    });
+
+
+</script>
 <body>
-
+ 
+      
+ 
+    
     <div class="form1">
         <form action="#" method="post">
 
@@ -131,6 +270,8 @@
             </table>
         </form>
     </div>
+      
+    
 </body>
 
 </html>

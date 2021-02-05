@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.equip">
+<!-- 리절트 맵 정의 -->	
+	<resultMap id="EquipResult" type="EquipVO">
+	    <result property="cate_name" column="cate_name" />
+		
+		<result property="eq_name" column="eq_name" />
+		<result property="eq_img" column="eq_img" />
+		<result property="eq_spec" column="eq_spec" />
+		<result property="eq_thumimg" column="eq_thumimg" />
+		<result property="eq_ma" column="eq_ma" />
+		
+		<result property="eq_serial" column="eq_serial" />
+		<result property="eq_produc" column="eq_produc" />
+		<result property="eq_regist" column="eq_regist" />
+		<result property="eq_state" column="eq_state" />
+	</resultMap>
+	
+	
+	<!--장비 리스트 -->
+	<select id="selectAllEquipList" resultMap="EquipResult"   >
+    <![CDATA[
+      SELECT Eq_name, Eq_thumimg, Eq_spec, Eq_ma from Equipment	
+    ]]>
+  </select>
+  
+  <!--장비 상세페이지뷰 -->
+	<select id="EquipDetail" resultType="com.dnb.pro.equip.vo.EquipVO"  parameterType="EquipVO" >
+    <![CDATA[
+      SELECT * from Equipment	
+       where eq_name = #{eq_name}
+      
+    ]]>
+  </select>
+  
+  <!--장비 이름 조회 -->
+   <select id="selectEquipByCode" parameterType="EquipVO" resultType="com.dnb.pro.equip.vo.EquipVO">
+    <![CDATA[
+	SELECT
+	count(*) as Eq_name
+	FROM
+	Equipment
+            	]]>
+    </select> 
+  
+  </mapper>

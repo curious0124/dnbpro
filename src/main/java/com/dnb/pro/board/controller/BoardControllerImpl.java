@@ -33,15 +33,19 @@ private static final Logger logger = LoggerFactory.getLogger(BoardControllerImpl
 	@Autowired
 	private ArticleVO articleVO;
 	
-	@RequestMapping(value = "/test2.do", method = RequestMethod.GET)
+
+	@RequestMapping(value = "/test2.do", method = {RequestMethod.GET, RequestMethod.POST})
+
+
 	
+
 	public ModelAndView test2(HttpServletRequest request, HttpServletResponse response) throws Exception{
 		String viewName = (String)request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName(viewName);
 		return mav;
 	}
-	@RequestMapping(value = "/admin_index.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/admin_index.do", method = {RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView admin_index(HttpServletRequest request, HttpServletResponse response) throws Exception{
 		String viewName = (String)request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView();
@@ -52,8 +56,8 @@ private static final Logger logger = LoggerFactory.getLogger(BoardControllerImpl
 	@RequestMapping(value="/admin_board_list.do", method = {RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView admin_board_list(@RequestParam("brd_num") int brd_num, HttpServletRequest request, HttpServletResponse response) throws Exception{
 		String viewName = (String)request.getAttribute("viewName");
-		logger.info("info ·¹º§: viewName = "+viewName);
-		logger.debug("debug ·¹º§: viewName = "+viewName);
+		logger.info("info ï¿½ï¿½ï¿½ï¿½: viewName = "+viewName);
+		logger.debug("debug ï¿½ï¿½ï¿½ï¿½: viewName = "+viewName);
 		
 		List articlesList = boardService.listArticles(brd_num);	
 		
@@ -74,11 +78,11 @@ private static final Logger logger = LoggerFactory.getLogger(BoardControllerImpl
 	}
 	
 	@RequestMapping(value="/viewArticle.do", method = RequestMethod.GET)
-	public ModelAndView viewArticle(@RequestParam("board_num") int board_num, //Á¶È¸ÇÒ ±Û ¹øÈ£ °¡Á®¿À±â
+	public ModelAndView viewArticle(@RequestParam("board_num") int board_num, //ï¿½ï¿½È¸ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½È£ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 									HttpServletRequest request,
 									HttpServletResponse response) throws Exception{
 		String viewName = (String)request.getAttribute("viewName");
-		articleVO = boardService.viewArticle(board_num); 	//Á¶È¸ÇÑ ±Û Á¤º¸¸¦ articleVO¿¡ ¼³Á¤ÇÑ´Ù.
+		articleVO = boardService.viewArticle(board_num); 	//ï¿½ï¿½È¸ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ articleVOï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName(viewName);
 		mav.addObject("article",articleVO);		
