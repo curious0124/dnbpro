@@ -19,6 +19,16 @@ public class MemberVO {
 	private String comp_fax;
 	private String comp_email;
 	private String user_auth;
+	
+	public MemberVO() {
+		
+	}
+	
+	public MemberVO(String id, String pwd) {
+		this.user_id = id;
+		this.user_pwd = pwd;
+	}
+	
 	public String getUser_id() {
 		return user_id;
 	}

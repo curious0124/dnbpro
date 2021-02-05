@@ -30,14 +30,14 @@ private static final Logger logger = LoggerFactory.getLogger(BoardControllerImpl
 	@Autowired
 	private ArticleVO articleVO;
 	
-	@RequestMapping(value = "/test2.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/test2.do", method = {RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView test2(HttpServletRequest request, HttpServletResponse response) throws Exception{
 		String viewName = (String)request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName(viewName);
 		return mav;
 	}
-	@RequestMapping(value = "/admin_index.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/admin_index.do", method = {RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView admin_index(HttpServletRequest request, HttpServletResponse response) throws Exception{
 		String viewName = (String)request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView();
