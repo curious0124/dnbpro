@@ -9,4 +9,5 @@ import com.dnb.pro.education.vo.educationVO;
 public interface educationDAO {
 	
 	public List selectEducationList() throws DataAccessException;
+	public educationVO selecteducation(int edu_num) throws DataAccessException;
 }

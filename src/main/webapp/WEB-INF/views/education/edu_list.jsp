@@ -9,10 +9,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<!-- <script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
 <title>boardList</title>
 </head>
 <body>
@@ -36,31 +32,15 @@
 								</tr>
 							</thead>
 							<tbody>
-
-
-								<%-- 								<c:when test="$[educationList != null]" varStatus="educationNum">
-									<c:forEach var="education" items="$[educationList]">
-										
-										<tr>
-											<td>${educationNum.count}</td>
-											<td>${education.edu_num }</td>
-											<td>${education.edu_title }</td>
-											<td>${education.edu_eq_name }</td>
-										</tr>
-									</c:forEach>
-								</c:when>  --%>
-								
  								<c:forEach items="${educationList}" var="list" varStatus="educationNum">
 								<tr>
 									<td>${educationNum.count}</td>
-									<td> ${list.edu_thuming}</td>		
-									<td> ${list.edu_title}</td>	
-									<td> ${list.cate_name}</td>	
+									<td><a href="${contextPath}/education/edu_detail.do?educationNO=${list.edu_num}">${list.edu_thuming}&nbsp;</a></td>		
 									
+									<td><a href="#">${list.edu_title}</a></td>	
+									<td> ${list.cate_name}</td>	
 								</tr>
 								</c:forEach>
-								
-
 							</tbody>
 						</table>
 					</div>

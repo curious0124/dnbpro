@@ -20,26 +20,9 @@ public class educationServiceImpl implements educationService {
 		List<educationVO> educationList = educationDAO.selectEducationList();
 		return educationList;
 	}
+	@Override
+	public educationVO vieweducation(int edu_num) throws Exception {
+		educationVO educationVO = educationDAO.selecteducation(edu_num);
+		return educationVO;
+	}
 }
-
-
-
-//import java.util.List;
-//
-//import javax.inject.Inject;
-//
-//import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.stereotype.Service;
-//
-//import com.dnb.pro.education.dao.educationDAO;
-//import com.dnb.pro.education.vo.educationVO;
-//
-//@Service
-//public class educationServiceImpl {
-//	@Autowired
-//	private educationDAO dao;
-//
-//	public List<educationVO> selectEducationList(educationVO educationVO) throws Exception {
-//		return dao.selectEducationList(educationVO);
-//	}
-//}

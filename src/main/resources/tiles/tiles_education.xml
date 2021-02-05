@@ -9,21 +9,10 @@
       <put-attribute name="title" value="교육 리스트" />
       <put-attribute name="body" value="/WEB-INF/views/education/edu_list.jsp" />
    </definition>
-   
 
-<!--    <definition name="/member/loginForm" extends="baseLayout">
-      <put-attribute name="title" value="로그인창" />
-      <put-attribute name="body" value="/WEB-INF/views/member/loginForm.jsp" />
-   </definition> -->
-      
-<!-- 
-   <definition name="/member/memberForm" extends="baseLayout">
-      <put-attribute name="title" value="회원등록창" />
-      <put-attribute name="body" value="/WEB-INF/views/member/memberForm.jsp" />
+   <definition name="/education/edu_detail" extends="baseLayout">
+      <put-attribute name="title" value="교육 상세 페이지" />
+      <put-attribute name="body" value="/WEB-INF/views/education/edu_detail.jsp" />
    </definition>
-
-   <definition name="/member/viewDetail" extends="baseLayout">
-      <put-attribute name="title" value="회원상세창" />
-      <put-attribute name="body" value="/WEB-INF/views/member/viewDetail.jsp" />
-   </definition> -->
+    
 </tiles-definitions>
