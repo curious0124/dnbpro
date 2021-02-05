@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.education">
+
+
+<resultMap id="educationResult" type="educationVO">
+ <!-- DB에 있는 이름 그대로 -->
+		<result property="edu_num" column="edu_num" />
+		<result property="eq_name" column="eq_name" />
+		<result property="edu_title" column="edu_title" />
+		<result property="cate_name" column="cate_name" />
+ 		<result property="edu_content" column="edu_content" />
+		<result property="edu_pub_date" column="edu_pub_date" />
+		<result property="edu_writer" column="edu_writer" /> 
+		<result property="edu_thuming" column="edu_thuming" /> 
+		
+	
+</resultMap>
+  
+  <select id="selectEducationList"  resultMap="educationResult" >
+        <![CDATA[
+select edu_num, cate_name, eq_name, edu_title, edu_content, edu_pub_date, edu_writer, edu_thuming  from education ORDER BY edu_num DESC
+        ]]>
+    </select>
+  
+  
+<!--  교육 번호 조회  -->
+   <select id="selectEducationByCode" parameterType="educationVO" resultType="com.dnb.pro.education.vo.educationVO">
+    <![CDATA[
+	SELECT
+	count(*) as edu_num
+	FROM
+	education
+            	]]>
+    </select> 
+    
+<!--  교육 번호 조회  -->
+       <select id="educationdetail" parameterType="educationVO" resultType="com.dnb.pro.education.vo.educationVO">
+    <![CDATA[
+    select * from education 
+    where edu_num = #{no}
+            	]]>
+    </select> 
+</mapper>
+

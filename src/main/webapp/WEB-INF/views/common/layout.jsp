@@ -35,9 +35,14 @@
       #content {
         width: 75%;
         padding: 5px;
+<<<<<<< HEAD
+        
+        margin: 0 auto;
+=======
         margin-right: 5px;
         
         margin : 0 auto;
+>>>>>>> branch 'develop' of https://github.com/curious0124/dnbpro.git
         border: 0px solid #bcbcbc;
       }
       #footer {

@@ -24,7 +24,13 @@ public class RentDAOImpl implements  RentDAO {
 			return logList;
 		}
 
+		@Override
+		public List selectResqList() throws DataAccessException {
+			List<RentVO> resqList = resqList = sqlSession.selectList("mapper.rent.selectResqList");
+			return resqList;
+		}
 
+		
 
 
 }

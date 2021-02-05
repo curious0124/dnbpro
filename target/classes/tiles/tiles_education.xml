@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+"-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+"http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+
+<tiles-definitions>
+ 
+   <definition name="/education/edu_list" extends="baseLayout">
+      <put-attribute name="title" value="교육 리스트" />
+      <put-attribute name="body" value="/WEB-INF/views/education/edu_list.jsp" />
+   </definition>
+
+   <definition name="/education/edu_detail" extends="baseLayout">
+      <put-attribute name="title" value="교육 상세 페이지" />
+      <put-attribute name="body" value="/WEB-INF/views/education/edu_detail.jsp" />
+   </definition>
+    
+</tiles-definitions>

@@ -4,8 +4,8 @@
 
 <configuration>
   <typeAliases>
-    <typeAlias type="com.dnb.pro.member.vo.MemberVO" alias="memberVO" />
+
     <typeAlias type="com.dnb.pro.rent.vo.RentVO" alias="rentVO" />
-    <typeAlias type="com.dnb.pro.board.vo.ArticleVO" alias="articleVO" />
+    <typeAlias type="com.dnb.pro.equip.vo.EquipVO" alias="equipVO" />
   </typeAliases>
 </configuration>

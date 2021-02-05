@@ -6,35 +6,42 @@
 <mapper namespace="mapper.rent">
 <!-- 리절트 맵 정의 -->	
 	<resultMap id="rentEquipResult" type="RentVO">
-	    <result property="Resq_num" column="Resq_num" />
-		<result property="User_id" column="User_id" />
-		<result property="Eq_serial" column="Eq_serial" />
-		<result property="Resq_start" column="Resq_start" />
-		<result property="Resq_end" column="Resq_end" />
-		<result property="Resq_date" column="Resq_date" />
+	    <result property="resq_num" column="resq_num" />
+		<result property="user_id" column="user_id" />
+		<result property="eq_serial" column="eq_serial" />
+		<result property="resq_start" column="resq_start" />
+		<result property="resq_end" column="resq_end" />
+		<result property="resq_date" column="resq_date" />
 		
 		
-		<result property="Res_num" column="Res_num" />
-		<result property="Res_start" column="Res_start" />
-		<result property="Res_end" column="Res_end" />
-		<result property="Res_Status" column="Res_Status" />
+		<result property="res_num" column="res_num" />
+		<result property="res_start" column="res_start" />
+		<result property="res_end" column="res_end" />
+		<result property="res_Status" column="res_Status" />
 		
-		<result property="Return_num" column="Return_num" />
-		<result property="Express_num" column="Express_num" />
-		<result property="Return_date" column="Return_date" />
-		<result property="Return_Status" column="Return_Status" />
+		<result property="return_num" column="return_num" />
+		<result property="express_num" column="express_num" />
+		<result property="return_date" column="return_date" />
+		<result property="return_Status" column="return_Status" />
 		
-		<result property="Log_num" column="Log_num" />
-		<result property="Status" column="Status" />
-		<result property="Log_maker" column="Log_maker" />
-		<result property="Log_date" column="Log_date" />
-	    <result property="Cate_name" column="Cate_name" />
-		<result property="Eq_name" column="Eq_name" />
+		<result property="log_num" column="log_num" />
+		<result property="status" column="status" />
+		<result property="log_maker" column="log_maker" />
+		<result property="log_date" column="log_date" />
+	    <result property="cate_name" column="cate_name" />
+		<result property="eq_name" column="eq_name" />
 	</resultMap>
 	
 	
 	  <!-- 로그리스트 조회 -->
-  <select id="selectAllLogList" resultMap="rentEquipResult"   >
+  <select id="selectResqList" resultMap="rentEquipResult"   >
+    <![CDATA[
+      SELECT Resq_num,User_id,Eq_serial,Resq_start ,Resq_end,Resq_date  from Resq	
+    ]]>
+  </select>
+  
+  
+   <select id="selectAllLogList" resultMap="rentEquipResult"   >
     <![CDATA[
       SELECT Log_num, Resq_num, Res_num, Return_num, User_id, Status, Log_maker,Res_start,Res_end,Log_date,Eq_name,Cate_name,Eq_serial from Log	
     ]]>

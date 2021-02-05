@@ -1,15 +1,18 @@
 package com.dnb.pro.education.vo;
 
 import java.sql.Date;
+import org.springframework.stereotype.Component;
 
-public class edu_vo {
+@Component("educationVO")
+public class educationVO {
 	private int edu_num;
-	private String edu_eq_name;
+	private String eq_name;
 	private String edu_title;
 	private String edu_content;
 	private Date edu_pub_date;
 	private String edu_writer;
 	private String edu_thuming;
+	private String cate_name;
 	
 	
 	
@@ -18,12 +21,6 @@ public class edu_vo {
 	}
 	public void setEdu_num(int edu_num) {
 		this.edu_num = edu_num;
-	}
-	public String getEdu_name() {
-		return edu_eq_name;
-	}
-	public void setEdu_name(String edu_name) {
-		this.edu_eq_name = edu_name;
 	}
 	public String getEdu_title() {
 		return edu_title;
@@ -55,6 +52,19 @@ public class edu_vo {
 	public void setEdu_thuming(String edu_thuming) {
 		this.edu_thuming = edu_thuming;
 	}
+	public String getEq_name() {
+		return eq_name;
+	}
+	public void setEq_name(String eq_name) {
+		this.eq_name = eq_name;
+	}
+	public String getCate_name() {
+		return cate_name;
+	}
+	public void setCate_name(String cate_name) {
+		this.cate_name = cate_name;
+	}
+
 	
 	
 }
