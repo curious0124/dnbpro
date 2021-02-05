@@ -97,13 +97,17 @@
                 <a href="#">로그인</a>
                 <span>/</span>
                 <a href="#">회원가입</a>
+                <span>/</span>
+                <a href="http://localhost:8090/pro/board/admin_board_list.do?brd_num=1">관리자</a>
             </div>
         </div>
 
 
         <div class="row">
             <div class="col-6 col-md-1">
+            <a href="http://localhost:8090/pro/main/main.do">
                 <img id="logo" src="${contextPath}/resources/image/logo.png">
+                </a>
             </div>
         </div>
 
@@ -113,13 +117,11 @@
                 <div class="container">
                     <div class="row" id="header_ser">
                         <div class="col-xs-8 col-xs-offset-2">
-
                             <!-- 검색창 !-->
                             <div class="input-group">
                                 <div class="input-group-btn search-panel">
                                     <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
                                         <span id="search_concept">통합검색</span>
-
                                     </button>
                                     <ul class="dropdown-menu" role="menu">
                                         <li><a href="#contains">작성자</a></li>
@@ -133,7 +135,6 @@
                                 </span>
                             </div>
                             <!-- 검색창끝 !-->
-
                         </div>
                     </div>
                 </div>
@@ -154,9 +155,9 @@
                 </div>
             </div>
             <div class="col">
-
                 <div class="dropdown">
-                    <button class="dropbtn">장비 예약</button>
+                
+                    <button class="dropbtn" onclick="location.href=' http://localhost:8090/pro/equip/view_Eq_list.do'" >장비예약</button>
                     <div class="dropdown-content">
                         <a href="#">사업소개</a>
                         <a href="#">홍보영상</a>
@@ -164,12 +165,12 @@
                         <a href="#">오시는길</a>
                     </div>
                 </div>
-
             </div>
             <div class="col">
 
                 <div class="dropdown">
-                    <button class="dropbtn">장비 교육</button>
+               
+                    <button class="dropbtn" onclick="location.href=' http://localhost:8090/pro/education/edu_list.do'">장비교육</button>
                     <div class="dropdown-content">
                         <a href="#">사업소개</a>
                         <a href="#">홍보영상</a>
@@ -177,27 +178,18 @@
                         <a href="#">오시는길</a>
                     </div>
                 </div>
-
             </div>
             <div class="col">
-
                 <div class="dropdown">
                     <button class="dropbtn">고객 지원</button>
                     <div class="dropdown-content">
-                        <a href="#">사업소개</a>
-                        <a href="#">홍보영상</a>
-                        <a href="#">지원소개</a>
-                        <a href="#">오시는길</a>
+                        <a href="#">공지사항</a>
+                        <a href="#">FAQ</a>
                     </div>
                 </div>
 
             </div>
         </div>
-
-
-
-
     </div>
-
 </body>
 </html>
