@@ -6,7 +6,7 @@
 <mapper namespace="mapper.mypage">
 <!-- 리절트 맵 정의 -->
 	<resultMap id="RentResult" type="RentVO">
-		<result property="USER_ID" column="member_id" />
+		<result property="user_id" column="user_id" />
  		<result property="user_pwd" column="user_pwd"/>
  		<result property="user_name" column="user_name"/>
  		<result property="user_identity" column="user_identity"/>
@@ -21,31 +21,103 @@
  		<result property="comp_fax" column="comp_fax"/>
  		<result property="comp_email" column="comp_email"/>
  		<result property="user_auth" column="user_auth"/>
- 		<result property="RESQ_NUM" column="RESQ_NUM"/>
- 		<result property="EQ_SERIAL" column="EQ_SERIAL"/>
- 		<result property="RESQ_START" column="RESQ_START"/>
- 		<result property="RESQ_END" column="RESQ_END"/>
- 		<result property="RESQ_DATE" column="RESQ_DATE"/>
- 		<result property="RETURN_NUM" column="RETURN_NUM"/>
- 		<result property="RES_NUM" column="RES_NUM"/>
- 		<result property="EXPRESS_NUM" column="EXPRESS_NUM"/>
- 		<result property="RETURN_DATE" column="RETURN_DATE"/>
- 		<result property="RETURN_STATUS" column="RETURN_STATUS"/>
- 		<result property="RES_START" column="RES_START"/>
- 		<result property="RES_END" column="RES_END"/>
- 		<result property="RES_STATUS" column="RES_STATUS"/>
- 		<result property="QUIT_REASON" column="QUIT_REASON"/>
- 		<result property="QUIT_DATE" column="QUIT_DATE"/>
- 		<result property="CATE_NAME" column="CATE_NAME"/>
- 		<result property="LOG_NUM" column="LOG_NUM"/>
- 		<result property="LOG_DATE" column="LOG_DATE"/>
+ 		<result property="resq_num" column="resq_num"/>
+ 		<result property="eq_serial" column="eq_serial"/>
+ 		<result property="resq_start" column="resq_start"/>
+ 		<result property="resq_end" column="resq_end"/>
+ 		<result property="resq_date" column="resq_date"/>
+ 		<result property="return_num" column="return_nu"/>
+ 		<result property="res_num" column="res_num"/>
+ 		<result property="express_num" column="express_num"/>
+ 		<result property="return_date" column="return_date"/>
+ 		<result property="return_Status" column="return_Status"/>
+ 		<result property="res_start" column="res_start"/>
+ 		<result property="res_end" column="res_end"/>
+ 		<result property="res_Status" column="res_Status"/>
+ 		<result property="quit_reason" column="quit_reason"/>
+ 		<result property="quit_date" column="quit_date"/>
+ 		<result property="cate_name" column="cate_name"/>
+ 		<result property="log_num" column="log_num"/>
+ 		<result property="log_date" column="log_date"/>
+ 		<result property="eq_name" column="eq_name" />
+ 		<result property="status" column="status" />
 	</resultMap> 
-
+ <!-- 2021.02.03 쿼리문 수정 값 받아올수있게 -->
 	<select id="selectMyResqList" resultMap="RentResult"  parameterType="String"  >
-	    <![CDATA[
-			select * from reserve
-            where user_id=#{user_id}
-            order by STATUS desc
+	    <![CDATA[ 
+			select rq.user_id, el.eq_name, rq.eq_serial, rq.resq_date, rq.resq_start, rq.resq_end 
+			from resq rq, eq_list el 
+			where rq.user_id =#{user_id} and rq.eq_serial = el.eq_serial
+			order by rq.resq_date desc
 		]]>
 	</select>
+	
+	<select id="selectMyResList" resultMap="RentResult"  parameterType="String"  >
+	    <![CDATA[ 
+			SELECT rq.user_id, el.eq_name, rs.eq_serial, rq.resq_date, rs.res_start, rs.res_end, rs.res_status
+			from reserve rs, eq_list el, resq rq
+			where rs.user_id =#{user_id} and rs.eq_serial = el.eq_serial and rs.user_id = rq.user_id and res_status = '예약중'
+			group by rq.user_id, el.eq_name, rs.eq_serial, rq.resq_date, rs.res_start, rs.res_end, rs.res_status
+			order by rs.res_start desc
+		]]>
+	</select>
+	
+	<select id="selectMyReturnList" resultMap="RentResult"  parameterType="String"  >
+	    <![CDATA[ 
+			SELECT rq.user_id, el.eq_name, rs.eq_serial, rq.resq_date, rs.res_start, rs.res_end, rs.res_status
+			from reserve rs, eq_list el, resq rq
+			where rs.user_id =#{user_id} and rs.eq_serial = el.eq_serial and rs.user_id = rq.user_id and res_status = '대여중'
+			group by rq.user_id, el.eq_name, rs.eq_serial, rq.resq_date, rs.res_start, rs.res_end, rs.res_status
+			order by rs.res_start desc
+		]]>
+	</select>
+	
+	<select id="selectMyLogList" resultMap="RentResult"  parameterType="String"  >
+	    <![CDATA[ 
+			select rt.user_id, el.eq_name, el.eq_serial, rt.return_date, lg.res_start, lg.res_end, rt.return_status
+			from log lg, return rt, eq_list el
+			where rt.user_id =#{user_id} and lg.user_id= rt.user_id and lg.eq_serial = el.eq_serial
+			group by rt.user_id, el.eq_name, el.eq_serial, rt.return_date, lg.res_start, lg.res_end, rt.return_status
+		]]>
+	</select>
+	
+	<select id="selectMyResqResult" resultMap="RentResult"  parameterType="String"  >
+	    <![CDATA[ 
+			select rq.user_id, el.eq_name, rq.eq_serial, rq.resq_date, rq.resq_start, rq.resq_end 
+			from resq rq, eq_list el 
+			where rq.user_id =#{user_id} and rq.eq_serial = el.eq_serial
+			order by rq.resq_date desc
+		]]>
+	</select>
+	
+	<select id="selectMyResResult" resultMap="RentResult"  parameterType="String"  >
+	    <![CDATA[ 
+			SELECT rq.user_id, el.eq_name, rs.eq_serial, rq.resq_date, rs.res_start, rs.res_end, rs.res_status
+			from reserve rs, eq_list el, resq rq
+			where rs.user_id =#{user_id} and rs.eq_serial = el.eq_serial and rs.user_id = rq.user_id and res_status = '예약중'
+			group by rq.user_id, el.eq_name, rs.eq_serial, rq.resq_date, rs.res_start, rs.res_end, rs.res_status
+			order by rs.res_start desc
+		]]>
+	</select>
+	
+	<select id="selectMyReturnResult" resultMap="RentResult"  parameterType="String"  >
+	    <![CDATA[ 
+			SELECT rq.user_id, el.eq_name, rs.eq_serial, rq.resq_date, rs.res_start, rs.res_end, rs.res_status
+			from reserve rs, eq_list el, resq rq
+			where rs.user_id =#{user_id} and rs.eq_serial = el.eq_serial and rs.user_id = rq.user_id and res_status = '대여중'
+			group by rq.user_id, el.eq_name, rs.eq_serial, rq.resq_date, rs.res_start, rs.res_end, rs.res_status
+			order by rs.res_start desc
+		]]>
+	</select>
+	
+	<select id="selectMyLogResult" resultMap="RentResult"  parameterType="String"  >
+	    <![CDATA[ 
+			select rt.user_id, el.eq_name, el.eq_serial, rt.return_date, lg.res_start, lg.res_end, rt.return_status
+			from log lg, return rt, eq_list el
+			where rt.user_id =#{user_id} and lg.user_id= rt.user_id and lg.eq_serial = el.eq_serial
+			group by rt.user_id, el.eq_name, el.eq_serial, rt.return_date, lg.res_start, lg.res_end, rt.return_status
+		]]>
+	</select>
+	
+	
 </mapper>
