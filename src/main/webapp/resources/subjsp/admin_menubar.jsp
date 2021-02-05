@@ -14,14 +14,13 @@
     <meta charset="UTF-8">
     <title>admin_menubar</title>
     <style>
-       
-
-        #admin_menu{
+       #admin_menu{
             margin: 0;
             font-size: 0.9em;
             padding: 0;
             width:200px;
-            margin-top: 95px;
+            margin-top: 46px;
+            float: left;
         }
         #admin_menugroup{
             width:200px;
@@ -43,6 +42,7 @@
             font-size:1.1em;
             color: white;
             font-weight: bold;
+            text-align: left;
         }
         .admin_menusub{
             margin: 0;
@@ -53,6 +53,7 @@
             height: 35px;
             line-height: 35px;
             background: #a4a4a4;
+            text-align: left;
 /*            margin-left: -32px;*/
         }
         .admin_menusub li a{
@@ -87,25 +88,11 @@
                 $(this).find('ul').show();
             });
             
-        $("#notice").click(function(){
-               path="admin_board_list.html";
-                evn();
-            });
+       
             
         });
         
-        function evn(){
-           $.ajax({
-                    type: "get",
-                    url: path,
-                    success: function(data){
-                       $("#content_section_view").html(data); 
-                    },
-                    error: function(){
-                        alert('에러');
-                    }
-                })   
-        }
+        
     </script>
 </head>
 <body>
@@ -131,12 +118,12 @@
         <li class="main_menu">
             <div class="admin_menutitle">사이트관리</div>
             <ul class="admin_menusub">
-                <li class="admin_menusubli"id="notice"><a href="#">공지사항 관리</a></li>
-                <li class="admin_menusubli"id="FAQ"><a href="#">FAQ 관리</a></li>
-                <li class="admin_menusubli"id="notice"><a href="#">배너 관리</a></li>
-                <li class="admin_menusubli"id="notice"><a href="#">홍보영상 관리</a></li>
-                <li class="admin_menusubli"id="notice"><a href="#">사업소개 관리</a></li>
-                <li class="admin_menusubli"id="notice"><a href="#">지원서비스 관리</a></li>
+                <li class="admin_menusubli"id="notice"><a href="${contextPath}/board/admin_board_list.do?brd_num=1">공지사항 관리</a></li>
+                <li class="admin_menusubli"id="FAQ"><a href="${contextPath}/board/admin_board_list.do?brd_num=2">FAQ 관리</a></li>
+                <li class="admin_menusubli"id="banner"><a href="${contextPath}/board/admin_board_list.do?brd_num=3">배너 관리</a></li>
+                <li class="admin_menusubli"id="notice"><a href="${contextPath}/board/admin_board_list.do?brd_num=4">사업소개 관리</a></li>
+                <li class="admin_menusubli"id="notice"><a href="${contextPath}/board/admin_board_list.do?brd_num=5">홍보영상 관리</a></li>
+                <li class="admin_menusubli"id="notice"><a href="${contextPath}/board/admin_board_list.do?brd_num=6">지원서비스 관리</a></li>
             </ul>
         </li>
         
