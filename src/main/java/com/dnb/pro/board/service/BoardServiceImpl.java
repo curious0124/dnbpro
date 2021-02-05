@@ -17,8 +17,14 @@ public class BoardServiceImpl implements BoardService {
 	@Autowired
 	private BoardDAO boardDAO;
 	
-	public List<ArticleVO> listArticles() throws Exception{
-		List<ArticleVO> articlesList = boardDAO.selectAllArticlesList();
+	public List<ArticleVO> listArticles(int brd_num) throws Exception{
+		List<ArticleVO> articlesList = boardDAO.selectAllArticlesList(brd_num);
 		return articlesList;
+	}
+
+	@Override
+	public ArticleVO viewArticle(int board_num) throws Exception {
+		ArticleVO articleVO = boardDAO.selectArticle(board_num);
+		return articleVO;
 	}
 }

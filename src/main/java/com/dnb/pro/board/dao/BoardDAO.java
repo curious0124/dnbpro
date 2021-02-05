@@ -9,7 +9,9 @@ import com.dnb.pro.board.vo.ArticleVO;
 
 public interface BoardDAO {
 
-	public List selectAllArticlesList() throws DataAccessException;
+	public List selectAllArticlesList(int brd_num) throws DataAccessException;
+
+	public ArticleVO selectArticle(int board_num) throws DataAccessException;
 
 //	public int insertNewArticle(Map articleMap) throws DataAccessException;
 //
