@@ -1,68 +1,327 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"
+    isELIgnored="false" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="contextPath" value="${pageContext.request.contextPath}" />
+
+<%
+  request.setCharacterEncoding("UTF-8");
+%>
+
+
+
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-<meta charset="UTF-8">
-    <title>Document</title>
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+    <title>예약신청리스트</title>
     <style>
+        #board_content {
+            margin: 0 auto;
+            width: 1950px;
+            border: 1px solid red;
+         
+        }
+
+        #admin_menu {
+            margin: 0;
+            font-size: 0.9em;
+            padding: 0;
+            width: 200px;
+            margin-top: 45px;
+            float: left;
+        }
+
+        #admin_menugroup {
+            width: 200px;
+            text-indent: 10px;
+            margin: 0;
+            padding: 0;
+            
+        }
+
+        #main_menu {
+            margin-bottom: 5px;
+        }
+
+        #admin_menugroup li {
+            list-style: none;
+        }
+
+        .admin_menutitle {
+            height: 35px;
+            line-height: 35px;
+            background: #FA8072;
+            cursor: pointer;
+            font-size: 1.1em;
+            color: white;
+            font-weight: bold;
+            text-align: left;
+        }
+
+        .admin_menusub {
+            margin: 0;
+            padding: 0;
+        }
+
+        .admin_menusub li {
+            margin-bottom: 2px;
+            height: 35px;
+            line-height: 35px;
+            background: #a4a4a4;
+            text-align: left;
+            /*            margin-left: -32px;*/
+        }
+
+        .admin_menusub li a {
+            text-decoration: none;
+            display: block;
+            width: 100%;
+            height: 100%;
+            color: white;
+            text-indent: 40px;
+        }
+
+        .admin_menusub li a:hover {
+            background: #FFF5EE;
+            color: black;
+            font-weight: bold;
+        }
+
+        a {
+            color: black;
+            text-decoration: none;
+        }
+
+        .board_container {
+            margin: 0 auto;
+            float: left;
+            width: 1600px;
+        }
+
+        .listrow {
+            width: 900px;
+            clear: both;
+            text-align: center;
+
+
+
+        }
+
+        .col_top {
+            float: left;
+            background: #FA8072;
+            color: white;
+            font-weight: bold;
+
+        }
+
+        .col_list {
+            float: left;
+            background: #FFF5EE;
+            padding: 0px 0px 0px 0px;
+
+        }
+
+        #brd_div1 {
+            width: 100px;
+        }
+
+        #brd_div2 {
+            width: 120px;
+            height: 24px;
+        }
+
+        #brd_div3 {
+            width: 140px;
+        }
+
+        #brd_div4 {
+            width: 120px;
+        }
+
+        #brd_div5 {
+            width: 120px;
+        }
+
+        #brd_div6 {
+            width: 120px;
+        }
+
+        #brd_div7 {
+            width: 120px;
+        }
+
+        #top_buttonbox {
+            min-width: 1200px;
+            text-align: right;
+            padding-right: 50px;
+            margin-bottom: 8px;
+        }
+
+        #brd_btn {
+            font-size: 0.5em;
+            width: 50px;
+            height: 10px;
+            padding: 2px;
+            line-height: 5px;
+
+        }
 
     </style>
+    <script src="${contextPath}/resources/js/jquery-3.5.1.min.js"> </script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
+    <script>
+        var path;
+        $(function() {
+
+
+            $('.admin_menusub').hide();
+
+            $('.main_menu').click(function() {
+                $('.admin_menusub').hide();
+                $(this).find('ul').show();
+            });
+
+        });
+
+    </script>
+
 </head>
-<script src="js/jquery-3.5.1.min.js"></script>
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
-<script>
-
-
-</script>
 
 <body>
-    <form action="#" method="post">
-        <fieldset>
-            <legend>���� ��û ����Ʈ</legend>
+    <div id='board_content'>
+        <!--menu bar -->
+        <div id='admin_menu'>
+            <ul id="admin_menugroup">
+                <li class="main_menu">
+                    <div class="admin_menutitle">장비관리</div>
+                    <ul class="admin_menusub">
+                        <li class="admin_menusubli"><a href="#">보유장비 등록/관리</a></li>
+                        <li class="admin_menusubli"><a href="#">예약신청 관리</a></li>
+                        <li class="admin_menusubli"><a href="#">예약/대여/반납 관리</a></li>
+                        <li class="admin_menusubli"><a href="#">배송반납 신청 리스트</a></li>
+                        <li class="admin_menusubli"><a href="#">교육 등록/관리</a></li>
+                        <li class="admin_menusubli"><a href="#">사용자로그 관리</a></li>
+                    </ul>
+                </li>
+                <li class="main_menu">
+                    <div class="admin_menutitle">회원관리</div>
+                    <ul class="admin_menusub">
+                        <li class="admin_menusubli"><a href="#">회원목록</a></li>
 
-            <div>
-                <table align="center" border="1">
-                    <tr colspan="9">
-                        <td>CB</td>
-                        <td>�̸�</td>
-                        <td>�ø����ȣ</td>
-                        <td>�𵨸�</td>
-                        <td>���̵�</td>
-                        <td>�����û��ȣ</td>
-                        <td>�������</td>
-                    </tr>
-                    <c:when>
-                        <tr>
-                            <td><input type="checkbox"></td>
-                            <td>${User_name}</td>
-                            <td>${Eq_serial}</td>
-                            <td>${Eq_name}</td>
-                            <td>${User_id}</td>
-                            <td>${Resq_num}</td>
-                            <td><input type="button" value="����"><input type="button" value="�ź�"></td>
+                    </ul>
+                </li>
+                <li class="main_menu">
+                    <div class="admin_menutitle">사이트관리</div>
+                    <ul class="admin_menusub">
+                        <li class="admin_menusubli" id="notice"><a href="#">공지사항 관리</a></li>
+                        <li class="admin_menusubli" id="FAQ"><a href="#">FAQ 관리</a></li>
+                        <li class="admin_menusubli" id="notice"><a href="#">배너 관리</a></li>
+                        <li class="admin_menusubli" id="notice"><a href="#">사업소개 관리</a></li>
+                        <li class="admin_menusubli" id="notice"><a href="#">홍보영상 관리</a></li>
+                        <li class="admin_menusubli" id="notice"><a href="#">지원서비스 관리</a></li>
+                    </ul>
+                </li>
 
-                        </tr>
-                    </c:when>
-                </table>
+            </ul>
+        </div>
+
+
+
+        <!--board_container -->
+        <div class="board_container">
+
+            <div class="listrow">
+
+                <div class="col_top" id='brd_div1'>
+                    예약신청번호
+                </div>
+                <div class="col_top" id='brd_div2'>
+                    아이디
+                </div>
+                <div class="col_top" id='brd_div3'>
+                    시리얼번호
+                </div>
+                <div class="col_top" id='brd_div4'>
+                    신청예약일
+                </div>
+                <div class="col_top" id='brd_div5'>
+                    신청반납일
+                </div>
+                <div class="col_top" id='brd_div6'>
+                    예약신청일
+                </div>
+                <div class="col_top" id='brd_div7'>
+                    확인
+                </div>
             </div>
-        </fieldset>
-        <table align="center" border="1">
-            <tr>
-                <td>����</td>
-                <td>1</td>
-                <td>2</td>
-                <td>3</td>
-                <td>4</td>
-                <td>5</td>
-                <td>6</td>
-                <td>7</td>
-                <td>8</td>
-                <td>9</td>
-                <td>10</td>
-                <td>����</td>
-            </tr>
-        </table>
-    </form>
 
-</body></html>
+            <c:choose>
+
+                <c:when test="${listresqs !=null }">
+                    <c:set var="List" value="${listresqs }" />
+                    <c:forEach var="List" items="${listresqs }" varStatus="Resq_Num">
+                        <div class="listrow">
+                            <div class="col_list" id='brd_div1'>
+                                ${List.resq_num}
+                            </div>
+                            <div class="col_list" id="brd_div2">
+                                ${List.user_id}
+                            </div>
+                            <div class="col_list" id='brd_div3'>
+                                ${List.eq_serial}
+                            </div>
+                            <div class=" col_list" id='brd_div4'>
+                                <fmt:formatDate pattern="yyyy-MM-dd" value="${List.resq_start}" />
+                            </div>
+                            <div class="col_list" id='brd_div5'>
+                                <fmt:formatDate pattern="yyyy-MM-dd" value="${List.resq_end}" />
+                            </div>
+                            <div class="col_list" id='brd_div6'>
+                                <fmt:formatDate pattern="yyyy-MM-dd" value="${List.resq_date}" />
+                            </div>
+                            <div class="col_list" id='brd_div7'>
+                                <button type="button" class="btn btn-light" id='brd_btn'>승인</button>
+                                <button type="button" class="btn btn-light" id='brd_btn'>취소</button>
+                            </div>
+
+                        </div>
+                    </c:forEach>
+                </c:when>
+
+                <c:when test="${listresqs ==null}">
+                    <div class="listrow">
+                        <div class="col_list" id='brd_div1'>
+                            &nbsp;
+                        </div>
+                        <div class="col_list" id='brd_div2'>
+                            &nbsp;
+                        </div>
+                        <div class="col_list" id='brd_div3'>
+                            &nbsp;
+                        </div>
+                        <div class="col_list" id='brd_div4'>
+                            &nbsp;
+                        </div>
+                        <div class="col_list" id='brd_div5'>
+                            &nbsp;
+                        </div>
+                        <div class="col_list" id='brd_div6'>
+                            &nbsp;
+                        </div>
+                        <div class="col_list" id='brd_div7'>
+                            &nbsp;
+                        </div>
+                    </div>
+                </c:when>
+            </c:choose>
+        </div>
+    </div>
+</body>
+
+</html>

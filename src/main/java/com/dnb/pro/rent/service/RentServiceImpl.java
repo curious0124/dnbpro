@@ -22,4 +22,12 @@ import com.dnb.pro.rent.vo.RentVO;
 			
 			return logList;
 		}
+		
+		
+		@Override
+		public List<RentVO> listresqs() throws Exception {
+			List<RentVO> resqList = rentDAO.selectResqList();
+			
+			return resqList;
+		}
 }

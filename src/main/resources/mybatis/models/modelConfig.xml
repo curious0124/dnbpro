@@ -4,10 +4,28 @@
 
 <configuration>
   <typeAliases>
+<<<<<<< HEAD
     <typeAlias type="com.dnb.pro.member.vo.MemberVO" alias="memberVO" />
     <typeAlias type="com.dnb.pro.rent.vo.RentVO" alias="rentVO" />
+=======
+
+     
+	<typeAlias type="com.dnb.pro.member.vo.MemberVO" alias="memberVO" />
+
+
+    <typeAlias type="com.dnb.pro.rent.vo.RentVO" alias="rentVO" />
+    <typeAlias type="com.dnb.pro.equip.vo.EquipVO" alias="equipVO" />
+     <typeAlias type="com.dnb.pro.member.vo.MemberVO" alias="memberVO" />
+
+    <typeAlias type="com.dnb.pro.rent.vo.RentVO" alias="rentVO" />
+    <typeAlias type="com.dnb.pro.education.vo.educationVO" alias="educationVO" />
+>>>>>>> branch 'develop' of https://github.com/curious0124/dnbpro.git
     <typeAlias type="com.dnb.pro.board.vo.ArticleVO" alias="articleVO" />
+<<<<<<< HEAD
     <typeAlias type="com.dnb.pro.mypage.vo.MyPageVO" alias="MyPageVO" />
 
+=======
+    
+>>>>>>> branch 'develop' of https://github.com/curious0124/dnbpro.git
   </typeAliases>
 </configuration>

@@ -14,19 +14,26 @@
     <meta charset="UTF-8">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
-    <title>글목록창</title>
+    <title>admin_board_list</title>
     <style>
+    #board_content{
+            margin: 0 auto;
+            width: 1050px;
+        }
+        
         a{
             color: black;
             text-decoration: none;
         }
-        .container{
-            position: fixed;
-            width: 825px;
-        }
-        .row{
+        .board_container{
+            margin:0 auto;
+            float: left;
             width: 825px;
             
+        }
+        .listrow{
+            width: 825px;
+            clear:both;
             text-align: center;
             
             
@@ -37,11 +44,12 @@
             background: #FA8072;
             color: white;
             font-weight: bold;
+            
         }
         .col_list{
             float: left;
             background: #FFF5EE;
-            padding: 5px 0px 5px 0px;
+            padding: 0px 0px 0px 0px;
            
         }
         
@@ -70,46 +78,44 @@
             margin-bottom: 8px;
         }
         #brd_btn{
-            font-size:0.8em;
+            font-size:0.5em;
+            width:50px;
+            height:10px;
+            padding: 2px;
+            line-height:5px;
             
         }
     </style>
-    <script src="js/jquery-3.5.1.min.js"></script>
+     <script src="${contextPath}/resources/js/jquery-3.5.1.min.js"> </script>
 <script>
-    var path;
-    $(function(){
-        $("#addarticle").click(function(){
-               path="admin_board_articleForm.html";
-                evn();
-            });      
-    });
     
-     function evn(){
-           $.ajax({
-                    type: "get",
-                    url: path,
-                    success: function(data){
-                       $("#content_section_view").html(data); 
-                    },
-                    error: function(){
-                        alert('에러');
-                    }
-                })   
-        }
-       
+    $(function(){           
+            $('#menucontent').load("${contextPath}/resources/subjsp/admin_menubar.jsp")
+
+        
+    });
+
 </script>
     
 </head>
 <body>
+   <div id='board_content'>
+   <!--menu bar -->
+   <div id='menucontent'>
    
-    <div class="container">
+   </div>
+       
+    
+    <!--board_container -->
+    <div class="board_container">
   <div id='top_buttonbox'>
-       <button type="button" class="btn btn-light " id="addarticle">글쓰기</button>
+  		${articlesList[0].brd_name} 게시판
+       <button type="button" class="btn btn-light " id="addarticle" onclick="location.href='${contextPath}/board/admin_board_articleForm.do'">글쓰기</button>
        <button type="button" class="btn btn-light" id='delete'>삭제</button>
    </div>
-  <div class="row">
+  <div class="listrow">
     <div class="col_top" id="brd_div1">
-      
+      &nbsp;
     </div>
     <div class="col_top" id='brd_div2'>
       글 번호
@@ -124,15 +130,16 @@
       작성일자
     </div>
     <div class="col_top" id='brd_div6'>
-      
+      &nbsp;
     </div>
   </div>
   
   <c:choose>
   
   <c:when test="${articlesList !=null }" >
+  
     <c:forEach  var="article" items="${articlesList }" varStatus="articleNum" >
-     <div class="row">
+     <div class="listrow">
     <div class="col_list" id='brd_div1'>
       <input type="checkbox">
     </div>
@@ -140,7 +147,7 @@
       ${articleNum.count}
     </div>
     <div class="col_list" id='brd_div3'>
-        <a href="#">${article.board_title }</a>
+        <a href="${contextPath}/board/viewArticle.do?board_num=${article.board_num}">${article.board_title }</a>
     </div>
     <div class="col_list" id='brd_div4'>
       ${article.board_writer }
@@ -161,25 +168,25 @@
   
   
   
-  <c:when test="${articlesList ==null }" >
-   <div class="row">
+  <c:when test="${articlesList == null }" >
+   <div class="listrow">
     <div class="col_list" id='brd_div1'>
-      <input type="checkbox">
+      &nbsp;
     </div>
     <div class="col_list" id='brd_div2'>
-      
+      &nbsp;
     </div>
     <div class="col_list" id='brd_div3'>
         <b>등록된 글이 없습니다.</b>
     </div>
     <div class="col_list" id='brd_div4'>
-      
+      &nbsp;
     </div>
     <div class="col_list" id='brd_div5'>
-      
+      &nbsp;
     </div>
     <div class="col_list" id='brd_div6'>
-      
+      &nbsp;
     </div>
     
   </div>
@@ -192,6 +199,6 @@
 </div>
 
 
-
+</div>
 </body>
 </html>
