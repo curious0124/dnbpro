@@ -105,6 +105,7 @@
                 <a href="#">회원가입</a>
                 <span>/</span>
                 <a href="http://localhost:8090/pro/board/admin_board_list.do?brd_num=1">관리자</a>
+                <a href="http://localhost:8090/pro/mypage/mypage.do">마이페이지</a>
             </div>
         </div>
 
