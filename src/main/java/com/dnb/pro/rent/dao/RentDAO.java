@@ -10,6 +10,9 @@ import org.springframework.dao.DataAccessException;
 public interface RentDAO {
 	
 	public List selectAllLogList() throws DataAccessException;
+	public List selectResqList() throws DataAccessException;
+	
+	
 
 //	public void reservationrequest1(RentVO vo) throws DataAccessException;
 	
