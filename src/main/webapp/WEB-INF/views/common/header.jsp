@@ -94,7 +94,16 @@
 
         <div class="row" id="header_top">
             <div class="col-md-12">
-                <a href="#">로그인</a>
+<%--             <c:choose>
+          <c:when test="${isLogOn == true  && member!= null}">
+            <h3>환영합니다. ${member.name }님!</h3>
+            <a href="${contextPath}/member/logout.do"><h3>로그아웃</h3></a>
+          </c:when>
+          <c:otherwise>
+           <a href="${contextPath}/member/loginForm.do"><h3>로그인</h3></a>
+         </c:otherwise>
+      </c:choose>  --%> 
+                <!-- <a href="#">로그인</a> -->
                 <span>/</span>
                 <a href="#">회원가입</a>
                 <span>/</span>

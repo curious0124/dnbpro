@@ -7,8 +7,7 @@ import org.springframework.dao.DataAccessException;
 import com.dnb.pro.member.vo.MemberVO;
 
 public interface MemberService {
-	 public List listMembers() throws DataAccessException;
-//	 public int addMember(MemberVO memberVO) throws DataAccessException;
-//	 public int removeMember(String id) throws DataAccessException;
-//	 public MemberVO login(MemberVO memberVO) throws Exception;
+	public List listMembers() throws DataAccessException;
+		public MemberVO login(MemberVO vo) throws Exception;
+		public void register(MemberVO vo) throws Exception;
 }

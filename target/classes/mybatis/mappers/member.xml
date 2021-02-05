@@ -22,48 +22,26 @@
 		<result property="comp_email" column="comp_email" />
 		<result property="user_auth" column="user_auth" />
 	</resultMap>
-	<!-- 퀴리문 작성 -->
-	<!-- resultMap="memberResult" -->
-	<!-- <select id="loginById" resultType="memberVO"
-		parameterType="memberVO">
-        <![CDATA[
-		select user_id 
-		from userinfo 
-		where user_id = #{user_id,jdbcType=VARCHAR} and user_pwd = #{user_pwd,jdbcType=VARCHAR}
-        ]]>
-	</select>
-
- -->
 
 	<select id="selectAllMemberList" resultMap="memberResult">
       <![CDATA[
-         select * from userinfo	
+         select * from userinfo 	
       ]]>
 	</select>
 
-<!-- 	<insert id="insertMember" parameterType="memberVO">
+	<insert id="register" parameterType="memberVO">
 		<![CDATA[
-		 insert into userinfo(id,pwd, name, email)
-		 values(#{id}, #{pwd}, #{name}, #{email})
+		 insert into member(mem_id, mem_pw,  mem_name, mem_email)
+		 values(#{mem_id}, #{mem_pw}, #{mem_name}, #{mem_email})
 		]]>
 	</insert>
-
-
-	<update id="updateMember" parameterType="memberVO">
-     <![CDATA[
-	     update t_member
-	     set pwd=#{pwd}, name=#{name}, email=#{email}
-	     where
-	     id=#{id}
-      ]]>
-	</update>
-
-	<delete id="deleteMember" parameterType="String">
+	<select id="login" resultType="memberVO"
+		parameterType="memberVO">
 	<![CDATA[
-	   delete from  t_member
-	   where
-	   id=#{id}
+		select * from userinfo
+		where user_id=#{user_id, jdbcType=VARCHAR} and user_pwd=#{user_pwd, jdbcType=VARCHAR}
 	]]>
-	</delete> -->
+	</select>
+
 
 </mapper>

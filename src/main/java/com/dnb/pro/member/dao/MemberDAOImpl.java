@@ -2,6 +2,8 @@ package com.dnb.pro.member.dao;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -11,34 +13,31 @@ import com.dnb.pro.member.vo.MemberVO;
 
 
 
-@Repository("memberDAO")
+@Repository
 public class MemberDAOImpl implements MemberDAO {
-	@Autowired
-	private SqlSession sqlSession;
+//	@Autowired
+//	private SqlSession sqlSession;
 
+	@Inject
+	SqlSession sql;
+
+	
 	@Override
 	public List selectAllMemberList() throws DataAccessException {
-		List<MemberVO> membersList= null;
-		membersList = sqlSession.selectList("mapper.member.selectAllMemberList");
+		List<MemberVO> membersList = null;
+		membersList = sql.selectList("mapper.member.selectAllMemberList");
 		return membersList;
 	}
 
-	/*
-	 * @Override public int insertMember(MemberVO memberVO) throws
-	 * DataAccessException { int result =
-	 * sqlSession.insert("mapper.member.insertMember", memberVO); return result; }
-	 */
+	@Override
+	public void register(MemberVO vo) throws Exception {
+		sql.insert("mapper.member.register", vo);
+	}
 
-	/*
-	 * @Override public int deleteMember(String id) throws DataAccessException { int
-	 * result = sqlSession.delete("mapper.member.deleteMember", id); return result;
-	 * }
-	 */
-	
-//	@Override
-//	public MemberVO loginById(MemberVO memberVO) throws DataAccessException{
-//		  MemberVO vo = sqlSession.selectOne("mapper.member.loginById",memberVO);
-//		return vo;
-//	}
+	@Override
+	public MemberVO login(MemberVO vo) throws Exception {
+
+		return sql.selectOne("mapper.member.login", vo);
+	}
 
 }

@@ -2,6 +2,8 @@ package com.dnb.pro.member.service;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
@@ -15,32 +17,29 @@ import com.dnb.pro.member.vo.MemberVO;
 
 
 
-@Service("memberService")
-@Transactional(propagation = Propagation.REQUIRED)
+@Service
 public class MemberServiceImpl implements MemberService {
-	@Autowired
-	private MemberDAO memberDAO;
-
+	@Inject
+	MemberDAO dao;
+	
+	
+		@Override
+		public List listMembers() throws DataAccessException {
+			List membersList = null;
+			membersList = dao.selectAllMemberList();
+			return membersList;
+		}
+		
 	@Override
-	public List listMembers() throws DataAccessException {
-		List membersList = null;
-		membersList = memberDAO.selectAllMemberList();
-		return membersList;
+	public void register(MemberVO vo) throws Exception {
+		dao.register(vo);
 	}
-
-//	@Override
-//	public int addMember(MemberVO member) throws DataAccessException {
-//		return memberDAO.insertMember(member);
-//	}
-//
-//	@Override
-//	public int removeMember(String id) throws DataAccessException {
-//		return memberDAO.deleteMember(id);
-//	}
-//	
-//	@Override
-//	public MemberVO login(MemberVO memberVO) throws Exception{
-//		return memberDAO.loginById(memberVO);
-//	}
+	
+	
+	@Override
+	public MemberVO login(MemberVO vo) throws Exception {
+		return dao.login(vo);
+	}
+	
 
 }

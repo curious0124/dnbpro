@@ -4,7 +4,6 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>    
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
-<c:set var="result" value="${param.result }" />
 <%
    request.setCharacterEncoding("UTF-8");
 %>     
@@ -25,7 +24,7 @@
 </head>
 
 <body>
-<form name="frmLogin" method="post"  action="${contextPath}/member/loginForm.do">
+<form name="login" method="post"  action="${contextPath}/member/login.do">
    <table border="1"  width="80%" align="center" >
       <tr align="center">
          <td>아이디</td>
@@ -33,10 +32,10 @@
       </tr>
       <tr align="center">
          <td>
-	    <input type="text" name="id" value="" size="20">
+	    <input type="text" name="user_id" value="" size="20">
 	 </td>
          <td>
-	    <input type="password" name="pwd" value="" size="20">
+	    <input type="password" name="user_pwd" value="" size="20">
 	 </td>
       </tr>
       <tr align="center">
