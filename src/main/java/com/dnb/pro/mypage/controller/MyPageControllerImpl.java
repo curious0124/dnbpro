@@ -39,9 +39,9 @@ public class MyPageControllerImpl implements MyPageController{
 		String viewName=(String)request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView(viewName);
 		
-//		String user_id=memberVO.getUser_id();
-		memberVO=(MemberVO)session.getAttribute("memberInfo");
-		String user_id= "gyubong";
+		memberVO=(MemberVO)session.getAttribute("member");
+		String user_id=memberVO.getUser_id();
+	
 		
 		Map<String, List<RentVO>> myRentList=myPageService.listMyRent(user_id);
 		
