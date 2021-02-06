@@ -34,8 +34,14 @@
   			select *  
 			from brd_detail, board 
 			where brd_detail.brd_num=board.brd_num and board_num=#{board_num}
-  			
-  			
+  		]]>
+  	</select>
+  	
+  	<select id="selectBoardName" resultMap="articlesResult">
+  		<![CDATA[
+  			select *  
+			from board 
+			where brd_num=#{brd_num}
   		]]>
   	</select>
 

@@ -27,4 +27,10 @@ public class BoardServiceImpl implements BoardService {
 		ArticleVO articleVO = boardDAO.selectArticle(board_num);
 		return articleVO;
 	}
+
+	@Override
+	public ArticleVO selectBrdname(int brd_num) throws Exception {
+		ArticleVO articleVO = boardDAO.selectBoardName(brd_num);
+		return articleVO;
+	}
 }

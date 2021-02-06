@@ -68,10 +68,12 @@ private static final Logger logger = LoggerFactory.getLogger(BoardControllerImpl
 	}
 	
 	@RequestMapping(value = "/admin_board_articleForm.do", method = RequestMethod.GET)
-	public ModelAndView admin_board_articleForm(HttpServletRequest request, HttpServletResponse response) throws Exception{
+	public ModelAndView admin_board_articleForm(@RequestParam("brd_num") int brd_num, HttpServletRequest request, HttpServletResponse response) throws Exception{
 		String viewName = (String)request.getAttribute("viewName");
+		articleVO = boardService.selectBrdname(brd_num); 	//조회한 글 정보를 articleVO에 설정한다.
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName(viewName);
+		mav.addObject("article",articleVO);	
 		return mav;
 	}
 	
@@ -92,11 +94,11 @@ private static final Logger logger = LoggerFactory.getLogger(BoardControllerImpl
 //	@RequestMapping(value="/addNewArticle.do" ,method = {RequestMethod.POST,RequestMethod.GET})
 //	public ResponseEntity addNewArticle(MultipartHttpServletRequest multipartRequest,
 //			HttpServletResponse response) throws Exception{
-//multipartRequest.setCharacterEncoding("utf-8");
+//		multipartRequest.setCharacterEncoding("utf-8");
 //
 //		int result = 0;
 //		result = boardService.addNewArticle(article);
-//		ModelAndView mav = new ModelAndView("redirect:/board/admin_board_list.do?brd_name="+article.getBrd_name());
+//		ModelAndView mav = new ModelAndView("redirect:/board/admin_board_list.do?brd_name="+article.getBrd_num());
 //		return mav;
 //	}
 	
