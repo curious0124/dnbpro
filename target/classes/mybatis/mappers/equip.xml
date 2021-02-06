@@ -18,6 +18,13 @@
 		<result property="eq_produc" column="eq_produc" />
 		<result property="eq_regist" column="eq_regist" />
 		<result property="eq_state" column="eq_state" />
+		
+		<result property="res_num" column="res_num" />
+		<result property="res_start" column="res_start" />
+		<result property="res_end" column="res_end" />
+		<result property="res_Status" column="res_Status" />
+		<result property="user_id" column="user_id" />
+		
 	</resultMap>
 	
 	
@@ -46,5 +53,26 @@
 	Equipment
             	]]>
     </select> 
+    
+     <!--장비 등록 리스트 -->
+   <select id="selectAdminEquipList" parameterType="EquipVO" resultType="com.dnb.pro.equip.vo.EquipVO">
+    <![CDATA[
+	SELECT equipment.Cate_name, equipment.eq_name, Eq_list.eq_serial, Eq_list.eq_regist from equipment,Eq_list
+    where Eq_list.eq_name = Equipment.eq_name
+            	]]>
+    </select> 
+    
+    
+    <!-- 장비 상세페이지 사용가능한 장비 수량 조회 
+    <select id="selecAmount" parameterType="EquipVO" resultType="com.dnb.pro.equip.vo.EquipVO">
+    <![CDATA[
+	select COUNT(*) FROM 
+(SELECT eq_name, eq_serial,eq_state 
+from (select eql.eq_name,eq_serial,eql.eq_state 
+    from eq_list eql where eql.eq_state not in '수리' and eql.eq_state not in '폐기') 
+        where eq_name= #{eq_name} and eq_serial not in(select eq_serial 
+            from reserve where (res_start between #{from} and #{to} or (res_end between #{from}  and #{to})))
+            	]]>
+    </select> -->
   
   </mapper>

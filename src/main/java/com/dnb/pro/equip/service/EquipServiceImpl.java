@@ -32,6 +32,12 @@ public class EquipServiceImpl implements EquipService{
 		return equipVO;
 	}
 	
+	@Override
+	public List<EquipVO> adminlistequips() throws Exception {
+		List<EquipVO> adminequipList = equipDAO.selectAdminEquipList();
+		
+		return adminequipList;
+	}
 	
 	
 }

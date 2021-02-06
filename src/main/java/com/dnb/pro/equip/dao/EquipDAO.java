@@ -11,4 +11,7 @@ public interface EquipDAO {
 	
 	public List selectAllEquipList() throws DataAccessException;
 	public EquipVO selectEquipByCode(String eq_name) throws DataAccessException;
+	public List selectAdminEquipList() throws DataAccessException;
+	
+//	public List selecAmount(int) throws DataAccessException;
 }
