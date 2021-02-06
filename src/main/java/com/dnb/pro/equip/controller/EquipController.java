@@ -12,5 +12,7 @@ public interface EquipController {
 	public ModelAndView listequips(HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ModelAndView viewequip(@RequestParam("eq_name") String eq_name,
             HttpServletRequest request, HttpServletResponse response) throws Exception;
+	public ModelAndView adminlistequips(HttpServletRequest request, HttpServletResponse response) throws Exception;
+	
 
 }

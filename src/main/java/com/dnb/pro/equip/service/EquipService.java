@@ -10,4 +10,5 @@ public interface EquipService {
 
 	public List listequips() throws Exception;
 	public EquipVO viewequip(String eq_name) throws Exception;
+	public List adminlistequips() throws Exception;
 }
