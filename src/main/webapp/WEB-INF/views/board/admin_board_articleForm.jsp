@@ -64,9 +64,13 @@
     
     $(function(){           
             $('#menucontent').load("${contextPath}/resources/subjsp/admin_menubar.jsp")
-
-        
     });
+    var url = ${article.brd_num };
+    function backToList(obj){
+    	console.log(url);
+	    obj.action="${contextPath}/board/admin_board_list.do?brd_num="+url;
+	    obj.submit();
+     }
 
 </script>
     
@@ -85,9 +89,10 @@
     <div class="board_container">
         <div id="articlefrom1">
             <div class="badge text-wrap" style="width: 6rem;">
-                  분류
+                  분류 
             </div>
             <select class="form-select form-select-sm" aria-label=".form-select-sm example"name="brd_num">
+                  <option value="${article.brd_num }" selected disabled>${article.brd_name }</option>
                   <option value="1">공지사항</option>
                   <option value="2">FAQ</option>
                   <option value="3">배너</option>
