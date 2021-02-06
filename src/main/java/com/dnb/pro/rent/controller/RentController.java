@@ -10,4 +10,6 @@ public interface RentController {
 	
 	
 	public ModelAndView listlogs(HttpServletRequest request, HttpServletResponse response) throws Exception;
+	
+	public ModelAndView listresqs(HttpServletRequest request, HttpServletResponse response) throws Exception;
 }

@@ -22,14 +22,28 @@
   		<![CDATA[
   			select *  
 			from brd_detail, board 
-			where brd_detail.brd_num=board.brd_num and brd_name='공지사항' 
+			where brd_detail.brd_num=board.brd_num and board.brd_num=#{brd_num}  
 			ORDER BY board_num DESC     
   			
   			
   		]]>
   	</select>
 
-
+<select id="selectArticle" resultMap="articlesResult">
+  		<![CDATA[
+  			select *  
+			from brd_detail, board 
+			where brd_detail.brd_num=board.brd_num and board_num=#{board_num}
+  		]]>
+  	</select>
+  	
+  	<select id="selectBoardName" resultMap="articlesResult">
+  		<![CDATA[
+  			select *  
+			from board 
+			where brd_num=#{brd_num}
+  		]]>
+  	</select>
 
 
 </mapper>

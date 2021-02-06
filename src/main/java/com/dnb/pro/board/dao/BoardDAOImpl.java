@@ -16,9 +16,19 @@ public class BoardDAOImpl implements BoardDAO{
 	private SqlSession sqlSession;
 	
 	@Override
-	public List selectAllArticlesList() throws DataAccessException {
-		List<ArticleVO> articlesList = sqlSession.selectList("mapper.board.selectAllArticlesList");
+	public List selectAllArticlesList(int brd_num) throws DataAccessException {
+		List<ArticleVO> articlesList = sqlSession.selectList("mapper.board.selectAllArticlesList",brd_num);
 		return articlesList;
+	}
+
+	@Override
+	public ArticleVO selectArticle(int board_num) throws DataAccessException {
+		return sqlSession.selectOne("mapper.board.selectArticle",board_num);
+	}
+
+	@Override
+	public ArticleVO selectBoardName(int brd_num) throws DataAccessException {
+		return sqlSession.selectOne("mapper.board.selectBoardName",brd_num);
 	}
 
 //	@Override
