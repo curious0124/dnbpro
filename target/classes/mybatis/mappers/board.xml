@@ -54,6 +54,7 @@
   			values (#{brd_num}, board_num_seq.NEXTVAL,#{board_title},#{board_content},#{board_img},#{board_writer}) 
   		]]>
   	</insert>
+  	
   	<select id="selectNewArticleNO" resultType="int">
   		<![CDATA[
   			select max(board_num) + 1 from brd_detail
