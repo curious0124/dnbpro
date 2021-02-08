@@ -20,14 +20,20 @@ public class MemberVO {
 	private String comp_email;
 	private String user_auth;
 	
-	public MemberVO() {
-		
-	}
-	
-	public MemberVO(String user_id, String user_pwd) {
-		this.user_id = user_id;
-		this.user_pwd = user_pwd;
-	}
+//	public MemberVO() {
+//		
+//	}
+//	
+//	public MemberVO(String user_id, String user_pwd, String user_name,String user_email,String user_identity,String user_phone,String user_addr) {
+//		this.user_id = user_id;
+//		this.user_pwd = user_pwd;
+//		this.user_name =user_name;
+//		this.user_email = user_email;
+//		this.user_identity = user_identity;
+//		this.user_phone = user_phone;
+//		this.user_addr = user_addr;
+//
+//	}
 	
 	public String getUser_id() {
 		return user_id;
