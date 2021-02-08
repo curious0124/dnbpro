@@ -110,7 +110,7 @@
     <div class="board_container">
   <div id='top_buttonbox'>
   		${articlesList[0].brd_name} 게시판
-       <button type="button" class="btn btn-light " id="addarticle" onclick="location.href='${contextPath}/board/admin_board_articleForm.do'">글쓰기</button>
+       <button type="button" class="btn btn-light " id="addarticle" onclick="location.href='${contextPath}/board/admin_board_articleForm.do?brd_num=${articlesList[0].brd_num}'">글쓰기</button>
        <button type="button" class="btn btn-light" id='delete'>삭제</button>
    </div>
   <div class="listrow">
