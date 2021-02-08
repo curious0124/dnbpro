@@ -39,7 +39,7 @@
             margin-right: 3px;
         }
         .form-select{
-            width: 100px;
+            width: 120px;
             float: left;
             margin-right: 10px;
         }
@@ -60,6 +60,7 @@
         
     </style>
       <script src="${contextPath}/resources/js/jquery-3.5.1.min.js"> </script>
+      <script src="\\DIGITAL20\dnb\텍스트에디터\naver-smarteditor2-ca95d21\demo\js\service\HuskyEZCreator.js" charset="utf-8"></script>
 <script>
     
     $(function(){           
@@ -71,6 +72,35 @@
 	    obj.action="${contextPath}/board/admin_board_list.do?brd_num="+url;
 	    obj.submit();
      }
+    
+    var oEditors=[];
+    //Editor Setting
+    nhn.husky.EZCreator.creareInIFrame({ oAppRef : oEditors,
+    	elPlaceHolder : "floatingTextarea2",	//에디터를 적용할 textarea ID에 맞게 변경
+    	sSkinURI : "\\DIGITAL20\dnb\텍스트에디터\naver-smarteditor2-ca95d21\demo\SmartEditor2Skin_ko_KR.html",//Editor HTML파일 위치로 변경
+    	fCreator : "createEditor2", //SE2BasicCreator2Skin.html메소드명으로 변경불가
+    	htParams : {//툴바 사용여부
+    		nUseToolbar : true,//입력창 크기 조절바 사용여부
+    		nUseVerticalResizer : true,// 모드 탭(Editor|HTML|TEXT) 사용여부 
+    		bUseModeChanger : true //전송버튼 클릭이벤트
+    		
+    		}
+    	});
+    function submitContents(){
+    	//에디터 내용이 textarea에 적용
+    	oEditors.getById["class_tutorIntroduce"].exec("UPDATE_CONTENTS_FIELD",[]);
+    }
+    
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+  	      var reader = new FileReader();
+  	      reader.onload = function (e) {
+  	        $('#preview').attr('src', e.target.result);
+            }
+           reader.readAsDataURL(input.files[0]);
+        }
+    } 
+    
 
 </script>
     
@@ -91,8 +121,8 @@
             <div class="badge text-wrap" style="width: 6rem;">
                   분류 
             </div>
-            <select class="form-select form-select-sm" aria-label=".form-select-sm example"name="brd_num">
-                  <option value="${article.brd_num }" selected disabled>${article.brd_name }</option>
+            <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="brd_num">
+                  <option value="${article.brd_num }" selected>${article.brd_name }</option>
                   <option value="1">공지사항</option>
                   <option value="2">FAQ</option>
                   <option value="3">배너</option>
@@ -100,24 +130,11 @@
                   <option value="5">홍보영상</option>
                   <option value="6">지원서비스</option>
             </select>
-            
-             <div class="badge text-wrap" style="width: 6rem;">
-                  글 작성자
-            </div>
-            <div class="input-group input-group-sm mb-3 brd_writer">
-              <input type="text" id="board_titleinput" name="brd_writer"class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
-            </div>
-            <div class="badge text-wrap" style="width: 6rem;">
-                  글 작성일
-            </div>
-            <div class="input-group input-group-sm mb-3 brd_date">
-              <input type="text" id="board_titleinput" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
-            </div>
-            
-            
+       
         </div>
         
-        
+        <br>
+        <br>
         <div id="articlefrom1">   
             <div class="badge text-wrap" style="width: 6rem;">
                   제목
@@ -135,8 +152,8 @@
         
          <div id="articlefrom1"> 
              <div class="input-group">
-              <input type="file" class="form-control" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" name="board_img"aria-label="Upload">
-              
+              <input type="file" class="form-control" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" name="board_img" aria-label="Upload">
+              <img  id="preview" src="#"   width=200 height=200/>
             </div><br><br>
             
             

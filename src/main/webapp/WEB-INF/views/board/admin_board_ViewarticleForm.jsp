@@ -57,6 +57,12 @@
         #articlefrom1{
             clear: both;
         }
+        .form-floating{
+        width: 800px;
+        
+        text-align:justify;
+        
+        }
         
     </style>
       <script src="${contextPath}/resources/js/jquery-3.5.1.min.js"> </script>
@@ -123,7 +129,7 @@
          </div>
          <div id="articlefrom1"> 
              <div class="form-floating">
-              <textarea class="form-control" id="floatingTextarea2" name="board_content"style="height: 500px"disabled>${article.board_content }</textarea>
+              ${article.board_content }
               
              </div>
         </div><br>

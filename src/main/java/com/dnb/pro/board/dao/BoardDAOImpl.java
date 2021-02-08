@@ -31,6 +31,17 @@ public class BoardDAOImpl implements BoardDAO{
 		return sqlSession.selectOne("mapper.board.selectBoardName",brd_num);
 	}
 
+	@Override
+	public int insertNewArticle(Map articleMap) throws DataAccessException {
+		int articleNO = selectNewArticleNO();	//새 글에 대한 글번호를 가져옵니다.
+		System.out.println("DAO : "+articleMap);
+		sqlSession.insert("mapper.board.insertNewArticle",articleMap);
+		return articleNO;
+	}
+	private int selectNewArticleNO() throws DataAccessException{
+		return sqlSession.selectOne("mapper.board.selectNewArticleNO");
+	}
+
 //	@Override
 //	public int insertNewArticle(Map articleMap) throws  DataAccessException{
 //		int articleNO = selectNewArticleNO();	//새 글에 대한 글번호를 가져옵니다.
