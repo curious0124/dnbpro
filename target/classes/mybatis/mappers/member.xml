@@ -28,13 +28,19 @@
          select * from userinfo 	
       ]]>
 	</select>
-
+	 <!-- 회원가입 -->
 	<insert id="register" parameterType="memberVO">
 		<![CDATA[
-		 insert into member(mem_id, mem_pw,  mem_name, mem_email)
-		 values(#{mem_id}, #{mem_pw}, #{mem_name}, #{mem_email})
+	insert into 
+	uesrinfo
+	(user_id, user_pwd,  user_name, user_identity,user_addr,user_phone,user_fax,user_email,
+	user_comp,comp_addr,comp_num,comp_phon,comp_fax,comp_email,user_auth)
+	values
+	(#{user_id}, #{user_pwd},  #{user_name}, #{user_identity},#{user_addr},#{user_phone},#{user_fax},#{user_email},
+	#{user_comp},#{comp_addr},#{comp_num},#{comp_phon},#{comp_fax},#{comp_email},#{user_auth})
 		]]>
 	</insert>
+	<!-- 로그인 -->
 	<select id="login" resultType="memberVO"
 		parameterType="memberVO">
 	<![CDATA[
@@ -42,6 +48,5 @@
 		where user_id=#{user_id, jdbcType=VARCHAR} and user_pwd=#{user_pwd, jdbcType=VARCHAR}
 	]]>
 	</select>
-
 
 </mapper>

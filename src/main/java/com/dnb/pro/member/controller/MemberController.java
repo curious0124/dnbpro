@@ -53,21 +53,21 @@ public class MemberController {
 		return mav;
 	}
 	
+	/* GET 회원가입 ??*/
+	@RequestMapping(value = "/member/register", method = RequestMethod.GET)
+	public void getRegister() throws Exception {
+		logger.info("get register");
+	}
 	
-//	@RequestMapping(value = "/member/register", method = {RequestMethod.GET ,RequestMethod.POST})
-//	public void getRegister() throws Exception {
-//		logger.info("get register");
-//	}
-//	
-//	
-//	@RequestMapping(value = "/member/register", method = {RequestMethod.GET ,RequestMethod.POST})
-//	public String postRegister(MemberVO vo) throws Exception {
-//		logger.info("post register");
-//		
-//		service.register(vo);
-//		
-//		return null;
-//	}
+	/* POST 회원가입 ??*/
+	@RequestMapping(value = "/member/register", method = RequestMethod.POST)
+	public String postRegister(MemberVO vo) throws Exception {
+		logger.info("post register");
+		
+		service.register(vo);
+		
+		return null;
+	}
 	
 	
 	@RequestMapping(value = "/member/login.do", method = {RequestMethod.GET ,RequestMethod.POST})
