@@ -101,7 +101,7 @@
                                 ${adminequip.eq_serial}
                             </div>
                             <div class="col">
-                                ${adminequip.eq_regist}
+                                 <fmt:formatDate pattern="yyyy-MM-dd" value="${adminequip.eq_regist}" />
                             </div>
                             <div class="col">
                                 <select>

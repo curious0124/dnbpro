@@ -30,6 +30,18 @@
       <put-attribute name="body" value="/WEB-INF/views/equip/admin_Eq_manage_list.jsp" />
    </definition>
    
+   <definition name="/equip/admin_Eq_manage_classify_list" extends="baseLayout">
+      <put-attribute name="title" value="분류명 리스트 페이지" />
+      <put-attribute name="body" value="/WEB-INF/views/equip/admin_Eq_manage_classify_list.jsp" />
+   </definition>
+   
+    <definition name="/equip/admin_Eq_manage_classify" extends="baseLayout">
+      <put-attribute name="title" value="분류명  등록 페이지" />
+      <put-attribute name="body" value="/WEB-INF/views/equip/admin_Eq_manage_classify.jsp" />
+   </definition>
+   
+   
+   
    <!-- 
    <definition name="/board/articleForm" extends="baseLayout">
    	<put-attribute name="title" value="글쓰기창"/>
