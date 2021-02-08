@@ -30,5 +30,10 @@ public class EquipDAOImpl implements  EquipDAO  {
 		return sqlSession.selectOne("mapper.equip.EquipDetail", eq_name);
 	}
 	
+	@Override
+	public List selectAdminEquipList() throws DataAccessException {
+		List<EquipVO> adminequipList = adminequipList = sqlSession.selectList("mapper.equip.selectAdminEquipList");
+		return adminequipList;
+	}
 	
 }

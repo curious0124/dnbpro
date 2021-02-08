@@ -191,7 +191,7 @@
                     <button class="dropbtn">고객 지원</button>
                     <div class="dropdown-content">
                         <a href="#">공지사항</a>
-                        <a href="#">FAQ</a>
+                        <a href="${contextPath}/cust/cust_faq.do">FAQ</a>
                     </div>
                 </div>
 

@@ -39,6 +39,11 @@
       <put-attribute name="body" value="/WEB-INF/views/board/admin_board_ViewarticleForm.jsp" />
    </definition>
    
+   <definition name="/cust/cust_faq" extends="baseLayout">
+      <put-attribute name="title" value="FAQ" />
+      <put-attribute name="body" value="/WEB-INF/views/board/cust_faq.jsp" />
+   </definition>
+   
    <!-- 
    <definition name="/board/articleForm" extends="baseLayout">
    	<put-attribute name="title" value="글쓰기창"/>
