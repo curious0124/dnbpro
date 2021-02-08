@@ -53,5 +53,18 @@ public class EquipControllerImpl implements EquipController {
 			return mav;
 		}
 		
+		@Override
+		@RequestMapping(value="/admin_Eq_manage_list.do" ,method = {RequestMethod.GET,RequestMethod.POST})
+		public ModelAndView adminlistequips(HttpServletRequest request, HttpServletResponse response) throws Exception {
+			String viewName = (String)request.getAttribute("viewName");
+			
+			
+			
+			List adminequipList = equipService.adminlistequips();
+			ModelAndView mav = new ModelAndView(viewName);
+			mav.addObject("adminequipList", adminequipList);
+			return mav;
+		}
+		
 	
 }
