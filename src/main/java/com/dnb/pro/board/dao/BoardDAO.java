@@ -15,6 +15,8 @@ public interface BoardDAO {
 
 	public ArticleVO selectBoardName(int brd_num) throws DataAccessException;
 
+	public int insertNewArticle(Map articleMap) throws DataAccessException;
+
 //	public int insertNewArticle(Map articleMap) throws DataAccessException;
 //
 //	public ArticleVO selectArticle(int articleNO) throws DataAccessException;
