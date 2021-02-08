@@ -28,20 +28,33 @@
          select * from userinfo 	
       ]]>
 	</select>
-
+	
+	<!-- 회원가입 -->
 	<insert id="register" parameterType="memberVO">
 		<![CDATA[
-		 insert into member(mem_id, mem_pw,  mem_name, mem_email)
-		 values(#{mem_id}, #{mem_pw}, #{mem_name}, #{mem_email})
+	insert into	userinfo
+	(user_id,user_pwd,user_name,user_identity,user_addr,user_phone,user_fax,user_email,user_comp,comp_addr,comp_num,comp_phon,comp_fax,comp_email)
+	values
+	(#{user_id},#{user_pwd},#{user_name},#{user_identity},#{user_addr},#{user_phone},#{user_fax,jdbcType=VARCHAR},#{user_email},#{user_comp,jdbcType=VARCHAR}
+	,#{comp_addr,jdbcType=VARCHAR},#{comp_num,jdbcType=VARCHAR},#{comp_phon,jdbcType=VARCHAR},#{comp_fax,jdbcType=VARCHAR},#{comp_email,jdbcType=VARCHAR})
 		]]>
 	</insert>
-	<select id="login" resultType="memberVO"
-		parameterType="memberVO">
+	
+	<!-- 로그인 -->
+	<select id="login" resultType="memberVO" parameterType="memberVO">
 	<![CDATA[
 		select * from userinfo
 		where user_id=#{user_id, jdbcType=VARCHAR} and user_pwd=#{user_pwd, jdbcType=VARCHAR}
 	]]>
 	</select>
-
+	
+	<!-- 중복검사 -->
+	<select id="selectOverlappedID" parameterType="String" resultType="String">
+	<![CDATA[
+		select decode(count(*),1,'true',0,'false')
+		from userinfo
+		where user_id = #{user_id}
+		]]>
+	</select>
 
 </mapper>
