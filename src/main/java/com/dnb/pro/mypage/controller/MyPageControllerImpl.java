@@ -59,7 +59,7 @@ public class MyPageControllerImpl implements MyPageController{
 		ModelAndView mav = new ModelAndView(viewName);
 		
 		HttpSession session=request.getSession();
-		MemberVO renter=(MemberVO)session.getAttribute("memberInfo");
+		MemberVO renter=(MemberVO)session.getAttribute("member");
 		
 		 Map<String, List<RentVO>> myRentList= myPageService.findMyResqInfo(user_id);
 		 mav.addObject("renter", renter);
@@ -76,7 +76,7 @@ public class MyPageControllerImpl implements MyPageController{
 		ModelAndView mav = new ModelAndView(viewName);
 		
 		HttpSession session=request.getSession();
-		MemberVO renter=(MemberVO)session.getAttribute("memberInfo");
+		MemberVO renter=(MemberVO)session.getAttribute("member");
 		
 		 Map<String, List<RentVO>> myRentList= myPageService.findMyResInfo(user_id);
 		 mav.addObject("renter", renter);
@@ -93,7 +93,7 @@ public class MyPageControllerImpl implements MyPageController{
 		ModelAndView mav = new ModelAndView(viewName);
 		
 		HttpSession session=request.getSession();
-		MemberVO renter=(MemberVO)session.getAttribute("memberInfo");
+		MemberVO renter=(MemberVO)session.getAttribute("member");
 		
 		 Map<String, List<RentVO>> myRentList= myPageService.findMyReturnInfo(user_id);
 		 mav.addObject("renter", renter);
@@ -110,7 +110,7 @@ public class MyPageControllerImpl implements MyPageController{
 		ModelAndView mav = new ModelAndView(viewName);
 		
 		HttpSession session=request.getSession();
-		MemberVO renter=(MemberVO)session.getAttribute("memberInfo");
+		MemberVO renter=(MemberVO)session.getAttribute("member");
 		
 		 Map<String, List<RentVO>> myRentList= myPageService.findMyLogInfo(user_id);
 		 mav.addObject("renter", renter);
@@ -122,7 +122,7 @@ public class MyPageControllerImpl implements MyPageController{
 	
 
 	@Override
-	public ModelAndView cancelMyRent(String order_id, HttpServletRequest request, HttpServletResponse response)
+	public ModelAndView cancelMyRent(String user_id, HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		// TODO Auto-generated method stub
 		return null;
