@@ -9,6 +9,8 @@ import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -42,31 +44,45 @@ public class MemberController {
 	}
 	
 	
-	@RequestMapping(value = "/member/listMembers.do", method = {RequestMethod.GET ,RequestMethod.POST})
-	public ModelAndView listMembers(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		request.setCharacterEncoding("utf-8");
-		response.setContentType("html/text;charset=utf-8");
-		String viewName = (String) request.getAttribute("viewName");
-		List membersList = service.listMembers();
-		ModelAndView mav = new ModelAndView(viewName);
-		mav.addObject("membersList", membersList);
-		return mav;
-	}
+//	@RequestMapping(value = "/member/listMembers.do", method = {RequestMethod.GET ,RequestMethod.POST})
+//	public ModelAndView listMembers(HttpServletRequest request, HttpServletResponse response) throws Exception {
+//		request.setCharacterEncoding("utf-8");
+//		response.setContentType("html/text;charset=utf-8");
+//		String viewName = (String) request.getAttribute("viewName");
+//		List membersList = service.listMembers();
+//		ModelAndView mav = new ModelAndView(viewName);
+//		mav.addObject("membersList", membersList);
+//		return mav;
+//	}
 	
 	/* GET 회원가입 ??*/
-	@RequestMapping(value = "/member/register", method = RequestMethod.GET)
-	public void getRegister() throws Exception {
-		logger.info("get register");
-	}
+//	@RequestMapping(value = "/member/register", method = RequestMethod.GET)
+//	public void getRegister(MemberVO vo) throws Exception {
+//		logger.info("get register");
+//	}
 	
 	/* POST 회원가입 ??*/
-	@RequestMapping(value = "/member/register", method = RequestMethod.POST)
-	public String postRegister(MemberVO vo) throws Exception {
+//	@RequestMapping(value = "/member/addmember.do", method = {RequestMethod.GET, RequestMethod.POST})
+//	public ModelAndView postRegister(MemberVO vo) throws Exception {
+//		logger.info("post register");
+//		
+//		service.register(vo);
+//		ModelAndView mav = new ModelAndView("redirect:/main/main.do");
+//		return mav;
+//	}
+//	
+	
+	
+	@RequestMapping(value="/member/addMember.do" ,method = {RequestMethod.GET ,RequestMethod.POST})
+	public ModelAndView addMember(@ModelAttribute("vo") MemberVO vo,
+			                  HttpServletRequest request, HttpServletResponse response) throws Exception {
+		request.setCharacterEncoding("utf-8");
 		logger.info("post register");
-		
-		service.register(vo);
-		
-		return null;
+		response.setContentType("html/text;charset=utf-8");
+		int result = 0;
+		result = service.register(vo);
+		ModelAndView mav = new ModelAndView("redirect:/main/main.do");
+		return mav;
 	}
 	
 	
@@ -107,7 +123,7 @@ public class MemberController {
 		return mav;
 	}
 	
-	@RequestMapping(value = "/member/*Form.do", method = {RequestMethod.GET ,RequestMethod.POST})
+	@RequestMapping(value = "/member/*.do", method = {RequestMethod.GET ,RequestMethod.POST})
 	private ModelAndView form(@RequestParam(value = "result", required = false) String result,
 			@RequestParam(value = "action", required = false) String action, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
@@ -118,5 +134,18 @@ public class MemberController {
 		mav.addObject("result", result);
 		mav.setViewName(viewName);
 		return mav;
+	}
+
+	/* 중복확인 */
+
+	@RequestMapping(value="/member/overlapped.do" ,method = RequestMethod.POST)
+	public ResponseEntity overlapped(@RequestParam("user_id") String user_id,HttpServletRequest request, HttpServletResponse response) throws Exception{
+		ResponseEntity resEntity = null;
+		System.out.println(user_id);
+		
+		String result = service.overlapped(user_id);
+		System.out.println(result);
+		resEntity =new ResponseEntity(result, HttpStatus.OK);
+		return resEntity;
 	}
 }
