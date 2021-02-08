@@ -11,8 +11,6 @@ import org.springframework.stereotype.Repository;
 
 import com.dnb.pro.member.vo.MemberVO;
 
-
-
 @Repository
 public class MemberDAOImpl implements MemberDAO {
 //	@Autowired
@@ -21,7 +19,6 @@ public class MemberDAOImpl implements MemberDAO {
 	@Inject
 	SqlSession sql;
 
-	
 	@Override
 	public List selectAllMemberList() throws DataAccessException {
 		List<MemberVO> membersList = null;
@@ -39,10 +36,10 @@ public class MemberDAOImpl implements MemberDAO {
 
 		return sql.selectOne("mapper.member.login", vo);
 	}
-	
+
 	@Override
 	public String selectOverlappedID(String user_id) throws DataAccessException {
-		String result =  sql.selectOne("mapper.member.selectOverlappedID",user_id);
+		String result = sql.selectOne("mapper.member.selectOverlappedID", user_id);
 		return result;
 	}
 

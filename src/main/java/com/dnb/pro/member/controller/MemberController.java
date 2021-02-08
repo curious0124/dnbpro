@@ -22,28 +22,24 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.dnb.pro.member.service.MemberService;
 import com.dnb.pro.member.vo.MemberVO;
 
-
-
 @Controller
 @RequestMapping
 public class MemberController {
 	private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
-	
+
 	@Inject
 	MemberService service;
 	@Inject
 	MemberVO vo;
-	
-	
-	@RequestMapping(value = { "/", "/main.do" }, method = {RequestMethod.GET ,RequestMethod.POST})
+
+	@RequestMapping(value = { "/", "/main.do" }, method = { RequestMethod.GET, RequestMethod.POST })
 	private ModelAndView main(HttpServletRequest request, HttpServletResponse response) {
 		String viewName = (String) request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName(viewName);
 		return mav;
 	}
-	
-	
+
 //	@RequestMapping(value = "/member/listMembers.do", method = {RequestMethod.GET ,RequestMethod.POST})
 //	public ModelAndView listMembers(HttpServletRequest request, HttpServletResponse response) throws Exception {
 //		request.setCharacterEncoding("utf-8");
@@ -54,14 +50,14 @@ public class MemberController {
 //		mav.addObject("membersList", membersList);
 //		return mav;
 //	}
-	
-	/* GET 회원가입 ??*/
+
+	/* GET 회원가입 ?? */
 //	@RequestMapping(value = "/member/register", method = RequestMethod.GET)
 //	public void getRegister(MemberVO vo) throws Exception {
 //		logger.info("get register");
 //	}
-	
-	/* POST 회원가입 ??*/
+
+	/* POST 회원가입 ?? */
 //	@RequestMapping(value = "/member/addmember.do", method = {RequestMethod.GET, RequestMethod.POST})
 //	public ModelAndView postRegister(MemberVO vo) throws Exception {
 //		logger.info("post register");
@@ -71,11 +67,10 @@ public class MemberController {
 //		return mav;
 //	}
 //	
-	
-	
-	@RequestMapping(value="/member/addMember.do" ,method = {RequestMethod.GET ,RequestMethod.POST})
-	public ModelAndView addMember(@ModelAttribute("vo") MemberVO vo,
-			                  HttpServletRequest request, HttpServletResponse response) throws Exception {
+
+	@RequestMapping(value = "/member/addMember.do", method = { RequestMethod.GET, RequestMethod.POST })
+	public ModelAndView addMember(@ModelAttribute("vo") MemberVO vo, HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8");
 		logger.info("post register");
 		response.setContentType("html/text;charset=utf-8");
@@ -84,27 +79,26 @@ public class MemberController {
 		ModelAndView mav = new ModelAndView("redirect:/main/main.do");
 		return mav;
 	}
-	
-	
-	@RequestMapping(value = "/member/login.do", method = {RequestMethod.GET ,RequestMethod.POST})
+
+	@RequestMapping(value = "/member/login.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public ModelAndView login(@ModelAttribute("member") MemberVO member, RedirectAttributes rAttr,
 			HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ModelAndView mav = new ModelAndView();
 		vo = service.login(member);
+		
+			
+		
 		if (vo != null) {
-			
-				HttpSession session = request.getSession();
-				session.setAttribute("member", vo);
-				session.setAttribute("isLogOn", true);
-				// mav.setViewName("redirect:/member/listMembers.do");
-				String action = (String) session.getAttribute("action");
-				session.removeAttribute("action");
-				if (action != null) {
-					mav.setViewName("redirect:" + action);
-				} else {
-					mav.setViewName("redirect:/main/main.do");
-				}
-			
+			HttpSession session = request.getSession();
+			session.setAttribute("member", vo);
+			session.setAttribute("isLogOn", true);
+			String action = (String) session.getAttribute("action");
+			session.removeAttribute("action");
+			if (action != null) {
+				mav.setViewName("redirect:" + action);
+			} else {
+				mav.setViewName("redirect:/main/main.do");
+			}
 
 		} else {
 			rAttr.addAttribute("result", "loginFailed");
@@ -112,8 +106,8 @@ public class MemberController {
 		}
 		return mav;
 	}
-	
-	@RequestMapping(value = "/member/logout.do", method = {RequestMethod.GET ,RequestMethod.POST})
+
+	@RequestMapping(value = "/member/logout.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public ModelAndView logout(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		HttpSession session = request.getSession();
 		session.removeAttribute("member");
@@ -122,8 +116,8 @@ public class MemberController {
 		mav.setViewName("redirect:/main/main.do");
 		return mav;
 	}
-	
-	@RequestMapping(value = "/member/*.do", method = {RequestMethod.GET ,RequestMethod.POST})
+
+	@RequestMapping(value = "/member/*.do", method = { RequestMethod.GET, RequestMethod.POST })
 	private ModelAndView form(@RequestParam(value = "result", required = false) String result,
 			@RequestParam(value = "action", required = false) String action, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
@@ -138,14 +132,15 @@ public class MemberController {
 
 	/* 중복확인 */
 
-	@RequestMapping(value="/member/overlapped.do" ,method = RequestMethod.POST)
-	public ResponseEntity overlapped(@RequestParam("user_id") String user_id,HttpServletRequest request, HttpServletResponse response) throws Exception{
+	@RequestMapping(value = "/member/overlapped.do", method = RequestMethod.POST)
+	public ResponseEntity overlapped(@RequestParam("user_id") String user_id, HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
 		ResponseEntity resEntity = null;
 		System.out.println(user_id);
-		
+
 		String result = service.overlapped(user_id);
 		System.out.println(result);
-		resEntity =new ResponseEntity(result, HttpStatus.OK);
+		resEntity = new ResponseEntity(result, HttpStatus.OK);
 		return resEntity;
 	}
 }

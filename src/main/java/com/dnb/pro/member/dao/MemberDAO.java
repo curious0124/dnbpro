@@ -23,15 +23,13 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.dnb.pro.member.service.MemberService;
 import com.dnb.pro.member.vo.MemberVO;
 
-
-
-
-
 public interface MemberDAO {
 
 	public List selectAllMemberList() throws DataAccessException;
+
 	public int register(MemberVO vo) throws Exception;
+
 	public MemberVO login(MemberVO vo) throws Exception;
+
 	String selectOverlappedID(String user_id) throws DataAccessException;
 }
-
