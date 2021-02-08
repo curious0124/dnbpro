@@ -76,17 +76,19 @@ public class MemberController {
 		ModelAndView mav = new ModelAndView();
 		vo = service.login(member);
 		if (vo != null) {
-			HttpSession session = request.getSession();
-			session.setAttribute("member", vo);
-			session.setAttribute("isLogOn", true);
-			// mav.setViewName("redirect:/member/listMembers.do");
-			String action = (String) session.getAttribute("action");
-			session.removeAttribute("action");
-			if (action != null) {
-				mav.setViewName("redirect:" + action);
-			} else {
-				mav.setViewName("redirect:/main/main.do");
-			}
+			
+				HttpSession session = request.getSession();
+				session.setAttribute("member", vo);
+				session.setAttribute("isLogOn", true);
+				// mav.setViewName("redirect:/member/listMembers.do");
+				String action = (String) session.getAttribute("action");
+				session.removeAttribute("action");
+				if (action != null) {
+					mav.setViewName("redirect:" + action);
+				} else {
+					mav.setViewName("redirect:/main/main.do");
+				}
+			
 
 		} else {
 			rAttr.addAttribute("result", "loginFailed");

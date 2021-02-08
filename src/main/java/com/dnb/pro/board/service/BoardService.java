@@ -13,6 +13,8 @@ public interface BoardService {
 
 	public ArticleVO selectBrdname(int board_num) throws Exception;
 
+	public int addNewArticle(Map articleMap) throws Exception;
+
 //	public int addNewArticle(Map articleMap) throws Exception;
 //
 //	public ArticleVO viewArticle(int articleNO) throws Exception;
