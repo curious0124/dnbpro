@@ -31,14 +31,19 @@ public class MemberServiceImpl implements MemberService {
 		}
 		
 	@Override
-	public void register(MemberVO vo) throws Exception {
-		dao.register(vo);
+	public int register(MemberVO vo) throws Exception {
+		return dao.register(vo);
 	}
 	
 	
 	@Override
 	public MemberVO login(MemberVO vo) throws Exception {
 		return dao.login(vo);
+	}
+	
+	@Override
+	public String overlapped(String user_id) throws Exception{
+		return dao.selectOverlappedID(user_id);
 	}
 	
 

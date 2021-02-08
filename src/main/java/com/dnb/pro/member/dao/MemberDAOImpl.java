@@ -30,14 +30,20 @@ public class MemberDAOImpl implements MemberDAO {
 	}
 
 	@Override
-	public void register(MemberVO vo) throws Exception {
-		sql.insert("mapper.member.register", vo);
+	public int register(MemberVO vo) throws Exception {
+		return sql.insert("mapper.member.register", vo);
 	}
 
 	@Override
 	public MemberVO login(MemberVO vo) throws Exception {
 
 		return sql.selectOne("mapper.member.login", vo);
+	}
+	
+	@Override
+	public String selectOverlappedID(String user_id) throws DataAccessException {
+		String result =  sql.selectOne("mapper.member.selectOverlappedID",user_id);
+		return result;
 	}
 
 }
