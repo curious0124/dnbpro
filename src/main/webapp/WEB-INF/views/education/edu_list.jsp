@@ -34,10 +34,10 @@
 							<tbody>
  								<c:forEach items="${educationList}" var="list" varStatus="educationNum">
 								<tr>
-									<td>${educationNum.count}</td>
+									<td><a href="${contextPath}/education/edu_detail.do?educationNO=${list.edu_num}">${educationNum.count}</td>
 									<td><a href="${contextPath}/education/edu_detail.do?educationNO=${list.edu_num}">${list.edu_thuming}&nbsp;</a></td>		
 									
-									<td><a href="#">${list.edu_title}</a></td>	
+									<td><a href="${contextPath}/education/edu_detail.do?educationNO=${list.edu_num}">${list.edu_title}</a></td>	
 									<td> ${list.cate_name}</td>	
 								</tr>
 								</c:forEach>
