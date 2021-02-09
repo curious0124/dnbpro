@@ -103,7 +103,7 @@
       </c:choose>  
                 <!-- <a href="#">로그인</a> -->
                 <span>/</span>
-                <a href="#">회원가입</a>
+                <a href="${contextPath}/member/addmember.do">회원가입</a>
                 <span>/</span>
                 <a href="http://localhost:8090/pro/board/admin_board_list.do?brd_num=1">관리자</a>
                 <a href="http://localhost:8090/pro/mypage/mypage.do">마이페이지</a>
@@ -153,19 +153,19 @@
             <div class="col">
 
                 <div class="dropdown">
-                    <button class="dropbtn">센터 소개</button>
+                	<button class="dropbtn" onclick="location.href=' http://localhost:8090/pro/center/center.do'">센터 소개</button>
                     <div class="dropdown-content">
-                        <a href="#">사업소개</a>
-                        <a href="#">홍보영상</a>
-                        <a href="#">지원소개</a>
-                        <a href="#">오시는길</a>
+                        <a href="${contextPath}/center/center.do#center_intro">사업소개</a>
+                        <a href="${contextPath}/center/center.do#center_video">홍보영상</a>
+                        <a href="${contextPath}/center/center.do#center_service">지원소개</a>
+                        <a href="${contextPath}/center/center.do#center_come">오시는길</a>
                     </div>
+                    
                 </div>
             </div>
             <div class="col">
                 <div class="dropdown">
-                
-                    <button class="dropbtn" onclick="location.href=' http://localhost:8090/pro/equip/view_Eq_list.do'" >장비예약</button>
+                	<button class="dropbtn" onclick="location.href=' http://localhost:8090/pro/equip/view_Eq_list.do'" >장비예약</button>
                     <div class="dropdown-content">
                         <a href="#">사업소개</a>
                         <a href="#">홍보영상</a>
@@ -191,7 +191,7 @@
                 <div class="dropdown">
                     <button class="dropbtn">고객 지원</button>
                     <div class="dropdown-content">
-                        <a href="#">공지사항</a>
+                        <a href="${contextPath}/cust/cust_notice.do">공지사항</a>
                         <a href="${contextPath}/cust/cust_faq.do">FAQ</a>
                     </div>
                 </div>

@@ -7,4 +7,5 @@ import org.springframework.web.servlet.ModelAndView;
 
 public interface CustController {
 	public ModelAndView cust_faq(HttpServletRequest request, HttpServletResponse response) throws Exception;
+	public ModelAndView cust_notice(HttpServletRequest request, HttpServletResponse response) throws Exception;
 }
