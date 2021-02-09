@@ -39,5 +39,29 @@ public class EquipServiceImpl implements EquipService{
 		return adminequipList;
 	}
 	
+	@Override
+	public List<EquipVO> catelistequips() throws Exception {
+		List<EquipVO> cateList = equipDAO.selectCatenameList();
+		
+		return cateList;
+	}
+	
+	@Override
+	public int addcatename(String cate_name) throws Exception {
+		int result = equipDAO.insertCatename(cate_name);
+		return result;
+		
+
+	}
+	
+	@Override
+	public EquipVO viewecatename(String cate_name) throws Exception {
+		EquipVO equipVO = equipDAO.selectCateByCode(cate_name);
+		return equipVO;
+	}
+	
+	public void removecatename(String cate_name) throws Exception{
+		equipDAO.deleteCatename(cate_name);
+	}
 	
 }

@@ -60,7 +60,7 @@
         
     </style>
       <script src="${contextPath}/resources/js/jquery-3.5.1.min.js"> </script>
-      <script src="\\DIGITAL20\dnb\텍스트에디터\naver-smarteditor2-ca95d21\demo\js\service\HuskyEZCreator.js" charset="utf-8"></script>
+      
 <script>
     
     $(function(){           
@@ -73,23 +73,7 @@
 	    obj.submit();
      }
     
-    var oEditors=[];
-    //Editor Setting
-    nhn.husky.EZCreator.creareInIFrame({ oAppRef : oEditors,
-    	elPlaceHolder : "floatingTextarea2",	//에디터를 적용할 textarea ID에 맞게 변경
-    	sSkinURI : "\\DIGITAL20\dnb\텍스트에디터\naver-smarteditor2-ca95d21\demo\SmartEditor2Skin_ko_KR.html",//Editor HTML파일 위치로 변경
-    	fCreator : "createEditor2", //SE2BasicCreator2Skin.html메소드명으로 변경불가
-    	htParams : {//툴바 사용여부
-    		nUseToolbar : true,//입력창 크기 조절바 사용여부
-    		nUseVerticalResizer : true,// 모드 탭(Editor|HTML|TEXT) 사용여부 
-    		bUseModeChanger : true //전송버튼 클릭이벤트
-    		
-    		}
-    	});
-    function submitContents(){
-    	//에디터 내용이 textarea에 적용
-    	oEditors.getById["class_tutorIntroduce"].exec("UPDATE_CONTENTS_FIELD",[]);
-    }
+    
     
     function readURL(input) {
         if (input.files && input.files[0]) {
@@ -152,7 +136,7 @@
         
          <div id="articlefrom1"> 
              <div class="input-group">
-              <input type="file" class="form-control" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" name="board_img" aria-label="Upload">
+              <input type="file" class="form-control" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" name="board_img" aria-label="Upload" onchange="readURL(this);" >
               <img  id="preview" src="#"   width=200 height=200/>
             </div><br><br>
             

@@ -135,11 +135,19 @@
         </div><br>
         
          <div id="articlefrom1"> 
-             <div class="input-group">
-              <input type="file" class="form-control" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" name="board_img"aria-label="Upload">
-              
-            </div><br><br>
             
+            
+            <c:choose> 
+			  <c:when test="${not empty article.board_img && article.board_img!='null' }">
+			   	
+				     <input  type= "hidden"   name="originalFileName" value="${article.board_img }" />
+				    <img src="${contextPath}/download.do?board_num=${article.board_num}&board_img=${article.board_img}" id="preview"  /><br>
+				   
+			 </c:when>
+			<c:otherwise>
+				    
+			</c:otherwise>
+	 </c:choose>
             
         </div>
         
@@ -147,8 +155,9 @@
             
         </div><br><br>
         <div id="articlefrom1"> 
-        <input type="submit" value="글쓰기" disabled/>
-	       <input type=button value="목록보기"onClick="backToList(this.form)" />
+        <button type="button" class="btn btn-light" id='brd_btn'onclick="location.href='${contextPath}/board/admin_board_modArticleForm.do?board_num=${article.board_num}'">수정</button>
+        <button type="button" class="btn btn-light" id='brd_btn'onClick="backToList(this.form)">목록보기</button>
+	       
         </div>  
   
     </div>

@@ -33,7 +33,7 @@
     <script>
         $(function() {
         	
-            var dateFormat = "mm/dd/yy",
+            var dateFormat = "yyyy-mm-dd",
                 from = $("#from")
                 .datepicker({
                     defaultDate: "+1w",
@@ -133,6 +133,7 @@
                         <div class="xma"></div>
                         <label for="to">언제까지</label>
                         <input type="text" id="to" name="to">
+                        
                     </div>
                 </div>
             </div>

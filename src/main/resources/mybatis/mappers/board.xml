@@ -1,70 +1,143 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper
-	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="mapper.board">
-	<!-- 리절트 맵 정의 -->
-	<resultMap id="articlesResult" type="ArticleVO">
-		<result property="brd_num" column="brd_num" />
-		<result property="brd_name" column="brd_name" />
-		<result property="board_num" column="board_num" />
-		<result property="board_title" column="board_title" />
-		<result property="board_content" column="board_content" />
-		<result property="board_file" column="board_file" />
-		<result property="board_img" column="board_img" />
-		<result property="board_writer" column="board_writer" />
-		<result property="board_date" column="board_date" />
+   <!-- 리절트 맵 정의 -->
+   <resultMap id="articlesResult" type="ArticleVO">
+      <result property="brd_num" column="brd_num" />
+      <result property="brd_name" column="brd_name" />
+      <result property="board_num" column="board_num" />
+      <result property="board_title" column="board_title" />
+      <result property="board_content" column="board_content" />
+      <result property="board_file" column="board_file" />
+      <result property="board_img" column="board_img" />
+      <result property="board_writer" column="board_writer" />
+      <result property="board_date" column="board_date" />
 
-	</resultMap>
-	<!-- 쿼리문 작성 -->
-	<!-- 게시판별 리스트 보기 -->
-	<select id="selectAllArticlesList" resultMap="articlesResult">
-  		<![CDATA[
-  			select *  
-			from brd_detail, board 
-			where brd_detail.brd_num=board.brd_num and board.brd_num=#{brd_num}  
-			ORDER BY board_num DESC     
-  		]]>
-	</select>
-	<!-- 상세페이지 -->
-	<select id="selectArticle" resultMap="articlesResult">
-  		<![CDATA[
-  			select *  
-			from brd_detail, board 
-			where brd_detail.brd_num=board.brd_num and board_num=#{board_num}
-  		]]>
-	</select>
-	<!-- 글쓰기 창 에 게시판이름 자동으로 뿌리기 -->
-	<select id="selectBoardName" resultMap="articlesResult">
-  		<![CDATA[
-  			select *  
-			from board 
-			where brd_num=#{brd_num}
-  		]]>
-  	</select>
+   </resultMap>
+    <!-- 쿼리문 작성 -->
+   <!-- 게시판별 리스트 보기 -->
+   <select id="selectAllArticlesList" resultMap="articlesResult">
+        <![CDATA[
+           select *  
+         from brd_detail, board 
+         where brd_detail.brd_num=board.brd_num and board.brd_num=#{brd_num}  
+         ORDER BY board_num DESC     
+           
+           
+        ]]>
+   </select>
+   <!-- 상세페이지 -->
+   <select id="selectArticle" resultMap="articlesResult">
+        <![CDATA[
+           select *  
+         from brd_detail, board 
+         where brd_detail.brd_num=board.brd_num and board_num=#{board_num}
+        ]]>
+   </select>
+   <!-- 글쓰기 창 에 게시판이름 자동으로 뿌리기 -->
+   <select id="selectBoardName" resultMap="articlesResult">
+        <![CDATA[
+           select *  
+         from board 
+         where brd_num=#{brd_num}
+        ]]>
+   </select>
 
-	<!-- 새글 등록 -->
-	<insert id="insertNewArticle" parameterType="java.util.Map">
-  		<![CDATA[
-  			insert into brd_detail(brd_num, board_num, board_title, board_content, board_img, board_writer)  
-  			values (#{brd_num}, board_num_seq.NEXTVAL,#{board_title},#{board_content},#{board_img},#{board_writer}) 
-  		]]>
-  	</insert>
-  	
-	<select id="selectNewArticleNO" resultType="int">
-  		<![CDATA[
-  			select max(board_num) + 1 from brd_detail
-		]]>
-	</select>
-	
-	<!-- faq 정보 받아오기 -->
-	<select id="selectAllFaqList" resultMap="articlesResult">
-  		<![CDATA[
-  		select * from brd_detail, board where brd_detail.brd_num=board.brd_num and brd_name='FAQ' ORDER BY board_num
 
-  		]]>
-	</select>
+   <!-- 새글 등록 -->
+   <insert id="insertNewArticle" parameterType="java.util.Map">
+        <![CDATA[
+           insert into brd_detail(brd_num, board_num, board_title, board_content, board_img, board_writer)  
+           values (#{brd_num}, board_num_seq.NEXTVAL,#{board_title},#{board_content},#{board_img},#{board_writer}) 
+        ]]>
+   </insert>
+   <select id="selectNewArticleNO" resultType="int">
+        <![CDATA[
+           select max(board_num) + 1 from brd_detail
+           ]]>
+   </select>
+   
 
+   <!-- faq 정보 받아오기 -->
+   <select id="selectAllFaqList" resultMap="articlesResult">
+
+        <![CDATA[
+        select * from brd_detail, board where brd_detail.brd_num=board.brd_num and brd_name='FAQ' ORDER BY board_num
+
+        ]]>
+   </select>
+
+   <!-- 공지사항 정보 받아오기 -->
+   <select id="selectAllNoticeList" resultMap="articlesResult">
+        <![CDATA[
+        select * 
+        from brd_detail, board 
+        where brd_detail.brd_num=board.brd_num 
+        and brd_name='공지사항' ORDER BY board_num desc
+        ]]>
+   </select>
+
+   <!-- 공지사항 상세페이지 -->
+   <select id="selectNoticeArticle" resultMap="articlesResult">
+        <![CDATA[
+           select *  
+         from brd_detail,board
+         where board.brd_num=1 and brd_detail.board_num=#{board_num}
+        ]]>
+   </select>
+
+   <!-- 최신 사업소개 가져오기 -->
+   <select id="selectCenterIntroList" resultMap="articlesResult">
+        <![CDATA[
+        select * from
+        (select * from brd_detail 
+        where brd_num = 4 order by board_num desc) 
+        where rownum=1
+        ]]>
+   </select>
+
+   <!-- 최신 홍보영상 가져오기 -->
+   <select id="selectCenterVideoList" resultMap="articlesResult">
+        <![CDATA[
+        select * from
+        (select * from brd_detail 
+        where brd_num = 5 order by board_num desc) 
+        where rownum=1
+        ]]>
+   </select>
+
+   <!-- 최신 지원서비스 가져오기 -->
+   <select id="selectCenterServiceList" resultMap="articlesResult">
+        <![CDATA[
+        select * from
+        (select * from brd_detail 
+        where brd_num = 6 order by board_num desc) 
+        where rownum=1
+        ]]>
+   </select>
+
+
+       
+     
+     <!-- 선택 글 수정 -->
+     <update id="updateArticle" parameterType="java.util.Map">
+        <![CDATA[
+           update brd_detail set brd_num=#{brd_num}, board_title=#{board_title}, board_content=#{board_content}  
+           where board_num=#{board_num}
+           ]]>    
+     </update>
+     
+     <update id="updateArticleNewimg" parameterType="java.util.Map">
+        <![CDATA[
+           update brd_detail set brd_num=#{brd_num}, board_title=#{board_title}, board_content=#{board_content}, board_img=#{board_img}  
+           where board_num=#{board_num}
+           ]]>
+   </update>
+   
+
+   
 
 </mapper>
