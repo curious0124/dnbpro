@@ -23,13 +23,21 @@
 </c:choose>  
 
 <script>
-$("#submit").on("click", function(){
+
+
+
+
+
+
+
+
+/* $("#submit").on("click", function(){
 	var userid = $("#user_id").val();
 	
 	
 	
 	
-}
+} */
 </script>
 </head>
 
