@@ -42,6 +42,17 @@ public class BoardDAOImpl implements BoardDAO{
 		return sqlSession.selectOne("mapper.board.selectNewArticleNO");
 	}
 
+	@Override
+	public void updateArticle(Map articleMap) throws DataAccessException {
+		System.out.println("DAO!!!!!!!!!!!"+articleMap);
+		String img = (String) articleMap.get("board_img");
+		if(img != null && img.length() != 0) {
+			sqlSession.update("mapper.board.updateArticleNewimg",articleMap);
+		}
+		sqlSession.update("mapper.board.updateArticle",articleMap);
+		
+	}
+
 //	@Override
 //	public int insertNewArticle(Map articleMap) throws  DataAccessException{
 //		int articleNO = selectNewArticleNO();	//새 글에 대한 글번호를 가져옵니다.
