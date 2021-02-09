@@ -1,6 +1,7 @@
 package com.dnb.pro.board.controller;
 
 import java.io.File;
+import java.io.PrintWriter;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -71,8 +72,8 @@ private static final Logger logger = LoggerFactory.getLogger(BoardControllerImpl
 	@RequestMapping(value="/admin_board_list.do", method = {RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView admin_board_list(@RequestParam("brd_num") int brd_num, HttpServletRequest request, HttpServletResponse response) throws Exception{
 		String viewName = (String)request.getAttribute("viewName");
-		logger.info("info ï¿½ï¿½ï¿½ï¿½: viewName = "+viewName);
-		logger.debug("debug ï¿½ï¿½ï¿½ï¿½: viewName = "+viewName);
+		logger.info("info : viewName = "+viewName);
+		logger.debug("debug : viewName = "+viewName);
 		
 		List articlesList = boardService.listArticles(brd_num);	
 		
@@ -99,14 +100,34 @@ private static final Logger logger = LoggerFactory.getLogger(BoardControllerImpl
 	}
 	
 	@RequestMapping(value="/viewArticle.do", method = RequestMethod.GET)
-	public ModelAndView viewArticle(@RequestParam("board_num") int board_num, //ï¿½ï¿½È¸ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½È£ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	public ModelAndView viewArticle(@RequestParam("board_num") int board_num, 
 									HttpServletRequest request,
 									HttpServletResponse response) throws Exception{
 		String viewName = (String)request.getAttribute("viewName");
-		articleVO = boardService.viewArticle(board_num); 	//ï¿½ï¿½È¸ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ articleVOï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
+		articleVO = boardService.viewArticle(board_num); 	
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName(viewName);
 		mav.addObject("article",articleVO);		
+		return mav;
+	}
+	@RequestMapping(value="/admin_board_modArticleForm.do", method = RequestMethod.GET)
+	public ModelAndView admin_board_modArticleForm(@RequestParam("board_num") int board_num, 
+									HttpServletRequest request,
+									HttpServletResponse response) throws Exception{
+		String viewName = (String)request.getAttribute("viewName");
+		articleVO = boardService.viewArticle(board_num); 	
+		
+		
+		if(articleVO.getBoard_content() != null && articleVO.getBoard_content().length() != 0) {
+				String temp = articleVO.getBoard_content();
+				temp = temp.replace("<br>", "\r\n");
+				articleVO.setBoard_content(temp);
+		}
+		
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName(viewName);
+		mav.addObject("article",articleVO);		
+		
 		return mav;
 	}
 	
@@ -154,7 +175,7 @@ private static final Logger logger = LoggerFactory.getLogger(BoardControllerImpl
 			//»õ ±ÛÀ» Ãß°¡ÇÑ ÈÄ ¸Þ½ÃÁö¸¦ Àü´ÞÇÕ´Ï´Ù.
 			message = "<script>";
 			message += " alert('»õ ±ÛÀ» Ãß°¡Çß½À´Ï´Ù.');";
-			message += " location.href='"+multipartRequest.getContextPath()+"/board/admin_board_list.do?brd_num="+articleMap.getOrDefault("brd_num", 1)+"';";
+			message += " location.href='"+multipartRequest.getContextPath()+"/board/viewArticle.do?board_num="+articleNO+"';";
 			message += " </script>";
 			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
 		}catch(Exception e) {
@@ -172,6 +193,79 @@ private static final Logger logger = LoggerFactory.getLogger(BoardControllerImpl
 		}
 		return resEnt;	
 	}
+	
+	
+	
+	@RequestMapping(value="/modArticle.do" ,method = {RequestMethod.POST,RequestMethod.GET})
+	public ResponseEntity modArticle(MultipartHttpServletRequest multipartRequest,
+			HttpServletResponse response) throws Exception{
+		multipartRequest.setCharacterEncoding("utf-8");
+		response.setContentType("text/html; charset=UTF-8");
+		
+		Map<String,Object> articleMap = new HashMap<String, Object>();  //±ÛÁ¤º¸ ÀúÀåÀ» À§ÇÑ articleMap»ý¼º
+		Enumeration enu=multipartRequest.getParameterNames();
+		while(enu.hasMoreElements()) {	//±Û¾²±â Ã¢¿¡¼­ Àü¼ÛµÈ ±Û Á¤º¸¸¦ Map¿¡ key/value·Î ÀúÀå
+			String name = (String)enu.nextElement();
+			String value = multipartRequest.getParameter(name);
+			articleMap.put(name, value);
+			
+		}
+		
+		String temp = (String) articleMap.getOrDefault("board_content", 1);
+		temp = temp.replace("\r\n", "<br>");//ÀÔ·Â¹ÞÀº ¿£ÅÍ¸¦ <br>·Î ÀüÈ¯
+		articleMap.put("board_content", temp);
+		
+		String board_img = upload(multipartRequest);
+		articleMap.put("board_img", board_img);// ÀÌ¹ÌÁöÆÄÀÏÀÌ¸§À» articleMap¿¡ ÀúÀå
+		System.out.println(articleMap);
+		
+		String message = null;
+		ResponseEntity resEnt=null;
+		HttpHeaders responseHeaders = new HttpHeaders();
+		responseHeaders.add("Content-Type", "text/html; charset=utf-8");
+
+		try {
+			boardService.modArticle(articleMap);		
+			
+			String newFileName = (String) articleMap.get("board_img");
+			if (newFileName != null &&  newFileName.length()!=0) {
+				String originalFileName = (String) articleMap.get("originalFileName");
+				File srcFile = new File(ARTICLE_IMAGE_REPO + "\\" + "temp" + "\\" + newFileName);
+				File destDir = new File(ARTICLE_IMAGE_REPO + "\\" + articleMap.get("board_num"));
+				destDir.mkdirs();
+				FileUtils.moveFileToDirectory(srcFile, destDir, true);
+				;
+				File oldFile = new File(ARTICLE_IMAGE_REPO + "\\" + articleMap.get("board_num") + "\\" + originalFileName);
+				oldFile.delete();
+			}else {
+				
+			}
+			//»õ ±ÛÀ» Ãß°¡ÇÑ ÈÄ ¸Þ½ÃÁö¸¦ Àü´ÞÇÕ´Ï´Ù.
+			message = "<script>";
+			message += " alert('±Û ¼öÁ¤À» ¿Ï·á Çß½À´Ï´Ù.');";
+			message += " location.href='"+multipartRequest.getContextPath()+"/board/viewArticle.do?board_num="+articleMap.get("board_num")+"';";
+			message += " </script>";
+			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
+			
+		}catch(Exception e) {
+				File srcFile = new File(ARTICLE_IMAGE_REPO+"\\"+"temp"+"\\"+board_img);
+				srcFile.delete();
+				
+				//»õ ±ÛÀ» Ãß°¡ÇÑ ÈÄ ¸Þ½ÃÁö¸¦ Àü´ÞÇÕ´Ï´Ù.
+				message = "<script>";
+				message += " alert('¿À·ù°¡ ¹ß»ýÇß½À´Ï´Ù. ´Ù½Ã ½ÃµµÇØ ÁÖ¼¼¿ä.');";
+				message += " location.href='"+multipartRequest.getContextPath()+"/board/admin_board_modArticleForm.do?board_num="+articleMap.get("board_num")+"';";
+				message += " </script>";
+				resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
+				e.printStackTrace();
+				
+			}
+			return resEnt;	
+		}
+		
+	
+	
+	
 	
 	//¾÷·ÎµåÇÑ ÆÄÀÏÀÌ¸§À» ¾òÀºÈÄ ¹ÝÈ¯ÇÕ´Ï´Ù.
 		private String upload(MultipartHttpServletRequest multipartRequest) throws Exception{

@@ -93,6 +93,7 @@
 </style>
 </head>
 <body>
+<<<<<<< HEAD
 	<div id="headerall">
 		<div class="row" id="header_top">
 			<div class="col-md-12">
@@ -123,6 +124,29 @@
 				</c:if>
 			</div>
 		</div>
+=======
+<div id="headerall">
+        <div class="row" id="header_top">
+            <div class="col-md-12">
+            <c:choose>
+          <c:when test="${isLogOn == true  && member!= null}">
+            <h3>환영합니다람쥐. ${member.user_name} 님!</h3>
+            <a href="${contextPath}/member/logout.do"><h3>로그아웃</h3></a>
+            	
+          </c:when>
+          <c:otherwise>
+           <a href="${contextPath}/member/loginForm.do"><h3>로그인</h3></a>
+         </c:otherwise>
+      </c:choose>  
+                <!-- <a href="#">로그인</a> -->
+                <span>/</span>
+                <a href="${contextPath}/member/addmember.do">회원가입</a>
+                <span>/</span>
+                <a href="http://localhost:8090/pro/board/admin_board_list.do?brd_num=1">관리자</a>
+                <a href="http://localhost:8090/pro/mypage/mypage.do">마이페이지</a>
+            </div>
+        </div>
+>>>>>>> branch 'develop' of https://github.com/curious0124/dnbpro.git
 
 
 		<div class="row">
@@ -170,6 +194,7 @@
 		<div class="row" id="header_menu">
 			<div class="col">
 
+<<<<<<< HEAD
 				<div class="dropdown">
 					<button class="dropbtn">센터 소개</button>
 					<div class="dropdown-content">
@@ -180,7 +205,33 @@
 			</div>
 			<div class="col">
 				<div class="dropdown">
+=======
+                <div class="dropdown">
+                	<button class="dropbtn" onclick="location.href=' http://localhost:8090/pro/center/center.do'">센터 소개</button>
+                    <div class="dropdown-content">
+                        <a href="${contextPath}/center/center.do#center_intro">사업소개</a>
+                        <a href="${contextPath}/center/center.do#center_video">홍보영상</a>
+                        <a href="${contextPath}/center/center.do#center_service">지원소개</a>
+                        <a href="${contextPath}/center/center.do#center_come">오시는길</a>
+                    </div>
+                    
+                </div>
+            </div>
+            <div class="col">
+                <div class="dropdown">
+                	<button class="dropbtn" onclick="location.href=' http://localhost:8090/pro/equip/view_Eq_list.do'" >장비예약</button>
+                    <div class="dropdown-content">
+                        <a href="#">사업소개</a>
+                        <a href="#">홍보영상</a>
+                        <a href="#">지원소개</a>
+                        <a href="#">오시는길</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+>>>>>>> branch 'develop' of https://github.com/curious0124/dnbpro.git
 
+<<<<<<< HEAD
 					<button class="dropbtn"
 						onclick="location.href=' http://localhost:8090/pro/equip/view_Eq_list.do'">장비예약</button>
 					<div class="dropdown-content">
@@ -190,6 +241,27 @@
 				</div>
 			</div>
 			<div class="col">
+=======
+                <div class="dropdown">
+               
+                    <button class="dropbtn" onclick="location.href=' http://localhost:8090/pro/education/edu_list.do'">장비교육</button>
+                    <div class="dropdown-content">
+                        <a href="#">사업소개</a>
+                        <a href="#">홍보영상</a>
+                        <a href="#">지원소개</a>
+                        <a href="#">오시는길</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="dropdown">
+                    <button class="dropbtn">고객 지원</button>
+                    <div class="dropdown-content">
+                        <a href="${contextPath}/cust/cust_notice.do">공지사항</a>
+                        <a href="${contextPath}/cust/cust_faq.do">FAQ</a>
+                    </div>
+                </div>
+>>>>>>> branch 'develop' of https://github.com/curious0124/dnbpro.git
 
 				<div class="dropdown">
 

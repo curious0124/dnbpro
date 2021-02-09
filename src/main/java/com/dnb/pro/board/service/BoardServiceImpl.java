@@ -39,4 +39,10 @@ public class BoardServiceImpl implements BoardService {
 		System.out.println("service"+articleMap);
 		return boardDAO.insertNewArticle(articleMap);
 	}
+
+	@Override
+	public void modArticle(Map articleMap) throws Exception {
+		boardDAO.updateArticle(articleMap);
+		
+	}
 }

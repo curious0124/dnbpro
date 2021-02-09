@@ -156,7 +156,7 @@
       ${article.board_date}
     </div>
     <div class="col_list" id='brd_div6'>
-      <button type="button" class="btn btn-light" id='brd_btn'>수정</button>
+      <button type="button" class="btn btn-light" id='brd_btn'onclick="location.href='${contextPath}/board/admin_board_modArticleForm.do?board_num=${article.board_num}'">수정</button>
     </div>
     
   </div>
