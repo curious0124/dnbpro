@@ -20,5 +20,17 @@ public class CustServiceImpl implements CustService{
 		List<ArticleVO> articlesList = custDAO.selectAllFaqList();
 		return articlesList;
 	}
+	
+	@Override
+	public List<ArticleVO> listNoticeArticles() throws Exception {
+		List<ArticleVO> articlesNoticeList = custDAO.selectAllNoticeList();
+		return articlesNoticeList;
+	}
+	
+	@Override
+	public ArticleVO viewNoticeArticle(int board_num) throws Exception {
+		ArticleVO articleVO = custDAO.selectNoticeArticle(board_num);
+		return articleVO;
+	}
 
 }

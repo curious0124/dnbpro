@@ -19,4 +19,15 @@ public class CustDAOImpl implements CustDAO{
 		List<ArticleVO> articlesList = sqlSession.selectList("mapper.board.selectAllFaqList");
 		return articlesList;
 	}
+	
+	@Override
+	public List selectAllNoticeList() throws DataAccessException {
+		List<ArticleVO> articlesNoticeList = sqlSession.selectList("mapper.board.selectAllNoticeList");
+		return articlesNoticeList;
+	}
+
+	@Override
+	public ArticleVO selectNoticeArticle(int board_num) throws DataAccessException {
+		return sqlSession.selectOne("mapper.board.selectNoticeArticle", board_num);
+	}
 }
