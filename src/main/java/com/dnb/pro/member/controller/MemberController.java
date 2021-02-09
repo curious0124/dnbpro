@@ -40,34 +40,6 @@ public class MemberController {
 		return mav;
 	}
 
-//	@RequestMapping(value = "/member/listMembers.do", method = {RequestMethod.GET ,RequestMethod.POST})
-//	public ModelAndView listMembers(HttpServletRequest request, HttpServletResponse response) throws Exception {
-//		request.setCharacterEncoding("utf-8");
-//		response.setContentType("html/text;charset=utf-8");
-//		String viewName = (String) request.getAttribute("viewName");
-//		List membersList = service.listMembers();
-//		ModelAndView mav = new ModelAndView(viewName);
-//		mav.addObject("membersList", membersList);
-//		return mav;
-//	}
-
-	/* GET 회원가입 ?? */
-//	@RequestMapping(value = "/member/register", method = RequestMethod.GET)
-//	public void getRegister(MemberVO vo) throws Exception {
-//		logger.info("get register");
-//	}
-
-	/* POST 회원가입 ?? */
-//	@RequestMapping(value = "/member/addmember.do", method = {RequestMethod.GET, RequestMethod.POST})
-//	public ModelAndView postRegister(MemberVO vo) throws Exception {
-//		logger.info("post register");
-//		
-//		service.register(vo);
-//		ModelAndView mav = new ModelAndView("redirect:/main/main.do");
-//		return mav;
-//	}
-//	
-
 	@RequestMapping(value = "/member/addMember.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public ModelAndView addMember(@ModelAttribute("vo") MemberVO vo, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
@@ -86,7 +58,7 @@ public class MemberController {
 		ModelAndView mav = new ModelAndView();
 		vo = service.login(member);
 		
-			
+		
 		
 		if (vo != null) {
 			HttpSession session = request.getSession();
@@ -94,11 +66,13 @@ public class MemberController {
 			session.setAttribute("isLogOn", true);
 			String action = (String) session.getAttribute("action");
 			session.removeAttribute("action");
+			
 			if (action != null) {
 				mav.setViewName("redirect:" + action);
 			} else {
 				mav.setViewName("redirect:/main/main.do");
 			}
+			
 
 		} else {
 			rAttr.addAttribute("result", "loginFailed");

@@ -21,11 +21,21 @@
 	  </script>
 	</c:when>
 </c:choose>  
+
+<script>
+$("#submit").on("click", function(){
+	var userid = $("#user_id").val();
+	
+	
+	
+	
+}
+</script>
 </head>
 
 <body>
 <form name="login" method="post"  action="${contextPath}/member/login.do">
-   <table border="1"  width="80%" align="center" >
+   <table border="1"  width="80%" align="center">
       <tr align="center">
          <td>아이디</td>
          <td>비밀번호</td>
