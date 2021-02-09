@@ -120,11 +120,11 @@
 				    <a href="http://localhost:8090/pro/mypage/mypage.do">마이페이지</a>
 				</c:if>
 				<c:if test="${member.user_auth eq '블랙리스트'}">
-				    <h3>블랙리스트</h3>
+				    <h3>블랙리스트ㅇ</h3>
 				</c:if>
 			</div>
 		</div>
-=======
+
 <div id="headerall">
         <div class="row" id="header_top">
             <div class="col-md-12">
@@ -146,7 +146,7 @@
                 <a href="http://localhost:8090/pro/mypage/mypage.do">마이페이지</a>
             </div>
         </div>
->>>>>>> branch 'develop' of https://github.com/curious0124/dnbpro.git
+
 
 
 		<div class="row">
@@ -194,7 +194,7 @@
 		<div class="row" id="header_menu">
 			<div class="col">
 
-<<<<<<< HEAD
+
 				<div class="dropdown">
 					<button class="dropbtn">센터 소개</button>
 					<div class="dropdown-content">
@@ -205,7 +205,7 @@
 			</div>
 			<div class="col">
 				<div class="dropdown">
-=======
+
                 <div class="dropdown">
                 	<button class="dropbtn" onclick="location.href=' http://localhost:8090/pro/center/center.do'">센터 소개</button>
                     <div class="dropdown-content">
@@ -229,9 +229,7 @@
                 </div>
             </div>
             <div class="col">
->>>>>>> branch 'develop' of https://github.com/curious0124/dnbpro.git
 
-<<<<<<< HEAD
 					<button class="dropbtn"
 						onclick="location.href=' http://localhost:8090/pro/equip/view_Eq_list.do'">장비예약</button>
 					<div class="dropdown-content">
@@ -241,7 +239,7 @@
 				</div>
 			</div>
 			<div class="col">
-=======
+
                 <div class="dropdown">
                
                     <button class="dropbtn" onclick="location.href=' http://localhost:8090/pro/education/edu_list.do'">장비교육</button>
@@ -261,7 +259,7 @@
                         <a href="${contextPath}/cust/cust_faq.do">FAQ</a>
                     </div>
                 </div>
->>>>>>> branch 'develop' of https://github.com/curious0124/dnbpro.git
+
 
 				<div class="dropdown">
 
