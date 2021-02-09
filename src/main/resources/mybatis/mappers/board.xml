@@ -59,11 +59,7 @@
   			select max(board_num) + 1 from brd_detail
   			]]>
 	</select>
-	<!-- faq 정보 받아오기 -->
-	<select id="selectAllFaqList" resultMap="articlesResult">
-<![CDATA[
-  			select max(board_num) + 1 from brd_detail  		]]>
-	</select>
+	
 
 	<!-- faq 정보 받아오기 -->
 	<select id="selectAllFaqList" resultMap="articlesResult">
