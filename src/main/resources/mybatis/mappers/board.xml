@@ -68,6 +68,55 @@
 
   		]]>
 	</select>
+	
+	<!-- 공지사항 정보 받아오기 -->
+	<select id="selectAllNoticeList" resultMap="articlesResult">
+  		<![CDATA[
+  		select * 
+  		from brd_detail, board 
+  		where brd_detail.brd_num=board.brd_num 
+  		and brd_name='공지사항' ORDER BY board_num desc
+  		]]>
+	</select>
+
+	<!-- 공지사항 상세페이지 -->
+	<select id="selectNoticeArticle" resultMap="articlesResult">
+  		<![CDATA[
+  			select *  
+			from brd_detail,board
+			where board.brd_num=1 and brd_detail.board_num=#{board_num}
+  		]]>
+	</select>
+
+	<!-- 최신 사업소개 가져오기 -->
+	<select id="selectCenterIntroList" resultMap="articlesResult">
+  		<![CDATA[
+  		select * from
+  		(select * from brd_detail 
+  		where brd_num = 4 order by board_num desc) 
+  		where rownum=1
+  		]]>
+	</select>
+
+	<!-- 최신 홍보영상 가져오기 -->
+	<select id="selectCenterVideoList" resultMap="articlesResult">
+  		<![CDATA[
+  		select * from
+  		(select * from brd_detail 
+  		where brd_num = 5 order by board_num desc) 
+  		where rownum=1
+  		]]>
+	</select>
+
+	<!-- 최신 지원서비스 가져오기 -->
+	<select id="selectCenterServiceList" resultMap="articlesResult">
+  		<![CDATA[
+  		select * from
+  		(select * from brd_detail 
+  		where brd_num = 6 order by board_num desc) 
+  		where rownum=1
+  		]]>
+	</select>
 
 
 </mapper>

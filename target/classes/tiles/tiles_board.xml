@@ -44,6 +44,21 @@
       <put-attribute name="body" value="/WEB-INF/views/board/cust_faq.jsp" />
    </definition>
    
+    <definition name="/cust/cust_notice" extends="baseLayout">
+      <put-attribute name="title" value="공지사항" />
+      <put-attribute name="body" value="/WEB-INF/views/board/cust_notice.jsp" />
+   </definition>
+   
+   <definition name="/cust/viewNoticeArticle" extends="baseLayout">
+      <put-attribute name="title" value="글상세창" />
+      <put-attribute name="body" value="/WEB-INF/views/board/cust_notice_detail.jsp" />
+   </definition>
+   
+   <definition name="/center/center" extends="baseLayout">
+      <put-attribute name="title" value="센터소개" />
+      <put-attribute name="body" value="/WEB-INF/views/board/center.jsp" />
+   </definition>
+   
    <!-- 
    <definition name="/board/articleForm" extends="baseLayout">
    	<put-attribute name="title" value="글쓰기창"/>
