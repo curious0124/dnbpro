@@ -10,6 +10,10 @@
 <html lang="en">
 
 <head>
+
+    <!-- 부트스트랩 경로 지정 폴더에 넣어놨음-->
+    <link rel="stylesheet" href="${contextPath}/resources/bootstrap/bootstrap.css">
+    
     <meta charset="UTF-8">
     <title>Document</title>
     <c:set var="intro" value="${centerList.intro}" />
@@ -19,8 +23,8 @@
         * {
             margin: 0 auto;
             padding: 0 auto;
-            box-sizing: border-box
-        }
+            box-sizing: border-box;
+        } 
 
         .body {
             position: relative;
@@ -30,7 +34,7 @@
             width: 90%;
 
             background-color: #f7f7f7;
-        }
+        } 
 
         .center_navi {
             border: solid;
@@ -41,13 +45,15 @@
 
         .center_content {
             position: relative;
-            height: 500px;
+           
             margin-top: 10px;
             overflow: auto;
-            border: solid;
+            
             margin: 0 auto;
             float: right;
             width: 90%;
+             /* height: 500px;
+            border: solid; */
         }
 
     </style>

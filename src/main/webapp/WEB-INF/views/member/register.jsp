@@ -140,6 +140,11 @@
                     document.getElementById('user_pwd').value='';
                 }
             }
+            if(document.getElementById('pw').value != document.getElementById('user_pwd').value){
+            	document.getElementById('check').innerHTML='위에꺼 먼저 쓰세요;';
+                document.getElementById('check').style.color='red';
+                document.getElementById('user_pwd').value='';
+            }
         }
     </script>
 <body>
