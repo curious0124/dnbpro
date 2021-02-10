@@ -78,13 +78,15 @@ public class MyPageControllerImpl implements MyPageController{
 	
 	@Override
 	@RequestMapping(value = "/myResDetail.do", method = {RequestMethod.GET,RequestMethod.POST})
-	public ModelAndView myResDetail(@RequestParam(required = false, value="user_id") String user_id, HttpServletRequest request, HttpServletResponse response)
+	public ModelAndView myResDetail( HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		String viewName=(String)request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView(viewName);
 		
 		HttpSession session=request.getSession();
 		MemberVO renter=(MemberVO)session.getAttribute("member");
+		
+		String user_id= renter.getUser_id();
 		
 		 Map<String, List<RentVO>> myRentList= myPageService.findMyResInfo(user_id);
 		 mav.addObject("renter", renter);
@@ -95,13 +97,15 @@ public class MyPageControllerImpl implements MyPageController{
 
 	@Override
 	@RequestMapping(value = "/myReturnDetail.do", method = {RequestMethod.GET,RequestMethod.POST})
-	public ModelAndView myReturnDetail(@RequestParam(required = false, value="user_id") String user_id, HttpServletRequest request, HttpServletResponse response)
+	public ModelAndView myReturnDetail(HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		String viewName=(String)request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView(viewName);
 		
 		HttpSession session=request.getSession();
 		MemberVO renter=(MemberVO)session.getAttribute("member");
+		
+		String user_id= renter.getUser_id();
 		
 		 Map<String, List<RentVO>> myRentList= myPageService.findMyReturnInfo(user_id);
 		 mav.addObject("renter", renter);
@@ -112,13 +116,15 @@ public class MyPageControllerImpl implements MyPageController{
 
 	@Override
 	@RequestMapping(value = "/myLogDetail.do", method = {RequestMethod.GET,RequestMethod.POST})
-	public ModelAndView myLogDetail(@RequestParam(required = false, value="user_id") String user_id, HttpServletRequest request, HttpServletResponse response)
+	public ModelAndView myLogDetail( HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		String viewName=(String)request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView(viewName);
 		
 		HttpSession session=request.getSession();
 		MemberVO renter=(MemberVO)session.getAttribute("member");
+		
+		String user_id= renter.getUser_id();
 		
 		 Map<String, List<RentVO>> myRentList= myPageService.findMyLogInfo(user_id);
 		 mav.addObject("renter", renter);

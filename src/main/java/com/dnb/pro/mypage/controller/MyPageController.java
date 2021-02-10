@@ -14,9 +14,9 @@ import com.dnb.pro.member.vo.MemberVO;
 public interface MyPageController {
 	public ModelAndView myPageMain(@RequestParam(required = false,value="message")  String message,HttpServletRequest request, HttpServletResponse response)  throws Exception ;
 	public ModelAndView myResqDetail(HttpServletRequest request, HttpServletResponse response)  throws Exception;
-	public ModelAndView myResDetail(@RequestParam("user_id")  String user_id,HttpServletRequest request, HttpServletResponse response)  throws Exception;
-	public ModelAndView myReturnDetail(@RequestParam("user_id")  String user_id,HttpServletRequest request, HttpServletResponse response)  throws Exception;
-	public ModelAndView myLogDetail(@RequestParam("user_id")  String user_id,HttpServletRequest request, HttpServletResponse response)  throws Exception;
+	public ModelAndView myResDetail(HttpServletRequest request, HttpServletResponse response)  throws Exception;
+	public ModelAndView myReturnDetail(HttpServletRequest request, HttpServletResponse response)  throws Exception;
+	public ModelAndView myLogDetail(HttpServletRequest request, HttpServletResponse response)  throws Exception;
 	public ModelAndView cancelResq(HttpServletRequest request, HttpServletResponse response)  throws Exception;
 	public ModelAndView cancelRes(HttpServletRequest request, HttpServletResponse response)  throws Exception;
 	public ModelAndView cancelReturn(HttpServletRequest request, HttpServletResponse response)  throws Exception;
