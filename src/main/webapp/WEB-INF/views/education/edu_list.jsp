@@ -6,9 +6,11 @@
 <!DOCTYPE html>
 <html>
 <head>
+
+    <!-- 부트스트랩 경로 지정 폴더에 넣어놨음-->
+    <link rel="stylesheet" href="${contextPath}/resources/bootstrap/bootstrap.css">
+    
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <title>boardList</title>
 </head>
 <body>
@@ -35,18 +37,30 @@
  								<c:forEach items="${educationList}" var="list" varStatus="educationNum">
 								<tr>
 									<td><a href="${contextPath}/education/edu_detail.do?educationNO=${list.edu_num}">${educationNum.count}</td>
-									<td><a href="${contextPath}/education/edu_detail.do?educationNO=${list.edu_num}">${list.edu_thuming}&nbsp;</a></td>		
-									
+									<td><a href="${contextPath}/education/edu_detail.do?educationNO=${list.edu_num}">${list.edu_thuming}&nbsp;</a></td>	
 									<td><a href="${contextPath}/education/edu_detail.do?educationNO=${list.edu_num}">${list.edu_title}</a></td>	
 									<td> ${list.cate_name}</td>	
 								</tr>
 								</c:forEach>
 							</tbody>
+							
+							
 						</table>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+	
+	<!-- 페이징실패 -->
+<%-- 	            <c:forEach   var="page" begin="1" end="10" step="1" >
+		         <c:if test="${section >1 && page==1 }">
+		          <a href="${contextPath}/admin/goods/adminGoodsMain.do?chapter=${section-1}&pageNum=${(section-1)*10 +1 }">&nbsp; &nbsp;</a>
+		         </c:if>
+		          <a href="${contextPath}/admin/goods/adminGoodsMain.do?chapter=${section}&pageNum=${page}">${(section-1)*10 +page } </a>
+		         <c:if test="${page ==10 }">
+		          <a href="${contextPath}/admin/goods/adminGooodsMain.do?chapter=${section+1}&pageNum=${section*10+1}">&nbsp; next</a>
+		         </c:if> 
+	      		</c:forEach>  --%>
 </body>
 </html>
