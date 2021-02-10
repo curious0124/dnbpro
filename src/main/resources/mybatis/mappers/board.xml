@@ -17,10 +17,115 @@
 		<result property="board_date" column="board_date" />
 
 	</resultMap>
-	<!-- 쿼리문 작성 -->
-	<!-- 게시판별 리스트 보기 -->
-	<select id="selectAllArticlesList" resultMap="articlesResult">
+	 <!-- 쿼리문 작성 -->
+   <!-- 게시판별 리스트 보기 -->
+   <select id="selectAllArticlesList" resultMap="articlesResult">
+        <![CDATA[
+           select *  
+         from brd_detail, board 
+         where brd_detail.brd_num=board.brd_num and board.brd_num=#{brd_num}  
+         ORDER BY board_num DESC     
+           
+           
+        ]]>
+   </select>
+   <!-- 상세페이지 -->
+   <select id="selectArticle" resultMap="articlesResult">
+        <![CDATA[
+           select *  
+         from brd_detail, board 
+         where brd_detail.brd_num=board.brd_num and board_num=#{board_num}
+        ]]>
+   </select>
+   <!-- 글쓰기 창 에 게시판이름 자동으로 뿌리기 -->
+   <select id="selectBoardName" resultMap="articlesResult">
+        <![CDATA[
+           select *  
+         from board 
+         where brd_num=#{brd_num}
+        ]]>
+   </select>
+
+
+   <!-- 새글 등록 -->
+   <insert id="insertNewArticle" parameterType="java.util.Map">
+        <![CDATA[
+           insert into brd_detail(brd_num, board_num, board_title, board_content, board_img, board_writer)  
+           values (#{brd_num}, board_num_seq.NEXTVAL,#{board_title},#{board_content},#{board_img},#{board_writer}) 
+        ]]>
+   </insert>
+   <select id="selectNewArticleNO" resultType="int">
+        <![CDATA[
+           select max(board_num) + 1 from brd_detail
+           ]]>
+   </select>
+   
+
+   <!-- faq 정보 받아오기 -->
+   <select id="selectAllFaqList" resultMap="articlesResult">
+
+        <![CDATA[
+        select * from brd_detail, board where brd_detail.brd_num=board.brd_num and brd_name='FAQ' ORDER BY board_num
+
+        ]]>
+   </select>
+
+   <!-- 공지사항 정보 받아오기 -->
+   <select id="selectAllNoticeList" resultMap="articlesResult">
+        <![CDATA[
+        select * 
+        from brd_detail, board 
+        where brd_detail.brd_num=board.brd_num 
+        and brd_name='공지사항' ORDER BY board_num desc
+        ]]>
+   </select>
+
+   <!-- 공지사항 상세페이지 -->
+   <select id="selectNoticeArticle" resultMap="articlesResult">
+        <![CDATA[
+           select *  
+         from brd_detail,board
+         where board.brd_num=1 and brd_detail.board_num=#{board_num}
+        ]]>
+   </select>
+
+   <!-- 최신 사업소개 가져오기 -->
+   <select id="selectCenterIntroList" resultMap="articlesResult">
+        <![CDATA[
+        select * from
+        (select * from brd_detail 
+        where brd_num = 4 order by board_num desc) 
+        where rownum=1
+        ]]>
+   </select>
+
+   <!-- 최신 홍보영상 가져오기 -->
+   <select id="selectCenterVideoList" resultMap="articlesResult">
+        <![CDATA[
+        select * from
+        (select * from brd_detail 
+        where brd_num = 5 order by board_num desc) 
+        where rownum=1
+        ]]>
+   </select>
+
+   <!-- 최신 지원서비스 가져오기 -->
+   <select id="selectCenterServiceList" resultMap="articlesResult">
+        <![CDATA[
+        select * from
+        (select * from brd_detail 
+        where brd_num = 6 order by board_num desc) 
+        where rownum=1
+        ]]>
+   </select>
+
+
+       
+     
+     <!-- 선택 글 수정 -->
+     <update id="updateArticle" parameterType="java.util.Map">
   		<![CDATA[
+<<<<<<< HEAD
   			select *  
 			from brd_detail, board 
 			where brd_detail.brd_num=board.brd_num and board.brd_num=#{brd_num}  
@@ -28,7 +133,7 @@
   			
   			
   		]]>
-	</select>
+  	</select>
 	<!-- 상세페이지 -->
 	<select id="selectArticle" resultMap="articlesResult">
   		<![CDATA[
@@ -36,87 +141,53 @@
 			from brd_detail, board 
 			where brd_detail.brd_num=board.brd_num and board_num=#{board_num}
   		]]>
-	</select>
-	<!-- 글쓰기 창 에 게시판이름 자동으로 뿌리기 -->
-	<select id="selectBoardName" resultMap="articlesResult">
+  	</select>
+  	<!-- 글쓰기 창 에 게시판이름 자동으로 뿌리기 -->
+  	<select id="selectBoardName" resultMap="articlesResult">
   		<![CDATA[
   			select *  
 			from board 
 			where brd_num=#{brd_num}
   		]]>
-	</select>
+  	</select>
 
-
-	<!-- 새글 등록 -->
-	<insert id="insertNewArticle" parameterType="java.util.Map">
+=======
+  			update brd_detail set brd_num=#{brd_num}, board_title=#{board_title}, board_content=#{board_content}  
+  			where board_num=#{board_num}
+  			]]>	 
+  	</update>
+>>>>>>> branch 'develop' of https://github.com/curious0124/dnbpro.git
+  	
+<<<<<<< HEAD
+  	<!-- 새글 등록 -->
+  	<insert id="insertNewArticle" parameterType="java.util.Map">
   		<![CDATA[
   			insert into brd_detail(brd_num, board_num, board_title, board_content, board_img, board_writer)  
   			values (#{brd_num}, board_num_seq.NEXTVAL,#{board_title},#{board_content},#{board_img},#{board_writer}) 
   		]]>
-	</insert>
-	<select id="selectNewArticleNO" resultType="int">
+  	</insert>
+  	<select id="selectNewArticleNO" resultType="int">
   		<![CDATA[
-  			select max(board_num) + 1 from brd_detail
-  			]]>
-	</select>
-	
+  			select max(board_num) + 1 from brd_detail  		]]>
+  	</select>
 
-	<!-- faq 정보 받아오기 -->
-	<select id="selectAllFaqList" resultMap="articlesResult">
-
+  	<!-- faq 정보 받아오기 -->
+  	<select id="selectAllFaqList" resultMap="articlesResult">
   		<![CDATA[
   		select * from brd_detail, board where brd_detail.brd_num=board.brd_num and brd_name='FAQ' ORDER BY board_num
 
-  		]]>
-	</select>
-
-	<!-- 공지사항 정보 받아오기 -->
-	<select id="selectAllNoticeList" resultMap="articlesResult">
+	]]>
+ 	</select>
+=======
+  	<update id="updateArticleNewimg" parameterType="java.util.Map">
   		<![CDATA[
-  		select * 
-  		from brd_detail, board 
-  		where brd_detail.brd_num=board.brd_num 
-  		and brd_name='공지사항' ORDER BY board_num desc
-  		]]>
-	</select>
+  			update brd_detail set brd_num=#{brd_num}, board_title=#{board_title}, board_content=#{board_content}, board_img=#{board_img}  
+  			where board_num=#{board_num}
+  			]]>
+	</update>
+	
 
-	<!-- 공지사항 상세페이지 -->
-	<select id="selectNoticeArticle" resultMap="articlesResult">
-  		<![CDATA[
-  			select *  
-			from brd_detail,board
-			where board.brd_num=1 and brd_detail.board_num=#{board_num}
-  		]]>
-	</select>
-
-	<!-- 최신 사업소개 가져오기 -->
-	<select id="selectCenterIntroList" resultMap="articlesResult">
-  		<![CDATA[
-  		select * from
-  		(select * from brd_detail 
-  		where brd_num = 4 order by board_num desc) 
-  		where rownum=1
-  		]]>
-	</select>
-
-	<!-- 최신 홍보영상 가져오기 -->
-	<select id="selectCenterVideoList" resultMap="articlesResult">
-  		<![CDATA[
-  		select * from
-  		(select * from brd_detail 
-  		where brd_num = 5 order by board_num desc) 
-  		where rownum=1
-  		]]>
-	</select>
-
-	<!-- 최신 지원서비스 가져오기 -->
-	<select id="selectCenterServiceList" resultMap="articlesResult">
-  		<![CDATA[
-  		select * from
-  		(select * from brd_detail 
-  		where brd_num = 6 order by board_num desc) 
-  		where rownum=1
-  		]]>
-	</select>
+	
+>>>>>>> branch 'develop' of https://github.com/curious0124/dnbpro.git
 
 </mapper>
