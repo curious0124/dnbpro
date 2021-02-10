@@ -151,16 +151,12 @@
 
                 <div class="listrow">
                     <div class="col_list" id='brd_div1'>
-                        <select name="cate_name">
+                        <select name="cate_name" >
                             <option selected>분류코드</option>
-                            
-
-                               
-                                        <option value="${cateList.cate_name}">${cateList.cate_name}</option>
-                              
-
-
-                             
+                             <c:forEach  var="cate" items="${cateList }" varStatus="cateNum" >
+                                        <option value="${cate.cate_name}">${cate.cate_name}</option>
+                                       
+                              </c:forEach>
                         </select>
                     </div>
                     <div class="col_list" id='brd_div2'>
@@ -191,7 +187,7 @@
                         <input id="im1" type="text" name="eq_img">
                     </div>
                     <div class="col_list" id='brd_div5'>
-                        <input id="im1" type="text" name="eq_thuming">
+                        <input id="im1" type="text" name="eq_thumimg">
                     </div>
 
 

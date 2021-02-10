@@ -18,6 +18,6 @@ public interface EquipService {
 	public List eqnamelistequips() throws Exception;
 	public EquipVO vieweqname() throws Exception;
 	public int addeqname(EquipVO equipVO) throws Exception;
-	public EquipVO selectonecatename(String cate_name) throws Exception;
+//	public EquipVO selectonecatename(String cate_name) throws Exception;
 //	EquipVO vieweqname(String cate_name) throws Exception;
 }

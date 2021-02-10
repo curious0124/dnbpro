@@ -174,19 +174,11 @@ public class EquipControllerImpl implements EquipController {
 
 		
 		@RequestMapping(value="/admin_Eq_manage_regist.do" ,method = RequestMethod.GET)
-		public ModelAndView selectonecatename(@RequestParam("cate_name") String cate_name,  HttpServletRequest request, HttpServletResponse response) throws Exception{
+		public ModelAndView catelistequips(@RequestParam("cate_name") String cate_name,  HttpServletRequest request, HttpServletResponse response) throws Exception{
 			String viewName = (String)request.getAttribute("viewName");
-//			equipVO=equipService.viewecatename(cate_name);
-//			ModelAndView mav = new ModelAndView();
-//			mav.setViewName(viewName);
-//			mav.addObject("equipVO", equipVO);
-//			return mav;
-			
-//			check
-
-			equipVO = equipService.selectonecatename(cate_name);
+			List cateList = equipService.catelistequips();
 			ModelAndView mav = new ModelAndView(viewName);
-     		mav.addObject("cateList", equipVO);
+     		mav.addObject("cateList", cateList);
 		
 			return mav;
 		}
@@ -216,7 +208,8 @@ public class EquipControllerImpl implements EquipController {
 			    message += " </script>";
 				e.printStackTrace();
 			}
-			resEntity =new ResponseEntity(message, responseHeaders, HttpStatus.OK);
+			resEntity =new ResponseEntity(message, responseHeaders, HttpStatus.OK);   
+//			System.out.println(equipVO.getEq_thumimg());  
 			return resEntity;
 		}
 		
