@@ -17,6 +17,8 @@ public interface BoardService {
 
 	public void modArticle(Map articleMap) throws Exception;
 
+	public void deleteArticle(ArticleVO articleVO) throws Exception;
+
 //	public int addNewArticle(Map articleMap) throws Exception;
 //
 //	public ArticleVO viewArticle(int articleNO) throws Exception;
