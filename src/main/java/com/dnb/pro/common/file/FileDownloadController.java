@@ -33,7 +33,7 @@ public class FileDownloadController {
 //			Thumbnails.of(image).size(100,100).outputFormat("png").toFile(thumbnail);
 //		}
 		
-		//생성된 썸네일 파일을 브라우저로 전송
+		//생성된 파일을 브라우저로 전송
 		FileInputStream in = new FileInputStream(image);
 		byte[] buffer = new byte[1024 * 8];
 		while (true) {	//버퍼를 이용해 한번에 8Kbyte씩 브라우저로 전송 

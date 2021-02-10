@@ -53,6 +53,12 @@ public class BoardDAOImpl implements BoardDAO{
 		
 	}
 
+	@Override
+	public void deleteArticle(ArticleVO articleVO) throws DataAccessException {
+		sqlSession.update("mapper.board.deleteArticle",articleVO);
+		
+	}
+
 //	@Override
 //	public int insertNewArticle(Map articleMap) throws  DataAccessException{
 //		int articleNO = selectNewArticleNO();	//새 글에 대한 글번호를 가져옵니다.
