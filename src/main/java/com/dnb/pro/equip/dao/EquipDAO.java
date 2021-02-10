@@ -17,6 +17,10 @@ public interface EquipDAO {
 	public int insertCatename(String cate_name) throws DataAccessException;
 	public EquipVO selectCateByCode(String cate_name) throws DataAccessException;
 	public void deleteCatename(String cate_name) throws DataAccessException;
+	public List selectEqnameList() throws DataAccessException;
+	public EquipVO selectEqnameByCode() throws DataAccessException;
+	public int insertEquiplist(EquipVO equipVO) throws DataAccessException;
+	public EquipVO selectCateByCode2(String cate_name) throws DataAccessException;
 //	public List selecAmount(int) throws DataAccessException;
 	
 }
