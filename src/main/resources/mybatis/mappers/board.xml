@@ -137,7 +137,13 @@
            ]]>
    </update>
    
-
+   <!-- 선택 글 삭제 -->
+   <delete id="deleteArticle" >
+      <![CDATA[
+           delete from brd_detail 
+           where board_num=#{board_num}
+           ]]>   
+   </delete>
    
 
 </mapper>

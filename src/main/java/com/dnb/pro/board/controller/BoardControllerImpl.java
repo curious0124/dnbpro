@@ -262,6 +262,32 @@ private static final Logger logger = LoggerFactory.getLogger(BoardControllerImpl
 			}
 			return resEnt;	
 		}
+	
+	@RequestMapping(value="/deleteSelectArticle.do" ,method = {RequestMethod.POST,RequestMethod.GET})
+	public ResponseEntity deleteSelectArticle(@RequestParam(value = "chbox[]") List<String> brdArr,
+						ArticleVO articleVO) throws Exception{	
+		String message = null;
+		ResponseEntity resEnt=null;
+		HttpHeaders responseHeaders = new HttpHeaders();
+		responseHeaders.add("Content-Type", "text/html; charset=utf-8");
+		
+		int result = 0;
+		int arrNum = 0;
+		for(String i : brdArr) {
+			arrNum = Integer.parseInt(i);
+			articleVO.setBoard_num(arrNum);
+			boardService.deleteArticle(articleVO);
+		}
+		//새 글을 추가한 후 메시지를 전달합니다.
+		message = "<script>";
+		message += " alert('글 삭제를 완료 했습니다.');";
+		message += " </script>";
+		resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
+		
+		return resEnt;
+	}
+	
+	
 		
 	
 	

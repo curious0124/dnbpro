@@ -15,6 +15,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -79,24 +80,24 @@ public class EquipControllerImpl implements EquipController {
 		@RequestMapping(value="/admin_Eq_manage_classify_list.do" ,method = {RequestMethod.GET,RequestMethod.POST})
 		public ModelAndView catelistequips(HttpServletRequest request, HttpServletResponse response) throws Exception {
 			String viewName = (String)request.getAttribute("viewName");
-			
-			
-			
+		
 			List cateList = equipService.catelistequips();
 			ModelAndView mav = new ModelAndView(viewName);
 			mav.addObject("cateList", cateList);
 			return mav;
 		}
 		
+	
+		
 		
 		@RequestMapping(value="/admin_Eq_manage_classify.do" ,method = RequestMethod.GET)
 		public ModelAndView viewecatename(@RequestParam("cate_name") String cate_name,
 	                                    HttpServletRequest request, HttpServletResponse response) throws Exception{
 			String viewName = (String)request.getAttribute("viewName");
-			equipVO=equipService.viewequip(cate_name);
+			List cateList=(List) equipService.viewequip(cate_name);
 			ModelAndView mav = new ModelAndView();
 			mav.setViewName(viewName);
-			mav.addObject("equipVO", equipVO);
+			mav.addObject("cateList", cateList);
 			return mav;
 		}
 		@Override
@@ -157,5 +158,69 @@ public class EquipControllerImpl implements EquipController {
 			return resEnt;
 		}
 		
+		@Override
+		@RequestMapping(value="/admin_Eq_manage_regist_list.do" ,method = {RequestMethod.GET,RequestMethod.POST})
+		public ModelAndView eqnamelistequips(HttpServletRequest request, HttpServletResponse response) throws Exception {
+			String viewName = (String)request.getAttribute("viewName");
+			
+			
+			
+			List eqnameList = equipService.eqnamelistequips();
+			ModelAndView mav = new ModelAndView(viewName);
+			mav.addObject("eqnameList", eqnameList);
+			return mav;
+		}
+		
+
+		
+		@RequestMapping(value="/admin_Eq_manage_regist.do" ,method = RequestMethod.GET)
+		public ModelAndView selectonecatename(@RequestParam("cate_name") String cate_name,  HttpServletRequest request, HttpServletResponse response) throws Exception{
+			String viewName = (String)request.getAttribute("viewName");
+//			equipVO=equipService.viewecatename(cate_name);
+//			ModelAndView mav = new ModelAndView();
+//			mav.setViewName(viewName);
+//			mav.addObject("equipVO", equipVO);
+//			return mav;
+			
+//			check
+
+			equipVO = equipService.selectonecatename(cate_name);
+			ModelAndView mav = new ModelAndView(viewName);
+     		mav.addObject("cateList", equipVO);
+		
+			return mav;
+		}
+		
+		
+		@Override
+		@RequestMapping(value="/addeqname.do" ,method = RequestMethod.GET)
+		public ResponseEntity addeqname(@ModelAttribute("equipVO") EquipVO equipVO,
+				                    HttpServletRequest request, HttpServletResponse response)  throws Exception{
+			response.setContentType("text/html; charset=UTF-8");
+			request.setCharacterEncoding("utf-8");
+			String message = null;
+			ResponseEntity resEntity = null;
+			HttpHeaders responseHeaders = new HttpHeaders();
+			responseHeaders.add("Content-Type", "text/html; charset=utf-8");
+			try {
+			    equipService.addeqname(equipVO);
+			    message  = "<script>";
+			    message +=" alert('모델명 등록을 마쳤습니다.모델 리스트 창으로 이동합니다.');";
+			    message += " location.href='"+request.getContextPath()+"/equip/admin_Eq_manage_regist_list.do';";
+			    message += " </script>";
+			    
+			}catch(Exception e) {
+				message  = "<script>";
+			    message +=" alert('작업 중 오류가 발생했습니다. 다시 시도해 주세요');";
+			    message += " location.href='"+request.getContextPath()+"/equip/admin_Eq_manage_regist.do';";
+			    message += " </script>";
+				e.printStackTrace();
+			}
+			resEntity =new ResponseEntity(message, responseHeaders, HttpStatus.OK);
+			return resEntity;
+		}
+		
+		
+	
 	
 }

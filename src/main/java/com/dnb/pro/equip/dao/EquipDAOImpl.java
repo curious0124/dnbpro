@@ -15,6 +15,7 @@ import com.dnb.pro.equip.vo.EquipVO;
 
 
 
+
 @Repository("EquipDAO")
 public class EquipDAOImpl implements  EquipDAO  {
 
@@ -62,5 +63,30 @@ public class EquipDAOImpl implements  EquipDAO  {
 	public void deleteCatename(String cate_name) throws DataAccessException{
 		sqlSession.delete("mapper.equip.deleteCatename",cate_name);
 		
+	}
+	
+	@Override
+	public List selectEqnameList() throws DataAccessException {
+		List<EquipVO> eqnameList = eqnameList = sqlSession.selectList("mapper.equip.selectEqnameList");
+		return eqnameList;
+	}
+	
+	
+	@Override
+	public EquipVO selectEqnameByCode( ) throws DataAccessException{
+		return sqlSession.selectOne("mapper.equip.selectEqnameByCode");
+		
+	}
+	
+	
+	@Override
+	public int insertEquiplist(EquipVO equipVO) throws DataAccessException {
+		int result = sqlSession.insert("mapper.equip.insertEquiplist", equipVO);
+		return result;
+	}
+	
+	@Override
+	public EquipVO selectCateByCode2(String cate_name) throws DataAccessException {
+		return sqlSession.selectOne("mapper.equip.selectCateByCode2",cate_name);
 	}
 }

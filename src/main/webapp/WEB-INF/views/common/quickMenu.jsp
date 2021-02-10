@@ -11,3 +11,5 @@
 </body>
 </html>
  
+    <!-- 부트스트랩 경로 지정 폴더에 넣어놨음-->
+    <link rel="stylesheet" href="${contextPath}/resources/bootstrap/bootstrap.css">

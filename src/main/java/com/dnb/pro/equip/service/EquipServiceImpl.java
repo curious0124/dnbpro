@@ -64,4 +64,32 @@ public class EquipServiceImpl implements EquipService{
 		equipDAO.deleteCatename(cate_name);
 	}
 	
+	@Override
+	public List<EquipVO> eqnamelistequips() throws Exception {
+		List<EquipVO> eqnameList = equipDAO.selectEqnameList();
+		
+		return eqnameList;
+	}
+	
+	@Override
+	public EquipVO vieweqname() throws Exception {
+		EquipVO equipVO = equipDAO.selectEqnameByCode();
+		return equipVO;
+	}
+	
+	@Override
+	public int addeqname(EquipVO equipVO) throws Exception {
+		int result = equipDAO.insertEquiplist(equipVO);
+		return result;
+		
+
+	}
+	
+	@Override
+	public EquipVO selectonecatename(String cate_name) throws Exception {
+		EquipVO equipVO = equipDAO.selectCateByCode2(cate_name);
+		return equipVO;
+		
+	}
+	
 }
