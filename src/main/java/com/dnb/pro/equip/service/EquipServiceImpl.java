@@ -85,11 +85,11 @@ public class EquipServiceImpl implements EquipService{
 
 	}
 	
-	@Override
-	public EquipVO selectonecatename(String cate_name) throws Exception {
-		EquipVO equipVO = equipDAO.selectCateByCode2(cate_name);
-		return equipVO;
-		
-	}
+//	@Override
+//	public EquipVO selectonecatename(String cate_name) throws Exception {
+//		EquipVO equipVO = equipDAO.selectCateByCode2(cate_name);
+//		return equipVO;
+//		
+//	}
 	
 }
