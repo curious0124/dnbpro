@@ -15,7 +15,6 @@
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 <script src="${contextPath}/resources/js/jquery-3.5.1.min.js"> </script> 
-<!-- <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script> -->
 <title>회원가입</title>
 </head>
 
@@ -30,24 +29,39 @@
 		})
 
 		$("#submit").on("click", function() {
-			if ($("#mem_id").val() == "") {
+			if ($("#user_id").val() == "") {
 				alert("아이디를 입력해주세요.");
-				$("#mem_id").focus();
+				$("#user_id").focus();
 				return false;
 			}
-			if ($("#mem_pw").val() == "") {
+			if ($("#user_pwd").val() == "") {
 				alert("비밀번호를 입력해주세요.");
-				$("#mem_pw").focus();
+				$("#user_pwd").focus();
 				return false;
 			}
-			if ($("#mem_name").val() == "") {
+			if ($("#user_name").val() == "") {
 				alert("성명을 입력해주세요.");
-				$("#mem_name").focus();
+				$("#user_name").focus();
 				return false;
 			}
-			if ($("#mem_email").val() == "") {
+			if ($("#user_email").val() == "") {
 				alert("이메일을 입력해주세요.");
-				$("#mem_email").focus();
+				$("#user_email").focus();
+				return false;
+			}
+			if ($("#user_identity").val() == "") {
+				alert("주민번호 입력해주세요.");
+				$("#user_identity").focus();
+				return false;
+			}
+			if ($("#user_email").val() == "") {
+				alert("핸드폰을 입력해주세요.");
+				$("#user_phone").focus();
+				return false;
+			}
+			if ($("#user_email").val() == "") {
+				alert("주소를 입력해주세요.");
+				$("#user_addr").focus();
 				return false;
 			}
 		});
@@ -98,7 +112,7 @@
             var SC = ["!","@","#","$","%"];
             var check_SC = 0;
  
-            if(pw.length < 6 || pw.length>16){
+            if(pw.length < 6 || pw.length > 16){
                 document.getElementById('check2').innerHTML='비밀번호는 6글자 이상, 16글자 이하만 이용 가능합니다';
                 document.getElementById('check2').style.color='red';
                 document.getElementById('pw').value='';
@@ -106,7 +120,7 @@
             for(var i=0;i<SC.length;i++){
                 if(pw.indexOf(SC[i]) != -1){
                     check_SC = 1;
-                    document.getElementById('check2').innerHTML='비밀번호 잘입력하셨어요 ㅎㅎ'
+                    document.getElementById('check2').innerHTML='적합한 비밀번호 입니다.'
                     document.getElementById('check2').style.color='blue';
                 }
             }
@@ -132,8 +146,6 @@
 	<section id="container">
 		<form action="${contextPath}/member/addMember.do" method="post">
 			<div class="form-group has-feedback">
-				<!-- <label class="control-label" for="user_id">아이디</label> -->
-				<!-- <input class="form-control" type="text" id="user_id" name="user_id" /> -->
 				<label class="control-label" for="user_pwd">아이디</label> 
 				<input class="form-control" type="text" name="_user_id" id="_user_id" />
 				<input class="form-control" type="hidden" name="user_id" id="user_id" />
@@ -155,7 +167,7 @@
 			</div>
 			<div class="form-group has-feedback">
 				<label class="control-label" for="user_email">이메일</label> <input
-					class="form-control" type="text" id="user_email" name="user_email" />
+					class="form-control" type="email" id="user_email" name="user_email" />
 			</div>
 			<div class="form-group has-feedback">
 				<label class="control-label" for="user_identity">주민등록번호(123-123)</label>
@@ -174,14 +186,8 @@
 				<button class="btn btn-success" type="submit" id="submit">회원가입</button>
 				<button class="cencle btn btn-danger" type="button">취소</button>
 			</div>
-
 		</form>
 	</section>
-	
-	
-	      
-
-
 </body>
 
 </html>

@@ -39,7 +39,7 @@
             margin-right: 3px;
         }
         .form-select{
-            width: 100px;
+            width: 130px;
             float: left;
             margin-right: 10px;
         }
@@ -52,7 +52,7 @@
             margin-right: 10px;
         }
         .brd_date{
-            width: 230px;
+            width: 200px;
         }
         #articlefrom1{
             clear: both;
@@ -67,16 +67,41 @@
     </style>
       <script src="${contextPath}/resources/js/jquery-3.5.1.min.js"> </script>
 <script>
-    
+	var url = ${article.brd_num };
     $(function(){           
             $('#menucontent').load("${contextPath}/resources/subjsp/admin_menubar.jsp")
+    	
+            $(".deleteArticle").click(function(){
+            	var confirm_val = confirm("정말 이 글을 삭제하시겠습니까?");
+            	var reqBoard_num = ${article.board_num  };
+            	
+            	console.log(reqBoard_num);
+            	console.log(url);
+            	
+            	if(confirm_val) {
+            		var checkArr = new Array();
+            		checkArr.push(reqBoard_num);
+            		
+               	 	console.log(checkArr);
+               	 $.ajax({
+               	    
+               	    type : "post",
+               	    data : { chbox : checkArr },
+               	  	url : "${contextPath}/board/deleteSelectArticle.do",
+               	    success : function(){
+               	     location.href = "${contextPath}/board/admin_board_list.do?brd_num="+url;
+               	    }
+               	   });
+               	  } 
+            });
     });
-    var url = ${article.brd_num };
+    
     function backToList(obj){
     	console.log(url);
 	    obj.action="${contextPath}/board/admin_board_list.do?brd_num="+url;
 	    obj.submit();
      }
+    
 
 </script>
     
@@ -156,6 +181,9 @@
         </div><br><br>
         <div id="articlefrom1"> 
         <button type="button" class="btn btn-light" id='brd_btn'onclick="location.href='${contextPath}/board/admin_board_modArticleForm.do?board_num=${article.board_num}'">수정</button>
+        &nbsp;&nbsp;
+        <button type="button" class="btn btn-light deleteArticle" id='brd_btn'>삭제</button>
+        &nbsp;&nbsp;
         <button type="button" class="btn btn-light" id='brd_btn'onClick="backToList(this.form)">목록보기</button>
 	       
         </div>  

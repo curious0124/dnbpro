@@ -90,11 +90,54 @@
 <script>
     
     $(function(){           
-            $('#menucontent').load("${contextPath}/resources/subjsp/admin_menubar.jsp")
+            $('#menucontent').load("${contextPath}/resources/subjsp/admin_menubar.jsp");
+            
+            $("#selectDelete_btn").click(function(){
+            	
+	          	var confirm_val = confirm("정말 삭제하시겠습니까?");
+	          	var reurl = ${articlesList[0].brd_num };
+          		
+          	  if(confirm_val) {
+          	   var checkArr = new Array();
+          	   
+          	   $("input[class='chBox']:checked").each(function(){
+          	    checkArr.push($(this).attr("value"));
+          	   });
+          	    
+          	  
+          	   
+          	 $.ajax({
+          	    
+          	    type : "post",
+          	    data : { chbox : checkArr },
+          	  	url : "${contextPath}/board/deleteSelectArticle.do",
+          	    success : function(){
+          	     location.href = "${contextPath}/board/admin_board_list.do?brd_num="+reurl;
+          	    }
+          	   });
+          	
+          	  } 
+          	 });
 
-        
     });
-
+    function allChk(obj){
+        var chkObj = document.getElementsByName("RowCheck");
+        var rowCnt = chkObj.length - 1;
+        var check = obj.checked;
+        if (check) {﻿
+            for (var i=0; i<=rowCnt; i++){
+             if(chkObj[i].type == "checkbox")
+                 chkObj[i].checked = true;
+            }
+        } else {
+            for (var i=0; i<=rowCnt; i++) {
+             if(chkObj[i].type == "checkbox"){
+                 chkObj[i].checked = false;
+             }
+            }
+        }
+    } 
+ 
 </script>
     
 </head>
@@ -111,11 +154,11 @@
   <div id='top_buttonbox'>
   		${articlesList[0].brd_name} 게시판
        <button type="button" class="btn btn-light " id="addarticle" onclick="location.href='${contextPath}/board/admin_board_articleForm.do?brd_num=${articlesList[0].brd_num}'">글쓰기</button>
-       <button type="button" class="btn btn-light" id='delete'>삭제</button>
+       <button type="button" class="btn btn-light" id="selectDelete_btn">선택삭제</button>
    </div>
   <div class="listrow">
     <div class="col_top" id="brd_div1">
-      &nbsp;
+      <input type="checkbox"  id="allCheck" onclick="allChk(this);"/>
     </div>
     <div class="col_top" id='brd_div2'>
       글 번호
@@ -141,7 +184,9 @@
     <c:forEach  var="article" items="${articlesList }" varStatus="articleNum" >
      <div class="listrow">
     <div class="col_list" id='brd_div1'>
-      <input type="checkbox">
+    
+      <input type="checkbox" name="RowCheck" class="chBox" value="${article.board_num}" />
+      
     </div>
     <div class="col_list" id='brd_div2'>
       ${articleNum.count}
@@ -156,7 +201,8 @@
       ${article.board_date}
     </div>
     <div class="col_list" id='brd_div6'>
-      <button type="button" class="btn btn-light" id='brd_btn'onclick="location.href='${contextPath}/board/admin_board_modArticleForm.do?board_num=${article.board_num}'">수정</button>
+	<!-- <button type="button" class="btn btn-light" id='brd_btn'onclick="location.href='${contextPath}/board/admin_board_deleteArticle.do?board_num=${article.board_num}'">삭제</button>-->
+      <!-- <button type="button" class="btn btn-light" id='brd_btn'onclick="location.href='${contextPath}/board/admin_board_modArticleForm.do?board_num=${article.board_num}'">수정</button>-->
     </div>
     
   </div>
