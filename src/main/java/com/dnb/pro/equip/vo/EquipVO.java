@@ -1,7 +1,8 @@
 package com.dnb.pro.equip.vo;
 
-import java.util.Date;
+import java.sql.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Component;
 
 @Component("equipVO")
@@ -24,9 +25,46 @@ public class EquipVO {
 	private Date eq_regist;
 	private String eq_state;
 	
+	//¿¹¾à
+	private int res_num;
+	private Date res_start;
+	private Date res_end;
+	private String res_Status;
+	private String user_id;
 	
 	
 	
+	
+	public int getRes_num() {
+		return res_num;
+	}
+	public void setRes_num(int res_num) {
+		this.res_num = res_num;
+	}
+	public Date getRes_start() {
+		return res_start;
+	}
+	public void setRes_start(Date res_start) {
+		this.res_start = res_start;
+	}
+	public Date getRes_end() {
+		return res_end;
+	}
+	public void setRes_end(Date res_end) {
+		this.res_end = res_end;
+	}
+	public String getRes_Status() {
+		return res_Status;
+	}
+	public void setRes_Status(String res_Status) {
+		this.res_Status = res_Status;
+	}
+	public String getUser_id() {
+		return user_id;
+	}
+	public void setUser_id(String user_id) {
+		this.user_id = user_id;
+	}
 	public String getCate_name() {
 		return cate_name;
 	}

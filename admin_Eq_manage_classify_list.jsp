@@ -59,12 +59,6 @@
         .checkBox { 
         float:left; 
         }
-        
-         .col1 {
-        display: inline-block;
-       
-        float: right;
-    }
         #brd_div1{
             width: 100px;
         }
@@ -119,8 +113,8 @@
     <div class="board_container">
   <div id='top_buttonbox'>
   		
-       <button  type="button" class="col1 " id="addcatename" onclick="location.href='${contextPath}/equip/admin_Eq_manage_classify.do?cate_name=${equip.cate_name}'">등록</button>
-       <div  class="delBtn"><button type="button" class="selectDelete_btn col1" >삭제</button>
+       <button  type="button" class="btn btn-light " id="addcatename" onclick="location.href='${contextPath}/equip/admin_Eq_manage_classify.do?cate_name=${equip.cate_name}'">등록</button>
+       <div  class="delBtn"><button type="button" class="selectDelete_btn " >삭제</button>
        
        <script>
  $(".selectDelete_btn").click(function(){
@@ -131,7 +125,7 @@
    
    $("input[class='chBox']:checked").each(function(){
     checkArr.push($(this).attr("value"));
-   });	
+   });
     
    $.ajax({
     url : "${contextPath}/equip/deleteCatename.do",

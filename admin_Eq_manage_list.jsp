@@ -1,7 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"
-    isELIgnored="false" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>    
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"
+   isELIgnored="false"  %>
+    <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
   
@@ -16,7 +16,7 @@
 <head>
     <meta charset="UTF-8">
 
-    <title>Î≥¥Ïú†Ïû•ÎπÑÎ¶¨Ïä§Ìä∏</title>
+    <title>∫∏¿Ø¿Â∫Ò∏ÆΩ∫∆Æ</title>
 </head>
 <style>
     .td1 {
@@ -30,87 +30,54 @@
         width: 150px;
         float: left;
     }
-   	
+   
 </style>
 <script src="${contextPath}/resources/js/jquery-3.5.1.min.js"> </script>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
- <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 
 <body>
 
     <div class="row align-items-start">
         <div class="col1" >
-            <input type="search" placeholder="Í≤ÄÏÉâÏñ¥Î•º ÏûÖÎ†•Ìï¥Ï£ºÏÑ∏Ïöî.">
+            <input type="search" placeholder="∞ÀªˆæÓ∏¶ ¿‘∑¬«ÿ¡÷ººø‰.">
         </div>
         <div class="col1" >
-            <button>Í≤ÄÏÉâ</button>
+            <button>∞Àªˆ</button>
         </div>
 
         <div class="col1" >
-            <input type="button" value="Î∂ÑÎ•òÎì±Î°ù" onclick="location.href='admin_Eq_manage_classify_list.do'">
+            <input type="button" value="∫–∑˘µÓ∑œ" onclick="location.href='admin_Eq_manage_classify_list.do'">
         </div>
         <div class="col1" >
-            <input type="button" value="Î™®Îç∏Îì±Î°ù" onclick="location.href='admin_Eq_manage_regist_list.do'">
+            <input type="button" value="∏µ®µÓ∑œ" onclick="location.href='admin_Eq_manage_regist_list.do'">
         </div>
         <div class="col1" >
-            <input type="button" value="ÏãúÎ¶¨ÏñºÎì±Î°ù" onclick="location.href='${contextPath}/equip/admin_Eq_manage_serial.do?eq_name'">
+            <input type="button" value="Ω√∏ÆæÛµÓ∑œ" onclick="location.href='${contextPath}/equip/admin_Eq_manage_serial.do?eq_name'">
         </div>
         <div class="col1" >
-            <button type="button" class="selectDelete_btn " >ÏÇ≠Ï†ú</button>
-             <script>
- $(".selectDelete_btn").click(function(){
-  var confirm_val = confirm("Ï†ïÎßê ÏÇ≠Ï†úÌïòÏãúÍ≤†ÏäµÎãàÍπå?");
-  
-  if(confirm_val) {
-   var checkArr = new Array();
-   
-   $("input[class='chBox']:checked").each(function(){
-    checkArr.push($(this).attr("value"));
-   });	
-    
-   $.ajax({
-    url : "${contextPath}/equip/deleteSerial.do",
-    type : "post",
-    data : { chbox : checkArr },
-    success : function(){
-     location.href = "${contextPath}/equip/admin_Eq_manage_list.do";
-    }
-   });
-  } 
- });
-</script>
+            <input type="button" value="ªË¡¶">
         </div>
 
 
         <div class="container">
             <div class="row align-items-start">
                 <div class="col">
-                    <input type="checkbox" name="allCheck" id="allCheck"  onclick="checkAll(this)"> 
-                        <script>
-$("#allCheck").click(function(){
- var chk = $("#allCheck").prop("checked");
- if(chk) {
-  $(".chBox").prop("checked", true);
- } else {
-  $(".chBox").prop("checked", false);
- }
-});
-</script>
+                    CB
                 </div>
                 <div class="col">
-                    Î∂ÑÎ•ò
+                    ∫–∑˘
                 </div>
                 <div class="col">
-                    Î™®Îç∏Î™Ö
+                    ∏µ®∏Ì
                 </div>
                 <div class="col">
-                    ÏãúÎ¶¨ÏñºÎ≤àÌò∏
+                    Ω√∏ÆæÛπ¯»£
                 </div>
                 <div class="col">
-                    Îì±Î°ùÏùº
+                    µÓ∑œ¿œ
                 </div>
                 <div class="col">
-                    ÏÉÅÌÉú
+                    ªÛ≈¬
                 </div>
 
             </div>
@@ -122,12 +89,7 @@ $("#allCheck").click(function(){
 
                         <div class="row align-items-center">
                             <div class="col">
-                                <input type="checkbox" name="RowCheck" class="chBox" value="${adminequip.eq_serial }" >
-                                     <script>
- $(".chBox").click(function(){
-  $("#allCheck").prop("checked", false);
- });
-</script>
+                                <input type="checkbox" value="">
                             </div>
                             <div class="col">
                                 ${adminequip.cate_name}
@@ -143,13 +105,13 @@ $("#allCheck").click(function(){
                             </div>
                             <div class="col">
                                 <select>
-                                    <option selected>Ï†ïÏÉÅ</option>
-                                    <option>ÏàòÎ¶¨</option>
-                                    <option>ÌèêÍ∏∞</option>
+                                    <option selected>¡§ªÛ</option>
+                                    <option>ºˆ∏Æ</option>
+                                    <option>∆Û±‚</option>
                                 </select>
                             </div>
                             <div class="col">
-                                <input type="button" value="ÏàòÏ†ï">
+                                <input type="button" value="ºˆ¡§">
                             </div>
                         </div>
 
@@ -170,7 +132,7 @@ $("#allCheck").click(function(){
     </div>
         <table align="center">
             <tr>
-                <td>Ïù¥Ï†Ñ</td>
+                <td>¿Ã¿¸</td>
                 <td>1</td>
                 <td>2</td>
                 <td>3</td>
@@ -181,7 +143,7 @@ $("#allCheck").click(function(){
                 <td>8</td>
                 <td>9</td>
                 <td>10</td>
-                <td>Îã§Ïùå</td>
+                <td>¥Ÿ¿Ω</td>
             </tr>
         </table>
 </body></html>

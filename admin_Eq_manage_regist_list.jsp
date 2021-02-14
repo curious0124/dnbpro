@@ -64,12 +64,6 @@
         .checkBox {
             float: left;
         }
-        
-        .col1 {
-        display: inline-block;
-       
-        float: right;
-    }
 
         #brd_div1 {
             width: 100px;
@@ -113,27 +107,7 @@
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 
 
-   
-
-</head>
-
-<body>
-    <div>
-  </div>
-        <div>
-            <strong>모델명 목록</strong>
-        </div>
-
-      
-            <!--board_container -->
-            <div class="board_container">
-                <div id='top_buttonbox'>
-
-                    <button type="button" class="col1" id="addcatename" onclick="location.href='${contextPath}/equip/admin_Eq_manage_regist.do?cate_name'">등록</button>
-                     <div  class="delBtn"><button type="button" class="selectDelete_btn col1" >삭제</button>
-                     
-                      <script>
-   
+    <script>
     $(".selectDelete_btn").click(function(){
     	  var confirm_val = confirm("정말 삭제하시겠습니까?");
     	  
@@ -156,6 +130,23 @@
     	 });
 
     </script>
+
+</head>
+
+<body>
+    <div>
+  </div>
+        <div>
+            <strong>모델명 목록</strong>
+        </div>
+
+      
+            <!--board_container -->
+            <div class="board_container">
+                <div id='top_buttonbox'>
+
+                    <button type="button" class="btn btn-light " id="addcatename" onclick="location.href='${contextPath}/equip/admin_Eq_manage_regist.do?cate_name'">등록</button>
+                     <div  class="delBtn"><button type="button" class="selectDelete_btn " >삭제</button>
                 </div>
                 <div class="listrow">
                     <div class="col_top allCheck" id="brd_div1">
@@ -173,7 +164,9 @@ $("#allCheck").click(function(){
 </script>
 
                     </div>
-                   
+                    <div class="col_top" id='brd_div2'>
+                        분류코드
+                    </div>
                     <div class="col_top" id='brd_div3'>
                         모델명
                     </div>
@@ -203,7 +196,9 @@ $("#allCheck").click(function(){
 </script>
 
                                 </div>
-                               
+                                <div class="col_list" id='brd_div2'>
+                                    ${model.cate_name}
+                                </div>
                                 <div class="col_list" id='brd_div3'>
                                     ${model.eq_name}
                                 </div>

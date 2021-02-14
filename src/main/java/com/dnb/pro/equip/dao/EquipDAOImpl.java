@@ -60,8 +60,8 @@ public class EquipDAOImpl implements  EquipDAO  {
 	}
 	
 	@Override
-	public void deleteCatename(String cate_name) throws DataAccessException{
-		sqlSession.delete("mapper.equip.deleteCatename",cate_name);
+	public void deleteCatename(EquipVO equipVO) throws DataAccessException{
+		sqlSession.delete("mapper.equip.deleteCatename",equipVO);
 		
 	}
 	
@@ -88,5 +88,30 @@ public class EquipDAOImpl implements  EquipDAO  {
 	@Override
 	public EquipVO selectCateByCode2(String cate_name) throws DataAccessException {
 		return sqlSession.selectOne("mapper.equip.selectCateByCode2",cate_name);
+	}
+	
+	@Override
+	public int insertSeriallist(EquipVO equipVO) throws DataAccessException {
+		int result = sqlSession.insert("mapper.equip.insertSeriallist", equipVO);
+		return result;
+	}
+	
+	@Override
+	public List selectonlyEqnameList() throws DataAccessException {
+		List<EquipVO> eqnameonlyList = eqnameonlyList = sqlSession.selectList("mapper.equip.selectonlyEqnameList");
+		return eqnameonlyList;
+	}
+	
+	
+	@Override
+	public void deleteEqname(EquipVO equipVO) throws DataAccessException{
+		sqlSession.delete("mapper.equip.deleteEqname",equipVO);
+		
+	}
+	
+	@Override
+	public void deleteEqserial(EquipVO equipVO) throws DataAccessException{
+		sqlSession.delete("mapper.equip.deleteEqserial",equipVO);
+		
 	}
 }
