@@ -26,7 +26,7 @@ import org.springframework.stereotype.Component;
 		
 		//¹è¼Û¹Ý³³
 		private int return_num;
-		private int express_num;
+		private String express_num;
 		private Date return_date;
 		private String return_Status;
 		
@@ -105,10 +105,10 @@ import org.springframework.stereotype.Component;
 			public void setReturn_num(int return_num) {
 				this.return_num = return_num;
 			}
-			public int getExpress_num() {
+			public String getExpress_num() {
 				return express_num;
 			}
-			public void setExpress_num(int express_num) {
+			public void setExpress_num(String express_num) {
 				this.express_num = express_num;
 			}
 			public Date getReturn_date() {

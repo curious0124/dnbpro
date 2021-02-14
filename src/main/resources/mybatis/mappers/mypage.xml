@@ -4,120 +4,264 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="mapper.mypage">
-<!-- 리절트 맵 정의 -->
+	<!-- 리절트 맵 정의 -->
 	<resultMap id="RentResult" type="RentVO">
 		<result property="user_id" column="user_id" />
- 		<result property="user_pwd" column="user_pwd"/>
- 		<result property="user_name" column="user_name"/>
- 		<result property="user_identity" column="user_identity"/>
- 		<result property="user_addr" column="user_addr"/>
- 		<result property="user_phone" column="user_phone"/>
- 		<result property="user_fax" column="user_fax"/>
- 		<result property="user_email" column="user_email"/>
- 		<result property="user_comp" column="user_comp"/>
- 		<result property="comp_addr" column="comp_addr"/>
- 		<result property="comp_num" column="comp_num"/>
- 		<result property="comp_phon" column="comp_phon"/>
- 		<result property="comp_fax" column="comp_fax"/>
- 		<result property="comp_email" column="comp_email"/>
- 		<result property="user_auth" column="user_auth"/>
- 		<result property="resq_num" column="resq_num"/>
- 		<result property="eq_serial" column="eq_serial"/>
- 		<result property="resq_start" column="resq_start"/>
- 		<result property="resq_end" column="resq_end"/>
- 		<result property="resq_date" column="resq_date"/>
- 		<result property="return_num" column="return_nu"/>
- 		<result property="res_num" column="res_num"/>
- 		<result property="express_num" column="express_num"/>
- 		<result property="return_date" column="return_date"/>
- 		<result property="return_Status" column="return_Status"/>
- 		<result property="res_start" column="res_start"/>
- 		<result property="res_end" column="res_end"/>
- 		<result property="res_Status" column="res_Status"/>
- 		<result property="quit_reason" column="quit_reason"/>
- 		<result property="quit_date" column="quit_date"/>
- 		<result property="cate_name" column="cate_name"/>
- 		<result property="log_num" column="log_num"/>
- 		<result property="log_date" column="log_date"/>
- 		<result property="eq_name" column="eq_name" />
- 		<result property="status" column="status" />
-	</resultMap> 
- <!-- 2021.02.03 쿼리문 수정 값 받아올수있게 -->
-	<select id="selectMyResqList" resultMap="RentResult"  parameterType="String"  >
+		<result property="user_pwd" column="user_pwd" />
+		<result property="user_name" column="user_name" />
+		<result property="user_identity" column="user_identity" />
+		<result property="user_addr" column="user_addr" />
+		<result property="user_phone" column="user_phone" />
+		<result property="user_fax" column="user_fax" />
+		<result property="user_email" column="user_email" />
+		<result property="user_comp" column="user_comp" />
+		<result property="comp_addr" column="comp_addr" />
+		<result property="comp_num" column="comp_num" />
+		<result property="comp_phon" column="comp_phon" />
+		<result property="comp_fax" column="comp_fax" />
+		<result property="comp_email" column="comp_email" />
+		<result property="user_auth" column="user_auth" />
+		<result property="resq_num" column="resq_num" />
+		<result property="eq_serial" column="eq_serial" />
+		<result property="resq_start" column="resq_start" />
+		<result property="resq_end" column="resq_end" />
+		<result property="resq_date" column="resq_date" />
+		<result property="return_num" column="return_nu" />
+		<result property="res_num" column="res_num" />
+		<result property="express_num" column="express_num" />
+		<result property="return_date" column="return_date" />
+		<result property="return_Status" column="return_Status" />
+		<result property="res_start" column="res_start" />
+		<result property="res_end" column="res_end" />
+		<result property="res_Status" column="res_Status" />
+		<result property="quit_reason" column="quit_reason" />
+		<result property="quit_date" column="quit_date" />
+		<result property="cate_name" column="cate_name" />
+		<result property="log_num" column="log_num" />
+		<result property="log_date" column="log_date" />
+		<result property="eq_name" column="eq_name" />
+		<result property="status" column="status" />
+	</resultMap>
+	<!-- 2021.02.03 쿼리문 수정 값 받아올수있게 -->
+
+	<!-- 마이페이지 메인 목록 조회 -->
+	<select id="selectMyResqList" resultMap="RentResult"
+		parameterType="String">
 	    <![CDATA[ 
-			select rq.user_id, el.eq_name, rq.eq_serial, rq.resq_date, rq.resq_start, rq.resq_end 
-			from resq rq, eq_list el 
-			where rq.user_id =#{user_id} and rq.eq_serial = el.eq_serial
+			select *
+			from resq rq, eq_list el, equipment eq
+			where rq.user_id =#{user_id} and rq.eq_serial = el.eq_serial and el.eq_name = eq.eq_name
 			order by rq.resq_date desc
 		]]>
 	</select>
-	
-	<select id="selectMyResList" resultMap="RentResult"  parameterType="String"  >
+
+	<select id="selectMyResList" resultMap="RentResult"
+		parameterType="String">
 	    <![CDATA[ 
-			SELECT rq.user_id, el.eq_name, rs.eq_serial, rq.resq_date, rs.res_start, rs.res_end, rs.res_status
-			from reserve rs, eq_list el, resq rq
-			where rs.user_id =#{user_id} and rs.eq_serial = el.eq_serial and rs.user_id = rq.user_id and res_status = '예약중'
-			group by rq.user_id, el.eq_name, rs.eq_serial, rq.resq_date, rs.res_start, rs.res_end, rs.res_status
+			SELECT *
+			from reserve rs, eq_list el, resq rq, equipment eq
+			where rs.user_id =#{user_id} and rs.eq_serial = el.eq_serial and rs.user_id = rq.user_id and el.eq_name = eq.eq_name and res_status = '예약중'
 			order by rs.res_start desc
 		]]>
 	</select>
-	
-	<select id="selectMyReturnList" resultMap="RentResult"  parameterType="String"  >
+
+	<select id="selectMyReturnList" resultMap="RentResult"
+		parameterType="String">
 	    <![CDATA[ 
-			SELECT rq.user_id, el.eq_name, rs.eq_serial, rq.resq_date, rs.res_start, rs.res_end, rs.res_status
-			from reserve rs, eq_list el, resq rq
-			where rs.user_id =#{user_id} and rs.eq_serial = el.eq_serial and rs.user_id = rq.user_id and res_status = '대여중'
-			group by rq.user_id, el.eq_name, rs.eq_serial, rq.resq_date, rs.res_start, rs.res_end, rs.res_status
+			SELECT *
+			from reserve rs, eq_list el, resq rq, equipment eq
+			where rs.user_id =#{user_id} and rs.eq_serial = el.eq_serial and rs.user_id = rq.user_id and el.eq_name = eq.eq_name and res_status = '대여중'
 			order by rs.res_start desc
 		]]>
 	</select>
-	
-	<select id="selectMyLogList" resultMap="RentResult"  parameterType="String"  >
+
+	<select id="selectMyLogList" resultMap="RentResult"
+		parameterType="String">
 	    <![CDATA[ 
-			select rt.user_id, el.eq_name, el.eq_serial, rt.return_date, lg.res_start, lg.res_end, rt.return_status
-			from log lg, return rt, eq_list el
-			where rt.user_id =#{user_id} and lg.user_id= rt.user_id and lg.eq_serial = el.eq_serial
-			group by rt.user_id, el.eq_name, el.eq_serial, rt.return_date, lg.res_start, lg.res_end, rt.return_status
+			select *
+			from Log
+			where user_id =#{user_id} and status = '반납승인' or user_id =#{user_id} and status = '예약취소'or user_id =#{user_id} and status = '예약신청취소'
 		]]>
 	</select>
-	
-	<select id="selectMyResqResult" resultMap="RentResult"  parameterType="String"  >
+
+
+	<!-- 상세페이지 목록 조회 -->
+	<select id="selectMyResqResult" resultMap="RentResult"
+		parameterType="String">
 	    <![CDATA[ 
-			select rq.user_id, el.eq_name, rq.eq_serial, rq.resq_date, rq.resq_start, rq.resq_end 
-			from resq rq, eq_list el 
-			where rq.user_id =#{user_id} and rq.eq_serial = el.eq_serial
+			select *
+			from resq rq, eq_list el, equipment eq
+			where rq.user_id =#{user_id} and rq.eq_serial = el.eq_serial and el.eq_name = eq.eq_name
 			order by rq.resq_date desc
 		]]>
 	</select>
-	
-	<select id="selectMyResResult" resultMap="RentResult"  parameterType="String"  >
+
+	<select id="selectMyResResult" resultMap="RentResult"
+		parameterType="String">
 	    <![CDATA[ 
-			SELECT rq.user_id, el.eq_name, rs.eq_serial, rq.resq_date, rs.res_start, rs.res_end, rs.res_status
-			from reserve rs, eq_list el, resq rq
-			where rs.user_id =#{user_id} and rs.eq_serial = el.eq_serial and rs.user_id = rq.user_id and res_status = '예약중'
-			group by rq.user_id, el.eq_name, rs.eq_serial, rq.resq_date, rs.res_start, rs.res_end, rs.res_status
+			SELECT *
+			from reserve rs, eq_list el, resq rq, equipment eq
+			where rs.user_id =#{user_id} and rs.eq_serial = el.eq_serial and rs.user_id = rq.user_id and el.eq_name = eq.eq_name and res_status = '예약중'
 			order by rs.res_start desc
 		]]>
 	</select>
-	
-	<select id="selectMyReturnResult" resultMap="RentResult"  parameterType="String"  >
+
+	<select id="selectMyReturnResult" resultMap="RentResult"
+		parameterType="String">
 	    <![CDATA[ 
-			SELECT rq.user_id, el.eq_name, rs.eq_serial, rq.resq_date, rs.res_start, rs.res_end, rs.res_status
-			from reserve rs, eq_list el, resq rq
-			where rs.user_id =#{user_id} and rs.eq_serial = el.eq_serial and rs.user_id = rq.user_id and res_status = '대여중'
-			group by rq.user_id, el.eq_name, rs.eq_serial, rq.resq_date, rs.res_start, rs.res_end, rs.res_status
+			SELECT *
+			from reserve rs, eq_list el, resq rq, equipment eq
+			where rs.user_id =#{user_id} and rs.eq_serial = el.eq_serial and rs.user_id = rq.user_id and el.eq_name = eq.eq_name and res_status = '대여중'
 			order by rs.res_start desc
 		]]>
 	</select>
-	
-	<select id="selectMyLogResult" resultMap="RentResult"  parameterType="String"  >
+
+	<select id="selectMyLogResult" resultMap="RentResult"
+		parameterType="String">
 	    <![CDATA[ 
-			select rt.user_id, el.eq_name, el.eq_serial, rt.return_date, lg.res_start, lg.res_end, rt.return_status
-			from log lg, return rt, eq_list el
-			where rt.user_id =#{user_id} and lg.user_id= rt.user_id and lg.eq_serial = el.eq_serial
-			group by rt.user_id, el.eq_name, el.eq_serial, rt.return_date, lg.res_start, lg.res_end, rt.return_status
+			select *
+			from Log
+			where user_id =#{user_id} and status = '반납승인' or user_id =#{user_id} and status = '예약취소'or user_id =#{user_id} and status = '예약신청취소'
+		]]>
+	</select>
+
+
+	<!-- 취소 sql문 -->
+	<select id="MyResqSelectCancel" resultMap="RentResult" parameterType="int">
+	    <![CDATA[ 
+			select r.resq_num, r.user_id, r.eq_serial, e.eq_name, r.resq_start, r.resq_end
+			from resq r, eq_list e
+			where r.resq_num = #{resq_num} and r.eq_serial = e.eq_serial
 		]]>
 	</select>
 	
+	<insert id="MyResqInsertCancel" parameterType="RentVO">
+		<![CDATA[
+	    	insert into Log (log_num, resq_num, cate_name,eq_name,eq_serial,user_id,status,log_maker,res_start,res_end) 
+			values (log_num_SEQ.NEXTVAL,#{resq_num},#{cate_name},#{eq_name},#{eq_serial},#{user_id},'예약신청취소',#{user_id},#{resq_start},#{resq_end})
+		]]>
+	</insert>
+
+	<delete id="MyResqDeleteCancel" parameterType="int">
+	     <![CDATA[
+	        delete from resq where resq_num=#{resq_num}
+	    	 ]]>
+	</delete>
 	
+	<select id="MyResSelectCancel" resultMap="RentResult" parameterType="int">
+	    <![CDATA[ 
+			select *
+			from reserve rs, eq_list el
+			where rs.res_num=#{res_num} and rs.eq_serial = el.eq_serial
+		]]>
+	</select>
+	
+	<insert id="MyResInsertCancel" parameterType="RentVO">
+		<![CDATA[
+	    	insert into Log (log_num, res_num, cate_name,eq_name,eq_serial,user_id,status,log_maker,res_start,res_end) 
+			values (log_num_SEQ.NEXTVAL,#{res_num},#{cate_name},#{eq_name},#{eq_serial},#{user_id},'예약취소',#{user_id},#{res_start},#{res_end})
+		]]>
+	</insert>
+
+	<delete id="MyResDeleteCancel" parameterType="int">
+	     <![CDATA[
+	        delete from reserve where res_num=#{res_num}
+	    	 ]]>
+	</delete>
+	
+	<select id="MyReturnSelect1Cancel" resultMap="RentResult" parameterType="int">
+	    <![CDATA[ 
+			select *
+			from reserve rs, eq_list el
+			where rs.res_num=#{res_num} and rs.eq_serial = el.eq_serial
+		]]>
+	</select>
+
+	<insert id="MyReturnInsert1Cancel" parameterType="RentVO">
+		<![CDATA[
+	    	insert into return (return_num, res_num, user_id,express_num) 
+	    	VALUES (return_num_seq.NEXTVAL,#{res_num},#{user_id},#{express_num})
+		]]>
+	</insert>
+
+	<insert id="MyReturnInsert2Cancel" parameterType="RentVO">
+		<![CDATA[
+	    	insert into Log (log_num, res_num,return_num,cate_name,eq_name,eq_serial,user_id,status,log_maker,res_start,res_end) 
+			values (log_num_SEQ.NEXTVAL,#{res_num},#{return_num},#{cate_name},#{eq_name},#{eq_serial},#{user_id},'배송반납신청',#{user_id},#{res_start},#{res_end})
+		]]>
+	</insert>
+	
+	
+	<select id="selectMyDetailInfo" resultType="memberVO"   parameterType="String"  >
+	    <![CDATA[
+			select * from userinfo
+			where user_id=#{user_id}
+    	]]>
+	</select>	
+	
+	<update id="updateMyInfo" parameterType="java.util.HashMap">
+	   update userinfo
+			   <set>
+			      <if test=" user_pwd!='' and user_pwd!=null">
+			        user_pwd=#{user_pwd},
+			      </if>
+			      <if test=" user_name!='' and user_name!=null">
+			         user_name=#{user_name},
+			      </if>
+			       <if test=" user_identity!='' and user_identity!=null">
+			         user_identity=#{user_identity},
+			      </if>
+			      <if test=" user_addr!='' and user_addr!=null">
+			         user_addr=#{user_addr},
+			      </if>
+			      <if test=" user_phone!='' and user_phone!=null">
+			         user_phone=#{user_phone},
+			      </if>
+			      <if test=" user_fax!='' and user_fax!=null">
+			         user_fax=#{user_fax},
+			      </if>
+			      <if test=" user_email!='' and user_email!=null">
+			         user_email=#{user_email},
+			      </if>
+			      <if test=" user_comp!='' and user_comp!=null">
+			         user_comp=#{user_comp},
+			      </if>
+			      <if test=" comp_addr!='' and comp_addr!=null">
+			         comp_addr=#{comp_addr},
+			      </if>
+			      <if test=" comp_num!='' and comp_num!=null">
+			         comp_num=#{comp_num},
+			      </if>
+			      <if test=" comp_phon!='' and comp_phon!=null">
+			         comp_phon=#{comp_phon},
+			      </if>
+			      <if test=" comp_fax!='' and comp_fax!=null">
+			         comp_fax=#{comp_fax},
+			      </if>
+			      <if test=" comp_email!='' and comp_email!=null">
+			         comp_email=#{comp_email},
+			      </if>
+			      <if test=" user_auth!='' and user_auth!=null">
+			         user_auth=#{user_auth}
+			      </if>
+			   </set>
+		where 
+		user_id=#{user_id}
+	</update>
+	
+	<select id="selectMemberById" resultType="memberVO"  parameterType="String" >
+      <![CDATA[
+         select * from userinfo
+         where user_id=#{user_id}			
+      ]]>
+ 	</select>	
+  
+  	<update id="updateMember" parameterType="memberVO">
+  		<![CDATA[
+  			update userinfo set user_pwd=#{user_pwd}, user_name=#{user_name}, user_email=#{user_email} where user_id=#{user_id}
+  		]]>
+  	</update>
+
+
+
 </mapper>
