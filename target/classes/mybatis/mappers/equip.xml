@@ -165,4 +165,13 @@ from (select eql.eq_name,eq_serial,eql.eq_state
             	]]>
     </delete>
     
+     <!--시리얼명  삭제 -->
+   <delete id="deleteEqserial">
+    <![CDATA[
+	delete from Eq_list
+	where eq_serial = #{eq_serial}
+	
+            	]]>
+    </delete>
+    
   </mapper>

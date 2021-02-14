@@ -113,6 +113,13 @@ public class EquipServiceImpl implements EquipService{
 		
 	}
 	
+	@Override
+	public void deleteEqserial(EquipVO equipVO) throws Exception{
+		equipDAO.deleteEqserial(equipVO);
+	
+		
+	}
+	
 //	@Override
 //	public EquipVO selectonecatename(String cate_name) throws Exception {
 //		EquipVO equipVO = equipDAO.selectCateByCode2(cate_name);

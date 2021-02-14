@@ -108,4 +108,10 @@ public class EquipDAOImpl implements  EquipDAO  {
 		sqlSession.delete("mapper.equip.deleteEqname",equipVO);
 		
 	}
+	
+	@Override
+	public void deleteEqserial(EquipVO equipVO) throws DataAccessException{
+		sqlSession.delete("mapper.equip.deleteEqserial",equipVO);
+		
+	}
 }

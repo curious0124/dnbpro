@@ -125,7 +125,7 @@
    
    $("input[class='chBox']:checked").each(function(){
     checkArr.push($(this).attr("value"));
-   });
+   });	
     
    $.ajax({
     url : "${contextPath}/equip/deleteCatename.do",

@@ -284,8 +284,36 @@ public class EquipControllerImpl implements EquipController {
 			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED); 
 			
 		  } 
+//		  System.out.println(equipVO.getEq_name());  
 			return resEnt;  
 		}
 		
+		
+		@RequestMapping(value = "/deleteSerial.do", method = RequestMethod.POST)
+		public ResponseEntity deleteEqSerial(@RequestParam(value = "chbox[]") List<String> seArr, EquipVO equipVO) 
+				throws Exception {
+	
+		 
+		    String message = null;
+			ResponseEntity resEnt=null;
+			HttpHeaders responseHeaders = new HttpHeaders();
+			responseHeaders.add("Content-Type", "text/html; charset=utf-8");
+			
+		 int result = 0;
+		 String eqSerial= new String();
+		  for(String i : seArr) {
+			  eqSerial = i;
+			  equipVO.setEq_serial(eqSerial);
+			  equipService.deleteEqserial(equipVO);
+		    
+		    message = "<script>";
+			message += " alert('글 삭제를 완료 했습니다.');";
+			message += " </script>";
+			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED); 
+			
+		  } 
+//		  System.out.println(equipVO.getEq_name());  
+			return resEnt;  
+		}
 	
 }

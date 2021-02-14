@@ -29,4 +29,5 @@ public interface EquipDAO {
 	
 	public void deleteCatename(EquipVO equipVO) throws DataAccessException;
 	public void deleteEqname(EquipVO equipVO) throws DataAccessException;
+	public void deleteEqserial(EquipVO equipVO) throws DataAccessException;
 }
