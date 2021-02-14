@@ -1,7 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"
-    isELIgnored="false" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>    
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"
+   isELIgnored="false"  %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 
@@ -11,13 +11,13 @@
 
 
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
     <meta charset="UTF-8">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
-    <title>ÏãúÎ¶¨ÏñºÎ™Ö Îì±Î°ù</title>
+    <title>∫–∑˘∏Ì µÓ∑œ</title>
     <style>
         #board_content {
             margin: 0 auto;
@@ -57,37 +57,32 @@
             float: left;
             background: #FFF5EE;
             padding: 0px 0px 0px 0px;
-            width: 150px;
 
         }
 
         #brd_div1 {
-            width: 150px;
+            width: 30px;
         }
 
         #brd_div2 {
-            width: 200px;
+            width: 250px;
         }
 
         #brd_div3 {
-            width: 200px;
+            width: 400px;
         }
 
         #brd_div4 {
-            width: 200px;
-           
+            width: 100px;
         }
 
         #brd_div5 {
-            width: 300px;
-           
+            width: 120px;
         }
-
 
         #brd_div6 {
-            width: 200px;
+            width: 80px;
         }
-
 
         #top_buttonbox {
             min-width: 800px;
@@ -105,8 +100,6 @@
 
         }
 
-  
-
     </style>
     <script src="${contextPath}/resources/js/jquery-3.5.1.min.js"> </script>
     <script>
@@ -117,12 +110,12 @@
 </head>
 
 <body>
-    <form action="${contextPath}/equip/addserialname.do" method="GET">
+    <form  action="${contextPath}/equip/addcatename.do" method="post">
 
         <div>
 
             <div>
-                <strong>ÏãúÎ¶¨Ïñº Îì±Î°ù</strong>
+                <strong>∫–∑˘ µÓ∑œ</strong>
             </div>
 
 
@@ -130,48 +123,28 @@
             <div class="board_container">
                 <div id='top_buttonbox'>
 
-                    <input type="submit" value="ÏãúÎ¶¨ÏñºÎ™ÖÎì±Î°ù" /> <input type="reset" value="Îã§ÏãúÏûÖÎ†•" />
+                    <input type="submit" value="∫–∑˘∏ÌµÓ∑œ" /> <input type="reset" value="¥ŸΩ√¿‘∑¬" />
 
                 </div>
                 <div class="listrow">
-                   
+                    <div class="col_top" id="brd_div1">
+                        &nbsp;
+                    </div>
                     <div class="col_top" id='brd_div2'>
-                        Î™®Îç∏Î™Ö
+                        ∫–∑˘∏Ì
                     </div>
-                     <div class="col_top" id='brd_div2'>
-                        ÏãúÎ¶¨ÏñºÎ≤àÌò∏
-                    </div>
-                    <div class="col_top" id='brd_div3'>
-                        Ï†úÏ°∞Ïùº
-                    </div>
-                   
+
 
                 </div>
 
                 <div class="listrow">
-                  
+
                     <div class="col_list" id='brd_div2'>
-                       <div class="col_list" id='brd_div2'>
-                        <select name="eq_name" >
-                            <option selected>Î™®Îç∏Î™Ö</option>
-                             <c:forEach  var="equip" items="${eqnameonlyList }" varStatus="eqNum" >
-                                        <option value="${equip.eq_name}">${equip.eq_name }</option>
-                                       
-                              </c:forEach>
-                        </select>
+                        <input type="text" name="cate_name">
                     </div>
-                    </div>
-                     <div class="col_list" id='brd_div2'>
-                        <input type="text" name="eq_serial">
-                    </div>
-                    <div class="col_list" id='brd_div3'>
-                        <input type="text" name="eq_produc"  placeholder="ex) 2021-05-15">
-                    </div>
-                   
 
-                </div><br><br><br>
+                </div>
 
-              
 
             </div>
 
@@ -180,4 +153,3 @@
 </body>
 
 </html>
-

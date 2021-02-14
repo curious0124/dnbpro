@@ -22,15 +22,17 @@ public interface EquipController {
 	public ModelAndView viewecatename(@RequestParam("cate_name") String cate_name,  HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ResponseEntity addcatename(String cate_name, HttpServletRequest request, HttpServletResponse response)
 			throws Exception;
-	public ResponseEntity removecatename(String cate_name, HttpServletRequest request, HttpServletResponse response)
-			throws Exception;
+//	public ResponseEntity delete_catename(String cate_name, HttpServletRequest request, HttpServletResponse response) throws Exception;
 	
 	
 	public ModelAndView eqnamelistequips(HttpServletRequest request, HttpServletResponse response) throws Exception;
 //	public ModelAndView vieweqname(@RequestParam("cate_name") String cate_name,  HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ResponseEntity addeqname(EquipVO equipVO, HttpServletRequest request, HttpServletResponse response)
 			throws Exception;
-//	public ModelAndView selectonecatename(@RequestParam("cate_name") String cate_name,  HttpServletRequest request, HttpServletResponse response) throws Exception;
 	
+	public ResponseEntity addserialname(EquipVO equipVO, HttpServletRequest request, HttpServletResponse response)
+			throws Exception;
+
+	public ModelAndView eqnamelistserial( String eq_name, HttpServletRequest request, HttpServletResponse response) throws Exception;
 
 }

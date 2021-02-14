@@ -1,15 +1,13 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"
-    isELIgnored="false" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>    
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"
+   isELIgnored="false"  %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 
 <%
   request.setCharacterEncoding("UTF-8");
 %>
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -17,7 +15,7 @@
     <meta charset="UTF-8">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
-    <title>ÏãúÎ¶¨ÏñºÎ™Ö Îì±Î°ù</title>
+    <title>∏µ®∏Ì µÓ∑œ</title>
     <style>
         #board_content {
             margin: 0 auto;
@@ -57,12 +55,11 @@
             float: left;
             background: #FFF5EE;
             padding: 0px 0px 0px 0px;
-            width: 150px;
 
         }
 
         #brd_div1 {
-            width: 150px;
+            width: 100px;
         }
 
         #brd_div2 {
@@ -75,17 +72,17 @@
 
         #brd_div4 {
             width: 200px;
-           
+            height: 100px;
         }
 
         #brd_div5 {
             width: 300px;
-           
+            height: 100px
         }
 
 
         #brd_div6 {
-            width: 200px;
+            width: 300px;
         }
 
 
@@ -105,7 +102,10 @@
 
         }
 
-  
+        #im1 {
+            height: 100px;
+            width: 300px;
+        }
 
     </style>
     <script src="${contextPath}/resources/js/jquery-3.5.1.min.js"> </script>
@@ -117,12 +117,12 @@
 </head>
 
 <body>
-    <form action="${contextPath}/equip/addserialname.do" method="GET">
+    <form action="${contextPath}/equip/addeqname.do" method="GET">
 
         <div>
 
             <div>
-                <strong>ÏãúÎ¶¨Ïñº Îì±Î°ù</strong>
+                <strong>∏µ® µÓ∑œ</strong>
             </div>
 
 
@@ -130,48 +130,69 @@
             <div class="board_container">
                 <div id='top_buttonbox'>
 
-                    <input type="submit" value="ÏãúÎ¶¨ÏñºÎ™ÖÎì±Î°ù" /> <input type="reset" value="Îã§ÏãúÏûÖÎ†•" />
+                    <input type="submit" value="∫–∑˘∏ÌµÓ∑œ" /> <input type="reset" value="¥ŸΩ√¿‘∑¬" />
 
                 </div>
                 <div class="listrow">
-                   
-                    <div class="col_top" id='brd_div2'>
-                        Î™®Îç∏Î™Ö
+                    <div class="col_top" id='brd_div1'>
+                        ∫–∑˘ƒ⁄µÂ
                     </div>
-                     <div class="col_top" id='brd_div2'>
-                        ÏãúÎ¶¨ÏñºÎ≤àÌò∏
+                    <div class="col_top" id='brd_div2'>
+                        ∏µ®∏Ì
                     </div>
                     <div class="col_top" id='brd_div3'>
-                        Ï†úÏ°∞Ïùº
+                        ¡¶¡∂ªÁ
                     </div>
-                   
+                    <div class="col_top" id='brd_div6'>
+                        Ω∫∆Â
+                    </div>
 
                 </div>
 
                 <div class="listrow">
-                  
-                    <div class="col_list" id='brd_div2'>
-                       <div class="col_list" id='brd_div2'>
-                        <select name="eq_name" >
-                            <option selected>Î™®Îç∏Î™Ö</option>
-                             <c:forEach  var="equip" items="${eqnameonlyList }" varStatus="eqNum" >
-                                        <option value="${equip.eq_name}">${equip.eq_name }</option>
+                    <div class="col_list" id='brd_div1'>
+                        <select name="cate_name" >
+                            <option selected>∫–∑˘ƒ⁄µÂ</option>
+                             <c:forEach  var="cate" items="${cateList }" varStatus="cateNum" >
+                                        <option value="${cate.cate_name}">${cate.cate_name}</option>
                                        
                               </c:forEach>
                         </select>
                     </div>
-                    </div>
-                     <div class="col_list" id='brd_div2'>
-                        <input type="text" name="eq_serial">
+                    <div class="col_list" id='brd_div2'>
+                        <input type="text" name="eq_name">
                     </div>
                     <div class="col_list" id='brd_div3'>
-                        <input type="text" name="eq_produc"  placeholder="ex) 2021-05-15">
+                        <input type="text" name="eq_ma">
                     </div>
-                   
+                    <div class="col_list" id='brd_div6'>
+                        <input type="text" name="eq_spec">
+                    </div>
 
                 </div><br><br><br>
 
-              
+                <div class="listrow">
+                    <div class="col_top" id='brd_div6'>
+                        ªÛºº¿ÃπÃ¡ˆ
+                    </div>
+                    <div class="col_top" id='brd_div6'>
+                        ΩÊ≥◊¿œ
+                    </div>
+
+
+                </div>
+
+                <div class="listrow">
+                    <div class="col_list" id='brd_div5'>
+                        <input id="im1" type="text" name="eq_img">
+                    </div>
+                    <div class="col_list" id='brd_div5'>
+                        <input id="im1" type="text" name="eq_thumimg">
+                    </div>
+
+
+                </div>
+
 
             </div>
 
@@ -180,4 +201,3 @@
 </body>
 
 </html>
-

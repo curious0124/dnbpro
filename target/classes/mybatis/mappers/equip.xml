@@ -91,7 +91,7 @@ from (select eql.eq_name,eq_serial,eql.eq_state
     </insert>
     
      <!--분류명  삭제 -->
-   <delete id="deleteCatename" parameterType="String">
+   <delete id="deleteCatename">
     <![CDATA[
 	delete from category
 	where cate_name = #{cate_name}
@@ -140,5 +140,29 @@ from (select eql.eq_name,eq_serial,eql.eq_state
             	]]>
     </select> 
    
+    <!--시리얼명 등록 -->
+   <insert id="insertSeriallist" parameterType="EquipVO">
+    <![CDATA[
+	insert into eq_list(eq_name,eq_serial,eq_produc) 
+	values(#{eq_name},#{eq_serial},to_date(#{eq_produc, jdbcType=VARCHAR},'yyyy/MM/dd')) 
+            	]]>
+    </insert>
+    
+     <!--모델명 가져오기 -->
+    <select id="selectonlyEqnameList" parameterType="EquipVO" resultType="com.dnb.pro.equip.vo.EquipVO">
+    <![CDATA[
+	SELECT eq_name from equipment
+            	]]>
+    </select> 
+    
+    
+    <!--모델명  삭제 -->
+   <delete id="deleteEqname">
+    <![CDATA[
+	delete from Equipment
+	where Eq_name = #{eq_name}
+	
+            	]]>
+    </delete>
     
   </mapper>

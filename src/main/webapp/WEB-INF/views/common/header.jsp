@@ -174,10 +174,7 @@
                 <div class="dropdown">
                     <button class="dropbtn" onclick="location.href=' http://localhost:8090/pro/equip/view_Eq_list.do'">장비예약</button>
                     <div class="dropdown-content">
-                        <a href="#">사업소개</a>
-                        <a href="#">홍보영상</a>
-                        <a href="#">지원소개</a>
-                        <a href="#">오시는길</a>
+                        <a href="${contextPath}/equip/view_Eq_list.do">장비리스트</a>
                     </div>
                 </div>
             </div>
