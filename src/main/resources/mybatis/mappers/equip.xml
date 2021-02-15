@@ -57,7 +57,7 @@
      <!--장비 등록 리스트 -->
    <select id="selectAdminEquipList" parameterType="EquipVO" resultType="com.dnb.pro.equip.vo.EquipVO">
     <![CDATA[
-	SELECT equipment.Cate_name, equipment.eq_name, Eq_list.eq_serial, Eq_list.eq_regist from equipment,Eq_list
+	SELECT equipment.Cate_name, equipment.eq_name, Eq_list.eq_serial, Eq_list.eq_regist, eq_state from equipment,Eq_list
     where Eq_list.eq_name = Equipment.eq_name
             	]]>
     </select> 
@@ -174,4 +174,28 @@ from (select eql.eq_name,eq_serial,eql.eq_state
             	]]>
     </delete>
     
+    <!-- 장비 상태창  수정 -->
+     <update id="updateSerialState" parameterType="String">
+        <![CDATA[
+           update eq_list 
+           set eq_state=#{eq_state}
+           where eq_serial=#{eq_serial}
+           ]]>    
+     </update>
+     
+      <!-- 시리얼넘버 가져오기 -->
+      <select id="selectSerialById"  resultType="EquipVO"   parameterType="EquipVO" >
+	<![CDATA[
+		select eq_serial from eq_list	
+		where eq_serial=#{eq_serial} 	
+	]]>
+  </select>
+  
+   <!--시리얼 상태  리스트 
+   <select id="selectStateList" parameterType="EquipVO" resultType="com.dnb.pro.equip.vo.EquipVO">
+    <![CDATA[
+	SELECT eq_state from eq_list
+            	]]>
+    </select> 
+    -->
   </mapper>

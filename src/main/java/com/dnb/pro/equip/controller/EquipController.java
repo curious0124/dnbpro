@@ -34,5 +34,10 @@ public interface EquipController {
 			throws Exception;
 
 	public ModelAndView eqnamelistserial( String eq_name, HttpServletRequest request, HttpServletResponse response) throws Exception;
+	
+	public ModelAndView modSerialState(String eq_state, HttpServletRequest request, HttpServletResponse response) throws Exception;
 
+	public ModelAndView modserialForm(HttpServletRequest request, HttpServletResponse response) throws Exception;
+	
+//	public ModelAndView selectStateList(HttpServletRequest request, HttpServletResponse response) throws Exception;
 }

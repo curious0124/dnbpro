@@ -15,6 +15,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,6 +27,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.dnb.pro.equip.service.EquipService;
 import com.dnb.pro.equip.vo.EquipVO;
+
+
 
 
 
@@ -316,4 +319,42 @@ public class EquipControllerImpl implements EquipController {
 			return resEnt;  
 		}
 	
+		
+		@Override
+		@RequestMapping(value="/modSerialState.do", method = RequestMethod.POST)
+		public ModelAndView modSerialState(@ModelAttribute("eq_state") String eq_state,HttpServletRequest request, HttpServletResponse response) throws Exception{
+			request.setCharacterEncoding("utf-8");
+			EquipVO equipVO = new EquipVO();
+
+			int result = 0;
+			
+			result = equipService.modSerialState(eq_state);
+
+			ModelAndView mav = new ModelAndView("redirect:/equip/admin_Eq_manage_list.do");  
+			
+//			System.out.println(eq_state);  
+			return mav;
+			
+		}
+		
+		
+	
+		
+		@Override
+		@RequestMapping(value="/admin_Eq_manage_serialmod.do", method=RequestMethod.GET)
+		public ModelAndView modserialForm(HttpServletRequest request, HttpServletResponse response) throws Exception {
+			request.setCharacterEncoding("utf-8");
+			String eq_serial=request.getParameter("eq_serial");
+
+			
+			String viewName = (String)request.getAttribute("viewName");
+			 equipVO=equipService.selectSerialById(eq_serial);
+			 
+			 request.setAttribute("eq_state", equipVO);
+			ModelAndView mav = new ModelAndView(viewName);
+			mav.setViewName(viewName);
+			mav.addObject("equipVO", equipVO);
+			return mav;
+		}
+
 }

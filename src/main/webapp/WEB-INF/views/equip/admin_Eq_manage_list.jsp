@@ -81,7 +81,7 @@
 </script>
         </div>
 
-
+ 
         <div class="container">
             <div class="row align-items-start">
                 <div class="col">
@@ -112,7 +112,10 @@ $("#allCheck").click(function(){
                 <div class="col">
                     상태
                 </div>
-
+                 <div class="col">
+                    비고
+                </div>
+   
             </div>
             <hr width="100%">
 
@@ -141,16 +144,18 @@ $("#allCheck").click(function(){
                             <div class="col">
                                  <fmt:formatDate pattern="yyyy-MM-dd" value="${adminequip.eq_regist}" />
                             </div>
+                          
                             <div class="col">
-                                <select>
-                                    <option selected>정상</option>
-                                    <option>수리</option>
-                                    <option>폐기</option>
-                                </select>
+                                ${adminequip.eq_state}
                             </div>
                             <div class="col">
-                                <input type="button" value="수정">
+                                   <input type="button" value="상태변경" onclick="location.href='admin_Eq_manage_serialmod.do?eq_serial=${adminequip.eq_serial}'">
                             </div>
+                  
+                            
+                               
+                            
+                            
                         </div>
 
                     </c:forEach>
@@ -167,6 +172,7 @@ $("#allCheck").click(function(){
             <hr width="100%">
 
         </div>
+                 
     </div>
         <table align="center">
             <tr>
