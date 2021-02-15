@@ -1,7 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"
-   isELIgnored="false"  %>
-    <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"
+    isELIgnored="false" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>    
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
   
@@ -16,7 +16,7 @@
 <head>
     <meta charset="UTF-8">
 
-    <title>∫∏¿Ø¿Â∫Ò∏ÆΩ∫∆Æ</title>
+    <title>Î≥¥Ïú†Ïû•ÎπÑÎ¶¨Ïä§Ìä∏</title>
 </head>
 <style>
     .td1 {
@@ -30,54 +30,87 @@
         width: 150px;
         float: left;
     }
-   
+   	
 </style>
 <script src="${contextPath}/resources/js/jquery-3.5.1.min.js"> </script>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
+ <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 
 <body>
 
     <div class="row align-items-start">
         <div class="col1" >
-            <input type="search" placeholder="∞ÀªˆæÓ∏¶ ¿‘∑¬«ÿ¡÷ººø‰.">
+            <input type="search" placeholder="Í≤ÄÏÉâÏñ¥Î•º ÏûÖÎ†•Ìï¥Ï£ºÏÑ∏Ïöî.">
         </div>
         <div class="col1" >
-            <button>∞Àªˆ</button>
+            <button>Í≤ÄÏÉâ</button>
         </div>
 
         <div class="col1" >
-            <input type="button" value="∫–∑˘µÓ∑œ">
+            <input type="button" value="Î∂ÑÎ•òÎì±Î°ù" onclick="location.href='admin_Eq_manage_classify_list.do'">
         </div>
         <div class="col1" >
-            <input type="button" value="∏µ®µÓ∑œ">
+            <input type="button" value="Î™®Îç∏Îì±Î°ù" onclick="location.href='admin_Eq_manage_regist_list.do'">
         </div>
         <div class="col1" >
-            <input type="button" value="Ω√∏ÆæÛµÓ∑œ">
+            <input type="button" value="ÏãúÎ¶¨ÏñºÎì±Î°ù" onclick="location.href='${contextPath}/equip/admin_Eq_manage_serial.do?eq_name'">
         </div>
         <div class="col1" >
-            <input type="button" value="ªË¡¶">
+            <button type="button" class="selectDelete_btn " >ÏÇ≠Ï†ú</button>
+             <script>
+ $(".selectDelete_btn").click(function(){
+  var confirm_val = confirm("Ï†ïÎßê ÏÇ≠Ï†úÌïòÏãúÍ≤†ÏäµÎãàÍπå?");
+  
+  if(confirm_val) {
+   var checkArr = new Array();
+   
+   $("input[class='chBox']:checked").each(function(){
+    checkArr.push($(this).attr("value"));
+   });	
+    
+   $.ajax({
+    url : "${contextPath}/equip/deleteSerial.do",
+    type : "post",
+    data : { chbox : checkArr },
+    success : function(){
+     location.href = "${contextPath}/equip/admin_Eq_manage_list.do";
+    }
+   });
+  } 
+ });
+</script>
         </div>
 
 
         <div class="container">
             <div class="row align-items-start">
                 <div class="col">
-                    CB
+                    <input type="checkbox" name="allCheck" id="allCheck"  onclick="checkAll(this)"> 
+                        <script>
+$("#allCheck").click(function(){
+ var chk = $("#allCheck").prop("checked");
+ if(chk) {
+  $(".chBox").prop("checked", true);
+ } else {
+  $(".chBox").prop("checked", false);
+ }
+});
+</script>
                 </div>
                 <div class="col">
-                    ∫–∑˘
+                    Î∂ÑÎ•ò
                 </div>
                 <div class="col">
-                    ∏µ®∏Ì
+                    Î™®Îç∏Î™Ö
                 </div>
                 <div class="col">
-                    Ω√∏ÆæÛπ¯»£
+                    ÏãúÎ¶¨ÏñºÎ≤àÌò∏
                 </div>
                 <div class="col">
-                    µÓ∑œ¿œ
+                    Îì±Î°ùÏùº
                 </div>
                 <div class="col">
-                    ªÛ≈¬
+                    ÏÉÅÌÉú
                 </div>
 
             </div>
@@ -89,7 +122,12 @@
 
                         <div class="row align-items-center">
                             <div class="col">
-                                <input type="checkbox" value="">
+                                <input type="checkbox" name="RowCheck" class="chBox" value="${adminequip.eq_serial }" >
+                                     <script>
+ $(".chBox").click(function(){
+  $("#allCheck").prop("checked", false);
+ });
+</script>
                             </div>
                             <div class="col">
                                 ${adminequip.cate_name}
@@ -105,13 +143,13 @@
                             </div>
                             <div class="col">
                                 <select>
-                                    <option selected>¡§ªÛ</option>
-                                    <option>ºˆ∏Æ</option>
-                                    <option>∆Û±‚</option>
+                                    <option selected>Ï†ïÏÉÅ</option>
+                                    <option>ÏàòÎ¶¨</option>
+                                    <option>ÌèêÍ∏∞</option>
                                 </select>
                             </div>
                             <div class="col">
-                                <input type="button" value="ºˆ¡§">
+                                <input type="button" value="ÏàòÏ†ï">
                             </div>
                         </div>
 
@@ -132,7 +170,7 @@
     </div>
         <table align="center">
             <tr>
-                <td>¿Ã¿¸</td>
+                <td>Ïù¥Ï†Ñ</td>
                 <td>1</td>
                 <td>2</td>
                 <td>3</td>
@@ -143,7 +181,7 @@
                 <td>8</td>
                 <td>9</td>
                 <td>10</td>
-                <td>¥Ÿ¿Ω</td>
+                <td>Îã§Ïùå</td>
             </tr>
         </table>
 </body></html>

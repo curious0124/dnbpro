@@ -40,8 +40,20 @@
       <put-attribute name="body" value="/WEB-INF/views/equip/admin_Eq_manage_classify.jsp" />
    </definition>
    
+   <definition name="/equip/admin_Eq_manage_regist_list" extends="baseLayout">
+      <put-attribute name="title" value="모델명  리스트 페이지" />
+      <put-attribute name="body" value="/WEB-INF/views/equip/admin_Eq_manage_regist_list.jsp" />
+   </definition>
    
+   <definition name="/equip/admin_Eq_manage_regist" extends="baseLayout">
+      <put-attribute name="title" value="모델명  등록 페이지" />
+      <put-attribute name="body" value="/WEB-INF/views/equip/admin_Eq_manage_regist.jsp" />
+   </definition>
    
+   <definition name="/equip/admin_Eq_manage_serial" extends="baseLayout">
+      <put-attribute name="title" value="시리얼번호  등록 페이지" />
+      <put-attribute name="body" value="/WEB-INF/views/equip/admin_Eq_manage_serial.jsp" />
+   </definition>
    <!-- 
    <definition name="/board/articleForm" extends="baseLayout">
    	<put-attribute name="title" value="글쓰기창"/>
