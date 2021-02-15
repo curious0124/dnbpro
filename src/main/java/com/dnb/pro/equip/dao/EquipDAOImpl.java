@@ -118,9 +118,11 @@ public class EquipDAOImpl implements  EquipDAO  {
 	}
 	
 	@Override
-	public int updateSerialState(String eq_state) throws DataAccessException{
-		 int result = sqlSession.update("mapper.equip.updateSerialState", eq_state);
-		 return result;
+	public void updateSerialState(Map statemap) throws DataAccessException{
+		
+		sqlSession.update("mapper.equip.updateSerialState", statemap); 
+//		System.out.println(eq_state);
+//		 return result;
 		
 	}
 	

@@ -1,7 +1,10 @@
 package com.dnb.pro.equip.controller;
 
 import java.io.File;
+import java.util.Enumeration;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -22,6 +25,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 
@@ -322,20 +326,81 @@ public class EquipControllerImpl implements EquipController {
 		
 		@Override
 		@RequestMapping(value="/modSerialState.do", method = RequestMethod.POST)
-		public ModelAndView modSerialState(@ModelAttribute("eq_state") String eq_state,HttpServletRequest request, HttpServletResponse response) throws Exception{
-			request.setCharacterEncoding("utf-8");
-			EquipVO equipVO = new EquipVO();
-
-			int result = 0;
+		public ResponseEntity modSerialState(MultipartHttpServletRequest multipartRequest, HttpServletResponse response) throws Exception{
+			multipartRequest.setCharacterEncoding("utf-8");
+			response.setContentType("text/html; charset=UTF-8");
+		
+			Map<String,Object> statemap = new HashMap<String, Object>();
 			
-			result = equipService.modSerialState(eq_state);
-
-			ModelAndView mav = new ModelAndView("redirect:/equip/admin_Eq_manage_list.do");  
+		
+			Enumeration enu=multipartRequest.getParameterNames();
 			
-//			System.out.println(eq_state);  
-			return mav;
+			while(enu.hasMoreElements()) {	
+				String name = (String)enu.nextElement();
+				String value = multipartRequest.getParameter(name);
+				statemap.put(name, value);
+			}
+
+			String message = null;
+			ResponseEntity resEnt=null;
+			HttpHeaders responseHeaders = new HttpHeaders();
+			responseHeaders.add("Content-Type", "text/html; charset=utf-8");
+	
+		try {
+			 equipService.modSerialState(statemap);
+
+			
+			
+			//새 글을 추가한 후 메시지를 전달합니다.
+			message = "<script>";
+			message += " alert('글 수정을 완료 했습니다.');";
+			 message += " location.href='"+multipartRequest.getContextPath()+"/equip/admin_Eq_manage_list.do';";
+			message += " </script>";
+			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
+			}catch(Exception e) {
+				
+				
+				//새 글을 추가한 후 메시지를 전달합니다.
+				message = "<script>";
+				message += " alert('오류가 발생했습니다. 다시 시도해 주세요.');";
+				
+				message += " </script>";
+				resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
+				e.printStackTrace();
+				
+			}
+			 return  resEnt;
 			
 		}
+		
+		
+//		@Override
+//		@RequestMapping(value="/modSerialState.do", method = RequestMethod.POST)
+//		public ResponseEntity modSerialState(@RequestParam("eq_state") String eq_state,HttpServletRequest request, HttpServletResponse response) throws Exception{
+//			response.setContentType("text/html; charset=UTF-8");
+//			request.setCharacterEncoding("utf-8");
+//			String message = null;
+//			ResponseEntity resEntity = null;
+//			HttpHeaders responseHeaders = new HttpHeaders();
+//			responseHeaders.add("Content-Type", "text/html; charset=utf-8");
+//			try {
+//			 equipService.modSerialState(eq_state);
+//
+//			 message  = "<script>";
+//			    message +=" alert('상태 변경을 마쳤습니다.시리얼번호 리스트 창으로 이동합니다.');";
+//			    message += " location.href='"+request.getContextPath()+"/equip/admin_Eq_manage_list.do';";
+//			    message += " </script>";
+//			}catch(Exception e) {
+//				message  = "<script>";
+//			    message +=" alert('작업 중 오류가 발생했습니다. 다시 시도해 주세요');";
+//			    message += " location.href='"+request.getContextPath()+"/equip/admin_Eq_manage_serialmod.do';";
+//			    message += " </script>";
+//				e.printStackTrace();
+//			}
+//			resEntity =new ResponseEntity(message, responseHeaders, HttpStatus.OK);
+//			return resEntity;
+//		}
+		
 		
 		
 	

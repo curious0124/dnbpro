@@ -1,6 +1,7 @@
 package com.dnb.pro.equip.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.dnb.pro.equip.vo.EquipVO;
 
@@ -22,7 +23,7 @@ public interface EquipService {
 	public List eqnamelistserial() throws Exception;
 	public void deleteEqname(EquipVO equipVO) throws Exception;
 	public void deleteEqserial(EquipVO equipVO) throws Exception;
-	public int modSerialState(String eq_state) throws Exception;
+	public void modSerialState(Map statemap) throws Exception;
 	public EquipVO selectSerialById(String eq_serial) throws Exception;
 //	public List statelistequips() throws Exception;
 //	public EquipVO selectonecatename(String cate_name) throws Exception;

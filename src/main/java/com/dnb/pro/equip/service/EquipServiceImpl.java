@@ -1,6 +1,7 @@
 package com.dnb.pro.equip.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -120,11 +121,12 @@ public class EquipServiceImpl implements EquipService{
 	
 		
 	}
-	 @Override
 	
-	public int modSerialState(String eq_state) throws Exception{
-		return equipDAO.updateSerialState(eq_state);
-	
+	@Override
+	public void modSerialState(Map statemap) throws Exception{
+		System.out.println(statemap);
+		 equipDAO.updateSerialState(statemap);
+		
 		
 	}
 	 
@@ -133,7 +135,7 @@ public class EquipServiceImpl implements EquipService{
 		 EquipVO equipVO = equipDAO.selectSerialById(eq_serial);
 		 return equipVO;
 			
-			
+		
 			
 		}
 	 
