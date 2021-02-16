@@ -7,6 +7,7 @@ import org.springframework.dao.DataAccessException;
 
 import com.dnb.pro.equip.vo.EquipVO;
 
+
 public interface EquipDAO {
 
 	
@@ -30,4 +31,9 @@ public interface EquipDAO {
 	public void deleteCatename(EquipVO equipVO) throws DataAccessException;
 	public void deleteEqname(EquipVO equipVO) throws DataAccessException;
 	public void deleteEqserial(EquipVO equipVO) throws DataAccessException;
+	
+	public void updateSerialState(Map statemap) throws DataAccessException;
+//	public int updateSerialState(String eq_state) throws DataAccessException;
+	public EquipVO selectSerialById(String eq_serial) throws DataAccessException;
+//	public List selectStateList() throws DataAccessException;
 }

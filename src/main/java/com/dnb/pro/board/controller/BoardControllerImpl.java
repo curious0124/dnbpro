@@ -1,7 +1,6 @@
 package com.dnb.pro.board.controller;
 
 import java.io.File;
-import java.io.PrintWriter;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -27,11 +26,11 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
-
 import com.dnb.pro.board.service.BoardService;
 import com.dnb.pro.board.vo.ArticleVO;
+import com.dnb.pro.board.vo.Criteria;
+import com.dnb.pro.board.vo.PageMaker;
 import com.dnb.pro.member.vo.MemberVO;
-import com.dnb.pro.rent.vo.RentVO;
 
 @Controller("boardController")
 @RequestMapping(value="/board")
@@ -68,20 +67,45 @@ private static final Logger logger = LoggerFactory.getLogger(BoardControllerImpl
 		mav.setViewName(viewName);
 		return mav;
 	}
-	@Override
-	@RequestMapping(value="/admin_board_list.do", method = {RequestMethod.GET, RequestMethod.POST})
-	public ModelAndView admin_board_list(@RequestParam("brd_num") int brd_num, HttpServletRequest request, HttpServletResponse response) throws Exception{
+//	@Override
+//	@RequestMapping(value="/admin_board_list.do", method = {RequestMethod.GET, RequestMethod.POST})
+//	public ModelAndView admin_board_list(@RequestParam("brd_num") int brd_num, HttpServletRequest request, HttpServletResponse response) throws Exception{
+//		String viewName = (String)request.getAttribute("viewName");
+//		logger.info("info : viewName = "+viewName);
+//		logger.debug("debug : viewName = "+viewName);
+//		
+//		List articlesList = boardService.listArticles(brd_num);	
+//		
+//		ModelAndView mav = new ModelAndView(viewName);
+//		mav.addObject("articlesList",articlesList);
+//		return mav;
+//
+//	}
+	
+	@RequestMapping(value="/admin_board_list.do", method = {RequestMethod.POST,RequestMethod.GET})
+	public ModelAndView admin_board_list(Criteria cri, HttpServletRequest request, HttpServletResponse response) throws Exception{
 		String viewName = (String)request.getAttribute("viewName");
-		logger.info("info : viewName = "+viewName);
-		logger.debug("debug : viewName = "+viewName);
-		
-		List articlesList = boardService.listArticles(brd_num);	
-		
 		ModelAndView mav = new ModelAndView(viewName);
+		System.out.println(cri.getBrd_num());
+		System.out.println(cri.getPage());
+		System.out.println(cri.getPerPageNum());
+		System.out.println(cri.getRowStart());
+		System.out.println(cri.getRowEnd());
+		
+		List articlesList = boardService.listArticles(cri);
+//		System.out.println(articlesList.get(0));
 		mav.addObject("articlesList",articlesList);
-		return mav;
-
+		
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(cri);
+		pageMaker.setTotalCount(boardService.listCount(cri.getBrd_num()));
+		mav.addObject("pageMaker", pageMaker);		
+		
+		return mav;	
 	}
+	
+	
+	
 	
 	@RequestMapping(value = "/admin_board_articleForm.do", method = RequestMethod.GET)
 	public ModelAndView admin_board_articleForm(@RequestParam("brd_num") int brd_num, HttpServletRequest request, HttpServletResponse response) throws Exception{

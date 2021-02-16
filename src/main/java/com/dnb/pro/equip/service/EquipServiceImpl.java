@@ -1,8 +1,10 @@
 package com.dnb.pro.equip.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -120,11 +122,24 @@ public class EquipServiceImpl implements EquipService{
 		
 	}
 	
-//	@Override
-//	public EquipVO selectonecatename(String cate_name) throws Exception {
-//		EquipVO equipVO = equipDAO.selectCateByCode2(cate_name);
-//		return equipVO;
-//		
-//	}
+	@Override
+	public void modSerialState(Map statemap) throws Exception{
+		System.out.println(statemap);
+		 equipDAO.updateSerialState(statemap);
+		
+		
+	}
+	 
+	 @Override
+		public EquipVO selectSerialById(String eq_serial) throws DataAccessException {
+		 EquipVO equipVO = equipDAO.selectSerialById(eq_serial);
+		 return equipVO;
+			
+		
+			
+		}
+	 
+	 
+
 	
 }
