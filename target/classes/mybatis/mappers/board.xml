@@ -18,16 +18,36 @@
 
    </resultMap>
     <!-- 쿼리문 작성 -->
-   <!-- 게시판별 리스트 보기 -->
-   <select id="selectAllArticlesList" resultMap="articlesResult">
-        <![CDATA[
-           select *  
+   <!-- 게시판별 리스트 보기
+   select *  
          from brd_detail, board 
          where brd_detail.brd_num=board.brd_num and board.brd_num=#{brd_num}  
-         ORDER BY board_num DESC     
-           
-           
+         ORDER BY board_num DESC   -->
+   <select id="selectAllArticlesList" resultMap="articlesResult"  >
+   
+        <![CDATA[
+           select *
+			from (
+			        select brd_detail.brd_num,
+			                board.brd_name,
+			                brd_detail.board_num,
+			                brd_detail.board_title,
+			                brd_detail.board_writer,
+			                brd_detail.board_date,
+			                row_number() over(order by board_num desc) as rNum
+			        from brd_detail, board 
+			        where brd_detail.brd_num=board.brd_num and board.brd_num=#{brd_num} 
+			        ) mp
+			where rNum between #{rowStart} and #{rowEnd}
+			ORDER BY board_num DESC
         ]]>
+   </select>
+   <select id="listCount" resultType="int">
+   		<![CDATA[
+   			select count(brd_num)
+   			from brd_detail
+   			where brd_num=#{brd_num} 
+   		]]>
    </select>
    <!-- 상세페이지 -->
    <select id="selectArticle" resultMap="articlesResult">

@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.dnb.pro.board.dao.BoardDAO;
 import com.dnb.pro.board.vo.ArticleVO;
+import com.dnb.pro.board.vo.Criteria;
 
 @Service("boardService")
 @Transactional(propagation = Propagation.REQUIRED)
@@ -17,9 +18,14 @@ public class BoardServiceImpl implements BoardService {
 	@Autowired
 	private BoardDAO boardDAO;
 	
-	public List<ArticleVO> listArticles(int brd_num) throws Exception{
-		List<ArticleVO> articlesList = boardDAO.selectAllArticlesList(brd_num);
-		return articlesList;
+	public List<ArticleVO> listArticles(Criteria cri) throws Exception{
+//		List<ArticleVO> articlesList = boardDAO.selectAllArticlesList(cri);
+		System.out.println("sevice :" +cri);
+		return boardDAO.selectAllArticlesList(cri);
+	}
+	@Override
+	public int listCount(int brd_num) throws Exception{
+		return boardDAO.listCount(brd_num);
 	}
 
 	@Override
