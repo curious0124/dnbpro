@@ -36,18 +36,18 @@
 								<td>${log.eq_serial}</td>
 								<td>${log.eq_name}</td>
 								<td><fmt:formatDate pattern="yyyy-MM-dd"
-										value="${log.return_date}" /></td>
+										value="${log.log_date}" /></td>
 								<td><fmt:formatDate pattern="yyyy-MM-dd"
 										value="${log.res_start}" /></td>
 								<td><fmt:formatDate pattern="yyyy-MM-dd"
 										value="${log.res_end}" /></td>
-								<td>${log.return_Status}</td>
+								<td>${log.status}</td>
 
 							</tr>
 						</c:forEach>
 					</c:when>
 				</c:choose>
-
+				
 			</table>
 		</fieldset>
 

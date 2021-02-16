@@ -7,6 +7,10 @@
 <!DOCTYPE html>
 <html>
   <head>
+  
+      <!-- 부트스트랩 경로 지정 폴더에 넣어놨음-->
+    <link rel="stylesheet" href="${contextPath}/resources/bootstrap/bootstrap.css">
+    
     <meta charset="UTF-8">
     <style>
       #container {
@@ -35,14 +39,13 @@
       #content {
         width: 75%;
         padding: 5px;
-<<<<<<< HEAD
+
         
         margin: 0 auto;
-=======
+
         margin-right: 5px;
         
         margin : 0 auto;
->>>>>>> branch 'develop' of https://github.com/curious0124/dnbpro.git
         border: 0px solid #bcbcbc;
       }
       #footer {

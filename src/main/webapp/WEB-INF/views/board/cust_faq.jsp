@@ -11,39 +11,103 @@
 <head>
 <meta charset="UTF-8">
 <title>FAQ</title>
-</head>
+
 <style>
-* {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box
+.accordion {
+  background-color: #eee;
+  color: #444;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+  transition: 0.4s;
 }
 
-body {
-	background-color: #f7f7f7;
+.active, .accordion:hover {
+  background-color: #ccc;
 }
 
-.cust_faq {
-	width: 90%;
-	margin: 0 auto;
-	text-align: center;
+.accordion:after {
+  content: '\002B';
+  color: #777;
+  font-weight: bold;
+  float: right;
+  margin-left: 5px;
 }
 
-.cust_faq div {
-	border-top-style: solid;
+.active:after {
+  content: "\2212";
 }
 
-.cust_faq_title, .cust_faq_content {
-	width: 100%;
-	margin: 0 auto;
-	text-align: center;
-	border-right-style: solid;
-	border-left-style: solid;
+.panel {
+  padding: 0 18px;
+  background-color: white;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+  text-align:justify;
 }
 </style>
 
+</head>
 <body>
-	  <c:choose>
+
+	
+	
+	<c:forEach  var="article" items="${articlesList }" varStatus="articleNum" >
+<button class="accordion"><div class="cust_faq_title">${article.board_title }</div></button>
+<div class="panel">
+  <p><div class="cust_faq_content">${article.board_content} </div></p>
+  
+              <c:choose> 
+           <c:when test="${not empty article.board_img && article.board_img!='null' }"> 
+                 <input  type= "hidden"   name="originalFileName" value="${article.board_img }" />
+                <img src="${contextPath}/download.do?board_num=${article.board_num}&board_img=${article.board_img}" id="preview"  /><br>
+          </c:when>
+         <c:otherwise>    
+         </c:otherwise>
+    </c:choose>
+    
+</div>
+</c:forEach>
+	
+	
+            
+            
+
+            
+        
+	
+	
+	
+	
+	<script>
+var acc = document.getElementsByClassName("accordion");
+var i;
+
+for (i = 0; i < acc.length; i++) {
+  acc[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var panel = this.nextElementSibling;
+    if (panel.style.maxHeight) {
+      panel.style.maxHeight = null;
+    } else {
+      panel.style.maxHeight = panel.scrollHeight + "px";
+    } 
+  });
+}
+</script>
+
+
+
+
+
+
+
+<%-- 	  <c:choose>
 	  <c:when test="${articlesList ==null }" >
 	  	<div class="cust_faq">
 		<div class="cust_faq_title">등록된 글이 없습니다.</div>
@@ -64,6 +128,6 @@ body {
 	</div>
 	</c:forEach>
 	</c:when>
-	</c:choose>	
+	</c:choose>	 --%>
 </body>
 </html>

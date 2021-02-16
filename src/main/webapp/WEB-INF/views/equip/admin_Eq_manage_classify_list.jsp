@@ -1,7 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"
-   isELIgnored="false"  %>
-    <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"
+    isELIgnored="false" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>    
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
   
@@ -59,6 +59,12 @@
         .checkBox { 
         float:left; 
         }
+        
+         .col1 {
+        display: inline-block;
+       
+        float: right;
+    }
         #brd_div1{
             width: 100px;
         }
@@ -96,17 +102,7 @@
 
 
           <script>
-          function checkAll(){
-              if( $(".allCheck").is(':checked') ){
-                $("input[name=chBox]").prop("checked", true);
-              }else{
-                $("input[name=chBox]").prop("checked", false);
-              }
-       
-          
-            
-          
-          }
+    
           
        </script>
     
@@ -115,25 +111,59 @@
    <div>
    
    <div >
-   <strong>∫–∑˘ ∏Ò∑œ</strong>
+   <strong>Î∂ÑÎ•ò Î™©Î°ù</strong>
    </div>
        
-   <form action="${contextPath}"  method="post">
+  
     <!--board_container -->
     <div class="board_container">
   <div id='top_buttonbox'>
   		
-       <button  type="button" class="btn btn-light " id="addcatename" onclick="location.href='${contextPath}/equip/admin_Eq_manage_classify.do?cate_name=${equip.cate_name}'">µÓ∑œ</button>
-       <input type="button" class="btn btn-light" id='delete_btn' value="ªË¡¶«œ±‚" onClick="fn_removecatename('${contextPath}/equip/removecatename.do',${cate.cate_name })" >
+       <button  type="button" class="col1 " id="addcatename" onclick="location.href='${contextPath}/equip/admin_Eq_manage_classify.do?cate_name=${equip.cate_name}'">Îì±Î°ù</button>
+       <div  class="delBtn"><button type="button" class="selectDelete_btn col1" >ÏÇ≠Ï†ú</button>
+       
+       <script>
+ $(".selectDelete_btn").click(function(){
+  var confirm_val = confirm("Ï†ïÎßê ÏÇ≠Ï†úÌïòÏãúÍ≤†ÏäµÎãàÍπå?");
+  
+  if(confirm_val) {
+   var checkArr = new Array();
+   
+   $("input[class='chBox']:checked").each(function(){
+    checkArr.push($(this).attr("value"));
+   });	
+    
+   $.ajax({
+    url : "${contextPath}/equip/deleteCatename.do",
+    type : "post",
+    data : { chbox : checkArr },
+    success : function(){
+     location.href = "${contextPath}/equip/admin_Eq_manage_classify_list.do";
+    }
+   });
+  } 
+ });
+</script>
+       </div>
    </div>
   <div class="listrow">
     <div class="col_top allCheck" id="brd_div1">
-       <input type="checkbox" name="allCheck" id="allCheck" class="allCheck" onclick="checkAll()"> ∏µŒ º±≈√
-
+       <input type="checkbox" name="allCheck" id="allCheck"  onclick="checkAll(this)"> 
+     
+      <script>
+$("#allCheck").click(function(){
+ var chk = $("#allCheck").prop("checked");
+ if(chk) {
+  $(".chBox").prop("checked", true);
+ } else {
+  $(".chBox").prop("checked", false);
+ }
+});
+</script>
 
     </div>
     <div class="col_top" id='brd_div2'>
-      ∫–∑˘∏Ì
+      Î∂ÑÎ•òÎ™Ö
     </div>
     
   </div>
@@ -145,8 +175,12 @@
     <c:forEach  var="cate" items="${cateList }" varStatus="cateNum" >
      <div class="listrow">
     <div class="col_list checkBox" id='brd_div1'>
-      <input type="checkbox" name="chBox" class="chBox" value="${cate.cate_name }" >
-      
+      <input type="checkbox" name="RowCheck" class="chBox" value="${cate.cate_name }" >
+      <script>
+ $(".chBox").click(function(){
+  $("#allCheck").prop("checked", false);
+ });
+</script>
 
 
     </div>
@@ -176,7 +210,7 @@
   
   
 </div>
-</form>
+
 
 </div>
 

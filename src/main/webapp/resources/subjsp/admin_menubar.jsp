@@ -101,7 +101,7 @@
        <li class="main_menu">
             <div class="admin_menutitle">장비관리</div>
             <ul class="admin_menusub">
-                <li class="admin_menusubli"><a href="#">보유장비 등록/관리</a></li>
+                <li class="admin_menusubli"><a href="${contextPath}/equip/admin_Eq_manage_list.do">보유장비 등록/관리</a></li>
                 <li class="admin_menusubli"><a href="#">예약신청 관리</a></li>
                 <li class="admin_menusubli"><a href="#">예약/대여/반납 관리</a></li>
                 <li class="admin_menusubli"><a href="#">배송반납 신청 리스트</a></li>
