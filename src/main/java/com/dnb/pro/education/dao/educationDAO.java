@@ -10,4 +10,7 @@ public interface educationDAO {
 	
 	public List selectEducationList() throws DataAccessException;
 	public educationVO selecteducation(int edu_num) throws DataAccessException;
+	
+	public List eduCateNameList() throws DataAccessException;
+	public List<educationVO> selectByCateName(String cate_name) throws DataAccessException;
 }

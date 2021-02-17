@@ -67,7 +67,7 @@
     </style>
       <script src="${contextPath}/resources/js/jquery-3.5.1.min.js"> </script>
 <script>
-	var url = ${article.brd_num };
+	var url1 = ${article.brd_num };
     $(function(){           
             $('#menucontent').load("${contextPath}/resources/subjsp/admin_menubar.jsp")
     	
@@ -76,7 +76,7 @@
             	var reqBoard_num = ${article.board_num  };
             	
             	console.log(reqBoard_num);
-            	console.log(url);
+            	console.log(url1);
             	
             	if(confirm_val) {
             		var checkArr = new Array();
@@ -89,7 +89,7 @@
                	    data : { chbox : checkArr },
                	  	url : "${contextPath}/board/deleteSelectArticle.do",
                	    success : function(){
-               	     location.href = "${contextPath}/board/admin_board_list.do?brd_num="+url;
+               	     location.href = "${contextPath}/board/admin_board_list.do?brd_num="+url1;
                	    }
                	   });
                	  } 
@@ -97,8 +97,8 @@
     });
     
     function backToList(obj){
-    	console.log(url);
-	    obj.action="${contextPath}/board/admin_board_list.do?brd_num="+url;
+    	console.log(url1);
+	    obj.action="${contextPath}/board/admin_board_list.do?brd_num="+url1;
 	    obj.submit();
      }
     
@@ -124,6 +124,7 @@
             </div>
             <select class="form-select form-select-sm" aria-label=".form-select-sm example"name="brd_num" disabled>
                   <option value="${article.brd_num }">${article.brd_name }</option>
+                  
                   
             </select>
             

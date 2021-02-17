@@ -85,6 +85,14 @@
             line-height:5px;
             
         }
+        #listPaging{  clear:both; text-align:center;}
+        #listPaging > ul{margin:0 auto;}
+        #listPaging > ul > li{
+        	list-style: none; float: left; padding: 6px;
+        	
+        	
+        	
+        }
     </style>
      <script src="${contextPath}/resources/js/jquery-3.5.1.min.js"> </script>
 <script>
@@ -172,9 +180,9 @@
     <div class="col_top" id='brd_div5'>
       작성일자
     </div>
-    <div class="col_top" id='brd_div6'>
+    <!-- <div class="col_top" id='brd_div6'>
       &nbsp;
-    </div>
+    </div> -->
   </div>
   
   <c:choose>
@@ -189,7 +197,8 @@
       
     </div>
     <div class="col_list" id='brd_div2'>
-      ${articleNum.count}
+      <!-- ${articleNum.count} -->
+      ${article.board_num }
     </div>
     <div class="col_list" id='brd_div3'>
         <a href="${contextPath}/board/viewArticle.do?board_num=${article.board_num}">${article.board_title }</a>
@@ -200,10 +209,11 @@
     <div class="col_list" id='brd_div5'>
       ${article.board_date}
     </div>
-    <div class="col_list" id='brd_div6'>
+    <!-- 
+    <div class="col_list" id='brd_div6'> -->
 	<!-- <button type="button" class="btn btn-light" id='brd_btn'onclick="location.href='${contextPath}/board/admin_board_deleteArticle.do?board_num=${article.board_num}'">삭제</button>-->
       <!-- <button type="button" class="btn btn-light" id='brd_btn'onclick="location.href='${contextPath}/board/admin_board_modArticleForm.do?board_num=${article.board_num}'">수정</button>-->
-    </div>
+   <!--  </div> -->
     
   </div>
     </c:forEach>
@@ -231,16 +241,36 @@
     <div class="col_list" id='brd_div5'>
       &nbsp;
     </div>
+    <!-- 
     <div class="col_list" id='brd_div6'>
       &nbsp;
     </div>
-    
+     -->
   </div>
    
     
   </c:when>
     </c:choose>
   
+  
+  <div id="listPaging">
+  <ul>
+    <c:if test="${pageMaker.prev}">
+    	<li><a href="list${pageMaker.makeQuery(pageMaker.startPage - 1)}">이전</a></li>
+    </c:if> 
+
+    <c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
+    	<!-- <li><a href="list${pageMaker.makeQuery(idx)}">${idx}</a></li> -->
+    	<li><a href="admin_board_list.do${pageMaker.makeQuery(idx)}">${idx}</a></li>
+    	
+    </c:forEach>
+
+    <c:if test="${pageMaker.next && pageMaker.endPage > 0}">
+    	<li><a href="list${pageMaker.makeQuery(pageMaker.endPage + 1)}">다음</a></li>
+    </c:if> 
+  </ul>
+</div>
+
   
 </div>
 
