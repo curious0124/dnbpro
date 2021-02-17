@@ -12,4 +12,6 @@ public interface educationController {
 	public ModelAndView edu_list(HttpServletRequest request, HttpServletResponse response) throws Exception; 
 	public ModelAndView vieweducation(@RequestParam("educationNO") int educationNO,
             HttpServletRequest request, HttpServletResponse response) throws Exception;
+	
+	public ModelAndView edu_cate_list(@RequestParam("cate_name") String cate_name, HttpServletRequest request, HttpServletResponse response) throws Exception; 
 }

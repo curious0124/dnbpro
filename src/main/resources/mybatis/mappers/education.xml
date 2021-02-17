@@ -44,6 +44,27 @@ select edu_num, cate_name, eq_name, edu_title, edu_content, edu_pub_date, edu_wr
             	]]>
     </select>
     
+<!-- 교육 카테고리별 보기 -->
+	<select id="selectCateEduList" parameterType="educationVO" resultType="com.dnb.pro.education.vo.educationVO" resultMap="educationResult" >
+    <![CDATA[
+    select edu_num, cate_name, eq_name, edu_title, edu_content, edu_pub_date, edu_writer, edu_thuming from education where cate_name = #{cate_name} ORDER BY edu_num DESC
+            	]]>
+    </select>
+    
+<!-- 교육 카테고리 받아오기 -->
+ 	<select id="eduCateNameList" parameterType = "educationVO" resultType="com.dnb.pro.education.vo.educationVO">
+ 		<![CDATA[
+ 			select cate_name from category
+ 			]]>
+ 	</select>
+ 	
+ 	<!-- 교육 분류명 조회 -->
+ 	<select id="selectByCateName" parameterType="educationVO" resultType="com.dnb.pro.education.vo.educationVO">
+    	<![CDATA[
+		SELECT * from education where cate_name = #{cate_name}  ORDER BY edu_num DESC
+        ]]>
+    </select> 
+    
     <!-- 페이징 안햇ㅂ -->
 <!--    <select id="educationdetail" parameterType="educationVO" resultType="com.dnb.pro.education.vo.educationVO">
     <![CDATA[

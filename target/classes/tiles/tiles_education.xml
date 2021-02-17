@@ -14,5 +14,10 @@
       <put-attribute name="title" value="교육 상세 페이지" />
       <put-attribute name="body" value="/WEB-INF/views/education/edu_detail.jsp" />
    </definition>
+   
+   <definition name="/education/edu_cate_list" extends="baseLayout">
+      <put-attribute name="title" value="교육 분류 리스트" />
+      <put-attribute name="body" value="/WEB-INF/views/education/edu_cate_list.jsp" />
+   </definition>
     
 </tiles-definitions>

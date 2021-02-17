@@ -34,10 +34,14 @@ public class educationControllerImpl implements educationController {
 		logger.info("info 레벨: viewName = "+viewName);
 		logger.debug("debug 레벨: viewName = "+viewName);
 		
-		List educationList = educationService.listeducation();	
-		
 		ModelAndView mav = new ModelAndView(viewName);
+		
+		List educationList = educationService.listeducation();	
 		mav.addObject("educationList",educationList);
+		
+		List eduCateNameList = educationService.listEduCateName();//카테고리선택
+		mav.addObject("eduCateNameList",eduCateNameList);
+		
 		return mav;
 }
 	
@@ -64,5 +68,25 @@ public class educationControllerImpl implements educationController {
 //		mav.addObject("educationList",educationList);
 //		return mav;
 //}
+	
+	@Override
+	@RequestMapping(value = "/edu_cate_list.do", method = { RequestMethod.GET, RequestMethod.POST})
+	public ModelAndView edu_cate_list(@RequestParam("cate_name") String cate_name, HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
+		String viewName = (String)request.getAttribute("viewName");
+		
+		
+		ModelAndView mav = new ModelAndView(viewName);
+		mav.setViewName(viewName);
+		
+		List<educationVO> eduCateList = educationService.listCateEdu(cate_name);	
+		mav.addObject("educationList",eduCateList);
+		
+		List eduCateNameList = educationService.listEduCateName();//카테고리선택
+		mav.addObject("eduCateNameList",eduCateNameList);
+		
+		
+		return mav;
+	}
 
 }
