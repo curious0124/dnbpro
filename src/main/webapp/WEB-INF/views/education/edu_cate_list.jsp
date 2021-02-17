@@ -53,7 +53,7 @@
 							</thead>
 							<tbody>
 								<c:forEach items="${educationList }" var="list"
-									varStatus="cate_name">
+									varStatus="educationNum">
 									<tr>
 										<td><a
 											href="${contextPath}/education/edu_detail.do?educationNO=${list.edu_num}">${educationNum.count}</td>
