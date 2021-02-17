@@ -9,6 +9,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 
 import com.dnb.pro.board.vo.ArticleVO;
+import com.dnb.pro.board.vo.Criteria;
 
 @Repository("boardDAO")
 public class BoardDAOImpl implements BoardDAO{
@@ -16,11 +17,17 @@ public class BoardDAOImpl implements BoardDAO{
 	private SqlSession sqlSession;
 	
 	@Override
-	public List selectAllArticlesList(int brd_num) throws DataAccessException {
-		List<ArticleVO> articlesList = sqlSession.selectList("mapper.board.selectAllArticlesList",brd_num);
-		return articlesList;
+	public List selectAllArticlesList(Criteria cri) throws DataAccessException {
+//		List<ArticleVO> articlesList = sqlSession.selectList("mapper.board.selectAllArticlesList",cri);
+		System.out.println("DAO  : "+cri);
+		return sqlSession.selectList("mapper.board.selectAllArticlesList",cri);
 	}
-
+	@Override
+	public int listCount(int brd_num) throws Exception {
+		return sqlSession.selectOne("mapper.board.listCount",brd_num);
+	}
+	
+	
 	@Override
 	public ArticleVO selectArticle(int board_num) throws DataAccessException {
 		return sqlSession.selectOne("mapper.board.selectArticle",board_num);

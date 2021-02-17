@@ -6,10 +6,11 @@ import java.util.Map;
 import org.springframework.dao.DataAccessException;
 
 import com.dnb.pro.board.vo.ArticleVO;
+import com.dnb.pro.board.vo.Criteria;
 
 public interface BoardDAO {
 
-	public List selectAllArticlesList(int brd_num) throws DataAccessException;
+	public List selectAllArticlesList(Criteria cri) throws DataAccessException;
 
 	public ArticleVO selectArticle(int board_num) throws DataAccessException;
 
@@ -20,6 +21,8 @@ public interface BoardDAO {
 	public void updateArticle(Map articleMap) throws DataAccessException;
 
 	public void deleteArticle(ArticleVO articleVO) throws DataAccessException;
+
+	public int listCount(int brd_num) throws Exception;
 
 //	public int insertNewArticle(Map articleMap) throws DataAccessException;
 //

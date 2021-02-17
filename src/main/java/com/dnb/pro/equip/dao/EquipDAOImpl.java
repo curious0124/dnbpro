@@ -16,6 +16,8 @@ import com.dnb.pro.equip.vo.EquipVO;
 
 
 
+
+
 @Repository("EquipDAO")
 public class EquipDAOImpl implements  EquipDAO  {
 
@@ -114,4 +116,25 @@ public class EquipDAOImpl implements  EquipDAO  {
 		sqlSession.delete("mapper.equip.deleteEqserial",equipVO);
 		
 	}
+	
+	@Override
+	public void updateSerialState(Map statemap) throws DataAccessException{
+		
+		sqlSession.update("mapper.equip.updateSerialState", statemap); 
+//		System.out.println(eq_state);
+//		 return result;
+		
+	}
+	
+	@Override
+	public EquipVO selectSerialById(String eq_serial) throws DataAccessException{
+		EquipVO adminequipList = adminequipList = sqlSession.selectOne("mapper.equip.selectSerialById", eq_serial);
+		return adminequipList;
+	}
+	
+//	@Override
+//	public List selectStateList() throws DataAccessException {
+//		List<EquipVO> stateList = stateList = sqlSession.selectList("mapper.equip.selectStateList");
+//		return stateList;
+//	}
 }

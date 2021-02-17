@@ -54,6 +54,12 @@
       <put-attribute name="title" value="시리얼번호  등록 페이지" />
       <put-attribute name="body" value="/WEB-INF/views/equip/admin_Eq_manage_serial.jsp" />
    </definition>
+   
+   <definition name="/equip/admin_Eq_manage_serialmod" extends="baseLayout">
+      <put-attribute name="title" value="시리얼번호  상태 수정 페이지" />
+      <put-attribute name="body" value="/WEB-INF/views/equip/admin_Eq_manage_serialmod.jsp" />
+   </definition>
+   
    <!-- 
    <definition name="/board/articleForm" extends="baseLayout">
    	<put-attribute name="title" value="글쓰기창"/>

@@ -43,6 +43,8 @@
 
         }
 
+
+
         .col_top {
             float: left;
             background: #FA8072;

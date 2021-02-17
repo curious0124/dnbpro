@@ -117,7 +117,7 @@
 </head>
 
 <body>
-    <form action="${contextPath}/equip/addserialname.do" method="GET">
+    <form action="${contextPath}/equip/addserialname.do" method="post">
 
         <div>
 
