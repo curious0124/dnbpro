@@ -61,21 +61,28 @@ public class MemberController {
 		
 		
 		if (vo != null) {
-			HttpSession session = request.getSession();
-			session.setAttribute("member", vo);
-			session.setAttribute("isLogOn", true);
-			String action = (String) session.getAttribute("action");
-			session.removeAttribute("action");
-			
-			if (action != null) {
-				mav.setViewName("redirect:" + action);
-			} else {
-				mav.setViewName("redirect:/main/main.do");
+			if(!vo.getUser_auth().equals("블랙리스트")) {
+				HttpSession session = request.getSession();
+				session.setAttribute("member", vo);
+				session.setAttribute("isLogOn", true);
+				String action = (String) session.getAttribute("action");
+				session.removeAttribute("action");
+				
+				if (action != null) {
+					mav.setViewName("redirect:" + action);
+				} else {
+					mav.setViewName("redirect:/main/main.do");
+				}
+				
+			}
+			else {
+				rAttr.addAttribute("result", 2);
+				mav.setViewName("redirect:/member/loginForm.do");
 			}
 			
 
 		} else {
-			rAttr.addAttribute("result", "loginFailed");
+			rAttr.addAttribute("result", 1);
 			mav.setViewName("redirect:/member/loginForm.do");
 		}
 		return mav;
