@@ -24,8 +24,16 @@ public class educationServiceImpl implements educationService {
 	public educationVO vieweducation(int edu_num) throws Exception {
 		educationVO educationVO = educationDAO.selecteducation(edu_num);
 		return educationVO;
+	}
 	
-
-
-}
+	@Override
+	public List<educationVO> listEduCateName() throws Exception {
+		List<educationVO> eduCateNameList = educationDAO.eduCateNameList();
+		return eduCateNameList;
+	}	
+	@Override
+	public List<educationVO> listCateEdu(String cate_name) throws Exception {
+		List eduCateList=educationDAO.selectByCateName(cate_name);
+		return eduCateList;
+	}
 }
