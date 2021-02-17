@@ -1,67 +1,64 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper
-	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="mapper.rent">
-<!-- 리절트 맵 정의 -->	
-	<resultMap id="rentEquipResult" type="RentVO">
-	    <result property="resq_num" column="resq_num" />
-		<result property="user_id" column="user_id" />
-		<result property="eq_serial" column="eq_serial" />
-		<result property="resq_start" column="resq_start" />
-		<result property="resq_end" column="resq_end" />
-		<result property="resq_date" column="resq_date" />
-		
-		
-		<result property="res_num" column="res_num" />
-		<result property="res_start" column="res_start" />
-		<result property="res_end" column="res_end" />
-		<result property="res_Status" column="res_Status" />
-		
-		<result property="return_num" column="return_num" />
-		<result property="express_num" column="express_num" />
-		<result property="return_date" column="return_date" />
-		<result property="return_Status" column="return_Status" />
-		
-		<result property="log_num" column="log_num" />
-		<result property="status" column="status" />
-		<result property="log_maker" column="log_maker" />
-		<result property="log_date" column="lo	g_date" />
-	    <result property="cate_name" column="cate_name" />
-		<result property="eq_name" column="eq_name" />
-	</resultMap>
-	
-<<<<<<< HEAD
-
-=======
-	
-	  <!-- 예약신청 리스트 조회 -->
+<!-- 리절트 맵 정의 -->   
+   <resultMap id="rentEquipResult" type="RentVO">
+       <result property="resq_num" column="resq_num" />
+      <result property="user_id" column="user_id" />
+      <result property="eq_serial" column="eq_serial" />
+      <result property="resq_start" column="resq_start" />
+      <result property="resq_end" column="resq_end" />
+      <result property="resq_date" column="resq_date" />
+      
+      
+      <result property="res_num" column="res_num" />
+      <result property="res_start" column="res_start" />
+      <result property="res_end" column="res_end" />
+      <result property="res_Status" column="res_Status" />
+      
+      <result property="return_num" column="return_num" />
+      <result property="express_num" column="express_num" />
+      <result property="return_date" column="return_date" />
+      <result property="return_Status" column="return_Status" />
+      
+      <result property="log_num" column="log_num" />
+      <result property="status" column="status" />
+      <result property="log_maker" column="log_maker" />
+      <result property="log_date" column="lo   g_date" />
+       <result property="cate_name" column="cate_name" />
+      <result property="eq_name" column="eq_name" />
+   </resultMap>
+   
+   
+     <!-- 예약신청 리스트 조회 -->
   <select id="selectResqList" resultMap="rentEquipResult"   >
     <![CDATA[
-      SELECT Resq_num,User_id,Eq_serial,Resq_start ,Resq_end,Resq_date  from Resq	
+      SELECT Resq_num,User_id,Eq_serial,Resq_start ,Resq_end,Resq_date  from Resq   
     ]]>
   </select>
   
    <!-- 로그리스트 조회 -->
    <select id="selectAllLogList" resultMap="rentEquipResult"   >
     <![CDATA[
-      SELECT Log_num, Resq_num, Res_num, Return_num, User_id, Status, Log_maker,Res_start,Res_end,Log_date,Eq_name,Cate_name,Eq_serial from Log	
+      SELECT Log_num, Resq_num, Res_num, Return_num, User_id, Status, Log_maker,Res_start,Res_end,Log_date,Eq_name,Cate_name,Eq_serial from Log   
     ]]>
   </select>
    <!-- 예약리스트 조회 -->
    <select id="selectAllResList" resultMap="rentEquipResult"   >
     <![CDATA[
-      SELECT res_num, User_id, Eq_serial, Res_start, Res_end, Res_Status from reserve	
-      where res_status = '예약중'	
+      SELECT res_num, User_id, Eq_serial, Res_start, Res_end, Res_Status from reserve   
+      where res_status = '예약중'   
     ]]>
   </select>
   
   <!-- 대여리스트 조회 -->
    <select id="selectAllRentList" resultMap="rentEquipResult"   >
     <![CDATA[
-      SELECT res_num, User_id, Eq_serial, Res_start, Res_end, Res_Status from reserve	
-      where res_status = '대여중'	
+      SELECT res_num, User_id, Eq_serial, Res_start, Res_end, Res_Status from reserve   
+      where res_status = '대여중'   
     ]]>
   </select>
   
@@ -69,7 +66,7 @@
    <select id="selectAllReturnList" resultMap="rentEquipResult"   >
     <![CDATA[
       SELECT return_num, res_num, express_num, return_date,return_Status,user_id from return
-      where return_Status = '배송반납신청중'	
+      where return_Status = '배송반납신청중'   
       
     ]]>
   </select>
@@ -78,8 +75,8 @@
    <insert id="insertRes" parameterType="RentVO"   >
     <![CDATA[
      insert into reserve(res_num,user_id,eq_serial,res_start,res_end) 
-	select  res_num_seq.nextval,user_id,eq_serial,resq_start,resq_end from resq
-	
+   select  res_num_seq.nextval,user_id,eq_serial,resq_start,resq_end from resq
+   
     ]]>
   </insert>
   
@@ -88,7 +85,7 @@
    <insert id="authinsertLogres" parameterType="RentVO"   >
     <![CDATA[
      insert into log(log_num, res_num,eq_serial,user_id,status,log_maker,res_start,res_end) 
-	select log_num_SEQ.NEXTVAL, res_num,eq_serial,user_id,'예약승인','관리자',res_start,res_end from reserve
+   select log_num_SEQ.NEXTVAL, res_num,eq_serial,user_id,'예약승인','관리자',res_start,res_end from reserve
     ]]>
   </insert>
  
@@ -103,7 +100,7 @@
    <insert id="insertLogResqcancle" parameterType="RentVO"   >
     <![CDATA[
      insert into log(log_num,resq_num,eq_serial,user_id,status,log_maker,res_start,res_end) 
-	select log_num_SEQ.NEXTVAL,resq_num,eq_serial,user_id,'예약신청취소','관리자',resq_start,resq_end from resq
+   select log_num_SEQ.NEXTVAL,resq_num,eq_serial,user_id,'예약신청취소','관리자',resq_start,resq_end from resq
     ]]>
   </insert>
   
@@ -115,8 +112,7 @@
   </delete>
   
  
->>>>>>> branch 'develop' of https://github.com/curious0124/dnbpro.git
   
   
-	
+   
 </mapper>
