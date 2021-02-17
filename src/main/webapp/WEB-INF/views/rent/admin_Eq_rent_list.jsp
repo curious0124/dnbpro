@@ -18,7 +18,7 @@
     <meta charset="UTF-8">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
-    <title>예약신청리스트</title>
+    <title>대여리스트</title>
     <style>
         #board_content {
             margin: 0 auto;
@@ -126,11 +126,6 @@
             padding: 0px 0px 0px 0px;
 
         }
-        
-        .tit{
-          
-          font-size: 25px;
-        }
 
         #brd_div1 {
             width: 100px;
@@ -147,14 +142,17 @@
 
         #brd_div4 {
             width: 120px;
+             height: 24px;
         }
 
         #brd_div5 {
             width: 120px;
+             height: 24px;
         }
 
         #brd_div6 {
             width: 120px;
+             height: 24px;
         }
 
         #brd_div7 {
@@ -176,67 +174,23 @@
             line-height: 5px;
 
         }
+        
+        .tit{
+          
+          font-size: 25px;
+        }
 
     </style>
     <script src="${contextPath}/resources/js/jquery-3.5.1.min.js"> </script>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
    
-   <script>
-	$(function() {
-		$(".Authres").click(
-				function() {
-					var answer = confirm("예약신청을 승인하시겠습니까?");
-					if (answer == true) {
 
-						
-						var resq_num = $(this).parent().find(
-								"input:nth-child(1)").val();
-
-				
-						console.log(resq_num);
-						$("#Resqnum").val(resq_num);
-						
-
-					$("#ResauthForm").submit();
-					}
-				});
-
-	});
-</script>
-
-<script>
-	$(function() {
-
-		$(".CancleResq").click(
-				function() {
-					var answer = confirm("예약신청을 취소하시겠습니까?");
-					if (answer == true) {
-
-						
-						var resq_num = $(this).parent().find(
-								"input:nth-child(2)").val();
-
-				
-						
-						$("#cancleResqnum").val(resq_num);
-						var test = $('#cancleResqnum').val();
-						
-						
-
-						$("#ResqcancleForm").submit();
-					}
-				});
-
-	});
-</script>
 </head>
 
-
 <body>
-
- <div class="tit"><strong>예약 신청 현황</strong></div><br>
+<div class="tit"><strong>대여 현황</strong></div><br>
     <div id='board_content'>
-      
+       
 
         <!--board_container -->
         <div class="board_container">
@@ -244,7 +198,7 @@
             <div class="listrow">
 
                 <div class="col_top" id='brd_div1'>
-                    예약신청번호
+                    예약번호
                 </div>
                 <div class="col_top" id='brd_div2'>
                     아이디
@@ -253,28 +207,27 @@
                     시리얼번호
                 </div>
                 <div class="col_top" id='brd_div4'>
-                    신청예약일
+                    예약시작일
                 </div>
                 <div class="col_top" id='brd_div5'>
-                    신청반납일
+                    예약반납일
                 </div>
                 <div class="col_top" id='brd_div6'>
-                    예약신청일
+                    현황
                 </div>
                 <div class="col_top" id='brd_div7'>
-                    확인
+                    비고
                 </div>
-                
             </div>
 
             <c:choose>
 
-                <c:when test="${listresqs !=null }">
-                    <c:set var="List" value="${listresqs }" />
-                    <c:forEach var="List" items="${listresqs }" varStatus="Resq_Num">
+                <c:when test="${listrent !=null }">
+                    <c:set var="List" value="${listrent }" />
+                    <c:forEach var="List" items="${listrent }" varStatus="Rent_Num">
                         <div class="listrow">
                             <div class="col_list" id='brd_div1'>
-                                ${List.resq_num}
+                                ${List.res_num}
                             </div>
                             <div class="col_list" id="brd_div2">
                                 ${List.user_id}
@@ -283,26 +236,24 @@
                                 ${List.eq_serial}
                             </div>
                             <div class=" col_list" id='brd_div4'>
-                                ${List.resq_start}
+                                <fmt:formatDate pattern="yyyy-MM-dd" value="${List.res_start}" />
                             </div>
                             <div class="col_list" id='brd_div5'>
-                                ${List.resq_end}
+                                <fmt:formatDate pattern="yyyy-MM-dd" value="${List.res_end}" />
                             </div>
                             <div class="col_list" id='brd_div6'>
-                                ${List.resq_date}
+                               ${List.res_Status}
                             </div>
                             <div class="col_list" id='brd_div7'>
-                                <button type="button" class="btn btn-light Authres" id='brd_btn'>승인</button>
-                                <input type="hidden" value="${List.resq_num}"/>
-                                 <button type="button" class="btn btn-light CancleResq" id='brd_btn'>취소</button>
-                                 <input type="hidden" value="${List.resq_num}" />
+                                <button type="button" class="btn btn-light" id='brd_btn'>반납</button>
+                                
                             </div>
-                            
+
                         </div>
                     </c:forEach>
                 </c:when>
 
-                <c:when test="${listresqs ==null}">
+                <c:when test="${listrent ==null}">
                     <div class="listrow">
                         <div class="col_list" id='brd_div1'>
                             &nbsp;
@@ -330,15 +281,6 @@
             </c:choose>
         </div>
     </div>
-    
-    <form action="${contextPath}/rent/AuthRes.do" id="ResauthForm" method="post">
-		<input type="hidden" id="Resqnum" name="Resqnum" value="" />
-	</form>
-	
-	 <form action="${contextPath}/rent/CancleResq.do" id="ResqcancleForm" method="post">
-		<input type="hidden" id="cancleResqnum" name="Resqnum" value="" />
-	</form>
-    
 </body>
 
 </html>
