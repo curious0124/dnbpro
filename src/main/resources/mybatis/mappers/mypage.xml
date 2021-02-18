@@ -258,10 +258,24 @@
   
   	<update id="updateMember" parameterType="memberVO">
   		<![CDATA[
-  			update userinfo set user_pwd=#{user_pwd}, user_name=#{user_name}, user_email=#{user_email} where user_id=#{user_id}
+  			update userinfo 
+  			set user_pwd=#{user_pwd}, user_name=#{user_name}, user_email=#{user_email} 
+  			where user_id=#{user_id}
   		]]>
   	</update>
-
-
+ <!--회원탈퇴-->
+ 
+	 <insert id="addQuit" parameterType="java.util.Map">
+		<![CDATA[
+	    	insert into quit (user_id,quit_reason) 
+			values(#{user_id}, #{removelist})
+		]]>
+	</insert>
+	
+  	<delete id="removeMember" parameterType="String">
+  		<![CDATA[
+	        delete from userinfo where user_id=#{user_id}
+	    ]]>
+  	</delete>
 
 </mapper>

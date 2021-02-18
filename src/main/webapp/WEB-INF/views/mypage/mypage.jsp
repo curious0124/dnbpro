@@ -119,6 +119,8 @@
 		<a class='cls1'
 			href="${contextPath}/mypage/modmemberForm.do?user_id=${user_id}">내
 			정보수정</a>
+			<a class='cls1'
+			href="${contextPath}/mypage/removeMember.do?user_id=${user_id}">회원탈퇴</a>
 		<div class=my_reserv_apply>
 			<form action="myResqDetail.do" method="post">
 				<fieldset>
