@@ -183,7 +183,61 @@
     </style>
     <script src="${contextPath}/resources/js/jquery-3.5.1.min.js"> </script>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
-   
+ 
+     <script>
+	$(function() {
+
+		$(".ResStateupdate").click(
+				function() {
+					var answer = confirm("대여를 승인하시겠습니까?");
+					if (answer == true) {
+
+						
+						var res_num = $(this).parent().find(
+								"input:nth-child(2)").val();
+						var res_Status = $(this).parent().find(
+						        "input:nth-child(3)").val();
+
+				
+						console.log(res_num);
+						$("#AuthResnum").val(res_num);
+						$("#ResStatus").val(res_Status);
+						
+					
+						
+						
+
+						$("#ResupdateForm").submit();
+					}
+				});
+
+	});
+</script>
+    <script>
+	$(function() {
+
+		$(".CancleRes").click(
+				function() {
+					var answer = confirm("예약을 취소하시겠습니까?");
+					if (answer == true) {
+
+						
+						var res_num = $(this).parent().find(
+								"input:nth-child(2)").val();
+
+				
+						console.log(res_num);
+						$("#cancleResnum").val(res_num);
+					
+						
+						
+
+						$("#RescancleForm").submit();
+					}
+				});
+
+	});
+</script>
 
 </head>
 
@@ -219,7 +273,7 @@
                     비고
                 </div>
             </div>
-
+  
             <c:choose>
 
                 <c:when test="${listres !=null }">
@@ -227,6 +281,7 @@
                     <c:forEach var="relist" items="${listres }" varStatus="Res_Num">
                         <div class="listrow">
                             <div class="col_list" id='brd_div1'>
+                            <input type="text"  name="res_num" value="${relist.res_num}"   hidden  >
                                 ${relist.res_num}
                             </div>
                             <div class="col_list" id="brd_div2">
@@ -236,19 +291,23 @@
                                 ${relist.eq_serial}
                             </div>
                             <div class=" col_list" id='brd_div4'>
-                                <fmt:formatDate pattern="yyyy-MM-dd" value="${relist.res_start}" />
+                                ${relist.res_start}
                             </div>
                             <div class="col_list" id='brd_div5'>
-                                <fmt:formatDate pattern="yyyy-MM-dd" value="${relist.res_end}" />
+                               ${relist.res_end}
                             </div>
                             <div class="col_list" id='brd_div6'>
+                            <input type="text"  name="res_Status" value="${relist.res_Status}"   hidden  >
                                ${relist.res_Status}
                             </div>
-                            <div class="col_list" id='brd_div7'>
-                                <button type="button" class="btn btn-light" id='brd_btn'>승인</button>
-                                <button type="button" class="btn btn-light" id='brd_btn'>취소</button>
+                            <div class="col_list" id='brd_div7' >
+                                <button type="button" class="btn btn-light ResStateupdate" id='brd_btn'>승인</button>
+                                <input type="hidden" value="${relist.res_num}" />
+                                <input type="hidden" value="${relist.res_Status}" />
+                                <button type="button" class="btn btn-light CancleRes" id='brd_btn'>취소</button>
+                                <input type="hidden" value="${relist.res_num}" />
                             </div>
-
+                           
                         </div>
                     </c:forEach>
                 </c:when>
@@ -279,8 +338,24 @@
                     </div>
                 </c:when>
             </c:choose>
+            
         </div>
     </div>
+    
+    <form action="${contextPath}/rent/ResStateupdate.do" id="ResupdateForm" method="post" enctype="multipart/form-data">
+		<input type="hidden" id="AuthResnum" name="AuthResnum" value="" />
+		<input type="hidden" id="ResStatus" name="ResStatus" value="" />
+		
+	</form>
+	
+
+	
+	<form action="${contextPath}/rent/CancleRes.do" id="RescancleForm" method="post">
+		<input type="hidden" id="cancleResnum" name="Resnum" value="" />
+	</form>
+	
+	
+	
 </body>
 
 </html>

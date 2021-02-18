@@ -112,18 +112,45 @@
   </delete>
   
   <!-- 예약테이블 예약업데이트  -->
-   <update id="Resupdate"  parameterType="RentVO">
+   <update id="Resupdate"  parameterType="java.util.Map">
     <![CDATA[
-      
+       update reserve  
+           set res_Status='대여중'
+             where res_Status = '예약중' and  res_num =#{AuthResnum}
     ]]>
   </update>
   
    <!-- 예약승인 로그추가  -->
-   <update id="Resupdate"  parameterType="RentVO">
+   <insert id="insertLogResupdate"  parameterType="java.util.Map">
     <![CDATA[
-      
+      insert into log(log_num,res_num,eq_serial,user_id,status,log_maker,res_start,res_end) 
+	select log_num_SEQ.NEXTVAL,res_num,eq_serial,user_id,'대여승인','관리자',res_start,res_end from reserve
     ]]>
-  </update>
+  </insert>
+  
+   <!--예약명  선택 
+     <select id="selectResnumByCode" parameterType="int" >
+    <![CDATA[
+	SELECT res_num from reserve
+	where res_num = #{res_num}
+            	]]>
+    </select> -->
+  
+  
+   <!-- 예약 취소  로그추가  -->
+   <insert id="insertLogRescancle" parameterType="RentVO"   >
+    <![CDATA[
+     insert into log(log_num,res_num,eq_serial,user_id,status,log_maker,res_start,res_end) 
+	select log_num_SEQ.NEXTVAL,res_num,eq_serial,user_id,'예약취소','관리자',res_start,res_end from reserve
+    ]]>
+  </insert>
+  
+  <!-- 예약 취소 예약중삭제  -->
+   <delete id="deleteRescancle" parameterType="int">
+    <![CDATA[
+      delete from reserve where res_num=#{res_num}
+    ]]>
+  </delete>
   
   
 	
