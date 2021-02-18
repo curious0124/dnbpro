@@ -28,6 +28,8 @@ public interface RentService {
 	
 	public void CancleRes(RentVO rentVO) throws Exception;
 	
+	public void ReturnRenting(RentVO rentVO) throws Exception;
+	
 	
 	
 	

@@ -195,13 +195,12 @@
 						
 						var res_num = $(this).parent().find(
 								"input:nth-child(2)").val();
-						var res_Status = $(this).parent().find(
-						        "input:nth-child(3)").val();
+						
 
 				
 						console.log(res_num);
 						$("#AuthResnum").val(res_num);
-						$("#ResStatus").val(res_Status);
+					
 						
 					
 						
@@ -281,7 +280,7 @@
                     <c:forEach var="relist" items="${listres }" varStatus="Res_Num">
                         <div class="listrow">
                             <div class="col_list" id='brd_div1'>
-                            <input type="text"  name="res_num" value="${relist.res_num}"   hidden  >
+  <!--대여테이블로 넘기는 값 -->    <input type="text"  name="res_num" value="${relist.res_num}"   hidden  >
                                 ${relist.res_num}
                             </div>
                             <div class="col_list" id="brd_div2">
@@ -301,9 +300,9 @@
                                ${relist.res_Status}
                             </div>
                             <div class="col_list" id='brd_div7' >
-                                <button type="button" class="btn btn-light ResStateupdate" id='brd_btn'>승인</button>
+                                <button type="button" class="btn btn-light ResStateupdate" id='brd_btn'>대여승인</button>
                                 <input type="hidden" value="${relist.res_num}" />
-                                <input type="hidden" value="${relist.res_Status}" />
+                               
                                 <button type="button" class="btn btn-light CancleRes" id='brd_btn'>취소</button>
                                 <input type="hidden" value="${relist.res_num}" />
                             </div>
@@ -344,7 +343,7 @@
     
     <form action="${contextPath}/rent/ResStateupdate.do" id="ResupdateForm" method="post" enctype="multipart/form-data">
 		<input type="hidden" id="AuthResnum" name="AuthResnum" value="" />
-		<input type="hidden" id="ResStatus" name="ResStatus" value="" />
+		
 		
 	</form>
 	

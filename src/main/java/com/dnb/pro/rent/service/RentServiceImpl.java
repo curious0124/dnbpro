@@ -107,4 +107,13 @@ import com.dnb.pro.rent.vo.RentVO;
 			rentDAO.deleteRescancle(res_num);
 		}
 		
+		
+		@Override
+		public void ReturnRenting(RentVO rentVO) throws Exception {
+			int res_num = rentVO.getRes_num();
+		
+			
+			rentDAO.insertLogResreturn(rentVO);
+			rentDAO.deleteRenting(res_num);
+		}
 }
