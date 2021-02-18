@@ -47,7 +47,42 @@ public class FileDownloadController {
 		out.close();
 	}
 	
+
+	private static final String edu_ARTICLE_IMAGE_REPO = "\\\\\\\\DIGITAL20\\\\dnb\\\\education";
+	@RequestMapping("/edu_download.do")
+	protected void edu_download(@RequestParam("edu_thuming") String edu_thuming,
+							@RequestParam("edu_num") String edu_num,
+							HttpServletResponse response) throws Exception{
+		OutputStream out = response.getOutputStream();
+		String downFile = edu_ARTICLE_IMAGE_REPO+"\\"+edu_num+"\\"+edu_thuming;
+		File image = new File(downFile);
+		
+		//확장자를 제외한 원본 이미지 파일의 이름을 가져옵니다.
+		int lastIndex = edu_thuming.lastIndexOf(".");
+		String fileName = edu_thuming.substring(0,lastIndex);
+				
+		File thumbnail = new File(edu_ARTICLE_IMAGE_REPO+"\\"+edu_num+"\\"+fileName+".png");	//원본이미지 파일이름과 같은 썸네일파일에 대한 File객체 생성
+		if(image.exists()) {	//원본이미지 파일을 가로세로50픽셀인 png형식의 썸네일 이미지파일로 생성
+			thumbnail.getParentFile().mkdirs();
+			Thumbnails.of(image).size(100,100).outputFormat("png").toFile(thumbnail);
+		}
+		
+		//생성된 파일을 브라우저로 전송
+		FileInputStream in = new FileInputStream(thumbnail);
+		byte[] buffer = new byte[1024 * 8];
+		while (true) {	//버퍼를 이용해 한번에 8Kbyte씩 브라우저로 전송 
+			int count = in.read(buffer); // 버퍼에 읽어들인 문자개수
+			if (count == -1) // 버퍼의 마지막에 도달했는지 체크
+				break;
+			out.write(buffer, 0, count);
+		}
+		
+		in.close();
+		out.close();
+	}
+
 	
 	
 	
+
 }

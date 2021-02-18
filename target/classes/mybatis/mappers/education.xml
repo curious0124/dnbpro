@@ -36,7 +36,7 @@ select edu_num, cate_name, eq_name, edu_title, edu_content, edu_pub_date, edu_wr
             	]]>
     </select> 
     
-<!--  교육 번호 조회  -->
+<!--  교육 번호 조회 다름  -->
    <select id="educationdetail" parameterType="educationVO" resultType="com.dnb.pro.education.vo.educationVO">
     <![CDATA[
     select * from education 
@@ -44,6 +44,52 @@ select edu_num, cate_name, eq_name, edu_title, edu_content, edu_pub_date, edu_wr
             	]]>
     </select>
     
+   <!-- 새글 등록 -->
+   <insert id="insertNeweducation" parameterType="java.util.Map">
+        <![CDATA[
+           insert into education(edu_num, cate_name, eq_name, edu_title, edu_content, edu_writer, edu_thuming)  
+           values (EDU_NUM_SEQ.NEXTVAL,#{cate_name},#{eq_name},#{edu_title},#{edu_content},#{edu_writer},#{edu_thuming})
+        ]]>
+   </insert>
+    <select id="selectNeweducationNO" resultType="int">
+        <![CDATA[
+           select max(edu_num) + 1 from education
+           ]]>
+   </select>
+   
+   
+      <!-- 글쓰기 창 에 게시판이름 자동으로 뿌리기 -->
+   <select id="selecteducationName" resultMap="educationResult">
+        <![CDATA[
+           select *  
+         from education 
+         where edu_num=#{edu_num}
+        ]]>
+   </select>    
+   
+        <!-- 선택 글 수정 -->
+     <update id="updateeducation" parameterType="java.util.Map">
+        <![CDATA[
+           update education set cate_name=#{cate_name}, edu_title=#{edu_title}, eq_name=#{eq_name}, edu_content=#{edu_content}  
+           where edu_num=#{edu_num}
+           ]]>    
+     </update>
+     
+     <update id="updateeducationNewimg" parameterType="java.util.Map">
+        <![CDATA[
+           update education set cate_name=#{cate_name}, edu_title=#{edu_title}, eq_name=#{eq_name}, edu_content=#{edu_content}, edu_thuming=#{edu_thuming}  
+           where edu_num=#{edu_num}
+           ]]>
+   </update>
+   
+   <!-- 선택 글 삭제 -->
+   <delete id="deleteeducation" >
+      <![CDATA[
+           delete from education 
+           where edu_num=#{edu_num}
+           ]]>   
+   </delete>
+ 	
 <!-- 교육 카테고리별 보기 -->
 	<select id="selectCateEduList" parameterType="educationVO" resultType="com.dnb.pro.education.vo.educationVO" resultMap="educationResult" >
     <![CDATA[
@@ -64,13 +110,5 @@ select edu_num, cate_name, eq_name, edu_title, edu_content, edu_pub_date, edu_wr
 		SELECT * from education where cate_name = #{cate_name}  ORDER BY edu_num DESC
         ]]>
     </select> 
-    
-    <!-- 페이징 안햇ㅂ -->
-<!--    <select id="educationdetail" parameterType="educationVO" resultType="com.dnb.pro.education.vo.educationVO">
-    <![CDATA[
-    select ROWNUM as
-            	]]>
-    </select> -->
-    
 </mapper>
 
