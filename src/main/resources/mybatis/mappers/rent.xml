@@ -111,7 +111,7 @@
     ]]>
   </delete>
   
-<<<<<<< HEAD
+
   <!-- 예약테이블 예약업데이트  -->
    <update id="Resupdate"  parameterType="java.util.Map">
     <![CDATA[
@@ -152,10 +152,7 @@
       delete from reserve where res_num=#{res_num}
     ]]>
   </delete>
-=======
- 
->>>>>>> branch 'develop' of https://github.com/curious0124/dnbpro.git
-  
+
   
    
 </mapper>
