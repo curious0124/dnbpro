@@ -86,11 +86,7 @@ private static final Logger logger = LoggerFactory.getLogger(BoardControllerImpl
 	public ModelAndView admin_board_list(Criteria cri, HttpServletRequest request, HttpServletResponse response) throws Exception{
 		String viewName = (String)request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView(viewName);
-		System.out.println(cri.getBrd_num());
-		System.out.println(cri.getPage());
-		System.out.println(cri.getPerPageNum());
-		System.out.println(cri.getRowStart());
-		System.out.println(cri.getRowEnd());
+
 		
 		List articlesList = boardService.listArticles(cri);
 //		System.out.println(articlesList.get(0));
