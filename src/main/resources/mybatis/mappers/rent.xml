@@ -1,165 +1,158 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper
-	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="mapper.rent">
-<!-- 리절트 맵 정의 -->	
-	<resultMap id="rentEquipResult" type="RentVO">
-	    <result property="resq_num" column="resq_num" />
-		<result property="user_id" column="user_id" />
-		<result property="eq_serial" column="eq_serial" />
-		<result property="resq_start" column="resq_start" />
-		<result property="resq_end" column="resq_end" />
-		<result property="resq_date" column="resq_date" />
-		
-		
-		<result property="res_num" column="res_num" />
-		<result property="res_start" column="res_start" />
-		<result property="res_end" column="res_end" />
-		<result property="res_Status" column="res_Status" />
-		
-		<result property="return_num" column="return_num" />
-		<result property="express_num" column="express_num" />
-		<result property="return_date" column="return_date" />
-		<result property="return_Status" column="return_Status" />
-		
-		<result property="log_num" column="log_num" />
-		<result property="status" column="status" />
-		<result property="log_maker" column="log_maker" />
-		<result property="log_date" column="log_date" />
-	    <result property="cate_name" column="cate_name" />
-		<result property="eq_name" column="eq_name" />
-	</resultMap>
-	
-	
-	  <!-- 로그리스트 조회 -->
+<!-- 리절트 맵 정의 -->   
+   <resultMap id="rentEquipResult" type="RentVO">
+       <result property="resq_num" column="resq_num" />
+      <result property="user_id" column="user_id" />
+      <result property="eq_serial" column="eq_serial" />
+      <result property="resq_start" column="resq_start" />
+      <result property="resq_end" column="resq_end" />
+      <result property="resq_date" column="resq_date" />
+      
+      
+      <result property="res_num" column="res_num" />
+      <result property="res_start" column="res_start" />
+      <result property="res_end" column="res_end" />
+      <result property="res_Status" column="res_Status" />
+      
+      <result property="return_num" column="return_num" />
+      <result property="express_num" column="express_num" />
+      <result property="return_date" column="return_date" />
+      <result property="return_Status" column="return_Status" />
+      
+      <result property="log_num" column="log_num" />
+      <result property="status" column="status" />
+      <result property="log_maker" column="log_maker" />
+      <result property="log_date" column="lo   g_date" />
+       <result property="cate_name" column="cate_name" />
+      <result property="eq_name" column="eq_name" />
+   </resultMap>
+   
+   
+     <!-- 예약신청 리스트 조회 -->
   <select id="selectResqList" resultMap="rentEquipResult"   >
     <![CDATA[
-      SELECT Resq_num,User_id,Eq_serial,Resq_start ,Resq_end,Resq_date  from Resq	
+      SELECT Resq_num,User_id,Eq_serial,Resq_start ,Resq_end,Resq_date  from Resq   
     ]]>
   </select>
   
-  
+   <!-- 로그리스트 조회 -->
    <select id="selectAllLogList" resultMap="rentEquipResult"   >
     <![CDATA[
-      SELECT Log_num, Resq_num, Res_num, Return_num, User_id, Status, Log_maker,Res_start,Res_end,Log_date,Eq_name,Cate_name,Eq_serial from Log	
+      SELECT Log_num, Resq_num, Res_num, Return_num, User_id, Status, Log_maker,Res_start,Res_end,Log_date,Eq_name,Cate_name,Eq_serial from Log   
     ]]>
   </select>
-  
-  
-  
-	<!-- 예약신청리스트 조회 
-	
-	<select id="selectAllResqList" resultMap="rentEquipResult"   >
+   <!-- 예약리스트 조회 -->
+   <select id="selectAllResList" resultMap="rentEquipResult"   >
     <![CDATA[
-  	
+      SELECT res_num, User_id, Eq_serial, Res_start, Res_end, Res_Status from reserve   
+      where res_status = '예약중'   
     ]]>
   </select>
+  
+  <!-- 대여리스트 조회 -->
+   <select id="selectAllRentList" resultMap="rentEquipResult"   >
+    <![CDATA[
+      SELECT res_num, User_id, Eq_serial, Res_start, Res_end, Res_Status from reserve   
+      where res_status = '대여중'   
+    ]]>
+  </select>
+  
+  <!-- 배송반납리스트 조회 -->
+   <select id="selectAllReturnList" resultMap="rentEquipResult"   >
+    <![CDATA[
+      SELECT return_num, res_num, express_num, return_date,return_Status,user_id from return
+      where return_Status = '배송반납신청중'   
+      
+    ]]>
+  </select>
+  
+  <!-- 예약신청 승인 예약중추가-->
+   <insert id="insertRes" parameterType="RentVO"   >
+    <![CDATA[
+     insert into reserve(res_num,user_id,eq_serial,res_start,res_end) 
+   select  res_num_seq.nextval,user_id,eq_serial,resq_start,resq_end from resq
+   
+    ]]>
+  </insert>
+  
+  
+  <!-- 예약신청 승인  로그추가  -->
+   <insert id="authinsertLogres" parameterType="RentVO"   >
+    <![CDATA[
+     insert into log(log_num, res_num,eq_serial,user_id,status,log_maker,res_start,res_end) 
+   select log_num_SEQ.NEXTVAL, res_num,eq_serial,user_id,'예약승인','관리자',res_start,res_end from reserve
+    ]]>
+  </insert>
+ 
+  <!-- 예약신청 승인 예약신청삭제 -->
+   <delete id="deleteResqapply" parameterType="int">
+    <![CDATA[
+      delete from resq where resq_num=#{resq_num}
+    ]]>
+  </delete>
+  
+  <!-- 예약신청 취소  로그추가  -->
+   <insert id="insertLogResqcancle" parameterType="RentVO"   >
+    <![CDATA[
+     insert into log(log_num,resq_num,eq_serial,user_id,status,log_maker,res_start,res_end) 
+   select log_num_SEQ.NEXTVAL,resq_num,eq_serial,user_id,'예약신청취소','관리자',resq_start,resq_end from resq
+    ]]>
+  </insert>
+  
+  <!-- 예약신청 취소 예약신청삭제  -->
+   <delete id="deleteResqapplycancle" parameterType="int">
+    <![CDATA[
+      delete from resq where resq_num=#{resq_num}
+    ]]>
+  </delete>
   
 
-	
-	 예약신청 메서드 
-	<insert id="reservationrequest1"  parameterType="rentVO">
-	 <![CDATA[
-			insert into Resq (Resq_num, User_id, Eq_serial, Resq_start, Resq_end) 
-			values (#[Resq_num],#[User_id],#[Eq_serial],#[Resq_start],#[Resq_end]);
-			
-		]]>
-	</insert>
-	
-	<insert id="reservationrequest2"  parameterType="rentVO">
-	 <![CDATA[
-			
-			insert into Log (Log_num,Resq_num,User_id, Log_maker,Res_start,Res_end,Eq_name,Cate_name,Eq_serial) 
-			values (#[Log_num],#[Resq_num],#[User_id],#[Log_maker],#[Res_start],#[Res_end],#[Eq_name],#[Cate_name],#[Eq_serial]);
-			
-		]]>
-	</insert>
-	
-	<insert id="reqationauthor1"  parameterType="rentVO">
-	 <![CDATA[
-	 insert into Reserve (Res_num, User_id, Eq_serial, Res_start, Res_end, Res_Status) 
-			values (#[Res_num],#[User_id],#[Eq_serial],#[Res_start],#[Res_end],#[Res_Status]);
-	 ]]>
-	</insert>
-	
-	예약신청승인 메서드 
-	<insert id="reqationauthor2"  parameterType="rentVO">
-	 <![CDATA[
-	 	insert into Log (Log_num,, Res_num, User_id, Status, Log_maker,Res_start,Res_end,Eq_name,Cate_name,Eq_serial) 
-			values (#[Log_num],#[Res_num],#[User_id],#[Status],#[Log_maker],#[Res_start],#[Res_end],#[Eq_name],#[Cate_name],#[Eq_serial]);
-	 ]]>
-	</insert>
-	
-	<delete id="reqationauthor3"  parameterType="int">
-	     <![CDATA[
-	        delete from resq 
-	    where Resq_num in (
-	    SELECT Resq_num FROM resq
-	     START WITH Resq_num = #{Resq_num};
-	    	 ]]>
-	</delete>
-	
-	예약승인 메서드 
-	 <select id="selectReservation" resultType="int"  >
-		<![CDATA[
-			
-		]]>
-	</select>
-	<update id="reservationauthor1"  parameterType="java.util.Map">
-	 <![CDATA[
-	 	update Reserve set (Res_Status) 
-			values (#[Res_Status]);
-	 ]]>
-	</update>
-	
-	<insert id="reservationauthor2"  parameterType="rentVO">
-	 <![CDATA[
-	 	insert into Log (Log_num,, Res_num, User_id, Status, Log_maker,Res_start,Res_end,Log_date,Eq_name,Cate_name,Eq_serial) 
-			values (#[Log_num],#[Res_num],#[User_id],#[Status],#[Log_maker],#[Res_start],#[Res_end],#[Log_date],#[Eq_name],#[Cate_name],#[Eq_serial]);
-	 ]]>
-	</insert>
-	
-	 반납 메서드 
-	
-	<insert id="returnauthor1"  parameterType="rentVO">
-	 <![CDATA[
-	 	insert into Return (Return_num,, Res_num, Express_num,Return_Status) 
-			values (#[Return_num],#[Res_num],#[Express_num],#[Return_Status]);
-	 ]]>
-	</insert>
-	
-	<insert id="returnauthor2"  parameterType="rentVO">
-	 <![CDATA[
-	 	insert into Log (Log_num,, Return_num, User_id, Status, Log_maker,Res_start,Res_end,,Eq_name,Cate_name,Eq_serial) 
-			values (#[Log_num],#[Return_num],#[User_id],#[Status],#[Log_maker],#[Res_start],#[Res_end],#[Eq_name],#[Cate_name],#[Eq_serial]);
-	 ]]>
-	</insert>
-	
-	<delete id="returnauthor3"  parameterType="int">
-	     <![CDATA[
-	        delete from Reserve
-	     where Res_num in (
-	    SELECT Res_num FROM Reserve
-	     START WITH Res_num = #{Res_num};
-	    	 ]]>
-	</delete>
-	
-	예약신청취소 메서드
-		<insert id="reqcancle"  parameterType="rentVO">
-	 <![CDATA[
-	 	insert into Log (Log_num,, Resq_num, User_id, Status, Log_maker,Resq_start,Resq_end,,Eq_name,Cate_name,Eq_serial) 
-			values (#[Log_num],#[Resq_num],#[User_id],#[Status],#[Log_maker],#[Resq_start],#[Resq_end],#[Eq_name],#[Cate_name],#[Eq_serial]);
-	 ]]>
-	</insert>
-	
-	
-	 예약취소 메서드 
-	<insert id="rescancle"  parameterType="rentVO">
-	 <![CDATA[
-	 	insert into Log (Log_num,, Res_num, User_id, Status, Log_maker,Res_start,Res_end,,Eq_name,Cate_name,Eq_serial) 
-			values (#[Log_num],#[Res_num],#[User_id],#[Status],#[Log_maker],#[Res_start],#[Res_end],#[Eq_name],#[Cate_name],#[Eq_serial]);
-	 ]]>
-	</insert>   -->
+  <!-- 예약테이블 예약업데이트  -->
+   <update id="Resupdate"  parameterType="java.util.Map">
+    <![CDATA[
+       update reserve  
+           set res_Status='대여중'
+             where res_Status = '예약중' and  res_num =#{AuthResnum}
+    ]]>
+  </update>
+  
+   <!-- 예약승인 로그추가  -->
+   <insert id="insertLogResupdate"  parameterType="java.util.Map">
+    <![CDATA[
+      insert into log(log_num,res_num,eq_serial,user_id,status,log_maker,res_start,res_end) 
+	select log_num_SEQ.NEXTVAL,res_num,eq_serial,user_id,'대여승인','관리자',res_start,res_end from reserve
+    ]]>
+  </insert>
+  
+   <!--예약명  선택 
+     <select id="selectResnumByCode" parameterType="int" >
+    <![CDATA[
+	SELECT res_num from reserve
+	where res_num = #{res_num}
+            	]]>
+    </select> -->
+  
+  
+   <!-- 예약 취소  로그추가  -->
+   <insert id="insertLogRescancle" parameterType="RentVO"   >
+    <![CDATA[
+     insert into log(log_num,res_num,eq_serial,user_id,status,log_maker,res_start,res_end) 
+	select log_num_SEQ.NEXTVAL,res_num,eq_serial,user_id,'예약취소','관리자',res_start,res_end from reserve
+    ]]>
+  </insert>
+  
+  <!-- 예약 취소 예약중삭제  -->
+   <delete id="deleteRescancle" parameterType="int">
+    <![CDATA[
+      delete from reserve where res_num=#{res_num}
+    ]]>
+  </delete>
+
+  
+   
 </mapper>

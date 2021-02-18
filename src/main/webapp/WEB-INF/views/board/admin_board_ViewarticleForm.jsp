@@ -170,9 +170,8 @@
 				    <img src="${contextPath}/download.do?board_num=${article.board_num}&board_img=${article.board_img}" id="preview"  /><br>
 				   
 			 </c:when>
-			<c:otherwise>
-				    
-			</c:otherwise>
+			<%-- <c:otherwise>	 
+			</c:otherwise> --%>
 	 </c:choose>
             
         </div>

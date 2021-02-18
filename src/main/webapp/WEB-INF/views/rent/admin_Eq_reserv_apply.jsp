@@ -126,6 +126,11 @@
             padding: 0px 0px 0px 0px;
 
         }
+        
+        .tit{
+          
+          font-size: 25px;
+        }
 
         #brd_div1 {
             width: 100px;
@@ -175,63 +180,63 @@
     </style>
     <script src="${contextPath}/resources/js/jquery-3.5.1.min.js"> </script>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
-    <script>
-        var path;
-        $(function() {
+   
+   <script>
+	$(function() {
+		$(".Authres").click(
+				function() {
+					var answer = confirm("예약신청을 승인하시겠습니까?");
+					if (answer == true) {
 
+						
+						var resq_num = $(this).parent().find(
+								"input:nth-child(1)").val();
 
-            $('.admin_menusub').hide();
+				
+						console.log(resq_num);
+						$("#Resqnum").val(resq_num);
+						
 
-            $('.main_menu').click(function() {
-                $('.admin_menusub').hide();
-                $(this).find('ul').show();
-            });
+					$("#ResauthForm").submit();
+					}
+				});
 
-        });
+	});
+</script>
 
-    </script>
+<script>
+	$(function() {
 
+		$(".CancleResq").click(
+				function() {
+					var answer = confirm("예약신청을 취소하시겠습니까?");
+					if (answer == true) {
+
+						
+						var resq_num = $(this).parent().find(
+								"input:nth-child(2)").val();
+
+				
+						
+						$("#cancleResqnum").val(resq_num);
+						var test = $('#cancleResqnum').val();
+						
+						
+
+						$("#ResqcancleForm").submit();
+					}
+				});
+
+	});
+</script>
 </head>
 
+
 <body>
+
+ <div class="tit"><strong>예약 신청 현황</strong></div><br>
     <div id='board_content'>
-        <!--menu bar -->
-        <div id='admin_menu'>
-            <ul id="admin_menugroup">
-                <li class="main_menu">
-                    <div class="admin_menutitle">장비관리</div>
-                    <ul class="admin_menusub">
-                        <li class="admin_menusubli"><a href="#">보유장비 등록/관리</a></li>
-                        <li class="admin_menusubli"><a href="#">예약신청 관리</a></li>
-                        <li class="admin_menusubli"><a href="#">예약/대여/반납 관리</a></li>
-                        <li class="admin_menusubli"><a href="#">배송반납 신청 리스트</a></li>
-                        <li class="admin_menusubli"><a href="#">교육 등록/관리</a></li>
-                        <li class="admin_menusubli"><a href="#">사용자로그 관리</a></li>
-                    </ul>
-                </li>
-                <li class="main_menu">
-                    <div class="admin_menutitle">회원관리</div>
-                    <ul class="admin_menusub">
-                        <li class="admin_menusubli"><a href="#">회원목록</a></li>
-
-                    </ul>
-                </li>
-                <li class="main_menu">
-                    <div class="admin_menutitle">사이트관리</div>
-                    <ul class="admin_menusub">
-                        <li class="admin_menusubli" id="notice"><a href="#">공지사항 관리</a></li>
-                        <li class="admin_menusubli" id="FAQ"><a href="#">FAQ 관리</a></li>
-                        <li class="admin_menusubli" id="notice"><a href="#">배너 관리</a></li>
-                        <li class="admin_menusubli" id="notice"><a href="#">사업소개 관리</a></li>
-                        <li class="admin_menusubli" id="notice"><a href="#">홍보영상 관리</a></li>
-                        <li class="admin_menusubli" id="notice"><a href="#">지원서비스 관리</a></li>
-                    </ul>
-                </li>
-
-            </ul>
-        </div>
-
-
+      
 
         <!--board_container -->
         <div class="board_container">
@@ -259,6 +264,7 @@
                 <div class="col_top" id='brd_div7'>
                     확인
                 </div>
+                
             </div>
 
             <c:choose>
@@ -277,19 +283,21 @@
                                 ${List.eq_serial}
                             </div>
                             <div class=" col_list" id='brd_div4'>
-                                <fmt:formatDate pattern="yyyy-MM-dd" value="${List.resq_start}" />
+                                ${List.resq_start}
                             </div>
                             <div class="col_list" id='brd_div5'>
-                                <fmt:formatDate pattern="yyyy-MM-dd" value="${List.resq_end}" />
+                                ${List.resq_end}
                             </div>
                             <div class="col_list" id='brd_div6'>
-                                <fmt:formatDate pattern="yyyy-MM-dd" value="${List.resq_date}" />
+                                ${List.resq_date}
                             </div>
                             <div class="col_list" id='brd_div7'>
-                                <button type="button" class="btn btn-light" id='brd_btn'>승인</button>
-                                <button type="button" class="btn btn-light" id='brd_btn'>취소</button>
+                                <button type="button" class="btn btn-light Authres" id='brd_btn'>승인</button>
+                                <input type="hidden" value="${List.resq_num}"/>
+                                 <button type="button" class="btn btn-light CancleResq" id='brd_btn'>취소</button>
+                                 <input type="hidden" value="${List.resq_num}" />
                             </div>
-
+                            
                         </div>
                     </c:forEach>
                 </c:when>
@@ -322,6 +330,15 @@
             </c:choose>
         </div>
     </div>
+    
+    <form action="${contextPath}/rent/AuthRes.do" id="ResauthForm" method="post">
+		<input type="hidden" id="Resqnum" name="Resqnum" value="" />
+	</form>
+	
+	 <form action="${contextPath}/rent/CancleResq.do" id="ResqcancleForm" method="post">
+		<input type="hidden" id="cancleResqnum" name="Resqnum" value="" />
+	</form>
+    
 </body>
 
 </html>

@@ -21,8 +21,18 @@
       <put-attribute name="title" value="예약신청창" />
       <put-attribute name="body" value="/WEB-INF/views/rent/admin_Eq_reserv_apply.jsp" />
    </definition>
-    
-   
+    <definition name="/rent/admin_Eq_reserv_list" extends="baseLayout">
+      <put-attribute name="title" value="예약현황창" />
+      <put-attribute name="body" value="/WEB-INF/views/rent/admin_Eq_reserv_list.jsp" />
+   </definition>
+   <definition name="/rent/admin_Eq_rent_list" extends="baseLayout">
+      <put-attribute name="title" value="대여현황창" />
+      <put-attribute name="body" value="/WEB-INF/views/rent/admin_Eq_rent_list.jsp" />
+   </definition>
+   <definition name="/rent/admin_Eq_return_list" extends="baseLayout">
+      <put-attribute name="title" value="배송반납현황창" />
+      <put-attribute name="body" value="/WEB-INF/views/rent/admin_Eq_return_list.jsp" />
+   </definition>
    <!-- 
    <definition name="/board/articleForm" extends="baseLayout">
    	<put-attribute name="title" value="글쓰기창"/>

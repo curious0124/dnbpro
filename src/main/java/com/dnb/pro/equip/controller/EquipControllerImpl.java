@@ -353,7 +353,7 @@ public class EquipControllerImpl implements EquipController {
 			
 			//새 글을 추가한 후 메시지를 전달합니다.
 			message = "<script>";
-			message += " alert('글 수정을 완료 했습니다.');";
+			message += " alert('상태변경을  완료 했습니다.');";
 			 message += " location.href='"+multipartRequest.getContextPath()+"/equip/admin_Eq_manage_list.do';";
 			message += " </script>";
 			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);

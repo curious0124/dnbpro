@@ -157,21 +157,62 @@
 
     </style>
 </head>
-
+<script src="js/jquery-3.5.1.min.js"></script>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
-<script src="${contextPath}/resources/js/jquery-3.5.1.min.js"> </script>
 <script>
-    
-    $(function(){           
-            $('#menucontent').load("${contextPath}/resources/subjsp/admin_menubar.jsp")
-
+    var path;
+    $(function(){
         
+        
+            $('.admin_menusub').hide();
+
+            $('.main_menu').click(function(){
+                $('.admin_menusub').hide();
+                $(this).find('ul').show();
+            });
+   
     });
 
-
+       
 </script>
 <body>
- 
+ <div id='board_content'>
+   <!--menu bar -->
+   <div id='admin_menu'>
+    <ul id="admin_menugroup">
+       <li class="main_menu">
+            <div class="admin_menutitle">장비관리</div>
+            <ul class="admin_menusub">
+                <li class="admin_menusubli"><a href="#">보유장비 등록/관리</a></li>
+                <li class="admin_menusubli"><a href="#">예약신청 관리</a></li>
+                <li class="admin_menusubli"><a href="#">예약/대여/반납 관리</a></li>
+                <li class="admin_menusubli"><a href="#">배송반납 신청 리스트</a></li>
+                <li class="admin_menusubli"><a href="#">교육 등록/관리</a></li>
+                <li class="admin_menusubli"><a href="#">사용자로그 관리</a></li>
+            </ul>
+        </li>
+        <li class="main_menu">
+            <div class="admin_menutitle">회원관리</div>
+            <ul class="admin_menusub">
+                <li class="admin_menusubli"><a href="#">회원목록</a></li>
+                
+            </ul>
+        </li>
+        <li class="main_menu">
+            <div class="admin_menutitle">사이트관리</div>
+            <ul class="admin_menusub">
+                <li class="admin_menusubli"id="notice"><a href="#">공지사항 관리</a></li>
+                <li class="admin_menusubli"id="FAQ"><a href="#">FAQ 관리</a></li>
+                <li class="admin_menusubli"id="notice"><a href="#">배너 관리</a></li>
+                <li class="admin_menusubli"id="notice"><a href="#">사업소개 관리</a></li>
+                <li class="admin_menusubli"id="notice"><a href="#">홍보영상 관리</a></li>
+                <li class="admin_menusubli"id="notice"><a href="#">지원서비스 관리</a></li>
+            </ul>
+        </li>
+        
+    </ul>
+    </div>
+    
       
  
     
@@ -270,7 +311,7 @@
             </table>
         </form>
     </div>
-      
+      </div>
     
 </body>
 

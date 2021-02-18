@@ -175,7 +175,7 @@ from (select eql.eq_name,eq_serial,eql.eq_state
     </delete>
     
     <!-- 장비 상태창  수정 -->
-     <update id="updateSerialState" parameterType="String">
+     <update id="updateSerialState" parameterType="java.util.Map">
         <![CDATA[
            update eq_list 
            set eq_state=#{eq_state}

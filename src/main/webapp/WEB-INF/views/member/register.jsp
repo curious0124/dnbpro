@@ -147,52 +147,204 @@
             }
         }
     </script>
+<style>
+/*     * {
+
+        padding: 2px;
+    } */
+
+    #bottom_btn {
+/*         margin-top: 50px;
+        margin-bottom: 100px; */
+    }
+
+    #company_text {
+         font-size: 20px;
+        font-weight: bold;
+        color: red;
+    }
+
+    #main_reg {
+         font-size: 30px;
+        font-weight: bold;
+        color: black;
+    }
+
+</style>
 <body>
-	<section id="container">
-		<form action="${contextPath}/member/addMember.do" method="post">
-			<div class="form-group has-feedback">
-				<label class="control-label" for="user_pwd">아이디</label> 
-				<input class="form-control" type="text" name="_user_id" id="_user_id" />
-				<input class="form-control" type="hidden" name="user_id" id="user_id" />
-				<input type="button" id="btnOverlapped" value="중복체크" onClick="fn_overlapped()" />
-			</div>
-			 <div>
-                <label class="control-label" for="user_pwd">패스워드</label>
-                <input class="form-control"  type="password" name="user_pwd" id="pw"  onchange="check_pw()">
-                <span id="check2"></span>
-            </div>
-            <div>
-                <label class="control-label" for="user_pwd">패스워드 확인</label> 
-                <input class="form-control"  type="password" name="user_pwd" id="user_pwd" onchange="check_pw()">
-                <span id="check"></span>
-            </div>
-			<div class="form-group has-feedback">
-				<label class="control-label" for="user_name">성명</label> <input
-					class="form-control" type="text" id="user_name" name="user_name" />
-			</div>
-			<div class="form-group has-feedback">
-				<label class="control-label" for="user_email">이메일</label> <input
-					class="form-control" type="email" id="user_email" name="user_email" />
-			</div>
-			<div class="form-group has-feedback">
-				<label class="control-label" for="user_identity">주민등록번호(123-123)</label>
-				<input class="form-control" type="text" id="user_identity"
-					name="user_identity" />
-			</div>
-			<div class="form-group has-feedback">
-				<label class="control-label" for="user_phone">핸드폰</label> <input
-					class="form-control" type="text" id="user_phone" name="user_phone" />
-			</div>
-			<div class="form-group has-feedback">
-				<label class="control-label" for="user_addr">주소</label> <input
-					class="form-control" type="text" id="user_addr" name="user_addr" />
-			</div>
-			<div class="form-group has-feedback">
-				<button class="btn btn-success" type="submit" id="submit">회원가입</button>
-				<button class="cencle btn btn-danger" type="button">취소</button>
-			</div>
-		</form>
-	</section>
+
+    <div>
+        <section id="container">
+            <form class="col" action="${contextPath}/member/addMember.do" method="post">
+                <!-- 필수 입력 정보 -->
+                <div>
+                    <span id="main_reg">회 원 가 입</span>
+                    <hr>
+                    <div>
+                        <span id="company_text">필수 입력 정보</span>
+                    </div>
+                </div>
+                <div class="">
+                    <div class="row">
+                        <div class=""><label class="control-label" for="user_pwd">아이디</label></div>
+                        <div class="col">
+                            <input class="form-control" type="text" name="_user_id" id="_user_id" placeholder="6자리 이상 입력하세요." />
+                        </div>
+                        <input class="form-control" type="hidden" name="user_id" id="user_id" />
+                        <div class="col-3">
+                            <input class="btn btn-primary" type="button" id="btnOverlapped" value="중복체크" onClick="fn_overlapped()" />
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class=""><label class="control-label" for="user_pwd">패스워드</label></div>
+                        <div class="col">
+                            <input class="form-control" type="password" name="" id="pw" onchange="check_pw()" placeholder="비밀번호는 6글자 이상, 16글자 이하만 이용 가능합니다">
+                        </div>
+                        <div class="col-3"><span id="check2"></span></div>
+                    </div>
+
+                    <div class="row">
+                        <div class=""><label class="control-label" for="user_pwd">패스워드 확인</label></div>
+                        <div class="col">
+                            <input class="form-control" type="password" name="user_pwd" id="user_pwd" onchange="check_pw()" placeholder="비밀번호는 6글자 이상, 16글자 이하만 이용 가능합니다">
+                        </div>
+                        <div class="col-3"><span id="check"></span></div>
+                    </div>
+
+                    <div class="row">
+                        <div class=""><label class="control-label" for="user_name">성명</label></div>
+                        <div class="col">
+                            <input class="form-control" type="text" id="user_name" name="user_name" placeholder="이름을 입력하세요." />
+                        </div>
+                        <div class="col-3"></div>
+                    </div>
+
+                    <div class="row">
+                        <div class=""><label class="control-label" for="user_email">이메일</label></div>
+                        <div class="col">
+                            <input class="form-control" type="email" id="user_email" name="user_email" placeholder="이메일을 입력하세요." />
+                        </div>
+                        <div class="col-3"></div>
+                    </div>
+
+                    <div class="row">
+                        <div class=""><label class="control-label" for="user_identity">주민등록번호</label></div>
+                        <div class="col">
+                            <input class="form-control" type="text" id="user_identity" name="user_identity" placeholder="생년월일" />
+                            <input class="form-control" type="text" id="user_identity" name="user_identity" placeholder="뒷자리" />
+                        </div>
+                        <div class="col-3"></div>
+                    </div>
+
+                    <div class="row">
+                        <div class=""> <label class="control-label" for="user_phone">핸드폰</label></div>
+                        <div class="col">
+                            <input class="form-control" type="text" id="user_phone" name="user_phone" placeholder="010" />
+                            <input class="form-control" type="text" id="user_phone" name="user_phone" placeholder="앞자리" />
+                            <input class="form-control" type="text" id="user_phone" name="user_phone" placeholder="뒷자리" />
+                        </div>
+                        <div class="col-3"></div>
+                    </div>
+
+                    <div class="row">
+                        <div class=""><label class="control-label" for="user_addr">주소</label></div>
+                        <div class="col">
+                            <input class="form-control" type="text" id="user_addr" name="user_addr" placeholder="우편번호" />
+                            <input class="form-control" type="text" id="user_addr" name="user_addr" placeholder="주소" />
+                            <input class="form-control" type="text" id="user_addr" name="user_addr" placeholder="상세주소" />
+                            <input class="form-control" type="text" id="user_addr" name="user_addr" placeholder="참고자료" />
+                        </div>
+                        <div class="col-3"></div>
+                    </div>
+                    <div>
+                        <div class="row">
+                            <div class=""><label class="control-label">개인 팩스</label></div>
+                            <div class="col"><input class="form-control" type="text" name="user_fax" /></div>
+                            <div class="col"><input class="form-control" type="text" name="user_fax" /></div>
+                            <div class="col"><input class="form-control" type="text" name="user_fax" /></div>
+                            <div class="col-3"></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- 필수 입력 정보 -->
+                <hr>
+
+                <div>
+                    <div>
+                        <span id="company_text">회사 정보</span><span>(선택사항)</span>
+                    </div>
+                </div>
+                <!-- 회사 입력 정보 -->
+                <div>
+                    <div>
+                        <div class="row">
+                            <div class=""><label class="control-label">회사 이름</label></div>
+                            <div class="col"><input class="form-control" type="text" name="user_comp" /></div>
+                            <div class="col-3"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="row">
+                            <div class=""><label class="control-label">회사 주소</label></div>
+                            <div class="col"><input class="form-control" type="text" name="comp_addr" placeholder="우편번호"/></div>
+                            <div class="col"><input class="form-control" type="text" name="comp_addr" placeholder="주소"/></div>
+                            <div class="col"><input class="form-control" type="text" name="comp_addr" placeholder="상세주소"/></div>
+                            <div class="col"><input class="form-control" type="text" name="comp_addr" placeholder="참고자료"/></div>
+                            <div class="col-3"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="row">
+                            <div class=""><label class="control-label">회사 전화</label></div>
+                            <div class="col"><input class="form-control" type="text" name="comp_phon" /></div>
+                            <div class="col"><input class="form-control" type="text" name="comp_phon" /></div>
+                            <div class="col"><input class="form-control" type="text" name="comp_phon" /></div>
+                            <div class="col-3"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="row">
+                            <div class=""><label class="control-label">회사 팩스</label></div>
+                            <div class="col"><input class="form-control" type="text" name="comp_fax" /></div>
+                            <div class="col"><input class="form-control" type="text" name="comp_fax" /></div>
+                            <div class="col"><input class="form-control" type="text" name="comp_fax" /></div>
+                            <div class="col-3"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="row">
+                            <div class=""><label class="control-label">회사 이메일</label></div>
+                            <div class="col"><input class="form-control" type="text" name="comp_email"/></div>
+                            <div class="col-3"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="row">
+                            <div class=""><label class="control-label">사업자 등록 번호</label></div>
+                            <div class="col"><input class="form-control" type="text" name="comp_num"/></div>
+                            <div class="col"><input class="form-control" type="text" name="comp_num"/></div>
+                            <div class="col"><input class="form-control" type="text" name="comp_num"/></div>
+                            <div class="col"><input class="form-control" type="text" name="comp_num"/></div>
+                            <div class="col-3"></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- 회사 입력 정보 끝!-->
+
+                <!-- 버튼 -->
+                <div class="col">
+                    <div class="row" id="bottom_btn">
+                        <div class="col-3"></div>
+                        <div class="col"><button class="btn btn-success" type="submit" id="submit">회원가입</button></div>
+                        <div class="col"><button class="cencle btn btn-danger" type="button">취소</button></div>
+                        <div class="col-3"></div>
+                    </div>
+                </div>
+                <!-- 버튼 -->
+            </form>
+        </section>
+    </div>
 </body>
 
 </html>
