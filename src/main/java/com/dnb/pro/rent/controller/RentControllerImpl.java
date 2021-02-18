@@ -189,51 +189,89 @@ import com.dnb.pro.rent.vo.RentVO;
 			return mav;
 		}
 		
+		@Override
+		@RequestMapping(value="/CancleRes.do" ,method = {RequestMethod.POST,RequestMethod.GET})
+		public ModelAndView CancleRes(HttpServletRequest request, HttpServletResponse response)
+				throws Exception {
+			
+			
+			HttpSession session = request.getSession();
+			
+//			MemberVO member = (MemberVO)session.getAttribute("member");
+			
+//			String user_id = member.getUser_id();
+//			String cate_name = request.getParameter("ResCate");
+			
+			
+			int res_num =Integer.parseInt(request.getParameter("Resnum"));
+			
 
-//		@Override
-//		@RequestMapping(value="/insertRes.do" ,method = {RequestMethod.POST,RequestMethod.GET})
-//		public ResponseEntity insertRes(MultipartHttpServletRequest multipartRequest,
-//				HttpServletResponse response) throws Exception{
-//			multipartRequest.setCharacterEncoding("utf-8");
-//			response.setContentType("text/html; charset=UTF-8");
-//			
-//			Map<String,Object> Resqmap = new HashMap<String, Object>();  //글정보 저장을 위한 articleMap생성
-//			Enumeration enu=multipartRequest.getParameterNames();
-//			while(enu.hasMoreElements()) {	//글쓰기 창에서 전송된 글 정보를 Map에 key/value로 저장
-//				String name = (String)enu.nextElement();
-//				String value = multipartRequest.getParameter(name);
-//				Resqmap.put(name, value);
-//				
-//			}
-//			
-//			
-//			String message = null;
-//			ResponseEntity resEnt=null;
-//			HttpHeaders responseHeaders = new HttpHeaders();
-//			responseHeaders.add("Content-Type", "text/html; charset=utf-8");
-//			try {
-//				
-//				rentService.insertRes(Resqmap);
-//				//새 글을 추가한 후 메시지를 전달합니다.
-//				
-//				message = "<script>";
-//				message += " alert(' 예약페이지에 추가했습니다.');";
-//				message += " location.href='"+multipartRequest.getContextPath()+"/rent/admin_Eq_reserv_apply.do';";
-//				message += " </script>";
-//				resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
-//			}catch(Exception e) {
-//				
-//				//새 글을 추가한 후 메시지를 전달합니다.
-//				message = "<script>";
-//				message += " alert('오류가 발생했습니다. 다시 시도해 주세요.');";
-//				
-//				message += " </script>";
-//				resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
-//				e.printStackTrace();
-//				
-//			}
-//			return resEnt;	
-//		}
+			rentVO.setRes_num(res_num);
+			
+
+			
+			ModelAndView mav = new ModelAndView();
+			rentService.CancleRes(rentVO);
+			
+			mav.addObject("message", "Cancle_res");
+			mav.setViewName("redirect:/rent/admin_Eq_reserv_list.do");
+			
+			return mav;
+		}
+		
+	
+		
+		
+
+		@Override
+		@RequestMapping(value="/ResStateupdate.do", method = {RequestMethod.POST,RequestMethod.GET})
+		public ResponseEntity ResStateupdate(MultipartHttpServletRequest multipartRequest, HttpServletResponse response) throws Exception{
+			multipartRequest.setCharacterEncoding("utf-8");
+			response.setContentType("text/html; charset=UTF-8");
+		
+			Map<String,Object> resmap = new HashMap<String, Object>();
+			
+		
+			Enumeration enu=multipartRequest.getParameterNames();
+			
+			while(enu.hasMoreElements()) {	
+				String name = (String)enu.nextElement();
+				String value = multipartRequest.getParameter(name);
+				resmap.put(name, value);
+			}
+
+			String message = null;
+			ResponseEntity resEnt=null;
+			HttpHeaders responseHeaders = new HttpHeaders();
+			responseHeaders.add("Content-Type", "text/html; charset=utf-8");
+	
+		try {
+			
+			 rentService.ResStateupdate(resmap);
+			 rentService.ResStateinsertLog(resmap);
+			
+			//새 글을 추가한 후 메시지를 전달합니다.
+			message = "<script>";
+			message += " alert('상태 변경을 완료 했습니다.');";
+			 message += " location.href='"+multipartRequest.getContextPath()+"/rent/admin_Eq_rent_list.do';";
+			message += " </script>";
+			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
+			}catch(Exception e) {
+				
+				
+				//새 글을 추가한 후 메시지를 전달합니다.
+				message = "<script>";
+				message += " alert('오류가 발생했습니다. 다시 시도해 주세요.');";
+				
+				message += " </script>";
+				resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
+				e.printStackTrace();
+				
+			}
+			 return  resEnt;
+			
+		}
+
 		
 		
 }

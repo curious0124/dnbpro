@@ -23,4 +23,11 @@ public interface RentController {
 	public ModelAndView AuthRes(HttpServletRequest request, HttpServletResponse response) throws Exception;
 	
 	public ModelAndView CancleResq(HttpServletRequest request, HttpServletResponse response) throws Exception;
+	
+	public ResponseEntity ResStateupdate(MultipartHttpServletRequest multipartRequest, HttpServletResponse response)
+			throws Exception;
+	
+	
+	
+	public ModelAndView CancleRes(HttpServletRequest request, HttpServletResponse response) throws Exception;
 }

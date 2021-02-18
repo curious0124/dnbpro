@@ -22,4 +22,13 @@ public interface RentService {
 	
 	public void CancleResq(RentVO rentVO) throws Exception;
 	
+	public void ResStateupdate(Map resmap) throws Exception;
+	public void ResStateinsertLog(Map resmap) throws Exception;
+	
+	
+	public void CancleRes(RentVO rentVO) throws Exception;
+	
+	
+	
+	
 }

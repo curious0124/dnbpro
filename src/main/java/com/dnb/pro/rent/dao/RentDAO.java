@@ -5,7 +5,7 @@ import java.util.Map;
 
 import org.springframework.dao.DataAccessException;
 
-
+import com.dnb.pro.equip.vo.EquipVO;
 import com.dnb.pro.rent.vo.RentVO;
 
 
@@ -25,7 +25,14 @@ public interface RentDAO {
 	public void insertLogResqcancle(RentVO rentVO) throws DataAccessException;
 	public int deleteResqapplycancle(int resq_num) throws DataAccessException;
 
+	public void Resupdate(Map resmap) throws DataAccessException;
+	public void insertLogResupdate(Map resmap) throws DataAccessException;
+//	public int selectResnumByCode() throws DataAccessException;
+	
 
+	public void insertLogRescancle(RentVO rentVO) throws DataAccessException;
+	public int deleteRescancle(int res_num) throws DataAccessException;
+	
 //	public void reservationrequest1(RentVO vo) throws DataAccessException;
 	
 //	public void reservationrequest2(RentVO vo) throws DataAccessException;

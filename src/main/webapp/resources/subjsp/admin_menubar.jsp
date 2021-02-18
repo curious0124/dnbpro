@@ -103,9 +103,11 @@
             <ul class="admin_menusub">
                 <li class="admin_menusubli"><a href="${contextPath}/equip/admin_Eq_manage_list.do">보유장비 등록/관리</a></li>
                 <li class="admin_menusubli"><a href="${contextPath}/rent/admin_Eq_reserv_apply.do">예약신청 관리</a></li>
-                <li class="admin_menusubli"><a href="#">예약/대여/반납 관리</a></li>
-                <li class="admin_menusubli"><a href="#">배송반납 신청 리스트</a></li>
+                <li class="admin_menusubli"><a href="${contextPath}/rent/admin_Eq_reserv_list.do">예약 관리</a></li>
+                <li class="admin_menusubli"><a href="${contextPath}/rent/admin_Eq_rent_list.do">대여/반납 관리</a></li>
+                <li class="admin_menusubli"><a href="${contextPath}/rent/admin_Eq_return_list.do">배송반납 신청 리스트</a></li>
                 <li class="admin_menusubli"><a href="${contextPath}/education/edu_admin_list.do">교육 등록/관리</a></li>
+
             </ul>
         </li>
         <li class="main_menu">
