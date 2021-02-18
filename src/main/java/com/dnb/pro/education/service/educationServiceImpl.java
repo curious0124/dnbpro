@@ -1,12 +1,14 @@
 package com.dnb.pro.education.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.dnb.pro.board.vo.ArticleVO;
 import com.dnb.pro.education.dao.educationDAO;
 import com.dnb.pro.education.vo.educationVO;
 
@@ -25,6 +27,22 @@ public class educationServiceImpl implements educationService {
 		educationVO educationVO = educationDAO.selecteducation(edu_num);
 		return educationVO;
 	}
+	@Override
+	public int addNeweducation(Map educationMap) throws Exception {
+		System.out.println("service"+educationMap);
+		return educationDAO.insertNeweducation(educationMap);
+	}
+	@Override
+	public void modeducation(Map educationMap) throws Exception {
+		educationDAO.updateeducation(educationMap);
+		
+	}
+
+	@Override
+	public void deleteeducation(educationVO educationVO) throws Exception {
+		educationDAO.deleteeducation(educationVO);
+	}
+		
 	
 	@Override
 	public List<educationVO> listEduCateName() throws Exception {
