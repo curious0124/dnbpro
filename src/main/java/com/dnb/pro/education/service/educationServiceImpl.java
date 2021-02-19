@@ -8,8 +8,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.dnb.pro.board.vo.ArticleVO;
 import com.dnb.pro.education.dao.educationDAO;
+import com.dnb.pro.education.vo.Criteria;
 import com.dnb.pro.education.vo.educationVO;
 
 @Service("educationService")
@@ -18,9 +18,14 @@ public class educationServiceImpl implements educationService {
 	@Autowired
 	private educationDAO educationDAO;
 	
-	public List<educationVO> listeducation() throws Exception{
-		List<educationVO> educationList = educationDAO.selectEducationList();
+	@Override
+	public List<educationVO> listeducation(Criteria cri) throws Exception{
+		List<educationVO> educationList = educationDAO.selectEducationList(cri);
 		return educationList;
+	}
+	@Override
+	public int listeduCount() throws Exception {
+		return educationDAO.listeduCount();
 	}
 	@Override
 	public educationVO vieweducation(int edu_num) throws Exception {

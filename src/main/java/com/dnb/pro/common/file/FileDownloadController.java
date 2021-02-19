@@ -57,6 +57,9 @@ public class FileDownloadController {
 		String downFile = edu_ARTICLE_IMAGE_REPO+"\\"+edu_num+"\\"+edu_thuming;
 		File image = new File(downFile);
 		
+		System.out.println(downFile);
+		System.out.println(image);
+		
 		//확장자를 제외한 원본 이미지 파일의 이름을 가져옵니다.
 		int lastIndex = edu_thuming.lastIndexOf(".");
 		String fileName = edu_thuming.substring(0,lastIndex);
@@ -66,6 +69,10 @@ public class FileDownloadController {
 			thumbnail.getParentFile().mkdirs();
 			Thumbnails.of(image).size(100,100).outputFormat("png").toFile(thumbnail);
 		}
+		
+		System.out.println(downFile);
+		System.out.println(image);
+		System.out.println(thumbnail);
 		
 		//생성된 파일을 브라우저로 전송
 		FileInputStream in = new FileInputStream(thumbnail);

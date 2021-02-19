@@ -104,8 +104,8 @@
 
 
 
-
-    <script>
+<!-- 비밀번호 검사 -->
+<script>
         function check_pw(){
  
             var pw = document.getElementById('pw').value;
@@ -120,7 +120,7 @@
             for(var i=0;i<SC.length;i++){
                 if(pw.indexOf(SC[i]) != -1){
                     check_SC = 1;
-                    document.getElementById('check2').innerHTML='적합한 비밀번호 입니다.'
+                    document.getElementById('check2').innerHTML='적절한 비밀번호 입니다.'
                     document.getElementById('check2').style.color='blue';
                 }
             }
@@ -141,7 +141,7 @@
                 }
             }
             if(document.getElementById('pw').value != document.getElementById('user_pwd').value){
-            	document.getElementById('check').innerHTML='위에꺼 먼저 쓰세요;';
+            	document.getElementById('check').innerHTML='비밀번호가 일치하지 않습니다.';
                 document.getElementById('check').style.color='red';
                 document.getElementById('user_pwd').value='';
             }
@@ -186,7 +186,7 @@
                 </div>
                 <div class="">
                     <div class="row">
-                        <div class=""><label class="control-label" for="user_pwd">아이디</label></div>
+                        <div class="col-2"><label class="control-label" for="user_pwd">아이디</label></div>
                         <div class="col">
                             <input class="form-control" type="text" name="_user_id" id="_user_id" placeholder="6자리 이상 입력하세요." />
                         </div>
@@ -195,77 +195,81 @@
                             <input class="btn btn-primary" type="button" id="btnOverlapped" value="중복체크" onClick="fn_overlapped()" />
                         </div>
                     </div>
+                    <br>
 
                     <div class="row">
-                        <div class=""><label class="control-label" for="user_pwd">패스워드</label></div>
+                        <div class="col-2"><label class="control-label" for="user_pwd">패스워드</label></div>
                         <div class="col">
                             <input class="form-control" type="password" name="" id="pw" onchange="check_pw()" placeholder="비밀번호는 6글자 이상, 16글자 이하만 이용 가능합니다">
                         </div>
                         <div class="col-3"><span id="check2"></span></div>
                     </div>
+                    <br>
 
                     <div class="row">
-                        <div class=""><label class="control-label" for="user_pwd">패스워드 확인</label></div>
+                        <div class="col-2"><label class="control-label" for="user_pwd">패스워드 확인</label></div>
                         <div class="col">
                             <input class="form-control" type="password" name="user_pwd" id="user_pwd" onchange="check_pw()" placeholder="비밀번호는 6글자 이상, 16글자 이하만 이용 가능합니다">
                         </div>
                         <div class="col-3"><span id="check"></span></div>
                     </div>
+                    <br>
 
                     <div class="row">
-                        <div class=""><label class="control-label" for="user_name">성명</label></div>
+                        <div class="col-2"><label class="control-label" for="user_name">성명</label></div>
                         <div class="col">
                             <input class="form-control" type="text" id="user_name" name="user_name" placeholder="이름을 입력하세요." />
                         </div>
                         <div class="col-3"></div>
                     </div>
+                    <br>
 
                     <div class="row">
-                        <div class=""><label class="control-label" for="user_email">이메일</label></div>
+                        <div class="col-2"><label class="control-label" for="user_email">이메일</label></div>
                         <div class="col">
                             <input class="form-control" type="email" id="user_email" name="user_email" placeholder="이메일을 입력하세요." />
                         </div>
                         <div class="col-3"></div>
                     </div>
+                    <br>
 
                     <div class="row">
-                        <div class=""><label class="control-label" for="user_identity">주민등록번호</label></div>
-                        <div class="col">
-                            <input class="form-control" type="text" id="user_identity" name="user_identity" placeholder="생년월일" />
-                            <input class="form-control" type="text" id="user_identity" name="user_identity" placeholder="뒷자리" />
-                        </div>
+                        <div class="col-2"><label class="control-label" for="user_identity">주민등록번호</label></div>
+                        <div class="col"><input class="form-control" type="text" id="user_identity" name="user_identity" placeholder="생년월일" /></div>
+                        <div class="col"><input class="form-control" type="text" id="user_identity" name="user_identity" placeholder="뒷자리" /></div>
                         <div class="col-3"></div>
                     </div>
+                    <br>
 
                     <div class="row">
-                        <div class=""> <label class="control-label" for="user_phone">핸드폰</label></div>
-                        <div class="col">
-                            <input class="form-control" type="text" id="user_phone" name="user_phone" placeholder="010" />
-                            <input class="form-control" type="text" id="user_phone" name="user_phone" placeholder="앞자리" />
-                            <input class="form-control" type="text" id="user_phone" name="user_phone" placeholder="뒷자리" />
-                        </div>
+                        <div class="col-2"> <label class="control-label" for="user_phone">핸드폰</label></div>
+                        <div class="col"><input class="form-control" type="text" id="user_phone" name="user_phone" placeholder="010" /></div>
+                        <div class="col"><input class="form-control" type="text" id="user_phone" name="user_phone" placeholder="앞자리" /></div>
+                        <div class="col"><input class="form-control" type="text" id="user_phone" name="user_phone" placeholder="뒷자리" /></div>
                         <div class="col-3"></div>
                     </div>
+                    <br>
 
                     <div class="row">
-                        <div class=""><label class="control-label" for="user_addr">주소</label></div>
-                        <div class="col">
-                            <input class="form-control" type="text" id="user_addr" name="user_addr" placeholder="우편번호" />
-                            <input class="form-control" type="text" id="user_addr" name="user_addr" placeholder="주소" />
-                            <input class="form-control" type="text" id="user_addr" name="user_addr" placeholder="상세주소" />
-                            <input class="form-control" type="text" id="user_addr" name="user_addr" placeholder="참고자료" />
-                        </div>
+                        <div class="col-2"><label class="control-label" for="user_addr">주소</label></div>
+                        <div class="col"><input class="form-control" type="text" id="user_addr" name="user_addr" placeholder="우편번호" /></div>
+                        <div class="col"><input class="form-control" type="text" id="user_addr" name="user_addr" placeholder="주소" /></div>
+                        <div class="col"><input class="form-control" type="text" id="user_addr" name="user_addr" placeholder="상세주소" /></div>
+                        <div class="col"><input class="form-control" type="text" id="user_addr" name="user_addr" placeholder="참고자료" /></div>
                         <div class="col-3"></div>
                     </div>
-                    <div>
-                        <div class="row">
-                            <div class=""><label class="control-label">개인 팩스</label></div>
-                            <div class="col"><input class="form-control" type="text" name="user_fax" /></div>
-                            <div class="col"><input class="form-control" type="text" name="user_fax" /></div>
-                            <div class="col"><input class="form-control" type="text" name="user_fax" /></div>
-                            <div class="col-3"></div>
-                        </div>
+                    <br>
+                    
+                    
+                    <div class="row">
+                        <div class="col-2"><label class="control-label">개인 팩스</label></div>
+                        <div class="col"><input class="form-control" type="text" name="user_fax" /></div>
+                        <div class="col"><input class="form-control" type="text" name="user_fax" /></div>
+                        <div class="col"><input class="form-control" type="text" name="user_fax" /></div>
+                        <div class="col-3"></div>
                     </div>
+                    <br>
+                    
                 </div>
                 <!-- 필수 입력 정보 -->
                 <hr>
@@ -279,14 +283,15 @@
                 <div>
                     <div>
                         <div class="row">
-                            <div class=""><label class="control-label">회사 이름</label></div>
+                            <div class="col-2"><label class="control-label">회사 이름</label></div>
                             <div class="col"><input class="form-control" type="text" name="user_comp" /></div>
                             <div class="col-3"></div>
                         </div>
                     </div>
+                    <br>
                     <div>
                         <div class="row">
-                            <div class=""><label class="control-label">회사 주소</label></div>
+                            <div class="col-2"><label class="control-label">회사 주소</label></div>
                             <div class="col"><input class="form-control" type="text" name="comp_addr" placeholder="우편번호"/></div>
                             <div class="col"><input class="form-control" type="text" name="comp_addr" placeholder="주소"/></div>
                             <div class="col"><input class="form-control" type="text" name="comp_addr" placeholder="상세주소"/></div>
@@ -294,41 +299,44 @@
                             <div class="col-3"></div>
                         </div>
                     </div>
+                    <br>
                     <div>
                         <div class="row">
-                            <div class=""><label class="control-label">회사 전화</label></div>
+                            <div class="col-2"><label class="control-label">회사 전화</label></div>
                             <div class="col"><input class="form-control" type="text" name="comp_phon" /></div>
                             <div class="col"><input class="form-control" type="text" name="comp_phon" /></div>
                             <div class="col"><input class="form-control" type="text" name="comp_phon" /></div>
                             <div class="col-3"></div>
                         </div>
                     </div>
+                    <br>
                     <div>
                         <div class="row">
-                            <div class=""><label class="control-label">회사 팩스</label></div>
+                            <div class="col-2"><label class="control-label">회사 팩스</label></div>
                             <div class="col"><input class="form-control" type="text" name="comp_fax" /></div>
                             <div class="col"><input class="form-control" type="text" name="comp_fax" /></div>
                             <div class="col"><input class="form-control" type="text" name="comp_fax" /></div>
                             <div class="col-3"></div>
                         </div>
                     </div>
+                    <br>
                     <div>
                         <div class="row">
-                            <div class=""><label class="control-label">회사 이메일</label></div>
+                            <div class="col-2"><label class="control-label">회사 이메일</label></div>
                             <div class="col"><input class="form-control" type="text" name="comp_email"/></div>
                             <div class="col-3"></div>
                         </div>
                     </div>
-                    <div>
+                    <br>
                         <div class="row">
-                            <div class=""><label class="control-label">사업자 등록 번호</label></div>
+                            <div class="col-2"><label class="control-label">사업자 등록 번호</label></div>
                             <div class="col"><input class="form-control" type="text" name="comp_num"/></div>
                             <div class="col"><input class="form-control" type="text" name="comp_num"/></div>
                             <div class="col"><input class="form-control" type="text" name="comp_num"/></div>
                             <div class="col"><input class="form-control" type="text" name="comp_num"/></div>
                             <div class="col-3"></div>
                         </div>
-                    </div>
+                        <br>
                 </div>
                 <!-- 회사 입력 정보 끝!-->
 

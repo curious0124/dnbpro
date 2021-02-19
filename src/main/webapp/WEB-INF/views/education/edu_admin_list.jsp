@@ -10,21 +10,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<!-- <link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
-	crossorigin="anonymous">
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
-	integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
-	crossorigin="anonymous"></script> -->
-	
-	
-	
-<!-- 부트스트랩 페이징 -->
-	
+<meta charset="UTF-8">	
+<!-- 부트스트랩 페이징 -->	
 	<!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" crossorigin="anonymous"></script>  -->
 	<script src="${contextPath}/resources/js/jquery-3.5.1.min.js"></script> 
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
@@ -38,7 +25,7 @@
 <style>
 #board_content {
 	margin: 0 auto;
-	width: 1050px;
+	/* width: 1050px; */
 }
 
 a {
@@ -71,36 +58,6 @@ a {
 	padding: 0px 0px 0px 0px 0px 0px 0px 0px;
 }
 
- #brd_div1 {
-	width: 3%;
-}
-
-#brd_div2 {
-	width: 12%;
-}
-
-#brd_div3 {
-	width: 20%;
-}
-
-#brd_div4 {
-	width: 12%;
-}
-
-#brd_div5 {
-	width: 12%;
-}
-
-#brd_div6 {
-	width: 12%;
-}
-#brd_div7 {
-	width: 12%;
-}
-#brd_div8 {
-	width: 12%;
-} 
-
 #top_buttonbox {
 	min-width: 800px;
 	text-align: right;
@@ -115,6 +72,17 @@ a {
 	padding: 2px;
 	line-height: 5px;
 }
+.dataTables_length{
+
+}
+#listPaging{  clear:both; text-align:center;}
+        #listPaging > ul{margin:0 auto;}
+        #listPaging > ul > li{
+        	list-style: none; float: left; padding: 6px;
+        	
+        	
+        	
+        }
 </style>
  
 <script>
@@ -174,8 +142,8 @@ a {
           <h1 class="mt-4">장비 교육 관리</h1>
            <div class="card mb-4">
              <div class="card-body">
-               <div class="table-responsive">
-                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+               <div class="table">
+                 <table class="table table-bordered" id="" width="100%" cellspacing="0">
                    <thead>
                      <tr>
                      <th><input type="checkbox" id="allCheck" onclick="allChk(this);" /></th>
@@ -206,8 +174,27 @@ a {
                </div>
               </div>
 		</main>
-	</div>	
+	</div>
+				<div id="listPaging">
+				<ul>
+					<c:if test="${pageMaker.prev}">
+						<li><a
+							href="list${pageMaker.makeQuery(pageMaker.startPage - 1)}">이전</a></li>
+					</c:if>
+					<c:forEach begin="${pageMaker.startPage}"
+						end="${pageMaker.endPage}" var="idx">
+						<!-- <li><a href="list${pageMaker.makeQuery(idx)}">${idx}</a></li> -->
+						<li><a href="edu_admin_list.do${pageMaker.makeQuery(idx)}">${idx}</a></li>
+					</c:forEach>
+					<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
+						<li><a
+							href="list${pageMaker.makeQuery(pageMaker.endPage + 1)}">다음</a></li>
+					</c:if>
+				</ul>
+			</div>	
 </div>
+</div>
+
 	
 
 </body>

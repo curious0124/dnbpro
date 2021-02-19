@@ -26,8 +26,9 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.dnb.pro.board.vo.ArticleVO;
 import com.dnb.pro.education.service.educationService;
+import com.dnb.pro.education.vo.Criteria;
+import com.dnb.pro.education.vo.PageMaker;
 import com.dnb.pro.education.vo.educationVO;
 import com.dnb.pro.member.vo.MemberVO;
 
@@ -53,18 +54,23 @@ public class educationControllerImpl implements educationController {
 
 	@Override
 	@RequestMapping(value = "/edu_list.do", method = { RequestMethod.GET, RequestMethod.POST})
-	public ModelAndView edu_list(HttpServletRequest request, HttpServletResponse response) throws Exception{
+	public ModelAndView edu_list(Criteria cri, HttpServletRequest request, HttpServletResponse response) throws Exception{
 		String viewName = (String)request.getAttribute("viewName");
 		logger.info("info 레벨: viewName = "+viewName);
 		logger.debug("debug 레벨: viewName = "+viewName);
 		
 		ModelAndView mav = new ModelAndView(viewName);
 		
-		List educationList = educationService.listeducation();	
+		List educationList = educationService.listeducation(cri);	
 		mav.addObject("educationList",educationList);
 		
 		List eduCateNameList = educationService.listEduCateName();//카테고리선택
 		mav.addObject("eduCateNameList",eduCateNameList);
+		
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(cri);
+		pageMaker.setTotalCount(educationService.listeduCount());
+		mav.addObject("pageMaker", pageMaker);
 		
 		return mav;
 }
@@ -94,15 +100,20 @@ public class educationControllerImpl implements educationController {
 	}
 	//어드민 교육 리스트
 	@RequestMapping(value = "/edu_admin_list.do", method = { RequestMethod.GET, RequestMethod.POST})
-	public ModelAndView edu_admin_list(HttpServletRequest request, HttpServletResponse response) throws Exception{
+	public ModelAndView edu_admin_list(Criteria cri, HttpServletRequest request, HttpServletResponse response) throws Exception{
 		String viewName = (String)request.getAttribute("viewName");
 		logger.info("info 레벨: viewName = "+viewName);
 		logger.debug("debug 레벨: viewName = "+viewName);
-		
-		List educationList = educationService.listeducation();	
-		
 		ModelAndView mav = new ModelAndView(viewName);
+		
+		List educationList = educationService.listeducation(cri);
 		mav.addObject("educationList",educationList);
+		
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(cri);
+		pageMaker.setTotalCount(educationService.listeduCount());
+		mav.addObject("pageMaker", pageMaker);
+		
 		return mav;
 }
 	//여기서 부터 어드민
