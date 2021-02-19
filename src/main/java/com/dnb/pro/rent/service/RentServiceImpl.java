@@ -116,4 +116,17 @@ import com.dnb.pro.rent.vo.RentVO;
 			rentDAO.insertLogResreturn(rentVO);
 			rentDAO.deleteRenting(res_num);
 		}
+		
+		
+		@Override
+		public void ReturnExpressAuth(RentVO rentVO) throws Exception {
+			int res_num = rentVO.getRes_num();
+			int return_num = rentVO.getReturn_num();
+			
+			rentDAO.insertLogExpressreturn(rentVO);
+			rentDAO.deleteExpressReturn(return_num);
+			rentDAO.deleteExpressReturnRenting(res_num);
+			
+			
+		}
 }

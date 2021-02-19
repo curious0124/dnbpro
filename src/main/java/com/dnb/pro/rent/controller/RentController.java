@@ -33,4 +33,6 @@ public interface RentController {
 	
 	public ModelAndView ReturnRenting(HttpServletRequest request, HttpServletResponse response) throws Exception;
 	
+	public ModelAndView ReturnExpressAuth(HttpServletRequest request, HttpServletResponse response) throws Exception;
+	
 }
