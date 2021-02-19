@@ -6,6 +6,7 @@ import java.util.Map;
 import org.springframework.dao.DataAccessException;
 
 import com.dnb.pro.member.vo.MemberVO;
+import com.dnb.pro.mypage.vo.MyPageVO;
 import com.dnb.pro.rent.vo.RentVO;
 
 
@@ -40,4 +41,6 @@ public interface MyPageDAO {
 	public List<RentVO> MyReturnSelectCancel(int res_num) throws DataAccessException;
 	public void MyReturnInsert1Cancel(RentVO rentVO) throws DataAccessException;
 	public int MyReturnInsert2Cancel(RentVO rentVO) throws DataAccessException;
+	public void removeMember(String user_id) throws DataAccessException;
+	public void addQuit(Map<String, Object> firemap) throws DataAccessException;
 }
