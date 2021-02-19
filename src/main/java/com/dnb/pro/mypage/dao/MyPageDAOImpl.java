@@ -9,6 +9,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 
 import com.dnb.pro.member.vo.MemberVO;
+import com.dnb.pro.mypage.vo.MyPageVO;
 import com.dnb.pro.rent.vo.RentVO;
 
 @Repository("myPageDAO")
@@ -154,6 +155,15 @@ public class MyPageDAOImpl implements MyPageDAO {
 	public int updateMember(MemberVO memberVO) throws DataAccessException {
 		int result = sqlSession.update("mapper.mypage.updateMember",memberVO);
 		return result;
+	}
+	@Override
+	public void removeMember(String user_id) throws DataAccessException {
+		sqlSession.delete("mapper.mypage.removeMember",user_id);
+		
+	}
+	@Override
+	public void addQuit(Map<String, Object> firemap) throws DataAccessException {
+		sqlSession.insert("mapper.mypage.addQuit",firemap);
 	}
 
 	
