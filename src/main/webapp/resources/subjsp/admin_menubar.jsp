@@ -113,8 +113,7 @@
         <li class="main_menu">
             <div class="admin_menutitle">회원관리</div>
             <ul class="admin_menusub">
-                <li class="admin_menusubli"><a href="#">회원목록</a></li>
-                
+                <li class="admin_menusubli"><a href="${contextPath}/mem_manage/mem_list.do">회원목록</a></li>
             </ul>
         </li>
         <li class="main_menu">
