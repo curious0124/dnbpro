@@ -75,6 +75,14 @@ a {
 .dataTables_length{
 
 }
+#listPaging{  clear:both; text-align:center;}
+        #listPaging > ul{margin:0 auto;}
+        #listPaging > ul > li{
+        	list-style: none; float: left; padding: 6px;
+        	
+        	
+        	
+        }
 </style>
  
 <script>
@@ -135,7 +143,7 @@ a {
            <div class="card mb-4">
              <div class="card-body">
                <div class="table">
-                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                 <table class="table table-bordered" id="" width="100%" cellspacing="0">
                    <thead>
                      <tr>
                      <th><input type="checkbox" id="allCheck" onclick="allChk(this);" /></th>
@@ -166,7 +174,24 @@ a {
                </div>
               </div>
 		</main>
-	</div>	
+	</div>
+				<div id="listPaging">
+				<ul>
+					<c:if test="${pageMaker.prev}">
+						<li><a
+							href="list${pageMaker.makeQuery(pageMaker.startPage - 1)}">이전</a></li>
+					</c:if>
+					<c:forEach begin="${pageMaker.startPage}"
+						end="${pageMaker.endPage}" var="idx">
+						<!-- <li><a href="list${pageMaker.makeQuery(idx)}">${idx}</a></li> -->
+						<li><a href="edu_admin_list.do${pageMaker.makeQuery(idx)}">${idx}</a></li>
+					</c:forEach>
+					<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
+						<li><a
+							href="list${pageMaker.makeQuery(pageMaker.endPage + 1)}">다음</a></li>
+					</c:if>
+				</ul>
+			</div>	
 </div>
 </div>
 
