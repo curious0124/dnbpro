@@ -7,6 +7,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.dnb.pro.member.vo.MemberVO;
+import com.dnb.pro.mypage.vo.MyPageVO;
 import com.dnb.pro.rent.vo.RentVO;
 
 public interface MyPageService {
@@ -26,4 +27,5 @@ public interface MyPageService {
 	public void cancelReturn(RentVO rentVO) throws DataAccessException;
 	public int modMember(MemberVO memberVO) throws DataAccessException;
 	public MemberVO selectMemberById(String user_id) throws DataAccessException;
+	public void removeMember(Map<String, Object> firemap) throws DataAccessException;
 }

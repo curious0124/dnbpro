@@ -25,19 +25,19 @@
 	<table  align="center">
 	   <tr>
 	      <td width="200"><p align="right">아이디</td>
-	      <td width="400"><input type="text" name="id" value="${member.user_id}"></td>
+	      <td width="400"><input type="text" name="user_id" value="${member.user_id}"></td>
 	   </tr>
 	   <tr>
 	      <td width="200"><p align="right">비밀번호</td>
-	      <td width="400"><input type="password" name="pwd" value="${member.user_pwd}"></td>
+	      <td width="400"><input type="password" name="user_pwd" value="${member.user_pwd}"></td>
 	    </tr>
 	    <tr>
 	       <td width="200"><p align="right">이름</td>
-	       <td width="400"><p><input type="text" name="name" value="${member.user_name}"></td>
+	       <td width="400"><p><input type="text" name="user_name" value="${member.user_name}"></td>
 	    </tr>
 	    <tr>
 	       <td width="200"><p align="right">이메일</td>
-	       <td width="400"><p><input type="text" name="email" value="${member.user_email}"></td>
+	       <td width="400"><p><input type="text" name="user_email" value="${member.user_email}"></td>
 	    </tr>
 	    <tr>
 	       <td width="200"><p>&nbsp;</p></td>

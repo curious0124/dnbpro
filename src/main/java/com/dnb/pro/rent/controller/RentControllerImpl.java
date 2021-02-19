@@ -135,7 +135,6 @@ import com.dnb.pro.rent.vo.RentVO;
 		public ModelAndView AuthRes(HttpServletRequest request, HttpServletResponse response)
 				throws Exception {
 			
-			
 			HttpSession session = request.getSession();
 			
 //			MemberVO member = (MemberVO)session.getAttribute("member");
@@ -273,5 +272,64 @@ import com.dnb.pro.rent.vo.RentVO;
 		}
 
 		
+		@Override
+		@RequestMapping(value="/ReturnRenting.do" ,method = {RequestMethod.POST,RequestMethod.GET})
+		public ModelAndView ReturnRenting(HttpServletRequest request, HttpServletResponse response)
+				throws Exception {
+			
+			
+			HttpSession session = request.getSession();
+			
+//			MemberVO member = (MemberVO)session.getAttribute("member");
+			
+//			String user_id = member.getUser_id();
+//			String cate_name = request.getParameter("ResCate");
+			
+			
+			int res_num =Integer.parseInt(request.getParameter("Resnum"));
+			
+
+			rentVO.setRes_num(res_num);
+			
+
+			
+			ModelAndView mav = new ModelAndView();
+			rentService.ReturnRenting(rentVO);
+			
+			mav.addObject("message", "return_rent");
+			mav.setViewName("redirect:/rent/admin_Eq_rent_list.do");
+			
+			return mav;
+		}
 		
+		
+		@Override
+		@RequestMapping(value="/ReturnExpressAuth.do" ,method = {RequestMethod.POST,RequestMethod.GET})
+		public ModelAndView ReturnExpressAuth(HttpServletRequest request, HttpServletResponse response)
+				throws Exception {
+			
+			
+			HttpSession session = request.getSession();
+			
+//			MemberVO member = (MemberVO)session.getAttribute("member");
+			
+//			String user_id = member.getUser_id();
+//			String cate_name = request.getParameter("ResCate");
+			
+			int return_num =Integer.parseInt(request.getParameter("Returnnum"));
+			int res_num =Integer.parseInt(request.getParameter("Resreturnnum"));
+			
+			rentVO.setReturn_num(return_num);
+			rentVO.setRes_num(res_num);
+			
+
+			
+			ModelAndView mav = new ModelAndView();
+			rentService.ReturnExpressAuth(rentVO);
+			
+			mav.addObject("message", "return_express");
+			mav.setViewName("redirect:/rent/admin_Eq_return_list.do");
+			
+			return mav;
+		}
 }

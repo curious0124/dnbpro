@@ -33,6 +33,13 @@ public interface RentDAO {
 	public void insertLogRescancle(RentVO rentVO) throws DataAccessException;
 	public int deleteRescancle(int res_num) throws DataAccessException;
 	
+	public void insertLogResreturn(RentVO rentVO) throws DataAccessException;
+	public int deleteRenting(int res_num) throws DataAccessException;
+	
+	public void insertLogExpressreturn(RentVO rentVO) throws DataAccessException;
+	public int deleteExpressReturn(int return_num) throws DataAccessException;
+	public int deleteExpressReturnRenting(int res_num) throws DataAccessException;
+	
 //	public void reservationrequest1(RentVO vo) throws DataAccessException;
 	
 //	public void reservationrequest2(RentVO vo) throws DataAccessException;

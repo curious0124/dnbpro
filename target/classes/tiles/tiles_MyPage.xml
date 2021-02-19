@@ -49,5 +49,15 @@
       <put-attribute name="title" value="배송반납" />
       <put-attribute name="body" value="/WEB-INF/views/mypage/mypage.jsp" />
    </definition>
+   
+   <definition name="/mypage/removeMember" extends="baseLayout">
+      <put-attribute name="title" value="회원탈퇴" />
+      <put-attribute name="body" value="/WEB-INF/views/mypage/removeMember.jsp" />
+   </definition>
+   
+   <definition name="/mypage/memberRemove" extends="baseLayout">
+      <put-attribute name="title" value="회원탈퇴완료" />
+      <put-attribute name="body" value="/WEB-INF/views/mypage/fireBye.jsp" />
+   </definition>
 
 </tiles-definitions>
