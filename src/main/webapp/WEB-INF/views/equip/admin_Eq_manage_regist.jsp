@@ -79,7 +79,7 @@
 
         #brd_div5 {
             width: 300px;
-            height: 100px
+            height: 200px
         }
 
 
@@ -105,7 +105,7 @@
         }
 
         #im1 {
-            height: 100px;
+            height: 200px;
             width: 300px;
         }
 
@@ -186,10 +186,12 @@
 
                 <div class="listrow">
                     <div class="col_list" id='brd_div5'>
-                        <input id="im1" type="text" name="eq_img">
+                        <input type="file" class="form-control" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" name="eq_img" aria-label="Upload" onchange="readURL(this);" >
+                   <img  id="im1" src="#"   width=200 height=200/>
                     </div>
                     <div class="col_list" id='brd_div5'>
-                        <input id="im1" type="text" name="eq_thumimg">
+                  <input type="file" class="form-control" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" name="eq_thumimg" aria-label="Upload" onchange="readURL(this);" >
+                   <img  id="im1" src="#"   width=200 height=200/>
                     </div>
 
 
