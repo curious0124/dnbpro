@@ -306,7 +306,7 @@
 							<span class="demi">~</span>
 							<!-- 종료일 -->
 							<span class="dset">
-								<input type="text" class="datepicker inpType" name="searchEndDate" id="searchEndDate" onchange="select_EQList();" value="${fromDate }">
+								<input type="text" class="datepicker inpType" name="searchEndDate" id="searchEndDate" onchange="select_EQList();" value="${toDate }">
 								<a href="#none" class="btncalendar dateclick">달력</a>
 							</span>
 						</div>	

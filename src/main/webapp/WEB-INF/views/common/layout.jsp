@@ -55,27 +55,18 @@
       #content {
         width: 75%;
         padding: 5px;
-        margin: 0 auto;
-
         margin-right: 5px;
-        
         margin : 0 auto;
         border: 0px solid #bcbcbc;
       }
-<<<<<<< HEAD
-      #footer {
-        clear: both;
-        padding: 5px;
-        border: 0px solid #bcbcbc;
-         background-color: lightblue;
-         margin-top:500px;
-=======
+
+      
       #footer{ /*수정 */
       	width:100%;
       	position: relative;
       	margin-top:100px;
       	z-index: -1;
->>>>>>> branch 'develop' of https://github.com/curious0124/dnbpro.git
+
       }
       
     </style>
