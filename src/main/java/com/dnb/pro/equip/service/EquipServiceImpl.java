@@ -138,6 +138,12 @@ public class EquipServiceImpl implements EquipService{
 		
 			
 		}
+
+	@Override
+	public List seletAbleEquipment(Map<String, Object> selectElement) {
+		List ableEquipment = equipDAO.selectAbleEquipment(selectElement);
+		return ableEquipment;
+	}
 	 
 	 
 

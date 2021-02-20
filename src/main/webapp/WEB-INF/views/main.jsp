@@ -17,15 +17,15 @@
   <script src="http://code.jquery.com/jquery-latest.js"></script>
   <style>
         #popupzone{
-            width: 300px;
-            height: 400px;
+            width: 400px;
+            height: 500px;
             position: absolute;
             left: 100px;
             z-index: 10;
         }
         #pop_img{
-            width: 300px;
-            height: 400px;
+            width: 400px;
+            height: 500px;
         }
         #pop_img>a>img{
             width: 100%;
@@ -33,7 +33,7 @@
         }
         #popch{
             text-align: right;
-            margin-top: -20px;
+            margin-top: -50px;
         }
     </style>
     <script>

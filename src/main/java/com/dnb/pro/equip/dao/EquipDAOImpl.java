@@ -128,8 +128,15 @@ public class EquipDAOImpl implements  EquipDAO  {
 	
 	@Override
 	public EquipVO selectSerialById(String eq_serial) throws DataAccessException{
-		EquipVO adminequipList = adminequipList = sqlSession.selectOne("mapper.equip.selectSerialById", eq_serial);
+		EquipVO adminequipList = sqlSession.selectOne("mapper.equip.selectSerialById", eq_serial);
 		return adminequipList;
+	}
+
+	@Override
+	public List selectAbleEquipment(Map<String, Object> selectElement) {
+		
+		List ableEquipment = sqlSession.selectList("mapper.equip.selectAbleEquipList", selectElement);
+		return ableEquipment;
 	}
 	
 //	@Override

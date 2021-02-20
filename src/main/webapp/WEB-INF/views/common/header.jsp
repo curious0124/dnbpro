@@ -181,12 +181,7 @@
             <div class="col">
                 <div class="dropdown">
                     <button class="dropbtn" onclick="location.href=' http://localhost:8090/pro/education/edu_list.do'">장비교육</button>
-                    <div class="dropdown-content">
-                        <a href="#">사업소개</a>
-                        <a href="#">홍보영상</a>
-                        <a href="#">지원소개</a>
-                        <a href="#">오시는길</a>
-                    </div>
+                    
                 </div>
             </div>
             <div class="col">

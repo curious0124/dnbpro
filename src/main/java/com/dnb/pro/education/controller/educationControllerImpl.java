@@ -8,12 +8,15 @@ import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.dnb.pro.board.vo.ArticleVO;
+import com.dnb.pro.board.vo.Criteria;
 import com.dnb.pro.education.service.educationService;
 import com.dnb.pro.education.vo.educationVO;
 
@@ -29,7 +32,7 @@ public class educationControllerImpl implements educationController {
 
 	@Override
 	@RequestMapping(value = "/edu_list.do", method = { RequestMethod.GET, RequestMethod.POST})
-	public ModelAndView edu_list(HttpServletRequest request, HttpServletResponse response) throws Exception{
+	public ModelAndView edu_list( HttpServletRequest request, HttpServletResponse response) throws Exception{
 		String viewName = (String)request.getAttribute("viewName");
 		logger.info("info 레벨: viewName = "+viewName);
 		logger.debug("debug 레벨: viewName = "+viewName);
@@ -88,5 +91,17 @@ public class educationControllerImpl implements educationController {
 		
 		return mav;
 	}
+	
+	
+	@RequestMapping(value = "/seletAbleEquipment.do", method = { RequestMethod.GET, RequestMethod.POST})
+	public ResponseEntity seletAbleEquipment(@RequestParam(value = "chbox[]") List<String> brdArr,
+			ArticleVO articleVO) throws Exception{
+		
+		
+		return null;
+	}
+	
+	
+	
 
 }
