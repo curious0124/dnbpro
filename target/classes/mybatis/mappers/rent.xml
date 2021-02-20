@@ -114,11 +114,7 @@
       delete from resq where resq_num=#{resq_num}
     ]]>
   </delete>
-  
-<<<<<<< HEAD
 
-=======
->>>>>>> branch 'develop' of https://github.com/curious0124/dnbpro.git
   <!-- 예약테이블 예약업데이트  -->
    <update id="Resupdate"  parameterType="java.util.Map">
     <![CDATA[
