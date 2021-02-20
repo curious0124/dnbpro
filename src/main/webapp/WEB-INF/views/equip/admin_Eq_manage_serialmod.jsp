@@ -62,7 +62,7 @@
    
             </div>
             <hr width="100%">
- <form name="modSerialstate" method="post"   action="${contextPath}/equip/modSerialState.do?eq_serial=${adminequip.eq_serial}" enctype="multipart/form-data" >
+ <form name="modSerialstate" method="post"   action="${contextPath}/equip/modSerialState.do" enctype="multipart/form-data" >
            
 
                         <div class="row align-items-center">

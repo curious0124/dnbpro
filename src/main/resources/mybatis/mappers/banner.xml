@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.banner">
+   <!-- 리절트 맵 정의 -->
+   <resultMap id="bannerResult" type="BannerVO">
+      <result property="board_num" column="board_num" />
+      <result property="board_title" column="board_title" />
+      <result property="board_img" column="board_img" />
+   </resultMap>
+
+
+   
+<!-- 배너 등록 글의 이미지 가져오기 -->   
+   <select id="selectBannerImage" resultMap="bannerResult">
+   <![CDATA[
+       	select board_img, board_num from brd_detail
+        where         
+        board_title like '%'|| '[배너등록]' || '%'
+        order by board_img desc
+        ]]>
+   </select>
+</mapper>
