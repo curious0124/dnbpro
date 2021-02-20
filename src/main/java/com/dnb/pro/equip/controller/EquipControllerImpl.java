@@ -1,8 +1,10 @@
 package com.dnb.pro.equip.controller;
 
 import java.io.File;
+import java.sql.Date;
 import java.util.Enumeration;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -25,6 +27,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -41,7 +44,7 @@ import com.dnb.pro.equip.vo.EquipVO;
 @RequestMapping(value="/equip")
 public class EquipControllerImpl implements EquipController {
 	private static final Logger logger = LoggerFactory.getLogger(EquipControllerImpl.class);
-	
+	private static final String equipimg_ARTICLE_IMAGE_REPO = "\\\\DIGITAL20\\dnb\\equipimg";
 	 @Autowired
 		private EquipService equipService;
 		@Autowired
@@ -62,16 +65,64 @@ public class EquipControllerImpl implements EquipController {
 			return mav;
 		}
 		
-		@RequestMapping(value="/view_Eq_detail.do" ,method = RequestMethod.GET)
-		public ModelAndView viewequip(@RequestParam("eq_name") String eq_name,
+		//장비예약 상세페이지
+		@RequestMapping(value="/view_Eq_detail.do" ,method = { RequestMethod.GET, RequestMethod.POST})
+		public ModelAndView viewequip(@RequestParam(value="eq_name") String eq_name,
+				 @RequestParam(value="fromDate", required=false) Date fromDate,
+				 @RequestParam(value="toDate", required=false) Date toDate,
 	                                    HttpServletRequest request, HttpServletResponse response) throws Exception{
 			String viewName = (String)request.getAttribute("viewName");
-			equipVO=equipService.viewequip(eq_name);
 			ModelAndView mav = new ModelAndView();
 			mav.setViewName(viewName);
+			System.out.println("eq_name : "+eq_name+", 시작일 : "+ fromDate+", 종료일 : "+toDate);
+			
+			equipVO=equipService.viewequip(eq_name);
 			mav.addObject("equipVO", equipVO);
+			
+					if(fromDate != null) {
+						Map<String,Object> selectElement = new HashMap<String, Object>();
+						selectElement.put("eq_name", eq_name);
+						selectElement.put("fromDate", fromDate);
+						selectElement.put("toDate", toDate);
+						List ableEquipmentsList = equipService.seletAbleEquipment(selectElement);
+						System.out.println("리스트 : "+ableEquipmentsList);
+						mav.addObject("fromDate",fromDate);
+						mav.addObject("toDate", toDate);
+						mav.addObject("ableEquipmentsList", ableEquipmentsList);
+						System.out.println(mav);
+						
+					}
+			
+			
 			return mav;
 		}
+		
+		//날짜선택시 선택가능한 장비 리스트 조회
+		@RequestMapping(value = "/seletAbleEquipment.do", method = { RequestMethod.GET, RequestMethod.POST})
+		public ResponseEntity seletAbleEquipment(@RequestParam(value="eq_name") String eq_name,
+												 @RequestParam(value="fromDate") Date fromDate,
+												 @RequestParam(value="toDate") Date toDate,
+												HttpServletResponse response) throws Exception{
+			
+//			System.out.println(eq_name);
+//			System.out.println(fromDate);
+//			System.out.println(toDate);
+			Map<String,Object> selectElement = new HashMap<String, Object>();
+			selectElement.put("eq_name", eq_name);
+			selectElement.put("fromDate", fromDate);
+			selectElement.put("toDate", toDate);
+			System.out.println(selectElement.get("eq_name"));
+			System.out.println(selectElement.get("fromDate"));
+			System.out.println(selectElement.get("toDate"));
+			
+			List ableEquipmentsList = equipService.seletAbleEquipment(selectElement);
+			System.out.println("리스트 : "+ableEquipmentsList);
+			
+			return (ResponseEntity) ableEquipmentsList;
+		}
+
+		
+		
 		
 		@Override
 		@RequestMapping(value="/admin_Eq_manage_list.do" ,method = {RequestMethod.GET,RequestMethod.POST})
@@ -110,6 +161,7 @@ public class EquipControllerImpl implements EquipController {
 			mav.addObject("cateList", cateList);
 			return mav;
 		}
+		
 		@Override
 		@RequestMapping(value="/addcatename.do" ,method = RequestMethod.POST)
 		public ResponseEntity addcatename(@RequestParam("cate_name") String cate_name,
@@ -213,8 +265,12 @@ public class EquipControllerImpl implements EquipController {
 			ResponseEntity resEntity = null;
 			HttpHeaders responseHeaders = new HttpHeaders();
 			responseHeaders.add("Content-Type", "text/html; charset=utf-8");
+			
+			
+			
 			try {
 			    equipService.addeqname(equipVO);
+			    
 			    message  = "<script>";
 			    message +=" alert('모델명 등록을 마쳤습니다.모델 리스트 창으로 이동합니다.');";
 			    message += " location.href='"+request.getContextPath()+"/equip/admin_Eq_manage_regist_list.do';";
@@ -232,10 +288,72 @@ public class EquipControllerImpl implements EquipController {
 			return resEntity;
 		}
 		
-		
-		
-		
-	
+//		@Override
+//		@RequestMapping(value="/addeqname.do" ,method = RequestMethod.GET)
+//		public ResponseEntity addeqname(@ModelAttribute("equipVO") EquipVO equipVO,
+//				MultipartHttpServletRequest multipartRequest, HttpServletResponse response)  throws Exception{
+//			response.setContentType("text/html; charset=UTF-8");
+//			multipartRequest.setCharacterEncoding("utf-8");
+//			
+//			String eq_img = upload(multipartRequest);
+//			String eq_thumimg = upload(multipartRequest);
+//			HttpSession session = multipartRequest.getSession();
+//			
+//			String message = null;
+//			ResponseEntity resEntity = null;
+//			HttpHeaders responseHeaders = new HttpHeaders();
+//			responseHeaders.add("Content-Type", "text/html; charset=utf-8");
+//			
+//			
+//			
+//			try {
+//			    int eq_name = equipService.addeqname(equipVO);//글정보가 저장된 articleMap을 Service클래스의 addArticle()메서드로 전달
+//				if(eq_img!=null && eq_img.length()!=0) {//글정보를 추가한 후 업로드한 이미지 파일을 글 번호로 명명한 폴더로 이동합니다.
+//					File srcFile = new File(equipimg_ARTICLE_IMAGE_REPO+"\\"+"temp"+"\\"+eq_img);
+//					File destDir = new File(equipimg_ARTICLE_IMAGE_REPO+"\\"+eq_name);
+//					FileUtils.moveFileToDirectory(srcFile, destDir, true);				
+//				}
+//			    message  = "<script>";
+//			    message +=" alert('모델명 등록을 마쳤습니다.모델 리스트 창으로 이동합니다.');";
+//			    message += " location.href='"+multipartRequest.getContextPath()+"/equip/admin_Eq_manage_regist_list.do';";
+//			    message += " </script>";
+//			    
+//			}catch(Exception e) {
+//				message  = "<script>";
+//			    message +=" alert('작업 중 오류가 발생했습니다. 다시 시도해 주세요');";
+//			    message += " location.href='"+multipartRequest.getContextPath()+"/equip/admin_Eq_manage_regist.do';";
+//			    message += " </script>";
+//				e.printStackTrace();
+//			}
+//			resEntity =new ResponseEntity(message, responseHeaders, HttpStatus.OK);   
+////			System.out.println(equipVO.getEq_thumimg());  
+//			return resEntity;
+//		}
+//		
+//		
+//	
+//		private String upload(MultipartHttpServletRequest multipartRequest) throws Exception{
+//			String eq_img = null;
+//			Map<String, String> articleMap = new HashMap<String, String>();
+//			Iterator<String> fileNames = multipartRequest.getFileNames();
+//			while(fileNames.hasNext()) {
+//				String fileName = fileNames.next();
+//				MultipartFile mFile = multipartRequest.getFile(fileName);
+//				eq_img = mFile.getOriginalFilename();
+//				File file = new File(equipimg_ARTICLE_IMAGE_REPO+"\\"+fileName);
+//				if(mFile.getSize()!=0) { //File Null Check
+//					if(! file.exists()) {
+//						if(file.getParentFile().mkdirs()) {
+//							file.createNewFile();
+//						}
+//					}
+//					mFile.transferTo(new File(equipimg_ARTICLE_IMAGE_REPO+"\\"+"temp"+"\\"+eq_img));
+//					
+//				}			
+//			}
+//			return eq_img;		
+//		}
+
 		@Override
 		@RequestMapping(value="/addserialname.do" ,method = RequestMethod.GET)
 		public ResponseEntity addserialname(@ModelAttribute("equipVO") EquipVO equipVO,
@@ -422,4 +540,9 @@ public class EquipControllerImpl implements EquipController {
 			return mav;
 		}
 
+		
+		
+		
+		
+		
 }

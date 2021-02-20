@@ -11,5 +11,6 @@
     <typeAlias type="com.dnb.pro.board.vo.ArticleVO" alias="articleVO" />
     <typeAlias type="com.dnb.pro.mypage.vo.MyPageVO" alias="MyPageVO" />
     <typeAlias type="com.dnb.pro.cart.vo.CartVO" alias="CartVO" />
+    <typeAlias type="com.dnb.pro.banner.vo.BannerVO" alias="BannerVO" />
   </typeAliases>
 </configuration>

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.dnb.pro.banner.service.BannerService;
 import com.dnb.pro.cust.service.CustService;
 
 
@@ -25,6 +26,10 @@ public class MainController {
 	
 	@Autowired
 	private CustService custService;
+	// ±‘∫¿¿€æ˜
+	@Autowired
+	private BannerService BannerService;
+	//
 	
 	@RequestMapping(value = "/main/main.do", method = RequestMethod.GET)
 	public ModelAndView main(HttpServletRequest request, HttpServletResponse response) throws Exception{
@@ -33,6 +38,10 @@ public class MainController {
 		mav.setViewName(viewName);
 		
 		List articlesNoticeList = custService.listNoticeArticles();
+		//±‘∫¿
+		List bannerList = BannerService.selectBannerImage();
+		mav.addObject("bannerList",bannerList);
+		
 		System.out.println("»Æ¿Œ "+articlesNoticeList);
 		mav.addObject("articlesNoticeList",articlesNoticeList);
 		return mav;

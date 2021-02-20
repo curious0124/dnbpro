@@ -224,7 +224,7 @@
   
   
   
-  <c:when test="${articlesList == null }" >
+  <c:when test="${articlesList==null}">
    <div class="listrow">
     <div class="col_list" id='brd_div1'>
       &nbsp;
@@ -247,8 +247,6 @@
     </div>
      -->
   </div>
-   
-    
   </c:when>
     </c:choose>
   
@@ -256,7 +254,7 @@
   <div id="listPaging">
   <ul>
     <c:if test="${pageMaker.prev}">
-    	<li><a href="list${pageMaker.makeQuery(pageMaker.startPage - 1)}">이전</a></li>
+    	<li><a href="admin_board_list.do${pageMaker.makeQuery(pageMaker.startPage - 1)}">이전</a></li>
     </c:if> 
 
     <c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
@@ -266,7 +264,7 @@
     </c:forEach>
 
     <c:if test="${pageMaker.next && pageMaker.endPage > 0}">
-    	<li><a href="list${pageMaker.makeQuery(pageMaker.endPage + 1)}">다음</a></li>
+    	<li><a href="admin_board_list.do${pageMaker.makeQuery(pageMaker.endPage + 1)}">다음</a></li>
     </c:if> 
   </ul>
 </div>

@@ -198,4 +198,21 @@ from (select eql.eq_name,eq_serial,eql.eq_state
             	]]>
     </select> 
     -->
+    
+     <select id="selectAbleEquipList" parameterType="java.util.Map" resultMap="EquipResult" >
+    <![CDATA[
+	 SELECT eq_name, eq_serial,eq_state 
+	 from (select eql.eq_name,eq_serial,eql.eq_state 
+	    	from eq_list eql 
+	    	where eql.eq_state not in '수리' and eql.eq_state not in '폐기') 
+	 where eq_name= #{eq_name} and eq_serial not in(select eq_serial 
+	            									from reserve 
+	            									where (res_start between #{fromDate} and #{toDate} or (res_end between #{fromDate}  and #{toDate})))
+            	]]>
+    </select> 
+    
+    
+    
+    
+    
   </mapper>

@@ -12,7 +12,7 @@
 <head>
 
     <!-- 부트스트랩 경로 지정 폴더에 넣어놨음-->
-    <%-- <link rel="stylesheet" href="${contextPath}/resources/bootstrap/bootstrap.css"> --%>
+    
     
     <meta charset="UTF-8">
     <title>헤더</title>    
@@ -181,12 +181,7 @@
             <div class="col">
                 <div class="dropdown">
                     <button class="dropbtn" onclick="location.href=' http://localhost:8090/pro/education/edu_list.do'">장비교육</button>
-                    <div class="dropdown-content">
-                        <a href="#">사업소개</a>
-                        <a href="#">홍보영상</a>
-                        <a href="#">지원소개</a>
-                        <a href="#">오시는길</a>
-                    </div>
+                    
                 </div>
             </div>
             <div class="col">
