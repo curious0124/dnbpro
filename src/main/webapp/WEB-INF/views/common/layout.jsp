@@ -3,20 +3,36 @@
  %>
  <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>    
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
- 
+
 <!DOCTYPE html>
 <html>
   <head>
+<<<<<<< HEAD
   <!-- <script src="${contextPath}/resources/js/jquery-3.5.1.min.js"> </script> -->
+=======
+	<!--   jQuery -->
+  	 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+>>>>>>> branch 'develop' of https://github.com/curious0124/dnbpro.git
       <!-- 부트스트랩 경로 지정 폴더에 넣어놨음-->
+<<<<<<< HEAD
     <!-- <link rel="stylesheet" href="${contextPath}/resources/bootstrap/bootstrap.css"> -->
     
+=======
+    <%-- <link rel="stylesheet" href="${contextPath}/resources/bootstrap/bootstrap.css"> --%>
+>>>>>>> branch 'develop' of https://github.com/curious0124/dnbpro.git
     <meta charset="UTF-8">
     <style>
+      html,body{/*수정 */
+      	height: 100%;
+      }
+      body{ /*수정 */
+      	margin: 0;
+      }
       #container {
+      	min-height:100%; /*수정 */
         width: 100%;
         margin: 0px auto;
-          text-align:center;
+        text-align:center;
         border: 0px solid #bcbcbc;
       }
       #header {
@@ -24,7 +40,7 @@
         margin-bottom: 5px;
         border: 0px solid #bcbcbc;
          background-color: lightgreen;
-      }<!-- 
+      }
       #sidebar-left {
         width: 15%;
         height:700px;
@@ -35,12 +51,10 @@
          background-color: yellow;
         border: 0px solid #bcbcbc;
         font-size:10px;
-      }-->
+      }
       #content {
         width: 75%;
         padding: 5px;
-
-        
         margin: 0 auto;
 
         margin-right: 5px;
@@ -48,12 +62,20 @@
         margin : 0 auto;
         border: 0px solid #bcbcbc;
       }
+<<<<<<< HEAD
       #footer {
         clear: both;
         padding: 5px;
         border: 0px solid #bcbcbc;
          background-color: lightblue;
          margin-top:500px;
+=======
+      #footer{ /*수정 */
+      	width:100%;
+      	position: relative;
+      	margin-top:100px;
+      	z-index: -1;
+>>>>>>> branch 'develop' of https://github.com/curious0124/dnbpro.git
       }
       
     </style>
@@ -69,10 +91,14 @@
       </div>
       <div id="content">
           <tiles:insertAttribute name="body"/>
-      </div>
-      <div id="footer">
-          <tiles:insertAttribute name="footer"/>
+          
       </div>
     </div>
+    
+     <div id="footer">
+       <tiles:insertAttribute name="footer"/>
+    </div> 
+    
+   
   </body>
 </html>

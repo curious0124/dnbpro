@@ -1,6 +1,7 @@
 package com.dnb.pro.education.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -8,6 +9,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.dnb.pro.education.dao.educationDAO;
+import com.dnb.pro.education.vo.Criteria;
 import com.dnb.pro.education.vo.educationVO;
 
 @Service("educationService")
@@ -16,15 +18,36 @@ public class educationServiceImpl implements educationService {
 	@Autowired
 	private educationDAO educationDAO;
 	
-	public List<educationVO> listeducation() throws Exception{
-		List<educationVO> educationList = educationDAO.selectEducationList();
+	@Override
+	public List<educationVO> listeducation(Criteria cri) throws Exception{
+		List<educationVO> educationList = educationDAO.selectEducationList(cri);
 		return educationList;
+	}
+	@Override
+	public int listeduCount() throws Exception {
+		return educationDAO.listeduCount();
 	}
 	@Override
 	public educationVO vieweducation(int edu_num) throws Exception {
 		educationVO educationVO = educationDAO.selecteducation(edu_num);
 		return educationVO;
 	}
+	@Override
+	public int addNeweducation(Map educationMap) throws Exception {
+		System.out.println("service"+educationMap);
+		return educationDAO.insertNeweducation(educationMap);
+	}
+	@Override
+	public void modeducation(Map educationMap) throws Exception {
+		educationDAO.updateeducation(educationMap);
+		
+	}
+
+	@Override
+	public void deleteeducation(educationVO educationVO) throws Exception {
+		educationDAO.deleteeducation(educationVO);
+	}
+		
 	
 	@Override
 	public List<educationVO> listEduCateName() throws Exception {

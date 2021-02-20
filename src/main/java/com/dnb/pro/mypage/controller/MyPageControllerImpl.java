@@ -1,5 +1,6 @@
 package com.dnb.pro.mypage.controller;
 
+import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -16,9 +17,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.dnb.pro.member.vo.MemberVO;
 import com.dnb.pro.mypage.service.MyPageService;
+import com.dnb.pro.mypage.vo.MyPageVO;
 import com.dnb.pro.rent.vo.RentVO;
 
 
@@ -34,6 +37,9 @@ public class MyPageControllerImpl implements MyPageController{
 	
 	@Autowired
 	private RentVO rentVO;
+	
+	@Autowired
+	private MyPageVO mypageVO;
 	
 	@Override
 	@RequestMapping(value = "/mypage.do", method = RequestMethod.GET)
@@ -236,7 +242,7 @@ public class MyPageControllerImpl implements MyPageController{
 		
 		HttpSession session = request.getSession();
 		memberVO=(MemberVO)session.getAttribute("member");
-		String  user_id=memberVO.getUser_id();
+		String user_id=memberVO.getUser_id();
 		String viewName=(String)request.getAttribute("viewName");
 		System.out.println("Method'modmemberForm'Name : " + viewName);
 		
@@ -255,6 +261,7 @@ public class MyPageControllerImpl implements MyPageController{
 	@RequestMapping(value="/modMember.do", method = {RequestMethod.POST, RequestMethod.GET})
 	public ModelAndView modMember(@ModelAttribute("member") MemberVO member,HttpServletRequest request, HttpServletResponse response) throws Exception{
 		request.setCharacterEncoding("utf-8");
+		System.out.println("확인  : "+member.getUser_id()+",   "+member.getUser_pwd());
 //		MemberVO memberVO = new MemberVO();
 //		bind(request, memberVO);
 		int result = 0;
@@ -263,12 +270,61 @@ public class MyPageControllerImpl implements MyPageController{
 		return mav;
 		
 	}
+	
+	@Override
+	@RequestMapping(value="/memberRemove.do" ,method = RequestMethod.POST)
+	public void removeMember(@RequestParam(value = "cb[]") List<String> cbArr,@RequestParam(value = "pwd") String pwd, RedirectAttributes rAttr, HttpServletRequest request, HttpServletResponse response) throws Exception{
+		request.setCharacterEncoding("utf-8");
+		
+		HttpSession session=request.getSession();
+//		String viewName=(String)request.getAttribute("viewName");
+		
+		MemberVO member=(MemberVO)session.getAttribute("member");
+		String sessionPass = member.getUser_pwd();
+		ModelAndView mav = new ModelAndView();
+		String outputPwd="1";
+		
+		if(!(sessionPass.equals(pwd))) {
+			outputPwd="0";
+		}else {
+		
+			String user_id=member.getUser_id();
+			System.out.println("멤버아이디 : " + user_id);
+			String removelist="";
+			if(!cbArr.equals(null)) {
+				for(String i : cbArr) {
+					removelist += i + ", ";
+				}
+			}
+			removelist = "";
+			Map<String, Object> firemap = new HashMap<String, Object>();
+			firemap.put("user_id", user_id);
+			firemap.put("removelist", removelist);
+			
+			myPageService.removeMember(firemap);
+		}
+		
+		PrintWriter output = response.getWriter();
+		
+		output.print(outputPwd);
+	}
 
 	@Override
-	public ResponseEntity modifyMyInfo(String attribute, String value, HttpServletRequest request,
-			HttpServletResponse response) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+	@RequestMapping(value="/removeMember.do" ,method = RequestMethod.GET)
+	public ModelAndView memberRemove(HttpServletRequest request, HttpServletResponse response) throws Exception {
+request.setCharacterEncoding("utf-8");
+		
+		HttpSession session=request.getSession();
+		
+		String viewName=(String)request.getAttribute("viewName");
+		
+		MemberVO member=(MemberVO)session.getAttribute("member");
+		
+		String user_id=member.getUser_id();
+		System.out.println("remove id : " + user_id);
+		
+		ModelAndView mav = new ModelAndView(viewName);
+		return mav;
 	}
 
 	@Override
@@ -278,7 +334,25 @@ public class MyPageControllerImpl implements MyPageController{
 		return null;
 	}
 
+	@Override
+	public ResponseEntity modifyMyInfo(String attribute, String value, HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
+	@RequestMapping(value="/fireBye.do", method=RequestMethod.GET)
+	public ModelAndView fireAlert(HttpServletRequest request, HttpServletResponse response) throws Exception{
+		System.out.println("작동");
+		
+		HttpSession session = request.getSession();
+		session.removeAttribute("member");
+		session.removeAttribute("isLogOn");
+		
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("/mypage/memberRemove");
+		return mav;
+	}
 
 	
 

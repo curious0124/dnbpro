@@ -15,6 +15,26 @@
       <put-attribute name="body" value="/WEB-INF/views/education/edu_detail.jsp" />
    </definition>
    
+    <definition name="/education/edu_admin_list" extends="baseLayout">
+      <put-attribute name="title" value="관리자 장비교육 리스트 페이지" />
+      <put-attribute name="body" value="/WEB-INF/views/education/edu_admin_list.jsp" />
+   </definition>
+   
+   <definition name="/education/edu_admin_Form" extends="baseLayout">
+      <put-attribute name="title" value="관리자 장비교육 등록 페이지" />
+      <put-attribute name="body" value="/WEB-INF/views/education/edu_admin_Form.jsp" />
+   </definition>
+   
+   <definition name="/education/edu_admin_detail" extends="baseLayout">
+      <put-attribute name="title" value="관리자 장비교육 뷰" />
+      <put-attribute name="body" value="/WEB-INF/views/education/admin_edu_ViewForm.jsp" />
+   </definition>
+   
+   <definition name="/education/admin_edu_modeducationForm" extends="baseLayout">
+      <put-attribute name="title" value="관리자 장비교육 수정" />
+      <put-attribute name="body" value="/WEB-INF/views/education/admin_edu_modeducationForm.jsp" />
+   </definition>
+   
    <definition name="/education/edu_cate_list" extends="baseLayout">
       <put-attribute name="title" value="교육 분류 리스트" />
       <put-attribute name="body" value="/WEB-INF/views/education/edu_cate_list.jsp" />

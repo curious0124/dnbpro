@@ -16,12 +16,25 @@
      font-size:20px;
       text-align:center;
     }
+	/*수정 */
+     #footerBox{ 
+      	width:100%;
+      	bottom:0px;
+        clear: both;
+        padding: 5px;
+        border: 0px solid #bcbcbc;
+        background-color: lightblue;
+      }
   </style>
 </head>
 <body>
+<<<<<<< HEAD
 <div id="footer_section">
+=======
+<div id="footerBox">
+>>>>>>> branch 'develop' of https://github.com/curious0124/dnbpro.git
 <p> e-mail:admin@test.com</p> 
-<p> 회사주소:서울시 강동구</p>
+<p> 명예의 전당 : 김 태 수</p>
 <p>찾아오는 길:<a href="#">약도</a></p>
 </div>
 </body>

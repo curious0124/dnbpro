@@ -58,7 +58,7 @@
    <select id="selectAllRentList" resultMap="rentEquipResult"   >
     <![CDATA[
       SELECT res_num, User_id, Eq_serial, Res_start, Res_end, Res_Status from reserve	
-      where res_status = '대여중'	
+      where res_status = '대여중'
     ]]>
   </select>
   
@@ -76,9 +76,11 @@
     <![CDATA[
      insert into reserve(res_num,user_id,eq_serial,res_start,res_end) 
 	select  res_num_seq.nextval,user_id,eq_serial,resq_start,resq_end from resq
+	where resq_num=#{resq_num}
 	
     ]]>
   </insert>
+  
   
   
   <!-- 예약신청 승인  로그추가  -->
@@ -86,6 +88,7 @@
     <![CDATA[
      insert into log(log_num, res_num,eq_serial,user_id,status,log_maker,res_start,res_end) 
 	select log_num_SEQ.NEXTVAL, res_num,eq_serial,user_id,'예약승인','관리자',res_start,res_end from reserve
+	where res_num=(select max(res_num) from reserve)
     ]]>
   </insert>
  
@@ -96,11 +99,12 @@
     ]]>
   </delete>
   
-  <!-- 예약신청 취소  로그추가  -->
+  <!-- 예약신청 취소  로그추가   -->
    <insert id="insertLogResqcancle" parameterType="RentVO"   >
     <![CDATA[
      insert into log(log_num,resq_num,eq_serial,user_id,status,log_maker,res_start,res_end) 
 	select log_num_SEQ.NEXTVAL,resq_num,eq_serial,user_id,'예약신청취소','관리자',resq_start,resq_end from resq
+	where resq_num=#{resq_num}
     ]]>
   </insert>
   
@@ -110,9 +114,82 @@
       delete from resq where resq_num=#{resq_num}
     ]]>
   </delete>
+
+  <!-- 예약테이블 예약업데이트  -->
+   <update id="Resupdate"  parameterType="java.util.Map">
+    <![CDATA[
+       update reserve  
+           set res_Status='대여중'
+             where res_num =#{AuthResnum}
+    ]]>
+  </update>
   
- 
+   <!-- 예약승인 로그추가  수정필요 -->
+   <insert id="insertLogResupdate"  parameterType="java.util.Map">
+    <![CDATA[
+      insert into log(log_num,res_num,eq_serial,user_id,status,log_maker,res_start,res_end) 
+	select log_num_SEQ.NEXTVAL,res_num,eq_serial,user_id,'대여승인','관리자',res_start,res_end from reserve
+	where res_num=#{AuthResnum}
+    ]]>
+  </insert>
   
+  
+  
+   <!-- 예약 취소  로그추가   -->
+   <insert id="insertLogRescancle" parameterType="RentVO"   >
+    <![CDATA[
+     insert into log(log_num,res_num,eq_serial,user_id,status,log_maker,res_start,res_end) 
+	select log_num_SEQ.NEXTVAL,res_num,eq_serial,user_id,'예약취소','관리자',res_start,res_end from reserve
+	where res_num=#{res_num}
+    ]]>
+  </insert>
+  
+  <!-- 예약 취소 예약중삭제  -->
+   <delete id="deleteRescancle" parameterType="int">
+    <![CDATA[
+      delete from reserve where res_num=#{res_num}
+    ]]>
+  </delete>
+  
+  
+  <!-- 대여중 반납  로그추가  -->
+   <insert id="insertLogResreturn" parameterType="RentVO"   >
+    <![CDATA[
+     insert into log(log_num,res_num,eq_serial,user_id,status,log_maker,res_start,res_end) 
+	select log_num_SEQ.NEXTVAL,res_num,eq_serial,user_id,'반납승인','관리자',res_start,res_end from reserve
+	where res_num=#{res_num}
+    ]]>
+  </insert>
+  
+  <!-- 대여중 대여 삭제  -->
+   <delete id="deleteRenting" parameterType="int">
+    <![CDATA[
+      delete from reserve where res_num=#{res_num}
+    ]]>
+  </delete>
+  
+  <!-- 배송반납리스트 반납승인  로그추가  -->
+   <insert id="insertLogExpressreturn" parameterType="RentVO"   >
+    <![CDATA[
+     insert into log(log_num,res_num,return_num,eq_serial,user_id,status,log_maker,res_start,res_end) 
+	select log_num_SEQ.NEXTVAL,ret.res_num,ret.return_num,res.eq_serial,res.user_id,'반납승인','관리자',res.res_start,res.res_end from return ret,reserve res
+	where ret.return_num= #{return_num} and res.res_num=#{res_num} and res.res_num= ret.res_num
+    ]]>
+  </insert>
+  
+  <!-- 배송반납리스트 반납승인 클릭시  반납리스트 해당 항목 삭제  -->
+   <delete id="deleteExpressReturn" parameterType="int">
+    <![CDATA[
+      delete from return where return_num=#{return_num}
+    ]]>
+  </delete>
+  
+  <!-- 배송반납리스트 반납승인 클릭시  대여리스트 해당 항목 삭제  -->
+   <delete id="deleteExpressReturnRenting" parameterType="int">
+    <![CDATA[
+      delete from reserve where res_num=#{res_num}
+    ]]>
+  </delete>
   
 	
 </mapper>

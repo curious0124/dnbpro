@@ -184,7 +184,28 @@
     <script src="${contextPath}/resources/js/jquery-3.5.1.min.js"> </script>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
    
+<script>
+	$(function() {
+		$(".ReturnRenting").click(
+				function() {
+					var answer = confirm("반납을 승인하시겠습니까?");
+					if (answer == true) {
 
+						
+						var res_num = $(this).parent().find(
+								"input:nth-child(2)").val();
+
+				
+						console.log(res_num);
+						$("#Resreturnnum").val(res_num);
+						
+
+					$("#ReturnauthForm").submit();
+					}
+				});
+
+	});
+</script>
 </head>
 
 <body>
@@ -245,8 +266,8 @@
                                ${List.res_Status}
                             </div>
                             <div class="col_list" id='brd_div7'>
-                                <button type="button" class="btn btn-light" id='brd_btn'>반납</button>
-                                
+                                <button type="button" class="btn btn-light ReturnRenting" id='brd_btn'>반납승인</button>
+                                 <input type="hidden" value="${List.res_num}"/>
                             </div>
 
                         </div>
@@ -281,6 +302,9 @@
             </c:choose>
         </div>
     </div>
+    <form action="${contextPath}/rent/ReturnRenting.do" id="ReturnauthForm" method="post">
+		<input type="hidden" id="Resreturnnum" name="Resnum" value="" />
+	</form>
 </body>
 
 </html>

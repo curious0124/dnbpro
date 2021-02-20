@@ -81,4 +81,74 @@ public class RentDAOImpl implements  RentDAO {
 			return sqlSession.delete("mapper.rent.deleteResqapplycancle", resq_num);
 			
 		}
+		
+		@Override
+		public void Resupdate(Map resmap) throws DataAccessException{
+			
+			sqlSession.update("mapper.rent.Resupdate", resmap); 
+//			System.out.println(res_Status);
+//			 return result;
+			
+		}
+		
+		@Override
+		public void insertLogResupdate(Map resmap) throws DataAccessException {
+//			int resNO = selectResnumByCode();
+			System.out.println("DAO : "+resmap);
+			sqlSession.insert("mapper.rent.insertLogResupdate", resmap);
+//			return resNO;
+			
+		}
+		
+//		@Override
+//		public int selectResnumByCode() throws DataAccessException{
+//			return sqlSession.selectOne("mapper.rent.selectResnumByCode",res_num);
+//			
+//		}
+		
+		
+		@Override
+		public void insertLogRescancle(RentVO rentVO) throws DataAccessException {
+			sqlSession.insert("mapper.rent.insertLogRescancle", rentVO);
+			
+		}
+		
+		@Override
+		public int deleteRescancle(int res_num) throws DataAccessException {
+			return sqlSession.delete("mapper.rent.deleteRescancle", res_num);
+			
+		}
+		
+		
+		@Override
+		public void insertLogResreturn(RentVO rentVO) throws DataAccessException {
+			sqlSession.insert("mapper.rent.insertLogResreturn", rentVO);
+			
+		}
+		
+		@Override
+		public int deleteRenting(int res_num) throws DataAccessException {
+			return sqlSession.delete("mapper.rent.deleteRenting", res_num);
+			
+		}
+		
+		
+		@Override
+		public void insertLogExpressreturn(RentVO rentVO) throws DataAccessException {
+			sqlSession.insert("mapper.rent.insertLogExpressreturn", rentVO);
+			
+		}
+		
+		@Override
+		public int deleteExpressReturn(int return_num) throws DataAccessException {
+			return sqlSession.delete("mapper.rent.deleteExpressReturn", return_num);
+			
+		}
+		
+		@Override
+		public int deleteExpressReturnRenting(int res_num) throws DataAccessException {
+			return sqlSession.delete("mapper.rent.deleteExpressReturnRenting", res_num);
+			
+		}
+		
 }

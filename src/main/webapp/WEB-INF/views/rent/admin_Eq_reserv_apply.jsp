@@ -190,7 +190,7 @@
 
 						
 						var resq_num = $(this).parent().find(
-								"input:nth-child(1)").val();
+								"input:nth-child(2)").val();
 
 				
 						console.log(resq_num);
@@ -295,7 +295,7 @@
                                 <button type="button" class="btn btn-light Authres" id='brd_btn'>승인</button>
                                 <input type="hidden" value="${List.resq_num}"/>
                                  <button type="button" class="btn btn-light CancleResq" id='brd_btn'>취소</button>
-                                 <input type="hidden" value="${List.resq_num}" />
+                                 <input type="hidden" value="${resq_num}" />
                             </div>
                             
                         </div>

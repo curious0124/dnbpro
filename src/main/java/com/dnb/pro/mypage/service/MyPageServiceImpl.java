@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.dnb.pro.member.vo.MemberVO;
 import com.dnb.pro.mypage.dao.MyPageDAO;
+import com.dnb.pro.mypage.vo.MyPageVO;
 import com.dnb.pro.rent.vo.RentVO;
 
 @Service("myPageService")
@@ -153,6 +154,12 @@ public class MyPageServiceImpl implements MyPageService {
 	@Override
 	public int modMember(MemberVO memberVO) throws DataAccessException {
 		return myPageDAO.updateMember(memberVO);
+	}
+
+	@Override
+	public void removeMember(Map<String, Object> firemap) throws DataAccessException {
+		myPageDAO.removeMember((String)firemap.get("user_id"));
+		myPageDAO.addQuit(firemap);
 	}
 
 	
