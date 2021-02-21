@@ -379,7 +379,7 @@ public class EquipControllerImpl implements EquipController {
 				String fileName = fileNames.next();
 				MultipartFile mFile = multipartRequest.getFile("eq_img");
 				eq_img = mFile.getOriginalFilename();
-				File file = new File(equipimg_ARTICLE_IMAGE_REPO+"\\"+fileName);
+				File file = new File(equipimg_ARTICLE_IMAGE_REPO+"\\"+eq_img);
 				if(mFile.getSize()!=0) { //File Null Check
 					if(! file.exists()) {
 						if(file.getParentFile().mkdirs()) {
@@ -390,7 +390,7 @@ public class EquipControllerImpl implements EquipController {
 					
 				}			
 			}
-			System.out.println("이미지"+eq_img);
+//			System.out.println("이미지"+eq_img);
 			return eq_img;		
 		}
 
@@ -405,7 +405,7 @@ public class EquipControllerImpl implements EquipController {
 				String fileName = fileNames.next();
 				MultipartFile mFile = multipartRequest.getFile("eq_thumimg");
 				eq_thumimg = mFile.getOriginalFilename();
-				File file = new File(equipthumimg_ARTICLE_IMAGE_REPO+"\\"+fileName);
+				File file = new File(equipthumimg_ARTICLE_IMAGE_REPO+"\\"+eq_thumimg);
 				if(mFile.getSize()!=0) { //File Null Check
 					if(! file.exists()) {
 						if(file.getParentFile().mkdirs()) {
@@ -416,7 +416,7 @@ public class EquipControllerImpl implements EquipController {
 					
 				}			
 			}
-			System.out.println("썸네일"+eq_thumimg);
+//			System.out.println("썸네일"+eq_thumimg);
 			return eq_thumimg;		
 		}
 		

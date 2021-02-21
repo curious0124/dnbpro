@@ -88,7 +88,7 @@ public class FileDownloadController {
 		out.close();
 	}
 
-	private static final String equipthumimg_ARTICLE_IMAGE_REPO = "\\\\\\\\DIGITAL20\\\\dnb\\\\equipthuming";
+	private static final String equipthumimg_ARTICLE_IMAGE_REPO = "\\\\\\\\DIGITAL20\\\\dnb\\\\equipthumimg";
 	@RequestMapping("/equipthumimg_download.do")
 	protected void equipthumimg_download(@RequestParam("eq_thumimg") String eq_thumimg,
 							    @RequestParam("eq_name") String eq_name,
@@ -99,14 +99,14 @@ public class FileDownloadController {
 		;
 		//확장자를 제외한 원본 이미지 파일의 이름을 가져옵니다.
 		int lastIndex = eq_thumimg.lastIndexOf(".");
-		String fileName = eq_thumimg.substring(0,lastIndex);
+		String fileName = eq_thumimg.substring(1,lastIndex);
 		
 
 				
-		File thumbnail = new File(equipthumimg_ARTICLE_IMAGE_REPO+"\\"+eq_name+"\\"+fileName+".png");	//원본이미지 파일이름과 같은 썸네일파일에 대한 File객체 생성
+		File thumbnail = new File(equipthumimg_ARTICLE_IMAGE_REPO+"\\"+eq_name+"\\"+fileName+".jpg");	//원본이미지 파일이름과 같은 썸네일파일에 대한 File객체 생성
 		if(image.exists()) {	//원본이미지 파일을 가로세로50픽셀인 png형식의 썸네일 이미지파일로 생성
 			thumbnail.getParentFile().mkdirs();
-			Thumbnails.of(image).size(100,100).outputFormat("png").toFile(thumbnail);
+			Thumbnails.of(image).size(100,100).outputFormat("jpg").toFile(thumbnail);
 		}
 		
 		//생성된 파일을 브라우저로 전송
