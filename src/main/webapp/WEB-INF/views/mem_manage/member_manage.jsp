@@ -142,7 +142,7 @@ a {
 											},
 											url : "${contextPath}/mem_manage/modMemAuth.do",
 											success : function() {
-												location.href = "${contextPath}/mem_manage/mem_list.do";},
+												location.href = "${contextPath}/mem_manage/mem_list.do" ;},
 												
 											error : function() {alert("오류가 발생했습니다.");}
 										});
@@ -252,7 +252,7 @@ a {
 								${listMember.user_id}
 							</div>
 							<div class="col_list" id='brd_div3'>
-								<a href=#>${listMember.user_email }</a>
+								${listMember.user_email }
 							</div>
 							<div class="col_list" id='brd_div4'>
 								${listMember.user_name }
@@ -310,7 +310,7 @@ a {
 
 					<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
 						<li><a
-							href="list${pageMaker.makeQuery(pageMaker.endPage + 1)}">다음</a></li>
+							href="mem_list${pageMaker.makeQuery(pageMaker.endPage + 1)}">다음</a></li>
 					</c:if>
 				</ul>
 			</div>
