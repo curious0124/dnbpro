@@ -36,6 +36,11 @@ public interface EquipDAO {
 
 	public EquipVO selectSerialById(String eq_serial) throws DataAccessException;
 
+
 	
 	public void insertEquiplist(Map eqnamemap) throws DataAccessException;
+
+//	public List selectStateList() throws DataAccessException;
+	public List selectAbleEquipment(Map<String, Object> selectElement);
+
 }

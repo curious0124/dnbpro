@@ -7,10 +7,19 @@
 <!DOCTYPE html>
 <html>
   <head>
+
+  <!-- <script src="${contextPath}/resources/js/jquery-3.5.1.min.js"> </script> -->
+
 	<!--   jQuery -->
   	 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
       <!-- 부트스트랩 경로 지정 폴더에 넣어놨음-->
+
+    <!-- <link rel="stylesheet" href="${contextPath}/resources/bootstrap/bootstrap.css"> -->
+    
+
     <%-- <link rel="stylesheet" href="${contextPath}/resources/bootstrap/bootstrap.css"> --%>
+
     <meta charset="UTF-8">
     <style>
       html,body{/*수정 */
@@ -46,18 +55,18 @@
       #content {
         width: 75%;
         padding: 5px;
-        margin: 0 auto;
-
         margin-right: 5px;
-        
         margin : 0 auto;
         border: 0px solid #bcbcbc;
       }
+
+      
       #footer{ /*수정 */
       	width:100%;
       	position: relative;
       	margin-top:100px;
       	z-index: -1;
+
       }
       
     </style>
