@@ -119,47 +119,35 @@ a {
 </script>
 <script>
 	$(function() {
-		$('#menucontent').load(
-				"${contextPath}/resources/subjsp/admin_menubar.jsp");
+		$('#menucontent').load("${contextPath}/resources/subjsp/admin_menubar.jsp");
 
-		/* $("#selectDelete_btn")
-				.click(
-						function() {
-
-							var confirm_val = confirm("정말 삭제하시겠습니까?");
-							var reurl = $
-							{
-								articlesList[0].brd_num
-							}
-							;
-
+		 $("#selectUpate_btn").click(function() {
+			 
+							var confirm_val = confirm("정말 수정 하시겠습니까?");
 							if (confirm_val) {
 								var checkArr = new Array();
+							/* 	var memId = ""; */
+								var user_auth = "";
 
-								$("input[class='chBox']:checked")
-										.each(
-												function() {
-													checkArr.push($(this).attr(
-															"value"));
-												});
-
-								$
-										.ajax({
-
+								$("input[class='chBox']:checked").each(function() {
+													checkArr.push($(this).attr("value"));
+								});
+								var user_auth = $(".mem_auth_option").val();
+							
+								$.ajax({
 											type : "post",
-											data : {
-												chbox : checkArr
+											data : { 
+												chbox : checkArr,
+												memAuth : user_auth
 											},
-											url : "${contextPath}/board/deleteSelectArticle.do",
+											url : "${contextPath}/mem_manage/modMemAuth.do",
 											success : function() {
-												location.href = "${contextPath}/board/admin_board_list.do?brd_num="
-														+ reurl;
-											}
+												location.href = "${contextPath}/mem_manage/mem_list.do";},
+												
+											error : function() {alert("오류가 발생했습니다.");}
 										});
-
 							}
-						}); */
-
+						}); 
 	});
 	function allChk(obj) {
 		var chkObj = document.getElementsByName("RowCheck");
@@ -191,18 +179,23 @@ a {
 		<div class="board_container">
 			<div id='top_buttonbox'>
 				회원목록 게시판
-			<!-- 	<form action="">
-					<input name="text">
-				</form> -->
-				<select class="mem_auth_option">
-									<option value="">권한 수정</option>
-									<option value="">일반</option>
-									<option value="">관리자</option>
-									<option value="">블랙리스트</option>
-								</select>
-			
-				<button type="button" class="btn btn-light" id="selectDelete_btn" >
-								권환 수정</button>
+				<div>
+					<form name="memAuth" method="post"  >
+					<div>
+						<select class="mem_auth_option" name="user_auth">
+								<option value="">권한 수정</option>
+								<option value="일반">일반</option>
+								<option value="관리자">관리자</option>
+								<option value="블랙리스트">블랙리스트</option>
+						</select>
+						<input type="submit" id="selectUpate_btn" class="btn btn-light" value="권한수정">
+					</div>
+					</form>
+		
+				</div>
+			</form>
+				
+				
 				<div>
 				
 				</div>
@@ -322,9 +315,27 @@ a {
 				</ul>
 			</div>
 <div>
-	<form action="">
-		<input type="text">
-		<input type="button">
+	<form role="form" method="get">
+		
+  <div class="search">
+    <select name="searchType">
+      <option value="no"<c:out value="${scri.searchType == null ? 'selected' : ''}"/>>-----</option>
+      <option value="i"<c:out value="${scri.searchType eq 'i' ? 'selected' : ''}"/>>아이디</option>
+      <option value="n"<c:out value="${scri.searchType eq 'n' ? 'selected' : ''}"/>>이름</option>
+      <option value="tc"<c:out value="${scri.searchType eq 'tc' ? 'selected' : ''}"/>>아이디+이름</option>
+    </select>
+
+    <input type="text" name="keyword" id="keywordInput" value="${scri.keyword}"/>
+
+    <button id="searchBtn" type="button">검색</button>
+    <script>
+      $(function(){
+        $('#searchBtn').click(function() {
+          self.location = "list" + '${pageMaker.makeQuery(1)}' + "&searchType=" + $("select option:selected").val() + "&keyword=" + encodeURIComponent($('#keywordInput').val());
+        });
+      });   
+    </script>
+  </div>
 		</form>
 </div>
 
