@@ -9,7 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 
-import com.dnb.pro.board.vo.ArticleVO;
+
+import com.dnb.pro.education.vo.Criteria;
 import com.dnb.pro.education.vo.educationVO;
 
 
@@ -20,9 +21,13 @@ public class educationDAOImpl implements educationDAO{
 	private SqlSession sqlSession;
 
 	@Override
-	public List selectEducationList() throws DataAccessException {
-		List<educationVO> educationList = sqlSession.selectList("mapper.education.selectEducationList");
+	public List selectEducationList(Criteria cri) throws DataAccessException {
+		List<educationVO> educationList = sqlSession.selectList("mapper.education.selectEducationList",cri);
 		return educationList;
+	}
+	@Override
+	public int listeduCount() throws Exception {
+		return sqlSession.selectOne("mapper.education.listeduCount");
 	}
 	@Override
 	public educationVO selecteducation(int edu_num) throws DataAccessException {

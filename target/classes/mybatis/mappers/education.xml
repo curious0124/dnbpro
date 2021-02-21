@@ -19,12 +19,35 @@
 	
 </resultMap>
   
-  <select id="selectEducationList"  resultMap="educationResult" >
+<!--   <select id="selectEducationList"  resultMap="educationResult" >
         <![CDATA[
 select edu_num, cate_name, eq_name, edu_title, edu_content, edu_pub_date, edu_writer, edu_thuming  from education ORDER BY edu_num DESC
         ]]>
-    </select>
-  
+    </select> -->
+    
+    
+    
+<!--  페이징 해보자 -->
+ 	<select id="selectEducationList" resultMap="educationResult">
+      <![CDATA[
+         SELECT edu_num, cate_name, eq_name, edu_title, edu_content, edu_pub_date, edu_writer, edu_thuming FROM ( 
+		        SELECT edu_num, cate_name, eq_name, edu_title, edu_content, edu_pub_date, edu_writer, edu_thuming,
+		               ROW_NUMBER() OVER(ORDER BY edu_num DESC) AS RNUM
+		        	   FROM education) mp
+		WHERE RNUM BETWEEN #{rowStart} AND #{rowEnd}
+		ORDER BY edu_num DESC 
+      ]]>
+	</select>
+	 <select id="listeduCount" resultType="int">
+   		<![CDATA[
+   			select 
+   			count(edu_num)
+   			from education
+   		]]>
+   </select>   
+<!--  페이징 해보자 -->
+
+
   
 <!--  교육 번호 조회  -->
    <select id="selectEducationByCode" parameterType="educationVO" resultType="com.dnb.pro.education.vo.educationVO">

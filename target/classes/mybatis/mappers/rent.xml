@@ -114,7 +114,7 @@
       delete from resq where resq_num=#{resq_num}
     ]]>
   </delete>
-  
+
   <!-- 예약테이블 예약업데이트  -->
    <update id="Resupdate"  parameterType="java.util.Map">
     <![CDATA[
@@ -168,6 +168,28 @@
     ]]>
   </delete>
   
+  <!-- 배송반납리스트 반납승인  로그추가  -->
+   <insert id="insertLogExpressreturn" parameterType="RentVO"   >
+    <![CDATA[
+     insert into log(log_num,res_num,return_num,eq_serial,user_id,status,log_maker,res_start,res_end) 
+	select log_num_SEQ.NEXTVAL,ret.res_num,ret.return_num,res.eq_serial,res.user_id,'반납승인','관리자',res.res_start,res.res_end from return ret,reserve res
+	where ret.return_num= #{return_num} and res.res_num=#{res_num} and res.res_num= ret.res_num
+    ]]>
+  </insert>
+  
+  <!-- 배송반납리스트 반납승인 클릭시  반납리스트 해당 항목 삭제  -->
+   <delete id="deleteExpressReturn" parameterType="int">
+    <![CDATA[
+      delete from return where return_num=#{return_num}
+    ]]>
+  </delete>
+  
+  <!-- 배송반납리스트 반납승인 클릭시  대여리스트 해당 항목 삭제  -->
+   <delete id="deleteExpressReturnRenting" parameterType="int">
+    <![CDATA[
+      delete from reserve where res_num=#{res_num}
+    ]]>
+  </delete>
   
 	
 </mapper>

@@ -32,9 +32,23 @@ public class EquipVO {
 	private String res_Status;
 	private String user_id;
 	
+	private Date searchStartDate;
+	private Date searchEndDate;
 	
 	
 	
+	public Date getSearchStartDate() {
+		return searchStartDate;
+	}
+	public void setSearchStartDate(Date searchStartDate) {
+		this.searchStartDate = searchStartDate;
+	}
+	public Date getSearchEndDate() {
+		return searchEndDate;
+	}
+	public void setSearchEndDate(Date searchEndDate) {
+		this.searchEndDate = searchEndDate;
+	}
 	public int getRes_num() {
 		return res_num;
 	}

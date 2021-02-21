@@ -132,4 +132,23 @@ public class RentDAOImpl implements  RentDAO {
 			
 		}
 		
+		
+		@Override
+		public void insertLogExpressreturn(RentVO rentVO) throws DataAccessException {
+			sqlSession.insert("mapper.rent.insertLogExpressreturn", rentVO);
+			
+		}
+		
+		@Override
+		public int deleteExpressReturn(int return_num) throws DataAccessException {
+			return sqlSession.delete("mapper.rent.deleteExpressReturn", return_num);
+			
+		}
+		
+		@Override
+		public int deleteExpressReturnRenting(int res_num) throws DataAccessException {
+			return sqlSession.delete("mapper.rent.deleteExpressReturnRenting", res_num);
+			
+		}
+		
 }

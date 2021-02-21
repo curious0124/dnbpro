@@ -185,7 +185,30 @@
     </style>
     <script src="${contextPath}/resources/js/jquery-3.5.1.min.js"> </script>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
-   
+   <script>
+	$(function() {
+		$(".ReturnExpressAuth").click(
+				function() {
+					var answer = confirm("배송반납을 승인하시겠습니까?");
+					if (answer == true) {
+
+						var return_num = $(this).parent().find(
+						"input:nth-child(2)").val();
+						var res_num = $(this).parent().find(
+								"input:nth-child(3)").val();
+
+				
+						console.log(res_num);
+						$("#Returnnum").val(return_num);
+						$("#Resreturnnum").val(res_num);
+						
+
+					$("#ReturnExpressForm").submit();
+					}
+				});
+
+	});
+</script>
 
 </head>
 
@@ -247,8 +270,9 @@
                                ${returnlist.user_id}
                             </div>
                             <div class="col_list" id='brd_div7'>
-                                <button type="button" class="btn btn-light" id='brd_btn'>승인</button>
-                                <button type="button" class="btn btn-light" id='brd_btn'>취소</button>
+                                <button type="button" class="btn btn-light ReturnExpressAuth" id='brd_btn'>반납승인</button>
+                                  <input type="hidden" value="${returnlist.return_num}"> 
+                                  <input type="hidden" value="${returnlist.res_num}">
                             </div>
 
                         </div>
@@ -283,6 +307,10 @@
             </c:choose>
         </div>
     </div>
+     <form action="${contextPath}/rent/ReturnExpressAuth.do" id="ReturnExpressForm" method="post">
+		<input type="hidden" id="Returnnum" name="Returnnum" value="" />
+		<input type="hidden" id="Resreturnnum" name="Resreturnnum" value="" />
+	</form>
 </body>
 
 </html>

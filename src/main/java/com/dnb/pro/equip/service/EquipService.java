@@ -28,4 +28,5 @@ public interface EquipService {
 //	public List statelistequips() throws Exception;
 //	public EquipVO selectonecatename(String cate_name) throws Exception;
 //	EquipVO vieweqname(String cate_name) throws Exception;
+	public List seletAbleEquipment(Map<String, Object> selectElement);
 }
