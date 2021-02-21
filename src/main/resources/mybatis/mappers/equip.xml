@@ -124,13 +124,22 @@ from (select eql.eq_name,eq_serial,eql.eq_state
             	]]>
     </select> 
     
-    <!--모델명  등록 -->
+    <!--모델명  등록 
    <insert id="insertEquiplist" parameterType="EquipVO">
     <![CDATA[
 	insert into equipment(cate_name,eq_name,eq_ma,eq_spec,eq_img,eq_thumimg) 
 	values(#{cate_name},#{eq_name},#{eq_ma},#{eq_spec},#{eq_img},#{eq_thumimg}) 
             	]]>
     </insert>
+    -->
+     <!--모델명  등록 -->
+   <insert id="insertEquiplist" parameterType="java.util.Map">
+    <![CDATA[
+	insert into equipment(cate_name,eq_name,eq_ma,eq_spec,eq_img,eq_thumimg) 
+	values(#{cate_name},#{eq_name},#{eq_ma},#{eq_spec},#{eq_img},#{eq_thumimg}) 
+            	]]>
+    </insert>
+    
     
     <!--분류명  모델에서 가져오기  -->
      <select id="selectCateByCode2" parameterType="EquipVO" resultType="com.dnb.pro.equip.vo.EquipVO">

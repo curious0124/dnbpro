@@ -116,10 +116,30 @@
 
     </script>
 
+<script>
+    
+    $(function(){           
+            $('#menucontent').load("${contextPath}/resources/subjsp/admin_menubar.jsp")
+    });
+   
+   
+    
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+  	      var reader = new FileReader();
+  	      reader.onload = function (e) {
+  	        $('#preview').attr('src', e.target.result);
+            }
+           reader.readAsDataURL(input.files[0]);
+        }
+    } 
+    
+
+</script>
 </head>
 
 <body>
-    <form action="${contextPath}/equip/addeqname.do" method="GET">
+   <form action="${contextPath}/equip/addeqname.do" method="post" enctype="multipart/form-data">
 
         <div>
 

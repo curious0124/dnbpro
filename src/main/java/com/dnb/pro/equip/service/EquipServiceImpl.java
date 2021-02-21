@@ -83,13 +83,13 @@ public class EquipServiceImpl implements EquipService{
 		return equipVO;
 	}
 	
-	@Override
-	public int addeqname(EquipVO equipVO) throws Exception {
-		int result = equipDAO.insertEquiplist(equipVO);
-		return result;
-		
-
-	}
+//	@Override
+//	public int addeqname(EquipVO equipVO) throws Exception {
+//		int result = equipDAO.insertEquiplist(equipVO);
+//		return result;
+//		
+//
+//	}
 	
 	
 	@Override
@@ -141,5 +141,12 @@ public class EquipServiceImpl implements EquipService{
 	 
 	 
 
+	 @Override
+		public void addeqname(Map eqnamemap) throws Exception {
+			 equipDAO.insertEquiplist(eqnamemap);
+
+			
+	
+		}
 	
 }
