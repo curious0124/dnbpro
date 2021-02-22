@@ -25,24 +25,27 @@ public interface EquipController {
 	public ModelAndView viewecatename(@RequestParam("cate_name") String cate_name,  HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ResponseEntity addcatename(String cate_name, HttpServletRequest request, HttpServletResponse response)
 			throws Exception;
-//	public ResponseEntity delete_catename(String cate_name, HttpServletRequest request, HttpServletResponse response) throws Exception;
+
 	
 	
 	public ModelAndView eqnamelistequips(HttpServletRequest request, HttpServletResponse response) throws Exception;
-//	public ModelAndView vieweqname(@RequestParam("cate_name") String cate_name,  HttpServletRequest request, HttpServletResponse response) throws Exception;
-	public ResponseEntity addeqname(EquipVO equipVO, HttpServletRequest request, HttpServletResponse response)
-			throws Exception;
+
+//	public ResponseEntity addeqname(EquipVO equipVO, HttpServletRequest request, HttpServletResponse response)
+//			throws Exception;
 	
 	public ResponseEntity addserialname(EquipVO equipVO, HttpServletRequest request, HttpServletResponse response)
 			throws Exception;
 
 	public ModelAndView eqnamelistserial( String eq_name, HttpServletRequest request, HttpServletResponse response) throws Exception;
 	
-//	public ModelAndView modSerialState(Map statemap, HttpServletRequest request, HttpServletResponse response) throws Exception;
+
 
 	public ModelAndView modserialForm(HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ResponseEntity modSerialState(MultipartHttpServletRequest multipartRequest, HttpServletResponse response)
 			throws Exception;
 	
-//	public ModelAndView selectStateList(HttpServletRequest request, HttpServletResponse response) throws Exception;
+
+	public ResponseEntity addeqname(MultipartHttpServletRequest multipartRequest, HttpServletResponse response)
+			throws Exception;
+	
 }

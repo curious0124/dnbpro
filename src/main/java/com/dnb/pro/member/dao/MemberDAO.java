@@ -32,4 +32,8 @@ public interface MemberDAO {
 	public MemberVO login(MemberVO vo) throws Exception;
 
 	String selectOverlappedID(String user_id) throws DataAccessException;
+	
+	public String find_id(String user_email) throws DataAccessException;
+
+	public int update_pw(MemberVO vo) throws DataAccessException;
 }

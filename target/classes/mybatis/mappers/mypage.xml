@@ -197,57 +197,7 @@
 			select * from userinfo
 			where user_id=#{user_id}
     	]]>
-	</select>	
-	
-	<update id="updateMyInfo" parameterType="java.util.HashMap">
-	   update userinfo
-			   <set>
-			      <if test=" user_pwd!='' and user_pwd!=null">
-			        user_pwd=#{user_pwd},
-			      </if>
-			      <if test=" user_name!='' and user_name!=null">
-			         user_name=#{user_name},
-			      </if>
-			       <if test=" user_identity!='' and user_identity!=null">
-			         user_identity=#{user_identity},
-			      </if>
-			      <if test=" user_addr!='' and user_addr!=null">
-			         user_addr=#{user_addr},
-			      </if>
-			      <if test=" user_phone!='' and user_phone!=null">
-			         user_phone=#{user_phone},
-			      </if>
-			      <if test=" user_fax!='' and user_fax!=null">
-			         user_fax=#{user_fax},
-			      </if>
-			      <if test=" user_email!='' and user_email!=null">
-			         user_email=#{user_email},
-			      </if>
-			      <if test=" user_comp!='' and user_comp!=null">
-			         user_comp=#{user_comp},
-			      </if>
-			      <if test=" comp_addr!='' and comp_addr!=null">
-			         comp_addr=#{comp_addr},
-			      </if>
-			      <if test=" comp_num!='' and comp_num!=null">
-			         comp_num=#{comp_num},
-			      </if>
-			      <if test=" comp_phon!='' and comp_phon!=null">
-			         comp_phon=#{comp_phon},
-			      </if>
-			      <if test=" comp_fax!='' and comp_fax!=null">
-			         comp_fax=#{comp_fax},
-			      </if>
-			      <if test=" comp_email!='' and comp_email!=null">
-			         comp_email=#{comp_email},
-			      </if>
-			      <if test=" user_auth!='' and user_auth!=null">
-			         user_auth=#{user_auth}
-			      </if>
-			   </set>
-		where 
-		user_id=#{user_id}
-	</update>
+	</select>
 	
 	<select id="selectMemberById" resultType="memberVO"  parameterType="String" >
       <![CDATA[
@@ -259,7 +209,7 @@
   	<update id="updateMember" parameterType="memberVO">
   		<![CDATA[
   			update userinfo 
-  			set user_pwd=#{user_pwd}, user_name=#{user_name}, user_email=#{user_email} 
+  			set user_pwd=#{user_pwd}, user_name=#{user_name}, user_identity=#{user_identity}, user_addr=#{user_addr}, user_fax=#{user_fax}, user_email=#{user_email} 
   			where user_id=#{user_id}
   		]]>
   	</update>

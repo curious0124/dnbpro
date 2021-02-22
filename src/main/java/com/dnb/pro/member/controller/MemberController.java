@@ -12,6 +12,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -124,4 +125,32 @@ public class MemberController {
 		resEntity = new ResponseEntity(result, HttpStatus.OK);
 		return resEntity;
 	}
+	
+
+	/*아이디 찾기*/
+	
+	@RequestMapping(value = "/member/find_id_form.do")
+	public String find_id_form() throws Exception{
+		return "/member/find_id_form";
+	}
+	
+	@RequestMapping(value = "/member/find_id.do", method = RequestMethod.POST)
+	public String find_id(HttpServletResponse response, @RequestParam("user_email") String user_email, Model md) throws Exception{
+		md.addAttribute("user_id", service.find_id(response, user_email));
+		System.out.println("md : " + md);
+		return "/member/find_id";
+	}
+	
+	/*비밀번호 찾기*/
+	
+	@RequestMapping(value = "/member/find_pw_form.do")
+	public String find_pw_form() throws Exception{
+		return "/member/find_pw_form";
+	}
+	
+	@RequestMapping(value = "/member/find_pw.do", method = RequestMethod.POST)
+	public void find_pw(@ModelAttribute MemberVO vo, HttpServletResponse response) throws Exception{
+		service.find_pw(response, vo);
+	}
+	
 }

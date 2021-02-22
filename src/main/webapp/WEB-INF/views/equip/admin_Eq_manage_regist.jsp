@@ -116,10 +116,41 @@
 
     </script>
 
+<script>
+    
+    $(function(){           
+            $('#menucontent').load("${contextPath}/resources/subjsp/admin_menubar.jsp")
+    });
+   
+   
+    
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+  	      var reader = new FileReader();
+  	      reader.onload = function (e) {
+  	    	
+  	        $('#preview').attr('src', e.target.result);
+            }
+           reader.readAsDataURL(input.files[0]);
+        }
+    }
+        
+    function readURL1(input) {
+        if(input.files && input.files[0]){ // 두번째 선택 파일이 있을경우
+            var reader = new FileReader();
+            reader.onload = function(e){
+         
+          $('#preview2').attr('src', e.target.result);
+            }
+            reader.readAsDataURL(input.files[0]);
+          }
+    }
+
+</script>
 </head>
 
 <body>
-    <form action="${contextPath}/equip/addeqname.do" method="GET">
+   <form action="${contextPath}/equip/addeqname.do" method="post" enctype="multipart/form-data">
 
         <div>
 
@@ -186,12 +217,15 @@
 
                 <div class="listrow">
                     <div class="col_list" id='brd_div5'>
-                        <input type="file" class="form-control" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" name="eq_img" aria-label="Upload" onchange="readURL(this);" >
-                   <img  id="im1" src="#"   width=200 height=200/>
+                        <input type="file" class="form-control" id="img" aria-describedby="inputGroupFileAddon03" name="eq_img" aria-label="Upload" onchange="readURL(this);"  multiple >
+                   <img  id="preview" src="#"   width=200 height=200/>
                     </div>
+                   
                     <div class="col_list" id='brd_div5'>
-                  <input type="file" class="form-control" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" name="eq_thumimg" aria-label="Upload" onchange="readURL(this);" >
-                   <img  id="im1" src="#"   width=200 height=200/>
+                  <input type="file" class="form-control" id="thum" aria-describedby="inputGroupFileAddon04" name="eq_thumimg" aria-label="Upload2" onchange="readURL1(this);" multiple >
+                   <img  id="preview2" src="#"   width=200 height=200/>
+
+   
                     </div>
 
 
@@ -202,6 +236,7 @@
 
         </div>
     </form>
+ 
 </body>
 
 </html>

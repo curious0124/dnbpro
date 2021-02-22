@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.dnb.pro.member.vo.MemberVO;
 
@@ -42,5 +43,20 @@ public class MemberDAOImpl implements MemberDAO {
 		String result = sql.selectOne("mapper.member.selectOverlappedID", user_id);
 		return result;
 	}
+	
+
+	// 아이디 찾기
+	@Override
+	public String find_id(String user_email) throws DataAccessException {
+		return sql.selectOne("mapper.member.find_id", user_email);
+	}
+	
+	// 비밀번호 찾기
+	@Override
+	@Transactional
+	public int update_pw(MemberVO vo) throws DataAccessException{
+		return sql.update("mapper.member.update_pw", vo);
+	}
+
 
 }
