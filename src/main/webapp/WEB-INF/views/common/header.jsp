@@ -108,12 +108,12 @@
 
                 <!-- 사용자에 따라서 버튼 표시 -->
                 <c:if test="${member.user_auth eq '관리자'}">
-                    <a href="http://localhost:8090/pro/mypage/mypage.do">마이페이지</a>
+                    <a href="${contextPath}/mypage/mypage.do">마이페이지</a>
                     <span>/</span>
-                    <a href="http://localhost:8090/pro/board/admin_board_list.do?brd_num=1">관리자</a>
+                    <a href="${contextPath}/board/admin_board_list.do?brd_num=1">관리자</a>
                 </c:if>
                 <c:if test="${member.user_auth eq '일반'}">
-                    <a href="http://localhost:8090/pro/mypage/mypage.do">마이페이지</a>
+                    <a href="${contextPath}/mypage/mypage.do">마이페이지</a>
                 </c:if>
                 <c:if test="${member.user_auth eq '블랙리스트'}">
                     <h3>블랙리스트ㅇ</h3>
@@ -123,7 +123,7 @@
 
         <div class="row">
             <div class="col-6 col-md-1">
-                <a href="http://localhost:8090/pro/main/main.do"> <img id="logo" src="${contextPath}/resources/image/logo.png">
+                <a href="${contextPath}/main/main.do"> <img id="logo" src="${contextPath}/resources/image/logo.png">
                 </a>
             </div>
         </div>
