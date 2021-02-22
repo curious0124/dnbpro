@@ -10,8 +10,20 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script> -->
+    
+    <!-- 부트스트랩 페이징 -->	
+	<!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" crossorigin="anonymous"></script>  -->
+	<script src="${contextPath}/resources/js/jquery-3.5.1.min.js"></script> 
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+	<script src="${contextPath}/resources/js/scripts.js"></script>
+	<script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
+	<script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
+	<script src="${contextPath}/resources/assets/demo/datatables-demo.js"></script>
+<!-- 부트스트랩 페이징 -->
+    
+    
     <title>공지사항</title>
 </head>
 <style>
@@ -60,13 +72,18 @@
         
     
 </style>
-<script src="${contextPath}/resources/js/jquery-3.5.1.min.js"> </script>
 <script>
-    
+$(document).ready(function() {
+    $('#example').DataTable( {
+        "paging":   false,
+        "ordering": false,
+        "info":     false
+    } );
+} );
 </script>
 
 <body>
-	<c:choose>
+<%-- 	<c:choose>
 		<c:when test="${articlesNoticeList ==null }">
 			<div class="cust_notice_container">
         <div id='top_buttonbox'>
@@ -118,7 +135,43 @@
   
     </div>
 		</c:when>
-	</c:choose>
-   
+	</c:choose> --%>
+	
+	
+	
+	
+   	<div id="layoutSidenav_content">
+      <main>
+        <div class="container-fluid">
+          <h1 class="mt-4">공지사항</h1>
+           <div class="card mb-4">
+             <div class="card-body">
+               <div class="table">
+                 <table class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0">
+                   <thead>
+                     <tr>
+                      <th>글 번호</th>
+                      <th>제목</th>
+                      <th>작성자</th>
+                      <th>작성일자</th>
+                     </tr>
+                   </thead>
+                   <tbody>
+					<c:forEach var="article" items="${articlesNoticeList }" varStatus="articleNum" >
+						<tr align="center">
+							<td>${articleNum.count}</td>
+							<td><a href="${contextPath}/cust/viewNoticeArticle.do?board_num=${article.board_num}">${article.board_title }</a></td>
+							<td>${article.board_writer }</td>
+							<td>${article.board_date }</td>
+						</tr>
+					</c:forEach>
+				</tbody>
+                   </table>
+                  </div>
+                </div>
+               </div>
+              </div>
+		</main>
+	</div>
 </body>
 </html>
