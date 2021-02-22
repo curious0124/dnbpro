@@ -127,6 +127,21 @@
 					<div class="form-floating">${article.board_content }</div>
 				</div>
 				<br>
+				<div id="articlefrom1"> 
+            
+            
+            <c:choose> 
+			  <c:when test="${not empty article.board_img && article.board_img!='null' }">
+			   	
+				     <input  type= "hidden"   name="originalFileName" value="${article.board_img }" />
+				    <img src="${contextPath}/download.do?board_num=${article.board_num}&board_img=${article.board_img}" id="preview"  /><br>
+				   
+			 </c:when>
+			<c:otherwise>	 
+			</c:otherwise>
+	 </c:choose>
+            
+        </div>
 
 				<div id="articlefrom1">
 					<div class="input-group">
