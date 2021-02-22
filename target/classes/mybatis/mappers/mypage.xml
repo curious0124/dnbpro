@@ -48,7 +48,7 @@
 	<select id="selectMyResqList" resultMap="RentResult"
 		parameterType="String">
 	    <![CDATA[ 
-			select *
+			select * 
 			from resq rq, eq_list el, equipment eq
 			where rq.user_id =#{user_id} and rq.eq_serial = el.eq_serial and el.eq_name = eq.eq_name
 			order by rq.resq_date desc
