@@ -9,8 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 
-
+import com.dnb.pro.equip.vo.Criteria;
 import com.dnb.pro.equip.vo.EquipVO;
+
 
 
 
@@ -26,9 +27,14 @@ public class EquipDAOImpl implements  EquipDAO  {
 	private SqlSession sqlSession;
 
 	@Override
-	public List selectAllEquipList() throws DataAccessException {
-		List<EquipVO> equipList  = sqlSession.selectList("mapper.equip.selectAllEquipList");
-		return equipList;
+	public List selectAllEquipList(Criteria cri) throws DataAccessException {
+//		List<EquipVO> equipList  = sqlSession.selectList("mapper.equip.selectAllEquipList");
+		return sqlSession.selectList("mapper.equip.selectAllEquipList",cri);
+	}
+	
+	@Override
+	public int listEquipCount(Criteria cri) throws Exception {
+		return sqlSession.selectOne("mapper.equip.listEquipCount",cri);
 	}
 	
 	@Override
@@ -37,9 +43,14 @@ public class EquipDAOImpl implements  EquipDAO  {
 	}
 	
 	@Override
-	public List selectAdminEquipList() throws DataAccessException {
-		List<EquipVO> adminequipList  = sqlSession.selectList("mapper.equip.selectAdminEquipList");
-		return adminequipList;
+	public List selectAdminEquipList(Criteria cri) throws DataAccessException {
+//		List<EquipVO> adminequipList  = sqlSession.selectList("mapper.equip.selectAdminEquipList");
+		return sqlSession.selectList("mapper.equip.selectAdminEquipList",cri);
+	}
+	
+	@Override
+	public int listSerialCount(Criteria cri) throws Exception {
+		return sqlSession.selectOne("mapper.equip.listSerialCount",cri);
 	}
 	
 	@Override

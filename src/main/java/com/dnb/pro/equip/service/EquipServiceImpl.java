@@ -11,7 +11,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 
 import com.dnb.pro.equip.dao.EquipDAO;
+import com.dnb.pro.equip.vo.Criteria;
 import com.dnb.pro.equip.vo.EquipVO;
+
 
 
 @Service("equipService")
@@ -23,11 +25,17 @@ public class EquipServiceImpl implements EquipService{
 
 	
 	@Override
-	public List<EquipVO> listequips() throws Exception {
-		List<EquipVO> equipList = equipDAO.selectAllEquipList();
+	public List<EquipVO> listequips(Criteria cri) throws Exception {
+//		List<EquipVO> equipList = equipDAO.selectAllEquipList(cri);
 		
-		return equipList;
+		return equipDAO.selectAllEquipList(cri);
 	}
+	
+	@Override
+	public int listeqviewpageCount(Criteria cri) throws Exception {
+		return equipDAO.listEquipCount(cri);
+	}
+
 	
 	@Override
 	public EquipVO viewequip(String eq_name) throws Exception {
@@ -36,10 +44,15 @@ public class EquipServiceImpl implements EquipService{
 	}
 	
 	@Override
-	public List<EquipVO> adminlistequips() throws Exception {
-		List<EquipVO> adminequipList = equipDAO.selectAdminEquipList();
+	public List<EquipVO> adminlistequips(Criteria cri) throws Exception {
+//		List<EquipVO> adminequipList = equipDAO.selectAdminEquipList(cri);
 		
-		return adminequipList;
+		return equipDAO.selectAdminEquipList(cri);
+	}
+	
+	@Override
+	public int listserialpageCount(Criteria cri) throws Exception {
+		return equipDAO.listEquipCount(cri);
 	}
 	
 	// 분류명가져오기

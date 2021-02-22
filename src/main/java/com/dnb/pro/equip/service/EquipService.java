@@ -3,15 +3,23 @@ package com.dnb.pro.equip.service;
 import java.util.List;
 import java.util.Map;
 
+import com.dnb.pro.equip.vo.Criteria;
 import com.dnb.pro.equip.vo.EquipVO;
+
 
 
 
 public interface EquipService {
 
-	public List listequips() throws Exception;
+	public List listequips(Criteria cri) throws Exception;
+	public int listeqviewpageCount(Criteria cri) throws Exception;
+	
+	
 	public EquipVO viewequip(String eq_name) throws Exception;
-	public List adminlistequips() throws Exception;
+	
+	public List adminlistequips(Criteria cri) throws Exception;
+	public int listserialpageCount(Criteria cri) throws Exception;
+	
 	public List catelistequips() throws Exception;
 	public int addcatename(String cate_name) throws Exception;
 	public EquipVO viewecatename(String cate_name) throws Exception;

@@ -8,8 +8,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.dnb.pro.equip.vo.EquipVO;
+
+
 import com.dnb.pro.rent.dao.RentDAO;
+import com.dnb.pro.rent.vo.Criteria;
 import com.dnb.pro.rent.vo.RentVO;
 
 @Service("rentService")
@@ -19,8 +21,8 @@ import com.dnb.pro.rent.vo.RentVO;
 		private RentDAO rentDAO;
 
 		@Override
-		public List<RentVO> listlogs() throws Exception {
-			List<RentVO> logList = rentDAO.selectAllLogList();
+		public List<RentVO> listlogs(Criteria cri) throws Exception {
+			List<RentVO> logList = rentDAO.selectAllLogList(cri);
 			
 			return logList;
 		}
@@ -129,4 +131,17 @@ import com.dnb.pro.rent.vo.RentVO;
 			
 			
 		}
+		
+//		@Override
+//		public List<RentVO> listpagelogs(Criteria cri) throws Exception{
+//			List<RentVO> logsList = rentDAO.selectLogList(cri);
+//			return logsList;
+//		}
+		@Override
+		public int listlogpageCount() throws Exception {
+			return rentDAO.listlogCount();
+		}
+		
+		
+		
 }

@@ -155,10 +155,14 @@
             background: #FA8072;
         }
 
+ #listPaging{  clear:both; text-align:center;}
+        #listPaging > ul{margin:0 auto;}
+        #listPaging > ul > li{
+        	list-style: none; float: left; padding: 6px;
     </style>
 </head>
-<script src="js/jquery-3.5.1.min.js"></script>
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
+<script src="${contextPath}/resources/js/jquery-3.5.1.min.js"> </script>
+
 <script>
     var path;
     $(function(){
@@ -258,7 +262,7 @@
                                 <c:set var="List" value="${logList }" />
                                 <c:forEach var="List" items="${logList }" varStatus="Log_num">
                                     <tr>
-                                        <td>${Log_num.count}</td>
+                                        <td>${List.log_num}</td>
                                         <td>${List.resq_num}</td>
                                         <td>${List.res_num}</td>
                                         <td>${List.return_num}</td>
@@ -293,24 +297,24 @@
                 </div>
             </fieldset>
 
-            <table align="center">
-                <tr>
-                    <td>이전</td>
-                    <td>1</td>
-                    <td>2</td>
-                    <td>3</td>
-                    <td>4</td>
-                    <td>5</td>
-                    <td>6</td>
-                    <td>7</td>
-                    <td>8</td>
-                    <td>9</td>
-                    <td>10</td>
-                    <td>다음</td>
-                </tr>
-            </table>
+            
         </form>
     </div>
+     <!--  -->
+     <div id="listPaging">
+				<ul>
+					<c:if test="${pageMaker.prev}">
+						<li><a href="listlogs.do${pageMaker.makeQuery(pageMaker.startPage - 1)}">이전</a></li>
+					</c:if>
+					<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
+						
+						<li><a href="listlogs.do${pageMaker.makeQuery(idx)}">${idx}</a></li>
+					</c:forEach>
+					<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
+						<li><a href="listlogs.do${pageMaker.makeQuery(pageMaker.endPage + 1)}">다음</a></li>
+					</c:if>
+				</ul>
+			</div>	
       </div>
     
 </body>

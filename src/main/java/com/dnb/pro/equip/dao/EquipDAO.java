@@ -5,15 +5,22 @@ import java.util.Map;
 
 import org.springframework.dao.DataAccessException;
 
+import com.dnb.pro.equip.vo.Criteria;
 import com.dnb.pro.equip.vo.EquipVO;
+
 
 
 public interface EquipDAO {
 
 	
-	public List selectAllEquipList() throws DataAccessException;
+	public List selectAllEquipList(Criteria cri) throws DataAccessException;
+	public int listEquipCount(Criteria cri) throws Exception;
+	
 	public EquipVO selectEquipByCode(String eq_name) throws DataAccessException;
-	public List selectAdminEquipList() throws DataAccessException;
+	
+	public List selectAdminEquipList(Criteria cri) throws DataAccessException;
+	public int listSerialCount(Criteria cri) throws Exception;
+	
 	public List selectCatenameList() throws DataAccessException;
 	public int insertCatename(String cate_name) throws DataAccessException;
 	public EquipVO selectCateByCode(String cate_name) throws DataAccessException;

@@ -29,6 +29,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 
 import com.dnb.pro.rent.service.RentService;
+import com.dnb.pro.rent.vo.Criteria;
+import com.dnb.pro.rent.vo.PageMaker;
 import com.dnb.pro.rent.vo.RentVO;
 
 
@@ -46,19 +48,23 @@ import com.dnb.pro.rent.vo.RentVO;
 		private RentVO rentVO;
 		
 		
-		@Override
+		
 		@RequestMapping(value="/listlogs.do" ,method = {RequestMethod.GET,RequestMethod.POST})
-		public ModelAndView listlogs(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		public ModelAndView listlogs(Criteria cri, HttpServletRequest request, HttpServletResponse response) throws Exception {
 			String viewName = (String)request.getAttribute("viewName");
 			
 			
-			logger.info("info 레벨: viewName = "+viewName);
-			logger.debug("debug 레벨: viewName = "+viewName);
-			
-			
-			List logList = rentService.listlogs();
 			ModelAndView mav = new ModelAndView(viewName);
+			
+			
+			List logList = rentService.listlogs(cri);
+			
 			mav.addObject("logList", logList);
+			
+			PageMaker pageMaker = new PageMaker();
+			pageMaker.setCri(cri);
+			pageMaker.setTotalCount(rentService.listlogpageCount());
+			mav.addObject("pageMaker", pageMaker);		
 			return mav;
 		}
 		
