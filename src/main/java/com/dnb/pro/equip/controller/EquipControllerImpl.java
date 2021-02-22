@@ -253,7 +253,7 @@ public class EquipControllerImpl implements EquipController {
 			return mav;
 		}
 		
-		@RequestMapping(value="/admin_Eq_manage_serial.do" ,method = RequestMethod.GET)
+		@RequestMapping(value="/admin_Eq_manage_serial.do" ,method = {RequestMethod.GET,RequestMethod.POST})
 		public ModelAndView eqnamelistserial(@RequestParam("eq_name") String eq_name,  HttpServletRequest request, HttpServletResponse response) throws Exception{
 			String viewName = (String)request.getAttribute("viewName");
 			List eqnameonlyList = equipService.eqnamelistserial();
@@ -422,7 +422,7 @@ public class EquipControllerImpl implements EquipController {
 		
 	
 		@Override
-		@RequestMapping(value="/addserialname.do" ,method = RequestMethod.GET)
+		@RequestMapping(value="/addserialname.do" ,method = {RequestMethod.GET,RequestMethod.POST})
 		public ResponseEntity addserialname(@ModelAttribute("equipVO") EquipVO equipVO,
 				                    HttpServletRequest request, HttpServletResponse response)  throws Exception{
 			response.setContentType("text/html; charset=UTF-8");
