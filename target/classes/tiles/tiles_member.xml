@@ -23,5 +23,20 @@
 		<put-attribute name="body"
 			value="/WEB-INF/views/member/register.jsp" />
 	</definition>
+	
+	<definition name="/member/find_id_form" extends="baseLayout">
+		<put-attribute name="title" value="아이디찾기" />
+		<put-attribute name="body" value="/WEB-INF/views/member/find_id_form.jsp" />
+	</definition>
+	
+	<definition name="/member/find_id" extends="baseLayout">
+		<put-attribute name="title" value="아이디찾기완료" />
+		<put-attribute name="body" value="/WEB-INF/views/member/find_id.jsp" />
+	</definition>
+	
+	<definition name="/member/find_pw_form" extends="baseLayout">
+		<put-attribute name="title" value="비밀번호찾기" />
+		<put-attribute name="body" value="/WEB-INF/views/member/find_pw_form.jsp" />
+	</definition>
 
 </tiles-definitions> 
