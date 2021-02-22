@@ -97,29 +97,29 @@ public class EquipControllerImpl implements EquipController {
 			return mav;
 		}
 		
-		//날짜선택시 선택가능한 장비 리스트 조회
-		@RequestMapping(value = "/seletAbleEquipment.do", method = { RequestMethod.GET, RequestMethod.POST})
-		public ResponseEntity seletAbleEquipment(@RequestParam(value="eq_name") String eq_name,
-												 @RequestParam(value="fromDate") Date fromDate,
-												 @RequestParam(value="toDate") Date toDate,
-												HttpServletResponse response) throws Exception{
-			
-//			System.out.println(eq_name);
-//			System.out.println(fromDate);
-//			System.out.println(toDate);
-			Map<String,Object> selectElement = new HashMap<String, Object>();
-			selectElement.put("eq_name", eq_name);
-			selectElement.put("fromDate", fromDate);
-			selectElement.put("toDate", toDate);
-			System.out.println(selectElement.get("eq_name"));
-			System.out.println(selectElement.get("fromDate"));
-			System.out.println(selectElement.get("toDate"));
-			
-			List ableEquipmentsList = equipService.seletAbleEquipment(selectElement);
-			System.out.println("리스트 : "+ableEquipmentsList);
-			
-			return (ResponseEntity) ableEquipmentsList;
-		}
+//		//날짜선택시 선택가능한 장비 리스트 조회
+//		@RequestMapping(value = "/seletAbleEquipment.do", method = { RequestMethod.GET, RequestMethod.POST})
+//		public ResponseEntity seletAbleEquipment(@RequestParam(value="eq_name") String eq_name,
+//												 @RequestParam(value="fromDate") Date fromDate,
+//												 @RequestParam(value="toDate") Date toDate,
+//												HttpServletResponse response) throws Exception{
+//			
+////			System.out.println(eq_name);
+////			System.out.println(fromDate);
+////			System.out.println(toDate);
+//			Map<String,Object> selectElement = new HashMap<String, Object>();
+//			selectElement.put("eq_name", eq_name);
+//			selectElement.put("fromDate", fromDate);
+//			selectElement.put("toDate", toDate);
+//			System.out.println(selectElement.get("eq_name"));
+//			System.out.println(selectElement.get("fromDate"));
+//			System.out.println(selectElement.get("toDate"));
+//			
+//			List ableEquipmentsList = equipService.seletAbleEquipment(selectElement);
+//			System.out.println("리스트 : "+ableEquipmentsList);
+//			
+//			return (ResponseEntity) ableEquipmentsList;
+//		}
 
 		
 		

@@ -129,13 +129,11 @@
             
             // 시작일은 종료일 이후 날짜 선택하지 못하도록 비활성화
             $("#searchStartDate").datepicker( "option", "maxDate", endDate );
+            
+            select_EQList();
 
         }
-        
-    function ttest(){
-    	
-    }    
-        
+
     function select_EQList(){
         var fromDate =  document.getElementById("searchStartDate").value;
     	var toDate =  document.getElementById("searchEndDate").value;
