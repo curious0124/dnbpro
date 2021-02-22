@@ -35,9 +35,13 @@
 <script src="${contextPath}/resources/js/jquery-3.5.1.min.js"> </script>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
  <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
-
+<script>
+$(function() {
+		$('#menucontent').load("${contextPath}/resources/subjsp/admin_menubar.jsp");
+		});
+</script>
 <body>
-
+  	<div id='menucontent'></div>
     <div class="row align-items-start">
         <div class="col1" >
             <input type="search" placeholder="검색어를 입력해주세요.">
