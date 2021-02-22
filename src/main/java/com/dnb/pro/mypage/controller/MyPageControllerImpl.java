@@ -252,8 +252,27 @@ public class MyPageControllerImpl implements MyPageController{
 		System.out.println("VO? :"+memberVO.getUser_id()+memberVO.getUser_pwd());
 		request.setAttribute("member", memberVO);
 		
+		if(memberVO.getUser_identity() != null && memberVO.getUser_identity().length() != 0) {
+			String identity = memberVO.getUser_identity();
+			identity = identity.replace(",", "-");
+			memberVO.setUser_identity(identity);
+		}
+		
+		if(memberVO.getUser_addr() != null && memberVO.getUser_addr().length() != 0) {
+			String addr = memberVO.getUser_addr();
+			addr = addr.replace(",", " ");
+			memberVO.setUser_addr(addr);
+		}
+		
+		if(memberVO.getUser_fax() != null && memberVO.getUser_fax().length() != 0) {
+			String fax = memberVO.getUser_fax();
+			fax = fax.replace(",,", " ");
+			fax = fax.replace(",", "-");
+			memberVO.setUser_fax(fax);
+		}
+		
 		ModelAndView mav = new ModelAndView(viewName);
-		mav.addObject("memberVO", memberVO);
+		mav.addObject("member", memberVO);
 		return mav;
 	}
 	
@@ -296,6 +315,7 @@ public class MyPageControllerImpl implements MyPageController{
 					removelist += i + ", ";
 				}
 			}
+			
 			removelist = "";
 			Map<String, Object> firemap = new HashMap<String, Object>();
 			firemap.put("user_id", user_id);

@@ -25,7 +25,7 @@
 	<table  align="center">
 	   <tr>
 	      <td width="200"><p align="right">아이디</td>
-	      <td width="400"><input type="text" name="user_id" value="${member.user_id}"></td>
+	      <td width="400"><input type="text" name="user_id" value="${member.user_id}" readonly="readonly"></td>
 	   </tr>
 	   <tr>
 	      <td width="200"><p align="right">비밀번호</td>
@@ -33,7 +33,19 @@
 	    </tr>
 	    <tr>
 	       <td width="200"><p align="right">이름</td>
-	       <td width="400"><p><input type="text" name="user_name" value="${member.user_name}"></td>
+	       <td width="400"><p><input type="text" name="user_name" value="${member.user_name}" readonly="readonly"></td>
+	    </tr>
+	    <tr>
+	       <td width="200"><p align="right">주민번호</td>
+	       <td width="400"><p><input type="text" name="user_identity" value="${member.user_identity}"  readonly="readonly"></td>
+	    </tr>
+	    <tr>
+	       <td width="200"><p align="right">주소</td>
+	       <td width="400"><p><input type="text" name="user_addr" value="${member.user_addr}"></td>
+	    </tr>
+	    <tr>
+	       <td width="200"><p align="right">팩스</td>
+	       <td width="400"><p><input type="text" name="user_fax" value="${member.user_fax}"></td>
 	    </tr>
 	    <tr>
 	       <td width="200"><p align="right">이메일</td>
