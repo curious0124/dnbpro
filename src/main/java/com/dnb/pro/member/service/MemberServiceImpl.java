@@ -66,11 +66,11 @@ public class MemberServiceImpl implements MemberService {
 		// Mail Server 설정
 		String charSet = "utf-8";
 		String hostSMTP = "smtp.gmail.com";
-		String hostSMTPid = "juan7782@gmail.com";
-		String hostSMTPpwd = "wndksdl1!@@";
+		String hostSMTPid = "springstu0922@gmail.com";
+		String hostSMTPpwd = "djit0922";
 
 		// 보내는 사람 EMail, 제목, 내용
-		String fromEmail = "juan7782@gmail.com";
+		String fromEmail = "springstu0922@gmail.com";
 		String fromName = "DNB 비밀번호찾기 결과입니다.";
 		String subject = "";
 		String msg = "";
