@@ -113,7 +113,7 @@
             var check_SC = 0;
  
             if(pw.length < 6 || pw.length > 16){
-                document.getElementById('check2').innerHTML='비밀번호는 6글자 이상, 16글자 이하만 이용 가능합니다';
+                document.getElementById('check2').innerHTML='비밀번호는 7글자 이상, 특수문자를 포함해야 합니다';
                 document.getElementById('check2').style.color='red';
                 document.getElementById('pw').value='';
             }
@@ -200,7 +200,7 @@
                     <div class="row">
                         <div class="col-2"><label class="control-label" for="user_pwd">패스워드</label></div>
                         <div class="col">
-                            <input class="form-control" type="password" name="" id="pw" onchange="check_pw()" placeholder="비밀번호는 6글자 이상, 16글자 이하만 이용 가능합니다">
+                            <input class="form-control" type="password" name="" id="pw" onchange="check_pw()" placeholder="비밀번호는 7글자 이상, 특수문자를 포함해야 합니다">
                         </div>
                         <div class="col-3"><span id="check2"></span></div>
                     </div>
@@ -209,7 +209,7 @@
                     <div class="row">
                         <div class="col-2"><label class="control-label" for="user_pwd">패스워드 확인</label></div>
                         <div class="col">
-                            <input class="form-control" type="password" name="user_pwd" id="user_pwd" onchange="check_pw()" placeholder="비밀번호는 6글자 이상, 16글자 이하만 이용 가능합니다">
+                            <input class="form-control" type="password" name="user_pwd" id="user_pwd" onchange="check_pw()" placeholder="비밀번호는 7글자 이상, 특수문자를 포함해야 합니다">
                         </div>
                         <div class="col-3"><span id="check"></span></div>
                     </div>

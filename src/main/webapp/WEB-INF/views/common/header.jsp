@@ -108,12 +108,12 @@
 
                 <!-- 사용자에 따라서 버튼 표시 -->
                 <c:if test="${member.user_auth eq '관리자'}">
-                    <a href="http://localhost:8090/pro/mypage/mypage.do">마이페이지</a>
+                    <a href="${contextPath}/mypage/mypage.do">마이페이지</a>
                     <span>/</span>
-                    <a href="http://localhost:8090/pro/board/admin_board_list.do?brd_num=1">관리자</a>
+                    <a href="${contextPath}/board/admin_board_list.do?brd_num=1">관리자</a>
                 </c:if>
                 <c:if test="${member.user_auth eq '일반'}">
-                    <a href="http://localhost:8090/pro/mypage/mypage.do">마이페이지</a>
+                    <a href="${contextPath}/mypage/mypage.do">마이페이지</a>
                 </c:if>
                 <c:if test="${member.user_auth eq '블랙리스트'}">
                     <h3>블랙리스트ㅇ</h3>
@@ -123,7 +123,7 @@
 
         <div class="row">
             <div class="col-6 col-md-1">
-                <a href="http://localhost:8090/pro/main/main.do"> <img id="logo" src="${contextPath}/resources/image/logo.png">
+                <a href="${contextPath}/main/main.do"> <img id="logo" src="${contextPath}/resources/image/logo.png">
                 </a>
             </div>
         </div>
@@ -161,7 +161,7 @@
         <div class="row" id="header_menu">
             <div class="col">
                 <div class="dropdown">
-                    <button class="dropbtn" onclick="location.href=' http://localhost:8090/pro/center/center.do'">센터 소개</button>
+                    <button class="dropbtn" onclick="location.href=' ${contextPath}/center/center.do'">센터 소개</button>
                     <div class="dropdown-content">
                         <a href="${contextPath}/center/center.do#center_intro">사업소개</a>
                         <a href="${contextPath}/center/center.do#center_video">홍보영상</a>
@@ -172,7 +172,7 @@
             </div>
             <div class="col">
                 <div class="dropdown">
-                    <button class="dropbtn" onclick="location.href=' http://localhost:8090/pro/equip/view_Eq_list.do'">장비예약</button>
+                    <button class="dropbtn" onclick="location.href=' ${contextPath}/equip/view_Eq_list.do'">장비예약</button>
                     <div class="dropdown-content">
                         <a href="${contextPath}/equip/view_Eq_list.do">장비리스트</a>
                     </div>
@@ -180,7 +180,7 @@
             </div>
             <div class="col">
                 <div class="dropdown">
-                    <button class="dropbtn" onclick="location.href=' http://localhost:8090/pro/education/edu_list.do'">장비교육</button>
+                    <button class="dropbtn" onclick="location.href=' ${contextPath}/education/edu_list.do'">장비교육</button>
                     
                 </div>
             </div>

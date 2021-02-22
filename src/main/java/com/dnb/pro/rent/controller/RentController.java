@@ -7,11 +7,15 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.dnb.pro.rent.vo.Criteria;
+
+
+
 public interface RentController {
 
 	
 	
-	public ModelAndView listlogs(HttpServletRequest request, HttpServletResponse response) throws Exception;
+//	public ModelAndView listlogs(Criteria cri, HttpServletRequest request, HttpServletResponse response) throws Exception;
 	
 	public ModelAndView listresqs(HttpServletRequest request, HttpServletResponse response) throws Exception;
 	
