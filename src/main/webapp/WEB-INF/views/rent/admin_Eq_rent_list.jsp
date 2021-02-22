@@ -206,8 +206,14 @@
 
 	});
 </script>
-</head>
+<script>
+$(function() {
+	$('#menucontent').load("${contextPath}/resources/subjsp/admin_menubar.jsp");
+	});
 
+</script>
+</head>
+<div id='menucontent'></div>
 <body>
 <div class="tit"><strong>대여 현황</strong></div><br>
     <div id='board_content'>
