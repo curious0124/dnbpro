@@ -209,7 +209,7 @@
                     <div class="row">
                         <div class="col-2"><label class="control-label" for="user_pwd">패스워드 확인</label></div>
                         <div class="col">
-                            <input class="form-control" type="password" name="user_pwd" id="user_pwd" onchange="check_pw()" placeholder="비밀번호는 6글자 이상, 16글자 이하만 이용 가능합니다">
+                            <input class="form-control" type="password" name="user_pwd" id="user_pwd" onchange="check_pw()" placeholder="비밀번호는 7글자 이상, 특수문자를 포함해야 합니다">
                         </div>
                         <div class="col-3"><span id="check"></span></div>
                     </div>
