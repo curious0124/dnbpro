@@ -225,7 +225,7 @@
         <div class="row">
             <div class="col">
             <input  type= "hidden"   name="originalFileName" value="${equipVO.eq_thumimg}" /> 
-                <img src="${contextPath}/equipthumimg_download.do?eq_name=${equipVO.eq_name}&eq_thumimg=${equipVO.eq_thumimg}" id="preview2"  />
+                <img src="${contextPath}/equipthumimg_download.do?eq_name=${equipVO.eq_name}&eq_thumimg=${equipVO.eq_thumimg}" id="preview2" width="200px" height="200px" />
             </div>
             <div class="col">
                 <b class="eq_name">모델명 : ${equipVO.eq_name}</b>
