@@ -27,7 +27,7 @@ public class EquipDAOImpl implements  EquipDAO  {
 
 	@Override
 	public List selectAllEquipList() throws DataAccessException {
-		List<EquipVO> equipList = equipList = sqlSession.selectList("mapper.equip.selectAllEquipList");
+		List<EquipVO> equipList  = sqlSession.selectList("mapper.equip.selectAllEquipList");
 		return equipList;
 	}
 	
@@ -38,13 +38,13 @@ public class EquipDAOImpl implements  EquipDAO  {
 	
 	@Override
 	public List selectAdminEquipList() throws DataAccessException {
-		List<EquipVO> adminequipList = adminequipList = sqlSession.selectList("mapper.equip.selectAdminEquipList");
+		List<EquipVO> adminequipList  = sqlSession.selectList("mapper.equip.selectAdminEquipList");
 		return adminequipList;
 	}
 	
 	@Override
 	public List selectCatenameList() throws DataAccessException {
-		List<EquipVO> cateList = cateList = sqlSession.selectList("mapper.equip.selectCatenameList");
+		List<EquipVO> cateList  = sqlSession.selectList("mapper.equip.selectCatenameList");
 		return cateList;
 	}
 	
@@ -69,7 +69,7 @@ public class EquipDAOImpl implements  EquipDAO  {
 	
 	@Override
 	public List selectEqnameList() throws DataAccessException {
-		List<EquipVO> eqnameList = eqnameList = sqlSession.selectList("mapper.equip.selectEqnameList");
+		List<EquipVO> eqnameList  = sqlSession.selectList("mapper.equip.selectEqnameList");
 		return eqnameList;
 	}
 	
@@ -81,11 +81,11 @@ public class EquipDAOImpl implements  EquipDAO  {
 	}
 	
 	
-	@Override
-	public int insertEquiplist(EquipVO equipVO) throws DataAccessException {
-		int result = sqlSession.insert("mapper.equip.insertEquiplist", equipVO);
-		return result;
-	}
+//	@Override
+//	public int insertEquiplist(EquipVO equipVO) throws DataAccessException {
+//		int result = sqlSession.insert("mapper.equip.insertEquiplist", equipVO);
+//		return result;
+//	}
 	
 	@Override
 	public EquipVO selectCateByCode2(String cate_name) throws DataAccessException {
@@ -100,7 +100,7 @@ public class EquipDAOImpl implements  EquipDAO  {
 	
 	@Override
 	public List selectonlyEqnameList() throws DataAccessException {
-		List<EquipVO> eqnameonlyList = eqnameonlyList = sqlSession.selectList("mapper.equip.selectonlyEqnameList");
+		List<EquipVO> eqnameonlyList  = sqlSession.selectList("mapper.equip.selectonlyEqnameList");
 		return eqnameonlyList;
 	}
 	
@@ -128,7 +128,11 @@ public class EquipDAOImpl implements  EquipDAO  {
 	
 	@Override
 	public EquipVO selectSerialById(String eq_serial) throws DataAccessException{
-		EquipVO adminequipList = sqlSession.selectOne("mapper.equip.selectSerialById", eq_serial);
+
+		EquipVO adminequipList  = sqlSession.selectOne("mapper.equip.selectSerialById", eq_serial);
+
+	
+
 		return adminequipList;
 	}
 
@@ -139,9 +143,17 @@ public class EquipDAOImpl implements  EquipDAO  {
 		return ableEquipment;
 	}
 	
-//	@Override
-//	public List selectStateList() throws DataAccessException {
-//		List<EquipVO> stateList = stateList = sqlSession.selectList("mapper.equip.selectStateList");
-//		return stateList;
-//	}
+	
+	
+	@Override
+	public void insertEquiplist(Map eqnamemap) throws DataAccessException {
+//		int resNO = selectResnumByCode();
+		System.out.println("DAO : "+eqnamemap);
+		sqlSession.insert("mapper.equip.insertEquiplist", eqnamemap);
+//		return resNO;
+		
+	}
+	
+	
+
 }

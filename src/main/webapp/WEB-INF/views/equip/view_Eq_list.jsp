@@ -89,10 +89,11 @@
  
   <div class="row align-items-center">
     <div class="col">
-     ${equip.eq_name}
+      <a href="${contextPath}/equip/view_Eq_detail.do?eq_name=${equip.eq_name}">${equip.eq_name}&nbsp;</a>
     </div>
     <div class="col">
-    <a href="${contextPath}/equip/view_Eq_detail.do?eq_name=${equip.eq_name}">${equip.eq_thumimg}&nbsp;</a>
+    <input  type= "hidden"   name="originalFileName" value="${equip.eq_thumimg}" /> 
+	<img src="${contextPath}/equipthumimg_download.do?eq_name=${equip.eq_name}&eq_thumimg=${equip.eq_thumimg}" id="preview"  />
     </div>
     <div class="col">
     ${equip.eq_spec}

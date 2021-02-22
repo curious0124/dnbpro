@@ -34,6 +34,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.dnb.pro.equip.service.EquipService;
 import com.dnb.pro.equip.vo.EquipVO;
+import com.dnb.pro.member.vo.MemberVO;
 
 
 
@@ -44,7 +45,13 @@ import com.dnb.pro.equip.vo.EquipVO;
 @RequestMapping(value="/equip")
 public class EquipControllerImpl implements EquipController {
 	private static final Logger logger = LoggerFactory.getLogger(EquipControllerImpl.class);
+	
+	private static final String equipimg_ARTICLE_IMAGE_PATH = "\\\\DIGITAL20\\dnb\\equipimg";
 	private static final String equipimg_ARTICLE_IMAGE_REPO = "\\\\DIGITAL20\\dnb\\equipimg";
+	
+	private static final String equipthumimg_ARTICLE_IMAGE_PATH = "\\\\DIGITAL20\\dnb\\equipthumimg";
+	private static final String equipthumimg_ARTICLE_IMAGE_REPO = "\\\\DIGITAL20\\dnb\\equipthumimg";
+	
 	 @Autowired
 		private EquipService equipService;
 		@Autowired
@@ -148,8 +155,6 @@ public class EquipControllerImpl implements EquipController {
 			return mav;
 		}
 		
-	
-		
 		
 		@RequestMapping(value="/admin_Eq_manage_classify.do" ,method = RequestMethod.GET)
 		public ModelAndView viewecatename(@RequestParam("cate_name") String cate_name,
@@ -161,6 +166,10 @@ public class EquipControllerImpl implements EquipController {
 			mav.addObject("cateList", cateList);
 			return mav;
 		}
+		
+		
+	
+		
 		
 		@Override
 		@RequestMapping(value="/addcatename.do" ,method = RequestMethod.POST)
@@ -255,105 +264,163 @@ public class EquipControllerImpl implements EquipController {
 		}
 		
 		
-		@Override
-		@RequestMapping(value="/addeqname.do" ,method = RequestMethod.GET)
-		public ResponseEntity addeqname(@ModelAttribute("equipVO") EquipVO equipVO,
-				                    HttpServletRequest request, HttpServletResponse response)  throws Exception{
-			response.setContentType("text/html; charset=UTF-8");
-			request.setCharacterEncoding("utf-8");
-			String message = null;
-			ResponseEntity resEntity = null;
-			HttpHeaders responseHeaders = new HttpHeaders();
-			responseHeaders.add("Content-Type", "text/html; charset=utf-8");
-			
-			
-			
-			try {
-			    equipService.addeqname(equipVO);
-			    
-			    message  = "<script>";
-			    message +=" alert('모델명 등록을 마쳤습니다.모델 리스트 창으로 이동합니다.');";
-			    message += " location.href='"+request.getContextPath()+"/equip/admin_Eq_manage_regist_list.do';";
-			    message += " </script>";
-			    
-			}catch(Exception e) {
-				message  = "<script>";
-			    message +=" alert('작업 중 오류가 발생했습니다. 다시 시도해 주세요');";
-			    message += " location.href='"+request.getContextPath()+"/equip/admin_Eq_manage_regist.do';";
-			    message += " </script>";
-				e.printStackTrace();
-			}
-			resEntity =new ResponseEntity(message, responseHeaders, HttpStatus.OK);   
-//			System.out.println(equipVO.getEq_thumimg());  
-			return resEntity;
-		}
-		
 //		@Override
 //		@RequestMapping(value="/addeqname.do" ,method = RequestMethod.GET)
 //		public ResponseEntity addeqname(@ModelAttribute("equipVO") EquipVO equipVO,
-//				MultipartHttpServletRequest multipartRequest, HttpServletResponse response)  throws Exception{
+//				                    HttpServletRequest request, HttpServletResponse response)  throws Exception{
 //			response.setContentType("text/html; charset=UTF-8");
-//			multipartRequest.setCharacterEncoding("utf-8");
-//			
-//			String eq_img = upload(multipartRequest);
-//			String eq_thumimg = upload(multipartRequest);
-//			HttpSession session = multipartRequest.getSession();
-//			
+//			request.setCharacterEncoding("utf-8");
 //			String message = null;
 //			ResponseEntity resEntity = null;
 //			HttpHeaders responseHeaders = new HttpHeaders();
 //			responseHeaders.add("Content-Type", "text/html; charset=utf-8");
-//			
-//			
-//			
 //			try {
-//			    int eq_name = equipService.addeqname(equipVO);//글정보가 저장된 articleMap을 Service클래스의 addArticle()메서드로 전달
-//				if(eq_img!=null && eq_img.length()!=0) {//글정보를 추가한 후 업로드한 이미지 파일을 글 번호로 명명한 폴더로 이동합니다.
-//					File srcFile = new File(equipimg_ARTICLE_IMAGE_REPO+"\\"+"temp"+"\\"+eq_img);
-//					File destDir = new File(equipimg_ARTICLE_IMAGE_REPO+"\\"+eq_name);
-//					FileUtils.moveFileToDirectory(srcFile, destDir, true);				
-//				}
+//			    equipService.addeqname(equipVO);
 //			    message  = "<script>";
 //			    message +=" alert('모델명 등록을 마쳤습니다.모델 리스트 창으로 이동합니다.');";
-//			    message += " location.href='"+multipartRequest.getContextPath()+"/equip/admin_Eq_manage_regist_list.do';";
+//			    message += " location.href='"+request.getContextPath()+"/equip/admin_Eq_manage_regist_list.do';";
 //			    message += " </script>";
 //			    
 //			}catch(Exception e) {
 //				message  = "<script>";
 //			    message +=" alert('작업 중 오류가 발생했습니다. 다시 시도해 주세요');";
-//			    message += " location.href='"+multipartRequest.getContextPath()+"/equip/admin_Eq_manage_regist.do';";
+//			    message += " location.href='"+request.getContextPath()+"/equip/admin_Eq_manage_regist.do';";
 //			    message += " </script>";
 //				e.printStackTrace();
 //			}
 //			resEntity =new ResponseEntity(message, responseHeaders, HttpStatus.OK);   
-////			System.out.println(equipVO.getEq_thumimg());  
 //			return resEntity;
 //		}
-//		
-//		
-//	
-//		private String upload(MultipartHttpServletRequest multipartRequest) throws Exception{
-//			String eq_img = null;
-//			Map<String, String> articleMap = new HashMap<String, String>();
-//			Iterator<String> fileNames = multipartRequest.getFileNames();
-//			while(fileNames.hasNext()) {
-//				String fileName = fileNames.next();
-//				MultipartFile mFile = multipartRequest.getFile(fileName);
-//				eq_img = mFile.getOriginalFilename();
-//				File file = new File(equipimg_ARTICLE_IMAGE_REPO+"\\"+fileName);
-//				if(mFile.getSize()!=0) { //File Null Check
-//					if(! file.exists()) {
-//						if(file.getParentFile().mkdirs()) {
-//							file.createNewFile();
-//						}
-//					}
-//					mFile.transferTo(new File(equipimg_ARTICLE_IMAGE_REPO+"\\"+"temp"+"\\"+eq_img));
-//					
-//				}			
-//			}
-//			return eq_img;		
-//		}
+		
+		@Override
+		@RequestMapping(value="/addeqname.do", method = {RequestMethod.POST,RequestMethod.GET})
+		public ResponseEntity addeqname(MultipartHttpServletRequest multipartRequest, HttpServletResponse response) throws Exception{
+			multipartRequest.setCharacterEncoding("utf-8");
+			response.setContentType("text/html; charset=UTF-8");
+		
+			Map<String,Object> eqnamemap = new HashMap<String, Object>();
+			
+		
+			Enumeration enu=multipartRequest.getParameterNames();
+			
+			while(enu.hasMoreElements()) {	
+				String name = (String)enu.nextElement();
+				String value = multipartRequest.getParameter(name);
+				eqnamemap.put(name, value);
+			}
 
+			
+			
+			String eq_img = upload(multipartRequest);
+			String eq_thumimg = upload2(multipartRequest);
+			HttpSession session = multipartRequest.getSession();
+			
+			
+//			memberVO = (MemberVO) session.getAttribute("member");
+//			String board_writer 	
+//				= memberVO.getUser_id(); 	//세션에 저장된 회원 정보로 부터 ID를 가져온다
+//			eqnamemap.put("board_writer", board_writer);
+			eqnamemap.put("eq_img", eq_img);//회원 ID, 이미지파일이름을 articleMap에 저장
+			eqnamemap.put("eq_thumimg", eq_thumimg);//회원 ID, 이미지파일이름을 articleMap에 저장
+			System.out.println("sfs"+eqnamemap);
+			
+			
+			String message = null;
+			ResponseEntity resEnt=null;
+			HttpHeaders responseHeaders = new HttpHeaders();
+			responseHeaders.add("Content-Type", "text/html; charset=utf-8");
+	
+		try {
+			
+			equipService.addeqname(eqnamemap);
+			if(eq_img!=null && eq_img.length()!=0) {//모델명을 추가한 후 업로드한 이미지 파일을 글 번호로 명명한 폴더로 이동합니다.
+				File srcFile = new File(equipimg_ARTICLE_IMAGE_REPO+"\\"+"temp"+"\\"+eq_img);
+				File destDir = new File(equipimg_ARTICLE_IMAGE_REPO+"\\"+ eqnamemap.get("eq_name"));
+				FileUtils.moveFileToDirectory(srcFile, destDir, true);				
+			}
+	
+			
+			if(eq_thumimg!=null && eq_thumimg.length()!=0) {//모델명을 추가한 후 업로드한 이미지 파일을 모델명으로 명명한 폴더로 이동합니다.
+				File srcFile = new File(equipthumimg_ARTICLE_IMAGE_REPO+"\\"+"temp"+"\\"+eq_thumimg);
+				File destDir = new File(equipthumimg_ARTICLE_IMAGE_REPO+"\\"+ eqnamemap.get("eq_name"));
+				FileUtils.moveFileToDirectory(srcFile, destDir, true);				
+			}
+		
+			
+			message = "<script>";
+			message += " alert('모델명 등록을 완료 했습니다.');";
+			 message += " location.href='"+multipartRequest.getContextPath()+"/equip/admin_Eq_manage_regist_list.do';";
+			message += " </script>";
+			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
+			}catch(Exception e) {
+				
+				
+				//새 글을 추가한 후 메시지를 전달합니다.
+				message = "<script>";
+				message += " alert('오류가 발생했습니다. 다시 시도해 주세요.');";
+				
+				message += " </script>";
+				resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
+				e.printStackTrace();
+				
+			}
+			 return  resEnt;
+			
+		}
+		
+		
+		
+		//업로드한 파일이름을 얻은후 반환합니다.
+		private String upload(MultipartHttpServletRequest multipartRequest) throws Exception{
+			String eq_img = null;
+			Map<String, String> eqnamemap = new HashMap<String, String>();
+			Iterator<String> fileNames = multipartRequest.getFileNames();
+			while(fileNames.hasNext()) {
+				String fileName = fileNames.next();
+				MultipartFile mFile = multipartRequest.getFile("eq_img");
+				eq_img = mFile.getOriginalFilename();
+				File file = new File(equipimg_ARTICLE_IMAGE_REPO+"\\"+eq_img);
+				if(mFile.getSize()!=0) { //File Null Check
+					if(! file.exists()) {
+						if(file.getParentFile().mkdirs()) {
+							file.createNewFile();
+						}
+					}
+					mFile.transferTo(new File(equipimg_ARTICLE_IMAGE_REPO+"\\"+"temp"+"\\"+eq_img));
+					
+				}			
+			}
+//			System.out.println("이미지"+eq_img);
+			return eq_img;		
+		}
+
+		
+		
+		//업로드한 파일이름을 얻은후 반환합니다.
+		private String upload2(MultipartHttpServletRequest multipartRequest) throws Exception{
+			String eq_thumimg = null;
+			Map<String, String> eqnamemap = new HashMap<String, String>();
+			Iterator<String> fileNames = multipartRequest.getFileNames();
+			while(fileNames.hasNext()) {
+				String fileName = fileNames.next();
+				MultipartFile mFile = multipartRequest.getFile("eq_thumimg");
+				eq_thumimg = mFile.getOriginalFilename();
+				File file = new File(equipthumimg_ARTICLE_IMAGE_REPO+"\\"+eq_thumimg);
+				if(mFile.getSize()!=0) { //File Null Check
+					if(! file.exists()) {
+						if(file.getParentFile().mkdirs()) {
+							file.createNewFile();
+						}
+					}
+					mFile.transferTo(new File(equipthumimg_ARTICLE_IMAGE_REPO+"\\"+"temp"+"\\"+eq_thumimg));
+					
+				}			
+			}
+//			System.out.println("썸네일"+eq_thumimg);
+			return eq_thumimg;		
+		}
+		
+	
 		@Override
 		@RequestMapping(value="/addserialname.do" ,method = RequestMethod.GET)
 		public ResponseEntity addserialname(@ModelAttribute("equipVO") EquipVO equipVO,
@@ -471,7 +538,7 @@ public class EquipControllerImpl implements EquipController {
 			
 			//새 글을 추가한 후 메시지를 전달합니다.
 			message = "<script>";
-			message += " alert('상태변경을  완료 했습니다.');";
+			message += " alert('상태 변경을 완료 했습니다.');";
 			 message += " location.href='"+multipartRequest.getContextPath()+"/equip/admin_Eq_manage_list.do';";
 			message += " </script>";
 			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
@@ -491,34 +558,7 @@ public class EquipControllerImpl implements EquipController {
 			
 		}
 		
-		
-//		@Override
-//		@RequestMapping(value="/modSerialState.do", method = RequestMethod.POST)
-//		public ResponseEntity modSerialState(@RequestParam("eq_state") String eq_state,HttpServletRequest request, HttpServletResponse response) throws Exception{
-//			response.setContentType("text/html; charset=UTF-8");
-//			request.setCharacterEncoding("utf-8");
-//			String message = null;
-//			ResponseEntity resEntity = null;
-//			HttpHeaders responseHeaders = new HttpHeaders();
-//			responseHeaders.add("Content-Type", "text/html; charset=utf-8");
-//			try {
-//			 equipService.modSerialState(eq_state);
-//
-//			 message  = "<script>";
-//			    message +=" alert('상태 변경을 마쳤습니다.시리얼번호 리스트 창으로 이동합니다.');";
-//			    message += " location.href='"+request.getContextPath()+"/equip/admin_Eq_manage_list.do';";
-//			    message += " </script>";
-//			}catch(Exception e) {
-//				message  = "<script>";
-//			    message +=" alert('작업 중 오류가 발생했습니다. 다시 시도해 주세요');";
-//			    message += " location.href='"+request.getContextPath()+"/equip/admin_Eq_manage_serialmod.do';";
-//			    message += " </script>";
-//				e.printStackTrace();
-//			}
-//			resEntity =new ResponseEntity(message, responseHeaders, HttpStatus.OK);
-//			return resEntity;
-//		}
-		
+
 		
 		
 	
