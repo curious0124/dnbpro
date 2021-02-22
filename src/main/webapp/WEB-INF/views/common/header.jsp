@@ -161,7 +161,7 @@
         <div class="row" id="header_menu">
             <div class="col">
                 <div class="dropdown">
-                    <button class="dropbtn" onclick="location.href=' http://localhost:8090/pro/center/center.do'">센터 소개</button>
+                    <button class="dropbtn" onclick="location.href=' ${contextPath}/center/center.do'">센터 소개</button>
                     <div class="dropdown-content">
                         <a href="${contextPath}/center/center.do#center_intro">사업소개</a>
                         <a href="${contextPath}/center/center.do#center_video">홍보영상</a>
@@ -172,7 +172,7 @@
             </div>
             <div class="col">
                 <div class="dropdown">
-                    <button class="dropbtn" onclick="location.href=' http://localhost:8090/pro/equip/view_Eq_list.do'">장비예약</button>
+                    <button class="dropbtn" onclick="location.href=' ${contextPath}/equip/view_Eq_list.do'">장비예약</button>
                     <div class="dropdown-content">
                         <a href="${contextPath}/equip/view_Eq_list.do">장비리스트</a>
                     </div>
@@ -180,7 +180,7 @@
             </div>
             <div class="col">
                 <div class="dropdown">
-                    <button class="dropbtn" onclick="location.href=' http://localhost:8090/pro/education/edu_list.do'">장비교육</button>
+                    <button class="dropbtn" onclick="location.href=' ${contextPath}/education/edu_list.do'">장비교육</button>
                     
                 </div>
             </div>
