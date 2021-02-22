@@ -57,6 +57,8 @@
 			<tr align="center">
 				<td colspan="2"><input type="submit" value="로그인"> <input
 					type="reset" value="다시입력"></td>
+				<td><button type="button" class="find_id_form" onclick="location.href='${contextPath}/member/find_id_form.do'">아이디 찾기</button></td>
+				<td><button type="button" class="find_pw_form" onclick="location.href='${contextPath}/member/find_pw_form.do'">비밀번호 찾기</button></td>
 			</tr>
 		</table>
 	</form>
