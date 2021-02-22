@@ -224,8 +224,8 @@
     <div>
         <div class="row">
             <div class="col">
-            <input  type= "hidden"   name="originalFileName" value="${equip.eq_thumimg}" /> 
-                <img src="${contextPath}/equipthumimg_download.do?eq_name=${equip.eq_name}&eq_thumimg=${equip.eq_thumimg}" id="preview2"  />
+            <input  type= "hidden"   name="originalFileName" value="${equipVO.eq_thumimg}" /> 
+                <img src="${contextPath}/equipthumimg_download.do?eq_name=${equipVO.eq_name}&eq_thumimg=${equipVO.eq_thumimg}" id="preview2"  />
             </div>
             <div class="col">
                 <b class="eq_name">모델명 : ${equipVO.eq_name}</b>
@@ -354,8 +354,8 @@
 <div class="col2">
 		
 		
-		<input  type= "hidden"   name="originalFileName" value="${equip.eq_img}" /> 
-                <img src="${contextPath}/equipimg_download.do?eq_name=${equip.eq_name}&eq_img=${equip.eq_img}" id="preview"  />
+		<input  type= "hidden"   name="originalFileName" value="${equipVO.eq_img}" /> 
+                <img src="${contextPath}/equipimg_download.do?eq_name=${equipVO.eq_name}&eq_img=${equipVO.eq_img}" id="preview"  />
 		  
             </div>
           
