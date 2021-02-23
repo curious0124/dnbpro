@@ -37,5 +37,7 @@ public interface RentService {
 	
 	public int listlogpageCount() throws Exception;
 //	public List<RentVO> listpagelogs(Criteria cri) throws Exception;
+
+	public void insertAskRent(RentVO rentVO) throws Exception;
 	
 }

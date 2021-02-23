@@ -211,6 +211,27 @@
    </select>   
 <!--  페이징  -->
 
+	
+	
+	
+	<!-- 예약신청  로그추가  -->
+	<insert id="insertAskRent" parameterType="RentVO"   >
+    <![CDATA[
+     insert into Resq (Resq_num, User_id, Eq_serial, Resq_start, Resq_end) 
+      values (Resq_num_seq.NEXTVAL,#{user_id},#{eq_serial},to_date(#{resq_start},'YYYY-MM-DD'),to_date(#{resq_end},'YYYY-MM-DD'))
+    ]]>
+  </insert>
+	<!-- 예약신청  로그추가  -->
+   <insert id="insertAskRentLog" parameterType="RentVO"  >
+    <![CDATA[
+     insert into log(log_num, resq_num,eq_serial,user_id,status,log_maker,reqs_start,resq_end) 
+	select log_num_SEQ.NEXTVAL, resq_num,eq_serial,user_id,'예약신청',#{user_id},resq_start,resq_end from reserve
+	where resq_num=(select max(resq_num) from RESQ)
+    ]]>
+  </insert>
+
+
+
   
 	
 </mapper>

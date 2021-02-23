@@ -267,6 +267,17 @@ from (select eql.eq_name,eq_serial,eql.eq_state
     </select> 
     
     
+    <select id="selectAbleSerial" parameterType="com.dnb.pro.rent.vo.RentVO" resultType="String" >
+    <![CDATA[
+	  	select eq_serial FROM 
+		(SELECT eq_name, eq_serial,eq_state 
+		from (select eql.eq_name,eq_serial,eql.eq_state 
+		    from eq_list eql where eql.eq_state not in '수리' and eql.eq_state not in '폐기')  
+		        where eq_name= #{eq_name} and eq_serial not in(select eq_serial  
+		            from reserve where (res_start between #{resq_start} and #{resq_end} or (res_end between #{resq_start}  and #{resq_end})))) 
+		where rownum <= #{ableListCount} 
+            	]]>
+    </select> 
     
     
     

@@ -7,6 +7,7 @@ import org.springframework.dao.DataAccessException;
 
 import com.dnb.pro.equip.vo.Criteria;
 import com.dnb.pro.equip.vo.EquipVO;
+import com.dnb.pro.rent.vo.RentVO;
 
 
 
@@ -49,5 +50,8 @@ public interface EquipDAO {
 
 //	public List selectStateList() throws DataAccessException;
 	public List selectAbleEquipment(Map<String, Object> selectElement);
+	
+//	선택한 장비와 수량의 이용가능한 시리얼을 가져온다.
+	public List selectAbleSerial(RentVO rentVO) throws DataAccessException;
 
 }

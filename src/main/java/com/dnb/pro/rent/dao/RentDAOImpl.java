@@ -159,5 +159,13 @@ public class RentDAOImpl implements  RentDAO {
 		public int listlogCount() throws Exception {
 			return sqlSession.selectOne("mapper.rent.listlogCount");
 		}
+
+		//예약신청
+		@Override
+		public void insertAskRent(RentVO rentVO) throws Exception {
+			sqlSession.insert("mapper.rent.insertAskRent", rentVO);
+			sqlSession.insert("mapper.rent.insertAskRentLog",rentVO);
+			
+		}
 		
 }
