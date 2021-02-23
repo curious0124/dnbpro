@@ -30,10 +30,10 @@
       }
       #container {
       	min-height:100%; /*수정 */
-/*         width: 100%;
+        width: 100%;
         margin: 0px auto;
-        text-align:center;
-        border: 0px solid #bcbcbc; */
+        margin-bottom:100px;
+        /* text-align:center; */
       }
 /*       #header {
         padding: 5px;
@@ -52,9 +52,9 @@
         font-size:10px;
       }
       #content {
-        width: 75%;
+        width: 100%;
         /* padding: 5px; */
-        /* margin-right: 5px; */
+        /* margin-right: 5px; */ 
         margin : 0 auto;
         border: 0px solid #bcbcbc;
       }
@@ -62,10 +62,13 @@
       
       #footer{ /*수정 */
       	width:100%;
-      	position: relative;
-      	margin-top:100px;
+       position: relative;
+      /*  margin-top:100px;  */
       	z-index: -1;
 
+      }
+      #banner_img_size{
+      	width:100%;
       }
       
     </style>
@@ -81,7 +84,6 @@
       </div>
       <div id="content">
           <tiles:insertAttribute name="body"/>
-          
       </div>
     </div>
     

@@ -37,24 +37,40 @@
   -->
    <!--  장비 리스트  페이징  -->
  	<select id="selectAllEquipList" resultMap="EquipResult">
-      <![CDATA[
+     
          SELECT Eq_name, Eq_thumimg, Eq_spec, Eq_ma FROM ( 
 		      SELECT  Eq_name, Eq_thumimg, Eq_spec, Eq_ma,
 		               ROW_NUMBER() OVER(ORDER BY Eq_name DESC) AS RNUM
 		        	   FROM Equipment
+		        	    where 1=1
+		        	    <include refid="searchviewlist"></include>
 		        	   ) mp
 		WHERE RNUM BETWEEN #{rowStart} AND #{rowEnd}
 		ORDER BY Eq_name DESC 
-      ]]>
+     
 	</select>
 	 <select id="listEquipCount" resultType="int">
-   		<![CDATA[
+   		
    			select 
    			count(Eq_name)
    			from Equipment where 1=1
-   		]]>
+   			  <include refid="searchviewlist"></include>
+   		    and eq_name is not null
    </select>   
 <!--  페이징  -->
+
+<!--  장비리스트 검색  -->
+
+	 <sql id="searchviewlist">
+		
+		<if test="searchType != null">
+			<if test="searchType == 'q'.toString()">AND equipment.eq_name LIKE '%' || #{keyword} || '%'</if>
+			<if test="searchType == 'w'.toString()">AND equipment.eq_ma LIKE '%' || #{keyword} || '%'</if>
+			<if test="searchType == 'qw'.toString()">AND (equipment.eq_name LIKE '%' || #{keyword} || '%') or (equipment.eq_ma LIKE '%' || #{keyword} || '%')</if>
+		</if>
+
+	</sql> 
+	
 
   
   <!--장비 상세페이지뷰 -->
@@ -62,7 +78,7 @@
     <![CDATA[
       SELECT * from Equipment	
        where eq_name = #{eq_name}
-      
+      and eq_name is not null
     ]]>
   </select>
   
@@ -87,39 +103,43 @@
     
      <!--장비 등록 시리얼 리스트 -->
    <select id="selectAdminEquipList" parameterType="EquipVO" resultType="com.dnb.pro.equip.vo.EquipVO">
-    <![CDATA[
+ 
 	SELECT *
 	from( 
 	   SELECT equipment.Cate_name, equipment.eq_name, Eq_list.eq_serial, Eq_list.eq_regist, Eq_list.eq_state,
 	   ROW_NUMBER() OVER(ORDER BY eq_serial DESC) AS RNUM
-	   FROM  Eq_list, equipment
-	   where Eq_list.eq_name = equipment.eq_name
+	   FROM  Eq_list, equipment   
+	   where 1=1 and Eq_list.eq_name = equipment.eq_name
+	   <include refid="search"></include>
 	   ) mp
 WHERE RNUM BETWEEN #{rowStart} AND #{rowEnd}
 ORDER BY eq_serial DESC 
-            	]]>
+            	
     </select> 
      <select id="listSerialCount" resultType="int">
-   		<![CDATA[
+   		
    			select 
    			count(eq_serial)
-   			from Eq_list 
-   		]]>
+   			from Eq_list  where 1=1
+   			<include refid="search"></include> 
+   		    and eq_name is not null
    </select>   
 <!--  페이징  -->
     
+   
+	
     
-    <!-- 장비 상세페이지 사용가능한 장비 수량 조회 
-    <select id="selecAmount" parameterType="EquipVO" resultType="com.dnb.pro.equip.vo.EquipVO">
-    <![CDATA[
-	select COUNT(*) FROM 
-(SELECT eq_name, eq_serial,eq_state 
-from (select eql.eq_name,eq_serial,eql.eq_state 
-    from eq_list eql where eql.eq_state not in '수리' and eql.eq_state not in '폐기') 
-        where eq_name= #{eq_name} and eq_serial not in(select eq_serial 
-            from reserve where (res_start between #{from} and #{to} or (res_end between #{from}  and #{to})))
-            	]]>
-    </select> -->
+    <sql id="search">
+		
+		<if test="searchType != null">
+			<if test="searchType == 'i'.toString()">AND equipment.eq_name LIKE '%' || #{keyword} || '%'</if>
+			<if test="searchType == 'n'.toString()">AND Eq_list.eq_serial LIKE '%' || #{keyword} || '%'</if>
+			<if test="searchType == 'tc'.toString()">AND (equipment.eq_name LIKE '%' || #{keyword} || '%') or (Eq_list.eq_serial LIKE '%' || #{keyword} || '%')</if>
+		</if>
+
+	</sql> 
+    
+   
     
      <!--분류명  리스트 -->
    <select id="selectCatenameList" parameterType="EquipVO" resultType="com.dnb.pro.equip.vo.EquipVO">
@@ -170,14 +190,7 @@ from (select eql.eq_name,eq_serial,eql.eq_state
             	]]>
     </select> 
     
-    <!--모델명  등록 
-   <insert id="insertEquiplist" parameterType="EquipVO">
-    <![CDATA[
-	insert into equipment(cate_name,eq_name,eq_ma,eq_spec,eq_img,eq_thumimg) 
-	values(#{cate_name},#{eq_name},#{eq_ma},#{eq_spec},#{eq_img},#{eq_thumimg}) 
-            	]]>
-    </insert>
-    -->
+ 
      <!--모델명  등록 -->
    <insert id="insertEquiplist" parameterType="java.util.Map">
     <![CDATA[

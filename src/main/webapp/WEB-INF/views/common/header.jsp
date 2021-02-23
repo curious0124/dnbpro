@@ -123,7 +123,7 @@ border: 1px solid red;
 							<c:if test="${member.user_auth eq '관리자'}">
 								<button type="button" class="btn btn-outline-danger" onclick="location.href='${contextPath}/member/logout.do' ">로그아웃</button>
 								<button type="button" class="btn btn-outline-danger" onclick="location.href='${contextPath}/mypage/mypage.do'">마이페이지</button>
-								<button type="button" class="btn btn-outline-danger" onclick="location.href='${contextPath}/board/admin_board_list.do?brd_num=1'">관리자</button>
+								<button type="button" class="btn btn-outline-danger" onclick="location.href='${contextPath}/rent/admin_Eq_reserv_apply.do'">관리자</button>
 							</c:if>
 							<c:if test="${member.user_auth eq '일반'}">
 								<button type="button" class="btn" onclick="location.href='${contextPath}/member/logout.do' ">로그아웃</button>

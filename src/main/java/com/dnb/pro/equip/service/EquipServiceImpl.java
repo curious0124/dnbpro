@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.dnb.pro.equip.dao.EquipDAO;
 import com.dnb.pro.equip.vo.Criteria;
 import com.dnb.pro.equip.vo.EquipVO;
+import com.dnb.pro.equip.vo.SearchCriteria;
 import com.dnb.pro.rent.vo.RentVO;
 
 
@@ -26,15 +27,15 @@ public class EquipServiceImpl implements EquipService{
 
 	
 	@Override
-	public List<EquipVO> listequips(Criteria cri) throws Exception {
+	public List<EquipVO> listequips(SearchCriteria scri) throws Exception {
 //		List<EquipVO> equipList = equipDAO.selectAllEquipList(cri);
 		
-		return equipDAO.selectAllEquipList(cri);
+		return equipDAO.selectAllEquipList(scri);
 	}
 	
 	@Override
-	public int listeqviewpageCount(Criteria cri) throws Exception {
-		return equipDAO.listEquipCount(cri);
+	public int listeqviewpageCount(SearchCriteria scri) throws Exception {
+		return equipDAO.listEquipCount(scri);
 	}
 
 	
@@ -45,15 +46,15 @@ public class EquipServiceImpl implements EquipService{
 	}
 	
 	@Override
-	public List<EquipVO> adminlistequips(Criteria cri) throws Exception {
+	public List<EquipVO> adminlistequips(SearchCriteria scri) throws Exception {
 //		List<EquipVO> adminequipList = equipDAO.selectAdminEquipList(cri);
 		
-		return equipDAO.selectAdminEquipList(cri);
+		return equipDAO.selectAdminEquipList(scri);
 	}
 	
 	@Override
-	public int listserialpageCount(Criteria cri) throws Exception {
-		return equipDAO.listEquipCount(cri);
+	public int listserialpageCount(SearchCriteria scri) throws Exception {
+		return equipDAO.listSerialCount(scri);
 	}
 	
 	// 분류명가져오기

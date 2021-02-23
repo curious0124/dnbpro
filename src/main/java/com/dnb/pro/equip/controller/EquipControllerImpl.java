@@ -32,6 +32,7 @@ import com.dnb.pro.equip.service.EquipService;
 import com.dnb.pro.equip.vo.Criteria;
 import com.dnb.pro.equip.vo.EquipVO;
 import com.dnb.pro.equip.vo.PageMaker;
+import com.dnb.pro.equip.vo.SearchCriteria;
 import com.dnb.pro.member.vo.MemberVO;
 
 
@@ -64,17 +65,17 @@ public class EquipControllerImpl implements EquipController {
 		
 		@Override
 		@RequestMapping(value="/view_Eq_list.do" ,method = {RequestMethod.GET,RequestMethod.POST})
-		public ModelAndView listequips(Criteria cri,HttpServletRequest request, HttpServletResponse response) throws Exception {
+		public ModelAndView listequips(SearchCriteria scri,HttpServletRequest request, HttpServletResponse response) throws Exception {
 			String viewName = (String)request.getAttribute("viewName");
 			
 			ModelAndView mav = new ModelAndView(viewName);
 			
-			List listequips = equipService.listequips(cri);
+			List listequips = equipService.listequips(scri);
 			mav.addObject("listequips", listequips);
 			
 			PageMaker pageMaker = new PageMaker();
-			pageMaker.setCri(cri);
-			pageMaker.setTotalCount(equipService.listeqviewpageCount(cri));
+			pageMaker.setCri(scri);
+			pageMaker.setTotalCount(equipService.listeqviewpageCount(scri));
 			mav.addObject("pageMaker", pageMaker);
 			
 			return mav;
@@ -115,17 +116,17 @@ public class EquipControllerImpl implements EquipController {
 		
 		@Override
 		@RequestMapping(value="/admin_Eq_manage_list.do" ,method = {RequestMethod.GET,RequestMethod.POST})
-		public ModelAndView adminlistequips(Criteria cri,HttpServletRequest request, HttpServletResponse response) throws Exception {
+		public ModelAndView adminlistequips(SearchCriteria scri,HttpServletRequest request, HttpServletResponse response) throws Exception {
 			String viewName = (String)request.getAttribute("viewName");
 			
 			ModelAndView mav = new ModelAndView(viewName);
 			
-			List adminequipList = equipService.adminlistequips(cri);
+			List adminequipList = equipService.adminlistequips(scri);
 			
 			mav.addObject("adminequipList", adminequipList);
 			PageMaker pageMaker = new PageMaker();
-			pageMaker.setCri(cri);
-			pageMaker.setTotalCount(equipService.listserialpageCount(cri));
+			pageMaker.setCri(scri);
+			pageMaker.setTotalCount(equipService.listserialpageCount(scri));
 			mav.addObject("pageMaker", pageMaker);
 			
 			return mav;

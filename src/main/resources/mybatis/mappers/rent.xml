@@ -193,24 +193,37 @@
   
     <!--  로그 페이징  -->
  	<select id="selectAllLogList" resultMap="rentEquipResult">
-      <![CDATA[
+     <![CDATA[
          SELECT * FROM ( 
 		      SELECT Log_num, Resq_num, Res_num, Return_num, User_id, Status, Log_maker,Res_start,Res_end,Log_date,Eq_name,Cate_name,Eq_serial,
 		               ROW_NUMBER() OVER(ORDER BY Log_num DESC) AS RNUM
-		        	   FROM log) mp
+		        	   FROM log where 1=1  ]]>
+		        	    <include refid="search"></include>
+		        	   ) mp
 		WHERE RNUM BETWEEN #{rowStart} AND #{rowEnd}
 		ORDER BY Log_num DESC 
-      ]]>
+      
 	</select>
 	 <select id="listlogCount" resultType="int">
-   		<![CDATA[
+   		
    			select 
    			count(Log_num)
-   			from log
-   		]]>
+   			from log where 1=1 
+   			<include refid="search"></include> 
+   			and user_id is not null
+   	
    </select>   
 <!--  페이징  -->
 
+<sql id="search">
+		
+		<if test="searchType != null">
+			<if test="searchType == 'i'.toString()">AND user_id LIKE '%' || #{keyword} || '%'</if>
+			<if test="searchType == 'n'.toString()">AND Status LIKE '%' || #{keyword} || '%'</if>
+			<if test="searchType == 'tc'.toString()">AND (user_id LIKE '%' || #{keyword} || '%') or (Status LIKE '%' || #{keyword} || '%')</if>
+		</if>
+
+	</sql> 
 	
 	
 	
