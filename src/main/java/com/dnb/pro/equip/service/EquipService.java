@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.dnb.pro.equip.vo.Criteria;
 import com.dnb.pro.equip.vo.EquipVO;
+import com.dnb.pro.rent.vo.RentVO;
 
 
 
@@ -41,5 +42,8 @@ public interface EquipService {
 //	public EquipVO selectonecatename(String cate_name) throws Exception;
 //	EquipVO vieweqname(String cate_name) throws Exception;
 	public List seletAbleEquipment(Map<String, Object> selectElement);
+	
+	//선택한 장비와 수량의 이용가능한 시리얼을 가져온다.
+	public List selectAbleSerial(RentVO rentVO) throws Exception;
 
 }

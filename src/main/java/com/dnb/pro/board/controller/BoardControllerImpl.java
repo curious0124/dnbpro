@@ -89,7 +89,6 @@ private static final Logger logger = LoggerFactory.getLogger(BoardControllerImpl
 
 		
 		List articlesList = boardService.listArticles(cri);
-//		System.out.println(articlesList.get(0));
 		mav.addObject("articlesList",articlesList);
 		
 		PageMaker pageMaker = new PageMaker();

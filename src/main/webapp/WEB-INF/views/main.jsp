@@ -22,6 +22,7 @@
             height: 500px;
             position: absolute;
             left: 100px;
+            top: 200px;
             z-index: 10;
             board: 5px solid red;
         }

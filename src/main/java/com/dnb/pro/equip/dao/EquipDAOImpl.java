@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import com.dnb.pro.equip.vo.Criteria;
 import com.dnb.pro.equip.vo.EquipVO;
+import com.dnb.pro.rent.vo.RentVO;
 
 
 
@@ -163,6 +164,13 @@ public class EquipDAOImpl implements  EquipDAO  {
 		sqlSession.insert("mapper.equip.insertEquiplist", eqnamemap);
 //		return resNO;
 		
+	}
+	
+	//선택한 장비와 수량의 이용가능한 시리얼을 가져온다.
+	@Override
+	public List selectAbleSerial(RentVO rentVO) throws DataAccessException {
+		List ableSerialList = sqlSession.selectList("mapper.equip.selectAbleSerial", rentVO);
+		return ableSerialList;
 	}
 	
 	

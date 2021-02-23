@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.dnb.pro.equip.dao.EquipDAO;
 import com.dnb.pro.equip.vo.Criteria;
 import com.dnb.pro.equip.vo.EquipVO;
+import com.dnb.pro.rent.vo.RentVO;
 
 
 
@@ -167,5 +168,11 @@ public class EquipServiceImpl implements EquipService{
 			
 	
 		}
+
+	@Override
+	public List selectAbleSerial(RentVO rentVO) throws Exception {
+		List ableSerialList = equipDAO.selectAbleSerial(rentVO);
+		return ableSerialList;
+	}
 	
 }

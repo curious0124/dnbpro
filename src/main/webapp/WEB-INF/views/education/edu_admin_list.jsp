@@ -179,19 +179,39 @@ a {
 				<ul>
 					<c:if test="${pageMaker.prev}">
 						<li><a
-							href="list${pageMaker.makeQuery(pageMaker.startPage - 1)}">이전</a></li>
+							href="edu_admin_list.do${pageMaker.makeQuery(pageMaker.startPage - 1)}">이전</a></li>
 					</c:if>
 					<c:forEach begin="${pageMaker.startPage}"
 						end="${pageMaker.endPage}" var="idx">
-						<!-- <li><a href="list${pageMaker.makeQuery(idx)}">${idx}</a></li> -->
 						<li><a href="edu_admin_list.do${pageMaker.makeQuery(idx)}">${idx}</a></li>
 					</c:forEach>
 					<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
 						<li><a
-							href="list${pageMaker.makeQuery(pageMaker.endPage + 1)}">다음</a></li>
+							href="edu_admin_list.do${pageMaker.makeQuery(pageMaker.endPage + 1)}">다음</a></li>
 					</c:if>
 				</ul>
 			</div>	
+			<div class="search">
+    <select name="searchType">
+       <option value="ctn"<c:out value="${scri.searchType eq 'ctn' ? 'selected' : ''}"/>selected>카테고리+타이틀+장비이름</option>
+       <option value="c"<c:out value="${scri.searchType eq 'c' ? 'selected' : ''}"/>>카테고리</option>
+      <option value="t"<c:out value="${scri.searchType eq 't' ? 'selected' : ''}"/>>타이틀</option>
+      <option value="n"<c:out value="${scri.searchType eq 'n' ? 'selected' : ''}"/>>장비이름</option>
+    </select>
+
+    <input type="text" name="keyword" id="keywordInput" value="${scri.keyword}"/>
+
+    <button id="searchBtn" type="button">검색</button>
+    <script>
+      $(function(){
+        $('#searchBtn').click(function() {
+        	/* self.location 부분 처음 (edu_admin.do)주소불러오기 오류 있음
+        	   현재는 간제로 주소 지정해주었음*/
+          self.location = "edu_admin_list.do" + '${pageMaker.makeQuery(1)}' + "&searchType=" + $("select option:selected").val() + "&keyword=" + encodeURIComponent($('#keywordInput').val());
+        });
+      });   
+    </script>
+  </div>
 </div>
 </div>
 

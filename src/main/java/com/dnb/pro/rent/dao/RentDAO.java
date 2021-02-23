@@ -46,6 +46,9 @@ public interface RentDAO {
 //	public List selectLogList(Criteria cri) throws DataAccessException;
 	public int listlogCount() throws Exception;
 	
+	//예약신청
+	public void insertAskRent(RentVO rentVO) throws Exception;
+	
 //	public void reservationrequest1(RentVO vo) throws DataAccessException;
 	
 //	public void reservationrequest2(RentVO vo) throws DataAccessException;
