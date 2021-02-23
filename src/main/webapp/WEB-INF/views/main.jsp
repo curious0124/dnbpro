@@ -130,7 +130,7 @@
 					</div>
 					<div class="col-lg-3 col-md-6 col-12">
 						<!-- Single Feature -->
-						<div class="single-feature active">
+						<div class="single-feature">
 							<div class="icon-head"><i class="fa fa-podcast"></i></div>
 							<h4><a href="${contextPath}/center/center.do#center_service">Service</a></h4>
 							<p>미래를 향한 비전과 철학 <br> 새로운 미래의 창조와 <br> 나은 세상을 향한 열정</p>
