@@ -38,7 +38,7 @@
             margin-top: -50px;
         }
         #banner_text{
-        	margin-right:100px;
+        	margin-left: 100px;
         }
 
     </style>
@@ -53,31 +53,6 @@
     </script>
 </head>
 <body>
-<!-- 배너시작 -->
-<%-- <div id="rollingbanner">
-<div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img src="${contextPath}/resources/image/logo.png" class="banner_img" alt="">
-    </div>
-    
-    <c:forEach items="${bannerList}" var="bannerList">
-    <div class="carousel-item">
-      <img class="banner_img" src="${contextPath}/download.do?board_num=${bannerList.board_num}&board_img=${bannerList.board_img}" />
-    </div>
-    </c:forEach>
-  </div>
-  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"  data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Previous</span>
-  </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"  data-bs-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Next</span>
-  </button>
-</div>
-</div> --%>
-<!-- 배너끝! -->
 
 <!-- 팝업 시작 -->
    <c:choose> 

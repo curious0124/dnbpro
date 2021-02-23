@@ -18,7 +18,7 @@
    <![CDATA[
        	select board_img, board_num, board_content, board_title from brd_detail
         where         
-        board_title like '%'|| '[배너등록]' || '%'
+        board_title like '%'|| '*' || '%'
         order by board_img desc
         ]]>
    </select>
