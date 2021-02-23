@@ -164,6 +164,7 @@ border: 1px solid red;
 														<ul id="nav" class="nav main-menu menu navbar-nav">
 															<li><a href="${contextPath}/main/main.do">Home</a></li>
 															<li class="icon-active"><a href="${contextPath}/center/center.do#center_intro">center</a>
+															<li class="icon-active"><a href="${contextPath}/equip/view_Eq_list.do">Equipment</a>
 															<ul class="sub-menu">
 																<li><a href="${contextPath}/center/center.do#center_intro">Info</a></li>
 																<li><a href="${contextPath}/center/center.do#center_video">Video</a></li>
