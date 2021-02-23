@@ -24,7 +24,7 @@
             left: 100px;
             top: 200px;
             z-index: 10;
-            board: 5px solid red;
+            /* border: 1px solid red; */
         }
         #pop_img{
             width: 400px;

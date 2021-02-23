@@ -33,13 +33,7 @@
         width: 100%;
         margin: 0px auto;
         margin-bottom:100px;
-        /* text-align:center; */
       }
-/*       #header {
-        padding: 5px;
-        margin-bottom: 5px;
-        border: 0px solid #bcbcbc;
-      } */
       #sidebar-left {
         width: 15%;
         height:700px;
@@ -55,6 +49,7 @@
         width: 100%;
         /* padding: 5px; */
         /* margin-right: 5px; */ 
+        /* text-align: center; */
         margin : 0 auto;
         border: 0px solid #bcbcbc;
       }
@@ -67,9 +62,9 @@
       	z-index: -1;
 
       }
-      #banner_img_size{
+/*       #banner_img_size{
       	width:100%;
-      }
+      } */
       
     </style>
     <title><tiles:insertAttribute name="title" /></title>

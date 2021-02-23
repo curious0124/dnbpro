@@ -11,8 +11,6 @@
 
 <head>
 
-    <!-- 부트스트랩 경로 지정 폴더에 넣어놨음-->
-    <link rel="stylesheet" href="${contextPath}/resources/bootstrap/bootstrap.css">
     
     <meta charset="UTF-8">
     <title>Document</title>
@@ -20,23 +18,17 @@
      <c:set var="video" value="${centerList.video}" />
       <c:set var="service" value="${centerList.service}" />
     <style>
-        * {
+       
+
+
+
+         .center_container {
             margin: 0 auto;
-            padding: 0 auto;
-            box-sizing: border-box;
-        } 
-
-        .body {
-            position: relative;
-        }
-
-        .center_container {
-            width: 90%;
-
+			text-align: center;
             background-color: #f7f7f7;
         } 
 
-        .center_navi {
+/*         .center_navi {
             border: solid;
             margin: 0 auto;
             float: left;
@@ -54,7 +46,7 @@
             width: 90%;
              /* height: 500px;
             border: solid; */
-        }
+        } */
 
     </style>
 </head>
