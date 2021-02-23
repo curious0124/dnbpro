@@ -11,7 +11,6 @@
 <head>
 <meta charset="UTF-8">
 <title>FAQ</title>
-
 <style>
 .accordion {
 	background-color: #eee;
@@ -98,61 +97,50 @@
 
 		</div>
 	</c:forEach>
-	<div id="listPaging">
-		<ul>
-			<c:if test="${pageMaker.prev}">
-				<li><a
-					href="cust_faq.do${pageMaker.makeQuery(pageMaker.startPage - 1)}">이전</a></li>
-			</c:if>
+	
+		<div id="listPaging">
+				<ul>
+					<c:if test="${pageMaker.prev}">
+						<li><a
+							href="cust_faq.do${pageMaker.makeQuery(pageMaker.startPage - 1)}">이전</a></li>
+					</c:if>
 
-			<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}"
-				var="idx">
-				<li><a href="cust_faq.do${pageMaker.makeQuery(idx)}">${idx}</a></li>
+					<c:forEach begin="${pageMaker.startPage}"
+						end="${pageMaker.endPage}" var="idx">
+						<li><a href="cust_faq.do${pageMaker.makeQuery(idx)}">${idx}</a></li>
 
-			</c:forEach>
+					</c:forEach>
 
-			<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
-				<li><a
-					href="cust_faq.do${pageMaker.makeQuery(pageMaker.endPage + 1)}">다음</a></li>
-			</c:if>
-		</ul>
-	</div>
-	<div>
-		<form role="form" method="get">
-
-			<div class="search">
-				<select name="searchType">
-					<option value="no"
-						<c:out value="${scri.searchType == null ? 'selected' : ''}"/>>-----</option>
-					<option value="tc"
-						<c:out value="${scri.searchType eq 'tc' ? 'selected' : ''}"/>
-						selected>아이디+이름</option>
-					<option value="i"
-						<c:out value="${scri.searchType eq 'i' ? 'selected' : ''}"/>>아이디</option>
-					<option value="n"
-						<c:out value="${scri.searchType eq 'n' ? 'selected' : ''}"/>>이름</option>
-				</select> <input type="text" name="keyword" id="keywordInput"
-					value="${scri.keyword}" />
-
-				<button id="searchBtn" type="button">검색</button>
-				<script>
-					$(function() {
-						$('#searchBtn').click(
-								function() {
-									self.location = "cust_faq.do"
-											+ '${pageMaker.makeQuery(1)}'
-											+ "&searchType="
-											+ $("select option:selected").val()
-											+ "&keyword="
-											+ encodeURIComponent($(
-													'#keywordInput').val());
-								});
-					});
-				</script>
+					<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
+						<li><a
+							href="cust_faq.do${pageMaker.makeQuery(pageMaker.endPage + 1)}">다음</a></li>
+					</c:if>
+				</ul>
 			</div>
+			<form role="form" method="get">
+		
+  <div class="search">
+   <%--  <select name="searchType">
+      <option value="no"<c:out value="${scri.searchType == null ? 'selected' : ''}"/>>-----</option>
+       <option value="tc"<c:out value="${scri.searchType eq 'tc' ? 'selected' : ''}"/>selected>아이디+이름</option>
+      <option value="i"<c:out value="${scri.searchType eq 'i' ? 'selected' : ''}"/>>아이디</option>
+      <option value="n"<c:out value="${scri.searchType eq 'n' ? 'selected' : ''}"/>>이름</option>
+    </select>
+
+    <input type="text" name="keyword" id="keywordInput" value="${scri.keyword}"/>
+
+    <button id="searchBtn" type="button">검색</button> --%>
+    <script>
+      $(function(){
+        $('#searchBtn').click(function() {
+          self.location = "cust_faq.do" + '${pageMaker.makeQuery(1)}' + "&searchType=" + $("select option:selected").val() + "&keyword=" + encodeURIComponent($('#keywordInput').val());
+        });
+      });   
+    </script>
+  </div>
 		</form>
-	</div>
-	<script>
+		
+			<script>
 		var acc = document.getElementsByClassName("accordion");
 		var i;
 
@@ -168,6 +156,7 @@
 			});
 		}
 	</script>
+
 
 
 
