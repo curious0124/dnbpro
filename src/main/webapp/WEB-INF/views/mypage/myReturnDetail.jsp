@@ -37,6 +37,11 @@
 <title>Insert title here</title>
 
 <c:set var="retList" value="${myRentList.ret}" />
+<style>
+		.rent_table {
+			width: 100%;
+		}
+</style>
 </head>
 <body>
 	<div class=my_rent>

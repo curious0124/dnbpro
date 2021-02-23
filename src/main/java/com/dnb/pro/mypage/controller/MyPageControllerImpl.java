@@ -21,7 +21,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.dnb.pro.member.vo.MemberVO;
 import com.dnb.pro.mypage.service.MyPageService;
+import com.dnb.pro.mypage.vo.Criteria;
 import com.dnb.pro.mypage.vo.MyPageVO;
+import com.dnb.pro.mypage.vo.PageMaker;
 import com.dnb.pro.rent.vo.RentVO;
 
 
@@ -122,7 +124,7 @@ public class MyPageControllerImpl implements MyPageController{
 
 	@Override
 	@RequestMapping(value = "/myLogDetail.do", method = {RequestMethod.GET,RequestMethod.POST})
-	public ModelAndView myLogDetail( HttpServletRequest request, HttpServletResponse response)
+	public ModelAndView myLogDetail(Criteria cri, HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		String viewName=(String)request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView(viewName);
@@ -132,9 +134,14 @@ public class MyPageControllerImpl implements MyPageController{
 		
 		String user_id= renter.getUser_id();
 		
-		 Map<String, List<RentVO>> myRentList= myPageService.findMyLogInfo(user_id);
+		 Map<String, List<RentVO>> myRentList= myPageService.findMyLogInfo(cri);
 		 mav.addObject("renter", renter);
 		mav.addObject("myRentList", myRentList);
+		
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(cri);
+		pageMaker.setTotalCount(myPageService.listCount(cri.getUser_id()));
+		mav.addObject("pageMaker", pageMaker);
 
 		return mav;
 	}
@@ -373,6 +380,8 @@ request.setCharacterEncoding("utf-8");
 		mav.setViewName("/mypage/memberRemove");
 		return mav;
 	}
+
+	
 
 	
 
