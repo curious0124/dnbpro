@@ -100,9 +100,7 @@
     <div class="col">
      ½æ³×ÀÏ
     </div>
-    <div class="col">
- ¸ðµ¨½ºÆå
-    </div>
+  
     <div class="col">
    Á¦Á¶»ç
     </div>
@@ -121,9 +119,7 @@
     <input  type= "hidden"   name="originalFileName" value="${equip.eq_thumimg}" /> 
 	<img src="${contextPath}/equipthumimg_download.do?eq_name=${equip.eq_name}&eq_thumimg=${equip.eq_thumimg}" id="preview"  />
     </div>
-    <div class="col">
-    ${equip.eq_spec}
-    </div>
+    
     <div class="col">
     ${equip.eq_ma}
     </div>
