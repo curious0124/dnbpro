@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 import com.dnb.pro.equip.vo.EquipVO;
 import com.dnb.pro.rent.vo.Criteria;
 import com.dnb.pro.rent.vo.RentVO;
+import com.dnb.pro.rent.vo.SearchCriteria;
 
 
 
@@ -22,9 +23,9 @@ public class RentDAOImpl implements  RentDAO {
 		private SqlSession sqlSession;
 
 		@Override
-		public List selectAllLogList(Criteria cri) throws DataAccessException {
-			List<RentVO> logList = logList = sqlSession.selectList("mapper.rent.selectAllLogList",cri);
-			return logList;
+		public List selectAllLogList(SearchCriteria scri) throws DataAccessException {
+			return  sqlSession.selectList("mapper.rent.selectAllLogList",scri);
+			
 		}
 
 		@Override
@@ -156,8 +157,16 @@ public class RentDAOImpl implements  RentDAO {
 //			return logList;
 //		}
 		@Override
-		public int listlogCount() throws Exception {
-			return sqlSession.selectOne("mapper.rent.listlogCount");
+		public int listlogCount(SearchCriteria scri) throws Exception {
+			return sqlSession.selectOne("mapper.rent.listlogCount",scri);
+		}
+
+		//예약신청
+		@Override
+		public void insertAskRent(RentVO rentVO) throws Exception {
+			sqlSession.insert("mapper.rent.insertAskRent", rentVO);
+			sqlSession.insert("mapper.rent.insertAskRentLog",rentVO);
+			
 		}
 		
 }

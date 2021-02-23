@@ -56,24 +56,6 @@
                 }
             }); 
 
-            //시작일.
-            /*$('#searchStartDate').datepicker("option","onClose", function( selectedDate ) {    
-                // 시작일 datepicker가 닫힐때
-                // 종료일의 선택할수있는 최소 날짜(minDate)를 선택한 시작일로 지정
-                $("#searchEndDate").datepicker( "option", "minDate", selectedDate );
-                $(".searchDate").find(".chkbox2").removeClass("on");
-            });
-            */
-
-            //종료일.
-            /*$('#searchEndDate').datepicker("option","onClose", function( selectedDate ) {    
-                // 종료일 datepicker가 닫힐때
-                // 시작일의 선택할수있는 최대 날짜(maxDate)를 선택한 종료일로 지정 
-                $("#searchStartDate").datepicker( "option", "maxDate", selectedDate );
-                $(".searchDate").find(".chkbox2").removeClass("on");
-            });
-            */
-
             $(".dateclick").dateclick();    // DateClick
             $(".searchDate").schDate();        // searchDate
             
@@ -142,11 +124,7 @@
             if( toDate != ''){
             	var reurl = '${equipVO.eq_name}';
                 var inputData = {"eq_name":reurl, "fromDate":fromDate, "toDate":toDate};
-                
-                console.log('메소드 돌입시작일'+fromDate);
-                console.log('메소드 돌입종료일'+toDate);
-                console.log('장비이름'+reurl);
-                console.log(inputData);
+
                 $.ajax({
                     type:'GET',
                     data: inputData,
@@ -157,9 +135,7 @@
                     	error: function(){
                     		console.log('실패? ');
                     	}
-                    
                 });
-            
                 }else{
                     alert('종료일을 입력하세요~');
                 }
@@ -169,12 +145,40 @@
     }
     
     function reservation(){
-        var fromDate =  document.getElementById("searchStartDate");
-    	var toDate =  document.getElementById("searchEndDate");
-    	console.log('시작일'+fromDate.value);
-    	console.log('종료일'+toDate.value);
+        var resq_start =  document.getElementById("searchStartDate").value;
+    	var resq_end =  document.getElementById("searchEndDate").value;
+    	var ableListCount =  document.getElementById("ableListCount").value;
+    	var eq_name = '${equipVO.eq_name}';
+    	console.log('수량 '+ableListCount);
+    	console.log('모델명 '+eq_name);
+    	console.log('시작일 '+resq_start);
+    	console.log('종료일 '+resq_end);
+    	var sendingData = {"eq_name":eq_name, "resq_start":resq_start, "resq_end":resq_end, "ableListCount":ableListCount};
     	
-    	alert('예약시스템으로 정보를 전송~');
+    		
+    		if(resq_start != "" && resq_end !=""){
+    			if(ableListCount != ""){
+    				alert('예약시스템으로 정보를 전송~');
+    				$.ajax({
+                        type:'GET',
+                        data: sendingData,
+                        url:"${contextPath}/rent/reservationRequest.do?",
+                        	success : function(){
+                        		//location.href = "${contextPath}/equip/view_Eq_detail.do?eq_name="+reurl+"&fromDate="+fromDate+"&toDate="+toDate;
+                        	},
+                        	error: function(){
+                        		console.log('실패? ');
+                        	}
+                    });
+    				
+    			
+    			}else{
+    	    		alert('수량을 입력하세요');
+    	    	}
+    		}else{
+        		alert('날짜를 입력하세요');
+        	}
+    		
     }
     </script>
     <style>
@@ -220,6 +224,8 @@
 
 <body>
     <div>
+    
+    
         <div class="row">
             <div class="col">
             <input  type= "hidden"   name="originalFileName" value="${equipVO.eq_thumimg}" /> 
@@ -321,14 +327,15 @@
         </div>
         <div class="row" id="bottom_menu">
             <div class="">
-                <select>
-                <option selected disabled>수량</option>
+                <select id="ableListCount">
+                <option selected disabled value="">수량</option>
+                
                 <c:choose>
   
 			  		<c:when test="${ableEquipmentsList !=null }" >
 					<c:forEach  var="ableList" items="${ableEquipmentsList }" varStatus="ableListNum" >
 			                 
-			                 <option>${ableListNum.count}</option>
+			                 <option value="${ableListNum.count}">${ableListNum.count}</option>
 			         </c:forEach>
 			         </c:when>
 			         
@@ -345,6 +352,10 @@
                 <button id="reservation" onclick="reservation()">예약하기</button>
             </div>
         </div>
+        
+        
+        
+        
     </div>
 <div>
     <hr class="img_top">

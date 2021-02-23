@@ -27,11 +27,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
-
+import com.dnb.pro.equip.service.EquipService;
+import com.dnb.pro.equip.vo.EquipVO;
+import com.dnb.pro.member.vo.MemberVO;
 import com.dnb.pro.rent.service.RentService;
 import com.dnb.pro.rent.vo.Criteria;
 import com.dnb.pro.rent.vo.PageMaker;
 import com.dnb.pro.rent.vo.RentVO;
+import com.dnb.pro.rent.vo.SearchCriteria;
 
 
 
@@ -46,24 +49,30 @@ import com.dnb.pro.rent.vo.RentVO;
 		private RentService rentService;
 		@Autowired
 		private RentVO rentVO;
+		@Autowired
+		private EquipService equipService;
+		@Autowired
+		private EquipVO equipVO;
+		@Autowired
+		private MemberVO memberVO;
 		
 		
 		
 		@RequestMapping(value="/listlogs.do" ,method = {RequestMethod.GET,RequestMethod.POST})
-		public ModelAndView listlogs(Criteria cri, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		public ModelAndView listlogs(SearchCriteria scri, HttpServletRequest request, HttpServletResponse response) throws Exception {
 			String viewName = (String)request.getAttribute("viewName");
 			
 			
 			ModelAndView mav = new ModelAndView(viewName);
 			
 			
-			List logList = rentService.listlogs(cri);
+			List logList = rentService.listlogs(scri);
 			
 			mav.addObject("logList", logList);
 			
 			PageMaker pageMaker = new PageMaker();
-			pageMaker.setCri(cri);
-			pageMaker.setTotalCount(rentService.listlogpageCount());
+			pageMaker.setCri(scri);
+			pageMaker.setTotalCount(rentService.listlogpageCount(scri));
 			mav.addObject("pageMaker", pageMaker);		
 			return mav;
 		}
@@ -338,4 +347,44 @@ import com.dnb.pro.rent.vo.RentVO;
 			
 			return mav;
 		}
+		
+		
+		//'예약신청하기'버튼 클릭시 실행 메소드
+		@RequestMapping(value = "/reservationRequest.do", method = { RequestMethod.GET, RequestMethod.POST})
+		public ResponseEntity reservationRequest(RentVO rentVO,
+//												 @RequestParam(value="eq_name") String eq_name,
+//												 @RequestParam(value="fromDate") Date fromDate,
+//												 @RequestParam(value="toDate") Date toDate,
+												HttpServletRequest request,
+												HttpServletResponse response) throws Exception{
+			HttpSession session=request.getSession();
+			memberVO=(MemberVO)session.getAttribute("member");
+			rentVO.setUser_id(memberVO.getUser_id());		//세션에서 로그인 정보를 가져와 user_id에 set
+			
+			System.out.println(rentVO.getAbleListCount());
+			System.out.println(rentVO.getEq_name());
+			System.out.println(rentVO.getResq_start());
+			System.out.println(rentVO.getResq_end());
+			System.out.println(rentVO.getUser_id());
+			
+			List<String> serialName = equipService.selectAbleSerial(rentVO); //대여가능한 선택장비중 선택한 수량만큼 시리얼을 조회하여 List 형태로 저장한다.
+			System.out.println(serialName);
+			
+			String arrEqSerial = null;
+			for(String i : serialName) {
+				arrEqSerial = i;
+				rentVO.setEq_serial(arrEqSerial);
+				rentService.insertAskRent(rentVO);
+			}
+			
+			
+			return null;
+		}
+
+		
+		
+		
+		
+		
+		
 }

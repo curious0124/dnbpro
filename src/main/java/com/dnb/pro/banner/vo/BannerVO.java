@@ -8,6 +8,7 @@ public class BannerVO {
 	private int board_num;
 	private String board_title;
 	private String board_img;
+	private String board_content;
 	
 	public BannerVO() {
 		
@@ -15,6 +16,18 @@ public class BannerVO {
 	
 	
 	
+	public String getBoard_content() {
+		return board_content;
+	}
+
+
+
+	public void setBoard_content(String board_content) {
+		this.board_content = board_content;
+	}
+
+
+
 	public int getBoard_num() {
 		return board_num;
 	}

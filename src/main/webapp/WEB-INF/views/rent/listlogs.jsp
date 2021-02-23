@@ -21,7 +21,7 @@
      #board_content{
             margin: 0 auto;
             width: 1650px;
-            border:1px solid red;
+           
         }
         #admin_menu{
             margin: 0;
@@ -142,7 +142,7 @@
             
         }
     
-        .s1 {
+        .search {
             float: right;
         }
 
@@ -179,63 +179,45 @@
 
        
 </script>
+<script>
+$(function() {
+	$('#menucontent').load("${contextPath}/resources/subjsp/admin_menubar.jsp");
+	});
+
+</script>
 <body>
  <div id='board_content'>
    <!--menu bar -->
-   <div id='admin_menu'>
-    <ul id="admin_menugroup">
-       <li class="main_menu">
-            <div class="admin_menutitle">장비관리</div>
-            <ul class="admin_menusub">
-                <li class="admin_menusubli"><a href="#">보유장비 등록/관리</a></li>
-                <li class="admin_menusubli"><a href="#">예약신청 관리</a></li>
-                <li class="admin_menusubli"><a href="#">예약/대여/반납 관리</a></li>
-                <li class="admin_menusubli"><a href="#">배송반납 신청 리스트</a></li>
-                <li class="admin_menusubli"><a href="#">교육 등록/관리</a></li>
-                <li class="admin_menusubli"><a href="#">사용자로그 관리</a></li>
-            </ul>
-        </li>
-        <li class="main_menu">
-            <div class="admin_menutitle">회원관리</div>
-            <ul class="admin_menusub">
-                <li class="admin_menusubli"><a href="#">회원목록</a></li>
-                
-            </ul>
-        </li>
-        <li class="main_menu">
-            <div class="admin_menutitle">사이트관리</div>
-            <ul class="admin_menusub">
-                <li class="admin_menusubli"id="notice"><a href="#">공지사항 관리</a></li>
-                <li class="admin_menusubli"id="FAQ"><a href="#">FAQ 관리</a></li>
-                <li class="admin_menusubli"id="notice"><a href="#">배너 관리</a></li>
-                <li class="admin_menusubli"id="notice"><a href="#">사업소개 관리</a></li>
-                <li class="admin_menusubli"id="notice"><a href="#">홍보영상 관리</a></li>
-                <li class="admin_menusubli"id="notice"><a href="#">지원서비스 관리</a></li>
-            </ul>
-        </li>
-        
-    </ul>
-    </div>
+  <div id='menucontent'></div>
     
-      
+      <form role="form" method="get">
  
+    <div class="search"> <select name="searchType">
+      <option value="no"<c:out value="${cri.searchType == null ? 'selected' : ''}"/>>-----</option>
+       <option value="tc"<c:out value="${cri.searchType eq 'tc' ? 'selected' : ''}"/>selected>아이디+현황</option>
+      <option value="i"<c:out value="${cri.searchType eq 'i' ? 'selected' : ''}"/>>아이디</option>
+      <option value="n"<c:out value="${cri.searchType eq 'n' ? 'selected' : ''}"/>>현황</option>
+    </select>
+                        
+                        <input type="text" name="keyword" id="keywordInput" value="${cri.keyword}"/>
+
+    <button id="searchBtn" type="button">검색</button>
+    <script>
+      $(function(){
+        $('#searchBtn').click(function() {
+          self.location = "listlogs.do" + '${pageMaker.makeQuery(1)}' + "&searchType=" + $("select option:selected").val() + "&keyword=" + encodeURIComponent($('#keywordInput').val());
+        });
+      });   
+    </script>
+                    </div>
+                    </form>
     
-    <div class="form1">
         <form action="#" method="post">
 
             <fieldset>
-                <legend><strong>사용자 이력 보기</strong>
-                    <div class="s1"><input placeholder="사용자 아이디 검색" type="text" value=""><input type="button" value="검색"><select name='fruits'>
-                            <option value='' selected>-- 선택 --</option>
-                            <option value='예약신청'>예약신청</option>
-                            <option value='예약중'>예약중</option>
-                            <option value='대여중'>대여중</option>
-                            <option value='반납완료'>반납완료</option>
-                            <option value='예약취소'>예약취소</option>
-                            <option value='예약신청취소'>예약신청취소</option>
-                        </select>
-                    </div>
-                </legend>
+               <strong>사용자 이력 보기</strong>
+                    
+             
 
 
                 <div>
@@ -299,19 +281,19 @@
 
             
         </form>
-    </div>
+    
      <!--  -->
      <div id="listPaging">
 				<ul>
 					<c:if test="${pageMaker.prev}">
-						<li><a href="listlogs.do${pageMaker.makeQuery(pageMaker.startPage - 1)}">이전</a></li>
+						<li><a href="listlogs.do${pageMaker.makeSearch(pageMaker.startPage - 1)}">이전</a></li>
 					</c:if>
 					<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
 						
-						<li><a href="listlogs.do${pageMaker.makeQuery(idx)}">${idx}</a></li>
+						<li><a href="listlogs.do${pageMaker.makeSearch(idx)}">${idx}</a></li>
 					</c:forEach>
 					<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
-						<li><a href="listlogs.do${pageMaker.makeQuery(pageMaker.endPage + 1)}">다음</a></li>
+						<li><a href="listlogs.do${pageMaker.makeSearch(pageMaker.endPage + 1)}">다음</a></li>
 					</c:if>
 				</ul>
 			</div>	

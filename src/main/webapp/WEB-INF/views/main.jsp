@@ -14,15 +14,15 @@
 <head>
   <meta charset="UTF-8">
   <title>메인 페이지</title>
-<script src="http://code.jquery.com/jquery-latest.js"></script>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+  
+  
   <style>
         #popupzone{
             width: 400px;
             height: 500px;
             position: absolute;
             left: 100px;
+            top: 200px;
             z-index: 10;
             board: 5px solid red;
         }
@@ -38,13 +38,10 @@
             text-align: right;
             margin-top: -50px;
         }
-        .banner_img{
-        width:100%;
-        height:300px;
+        #banner_text{
+        	margin-right:100px;
         }
-        #carouselExampleControls{
 
-    }
     </style>
     <script>
     /* 팝업 로드 */
@@ -58,7 +55,7 @@
 </head>
 <body>
 <!-- 배너시작 -->
-<div id="rollingbanner">
+<%-- <div id="rollingbanner">
 <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
   <div class="carousel-inner">
     <div class="carousel-item active">
@@ -80,7 +77,7 @@
     <span class="visually-hidden">Next</span>
   </button>
 </div>
-</div>
+</div> --%>
 <!-- 배너끝! -->
 
 <!-- 팝업 시작 -->
@@ -101,16 +98,33 @@
     
 
     
-    <div>
-        <h1>[[[[[[[[[[[[[[[[[컨텐츠 영역입니다]]]]]]]]]]]]]]]]]</h1>
-        <h1>[[[[[[[[[[[[[[[[[컨텐츠 영역입니다]]]]]]]]]]]]]]]]]</h1>
-        <h1>[[[[[[[[[[[[[[[[[컨텐츠 영역입니다]]]]]]]]]]]]]]]]]</h1>
-        <h1>[[[[[[[[[[[[[[[[[컨텐츠 영역입니다]]]]]]]]]]]]]]]]]</h1>
-        <h1>[[[[[[[[[[[[[[[[[컨텐츠 영역입니다]]]]]]]]]]]]]]]]]</h1>
-        <h1>[[[[[[[[[[[[[[[[[컨텐츠 영역입니다]]]]]]]]]]]]]]]]]</h1>
-        
-        
-    </div>
+		<section class="hero-slider style1">
+			<div class="home-slider">
+				<!-- Single Slider -->
+				<c:forEach items="${bannerList}" var="bannerList">
+				<div class="single-slider" style="background-image:url('${contextPath}/download.do?board_num=${bannerList.board_num}&board_img=${bannerList.board_img}')">
+					<div class="container">
+						<div class="row">
+							<div class="col-lg-9 col-md-8 col-12" id="banner_text">
+								<div class="welcome-text"> 
+									<div class="hero-text"> 
+										<h4>본 상품은 모두 무료입니다.</h4>
+										<h1>${bannerList.board_title}</h1>
+										<div class="p-text">
+											<p>${bannerList.board_content}</p>
+										</div>
+										<div class="button">
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				</c:forEach>
+				<!--/ End Single Slider -->
+			</div>
+		</section>
 
 </body>
 </html>

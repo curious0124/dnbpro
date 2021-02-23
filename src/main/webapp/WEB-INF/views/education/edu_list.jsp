@@ -47,10 +47,10 @@
                <div class="table">
                  <table class="table table-bordered" id="" width="100%" cellspacing="0">
                    <thead>
-                                    					<div id='edu_cate_name'>
+                                    				<%-- 	<div id='edu_cate_name'>
 						<select name="edu_cate" class="edu_cate" id="edu_cate"
 							onchange="if(this.value) location.href=(this.value)">
-								<option >카테고리</option>
+								<option disabled>카테고리</option>
 							<option value="http://localhost:8090/pro/education/edu_list.do">전 체</option>
 							<c:forEach items="${eduCateNameList }" var="list">
 								<option
@@ -58,7 +58,7 @@
 								</option>
 							</c:forEach>
 						</select>
-					</div>
+					</div> --%>
                      <tr>
                       <th>글 번호</th>
                       <th>썸네일</th>
@@ -107,17 +107,41 @@
 						<li><a
 							href="list${pageMaker.makeQuery(pageMaker.startPage - 1)}">이전</a></li>
 					</c:if>
+
 					<c:forEach begin="${pageMaker.startPage}"
 						end="${pageMaker.endPage}" var="idx">
-						<!-- <li><a href="list${pageMaker.makeQuery(idx)}">${idx}</a></li> -->
 						<li><a href="edu_list.do${pageMaker.makeQuery(idx)}">${idx}</a></li>
+
 					</c:forEach>
+
 					<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
 						<li><a
 							href="list${pageMaker.makeQuery(pageMaker.endPage + 1)}">다음</a></li>
 					</c:if>
 				</ul>
-			</div>		
+			</div>
+			<form role="form" method="get">
+		
+  <div class="search">
+    <select name="searchType">
+       <option value="ctn"<c:out value="${scri.searchType eq 'ctn' ? 'selected' : ''}"/>selected>카테고리+타이틀+장비이름</option>
+       <option value="c"<c:out value="${scri.searchType eq 'c' ? 'selected' : ''}"/>>카테고리</option>
+      <option value="t"<c:out value="${scri.searchType eq 't' ? 'selected' : ''}"/>>타이틀</option>
+      <option value="n"<c:out value="${scri.searchType eq 'n' ? 'selected' : ''}"/>>장비이름</option>
+    </select>
+
+    <input type="text" name="keyword" id="keywordInput" value="${scri.keyword}"/>
+
+    <button id="searchBtn" type="button">검색</button>
+    <script>
+      $(function(){
+        $('#searchBtn').click(function() {
+          self.location = "edu_list.do" + '${pageMaker.makeQuery(1)}' + "&searchType=" + $("select option:selected").val() + "&keyword=" + encodeURIComponent($('#keywordInput').val());
+        });
+      });   
+    </script>
+  </div>
+		</form>
 </body>
 </html>
 

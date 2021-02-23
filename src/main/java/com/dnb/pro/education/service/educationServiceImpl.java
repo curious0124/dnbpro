@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.dnb.pro.education.dao.educationDAO;
 import com.dnb.pro.education.vo.Criteria;
 import com.dnb.pro.education.vo.educationVO;
+import com.dnb.pro.education.vo.SearchCriteria;
 
 @Service("educationService")
 @Transactional(propagation = Propagation.REQUIRED)
@@ -19,14 +20,28 @@ public class educationServiceImpl implements educationService {
 	private educationDAO educationDAO;
 	
 	@Override
-	public List<educationVO> listeducation(Criteria cri) throws Exception{
-		List<educationVO> educationList = educationDAO.selectEducationList(cri);
+	public List<educationVO> listeducation(SearchCriteria scri) throws Exception{ // 교육 전체 리스트 
+		List<educationVO> educationList = educationDAO.selectEducationList(scri);
 		return educationList;
 	}
 	@Override
-	public int listeduCount() throws Exception {
-		return educationDAO.listeduCount();
+	public int listeduCount(SearchCriteria scri) throws Exception { // 교육 전체 카운트
+		return educationDAO.listeduCount(scri);
 	}
+	
+//	@Override
+//	public List<educationVO> listCateEdu(SearchCriteria scri, String cate_name) throws Exception { //교육카테고리별 리스트
+//		List eduCateList=educationDAO.selectByCateName(scri, cate_name);
+//		return eduCateList;
+//	}
+//	
+//	@Override
+//	public int listCateEduCount(SearchCriteria scri) throws Exception { //교육카테고리별 카운트
+//		
+//		return educationDAO.listCateEduCount(scri);
+//	}
+	
+	
 	@Override
 	public educationVO vieweducation(int edu_num) throws Exception {
 		educationVO educationVO = educationDAO.selecteducation(edu_num);
@@ -49,14 +64,10 @@ public class educationServiceImpl implements educationService {
 	}
 		
 	
-	@Override
-	public List<educationVO> listEduCateName() throws Exception {
-		List<educationVO> eduCateNameList = educationDAO.eduCateNameList();
-		return eduCateNameList;
-	}	
-	@Override
-	public List<educationVO> listCateEdu(String cate_name) throws Exception {
-		List eduCateList=educationDAO.selectByCateName(cate_name);
-		return eduCateList;
-	}
+//	@Override
+//	public List<educationVO> listEduCateName() throws Exception { //교육 카테고리 선택
+//		List<educationVO> eduCateNameList = educationDAO.eduCateNameList();
+//		return eduCateNameList;
+//	}	
+	
 }
