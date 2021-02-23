@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 
 
 import com.dnb.pro.education.vo.Criteria;
+import com.dnb.pro.education.vo.SearchCriteria;
 import com.dnb.pro.education.vo.educationVO;
 
 
@@ -21,14 +22,25 @@ public class educationDAOImpl implements educationDAO{
 	private SqlSession sqlSession;
 
 	@Override
-	public List selectEducationList(Criteria cri) throws DataAccessException {
-		List<educationVO> educationList = sqlSession.selectList("mapper.education.selectEducationList",cri);
+	public List selectEducationList(SearchCriteria scri) throws DataAccessException { //교육 전체 리스트
+		List<educationVO> educationList = sqlSession.selectList("mapper.education.selectEducationList",scri);
 		return educationList;
 	}
 	@Override
-	public int listeduCount() throws Exception {
-		return sqlSession.selectOne("mapper.education.listeduCount");
+	public int listeduCount(SearchCriteria scri) throws Exception { //교육 전체 카운트
+		return sqlSession.selectOne("mapper.education.listeduCount", scri);
 	}
+	
+//	@Override
+//	public ArrayList selectByCateName(SearchCriteria scri, String cate_name) throws DataAccessException { //교육 카테고리별 리스트
+//		ArrayList list = (ArrayList)sqlSession.selectMap("mapper.education.selectByCateName", scri, cate_name);
+//		return list;
+//	}
+//	@Override
+//	public int listCateEduCount(SearchCriteria scri) throws DataAccessException { // 교육 카테고리별 카운트
+//		return sqlSession.selectOne("mapper.education.listCateEduCount", scri);
+//	}
+	
 	@Override
 	public educationVO selecteducation(int edu_num) throws DataAccessException {
 		return sqlSession.selectOne("mapper.education.educationdetail", edu_num);
@@ -62,15 +74,12 @@ public class educationDAOImpl implements educationDAO{
 		
 		
 
-	@Override
-	public List eduCateNameList() throws DataAccessException {
-		List<educationVO> eduCateNameList = sqlSession.selectList("mapper.education.eduCateNameList");
-		return eduCateNameList;
-	}
+//	@Override
+//	public List eduCateNameList() throws DataAccessException { //교육 카테고리 선택
+//		List<educationVO> eduCateNameList = sqlSession.selectList("mapper.education.eduCateNameList");
+//		return eduCateNameList;
+//	}
+	
 
-	@Override
-	public ArrayList selectByCateName(String cate_name) throws DataAccessException {
-		ArrayList list = (ArrayList)sqlSession.selectList("mapper.education.selectByCateName", cate_name);
-		return list;
-	}
+	
 }

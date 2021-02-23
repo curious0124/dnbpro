@@ -70,10 +70,6 @@
 			<if test="searchType == 'n'.toString()">AND user_name LIKE '%' || #{keyword} || '%'</if>
 			<if test="searchType == 'tc'.toString()">AND (user_id LIKE '%' || #{keyword} || '%') or (user_name LIKE '%' || #{keyword} || '%')</if>
 		</if>
-		<if test="searchType == null">
-			
-		</if>
-		
 		
 	</sql> 
    

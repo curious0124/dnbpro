@@ -29,21 +29,24 @@ select edu_num, cate_name, eq_name, edu_title, edu_content, edu_pub_date, edu_wr
     
 <!--  페이징 해보자 -->
  	<select id="selectEducationList" resultMap="educationResult">
-      <![CDATA[
+
          SELECT edu_num, cate_name, eq_name, edu_title, edu_content, edu_pub_date, edu_writer, edu_thuming FROM ( 
 		        SELECT edu_num, cate_name, eq_name, edu_title, edu_content, edu_pub_date, edu_writer, edu_thuming,
 		               ROW_NUMBER() OVER(ORDER BY edu_num DESC) AS RNUM
-		        	   FROM education) mp
+		        	   FROM education where 1=1
+		        	    <include refid="search"></include>
+		        	   ) mp
 		WHERE RNUM BETWEEN #{rowStart} AND #{rowEnd}
-		ORDER BY edu_num DESC 
-      ]]>
+		ORDER BY edu_num DESC 	
+ 
 	</select>
 	 <select id="listeduCount" resultType="int">
-   		<![CDATA[
+   	
    			select 
    			count(edu_num)
-   			from education
-   		]]>
+   			from education where 1=1
+   			<include refid="search"></include>
+   			and edu_num > 0
    </select>   
 <!--  페이징 해보자 -->
 
@@ -112,14 +115,32 @@ select edu_num, cate_name, eq_name, edu_title, edu_content, edu_pub_date, edu_wr
            where edu_num=#{edu_num}
            ]]>   
    </delete>
- 	
+
+<!--  페이징 추가 --> 	
 <!-- 교육 카테고리별 보기 -->
-	<select id="selectCateEduList" parameterType="educationVO" resultType="com.dnb.pro.education.vo.educationVO" resultMap="educationResult" >
-    <![CDATA[
-    select edu_num, cate_name, eq_name, edu_title, edu_content, edu_pub_date, edu_writer, edu_thuming from education where cate_name = #{cate_name} ORDER BY edu_num DESC
-            	]]>
+	<!-- <select id="selectCateEduList" parameterType="educationVO" resultType="com.dnb.pro.education.vo.educationVO" resultMap="educationResult" >
+   
+    select edu_num, cate_name, eq_name, edu_title, edu_content, edu_pub_date, edu_writer, edu_thuming 
+    from (SELECT edu_num, cate_name, eq_name, edu_title, edu_content, edu_pub_date, edu_writer, edu_thuming,
+		               ROW_NUMBER() OVER(ORDER BY edu_num DESC) AS RNUM
+		        	   FROM education where 1=1 and cate_name = #{cate_name}
+		        	    <include refid="search"></include>
+		        	   ) mp
+    where RNUM BETWEEN #{rowStart} AND #{rowEnd} and cate_name = #{cate_name} ORDER BY edu_num DESC
+            	
     </select>
-    
+ 
+	 <select id="listCateEduCount" resultType="int">
+   			select 
+   			count(edu_num)
+   			from education where 1=1
+   			and cate_name = #{cate_name}
+   			<include refid="search"></include>
+   			and edu_num > 0
+   </select>    -->
+   
+ <!-- 카테고리별 페이징 끝 -->
+       
 <!-- 교육 카테고리 받아오기 -->
  	<select id="eduCateNameList" parameterType = "educationVO" resultType="com.dnb.pro.education.vo.educationVO">
  		<![CDATA[
@@ -133,5 +154,24 @@ select edu_num, cate_name, eq_name, edu_title, edu_content, edu_pub_date, edu_wr
 		SELECT * from education where cate_name = #{cate_name}  ORDER BY edu_num DESC
         ]]>
     </select> 
+    
+    <!-- 검색 include -->
+	<sql id="search">
+		
+		<if test="searchType != null">
+			<if test="searchType == 'c'.toString()">AND cate_name LIKE '%' || #{keyword} || '%'</if>
+			<if test="searchType == 't'.toString()">AND edu_title LIKE '%' || #{keyword} || '%'</if>
+			<if test="searchType == 'n'.toString()">AND eq_name LIKE '%' || #{keyword} || '%'</if>
+			<if test="searchType == 'ctn'.toString()">AND (edu_title LIKE '%' || #{keyword} || '%') or 
+														(eq_name LIKE '%' || #{keyword} || '%') or
+														(cate_name LIKE '%' || #{keyword} || '%')</if>
+		</if>
+		<if test="searchType == null">
+			
+		</if>
+	</sql> 
 </mapper>
+
+
+	
 
