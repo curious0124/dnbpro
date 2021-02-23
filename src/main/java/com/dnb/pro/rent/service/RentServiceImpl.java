@@ -141,6 +141,15 @@ import com.dnb.pro.rent.vo.RentVO;
 		public int listlogpageCount() throws Exception {
 			return rentDAO.listlogCount();
 		}
+
+		
+		
+		//예약신청
+		@Override
+		public void insertAskRent(RentVO rentVO) throws Exception {
+			rentDAO.insertAskRent(rentVO);
+			
+		}
 		
 		
 		

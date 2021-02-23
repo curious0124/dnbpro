@@ -145,18 +145,32 @@
     }
     
     function reservation(){
-        var fromDate =  document.getElementById("searchStartDate").value;
-    	var toDate =  document.getElementById("searchEndDate").value;
+        var resq_start =  document.getElementById("searchStartDate").value;
+    	var resq_end =  document.getElementById("searchEndDate").value;
     	var ableListCount =  document.getElementById("ableListCount").value;
+    	var eq_name = '${equipVO.eq_name}';
     	console.log('수량 '+ableListCount);
-    	console.log('시작일 '+fromDate);
-    	console.log('종료일 '+toDate);
+    	console.log('모델명 '+eq_name);
+    	console.log('시작일 '+resq_start);
+    	console.log('종료일 '+resq_end);
+    	var sendingData = {"eq_name":eq_name, "resq_start":resq_start, "resq_end":resq_end, "ableListCount":ableListCount};
     	
     		
-    		if(fromDate != "" && toDate !=""){
-    			
+    		if(resq_start != "" && resq_end !=""){
     			if(ableListCount != ""){
-    			alert('예약시스템으로 정보를 전송~');
+    				alert('예약시스템으로 정보를 전송~');
+    				$.ajax({
+                        type:'GET',
+                        data: sendingData,
+                        url:"${contextPath}/rent/reservationRequest.do?",
+                        	success : function(){
+                        		//location.href = "${contextPath}/equip/view_Eq_detail.do?eq_name="+reurl+"&fromDate="+fromDate+"&toDate="+toDate;
+                        	},
+                        	error: function(){
+                        		console.log('실패? ');
+                        	}
+                    });
+    				
     			
     			}else{
     	    		alert('수량을 입력하세요');
