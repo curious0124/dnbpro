@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.dnb.pro.rent.dao.RentDAO;
 import com.dnb.pro.rent.vo.Criteria;
 import com.dnb.pro.rent.vo.RentVO;
+import com.dnb.pro.rent.vo.SearchCriteria;
 
 @Service("rentService")
 	@Transactional(propagation = Propagation.REQUIRED)
@@ -21,10 +22,9 @@ import com.dnb.pro.rent.vo.RentVO;
 		private RentDAO rentDAO;
 
 		@Override
-		public List<RentVO> listlogs(Criteria cri) throws Exception {
-			List<RentVO> logList = rentDAO.selectAllLogList(cri);
+		public List<RentVO> listlogs(SearchCriteria scri) throws Exception {
+			return rentDAO.selectAllLogList(scri);
 			
-			return logList;
 		}
 		
 		
@@ -138,8 +138,8 @@ import com.dnb.pro.rent.vo.RentVO;
 //			return logsList;
 //		}
 		@Override
-		public int listlogpageCount() throws Exception {
-			return rentDAO.listlogCount();
+		public int listlogpageCount(SearchCriteria scri) throws Exception {
+			return rentDAO.listlogCount(scri);
 		}
 
 		

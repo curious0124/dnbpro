@@ -34,6 +34,7 @@ import com.dnb.pro.rent.service.RentService;
 import com.dnb.pro.rent.vo.Criteria;
 import com.dnb.pro.rent.vo.PageMaker;
 import com.dnb.pro.rent.vo.RentVO;
+import com.dnb.pro.rent.vo.SearchCriteria;
 
 
 
@@ -58,20 +59,20 @@ import com.dnb.pro.rent.vo.RentVO;
 		
 		
 		@RequestMapping(value="/listlogs.do" ,method = {RequestMethod.GET,RequestMethod.POST})
-		public ModelAndView listlogs(Criteria cri, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		public ModelAndView listlogs(SearchCriteria scri, HttpServletRequest request, HttpServletResponse response) throws Exception {
 			String viewName = (String)request.getAttribute("viewName");
 			
 			
 			ModelAndView mav = new ModelAndView(viewName);
 			
 			
-			List logList = rentService.listlogs(cri);
+			List logList = rentService.listlogs(scri);
 			
 			mav.addObject("logList", logList);
 			
 			PageMaker pageMaker = new PageMaker();
-			pageMaker.setCri(cri);
-			pageMaker.setTotalCount(rentService.listlogpageCount());
+			pageMaker.setCri(scri);
+			pageMaker.setTotalCount(rentService.listlogpageCount(scri));
 			mav.addObject("pageMaker", pageMaker);		
 			return mav;
 		}
