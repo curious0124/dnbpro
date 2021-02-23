@@ -170,6 +170,7 @@ border: 1px solid red;
 																<li><a href="${contextPath}/center/center.do#center_service">Service</a></li>
 																<li><a href="${contextPath}/center/center.do#center_come">Come on</a></li>
 															</ul></li>
+															<li><a href="${contextPath}/equip/view_Eq_list.do">Equipment</a>
 															<li><a href="${contextPath}/education/edu_list.do">Education</a></li>
 															<li class="icon-active"><a href="${contextPath}/cust/cust_notice.do">Support</a>
 															<ul class="sub-menu">
