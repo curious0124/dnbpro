@@ -6,195 +6,201 @@
 	request.setCharacterEncoding("UTF-8");
 %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
-
 <!DOCTYPE html>
 <html>
 <head>
+<!-- 헤더 템플릿 -->
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="copyright" content="pavilan">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<!-- 헤더 템플릿 -->
 
-    <!-- 부트스트랩 경로 지정 폴더에 넣어놨음-->
-    
-    
-    <meta charset="UTF-8">
-    <title>헤더</title>    
-    <style>
-        /*
-    * {
-        border: 1px solid red;
-    }
-*/
-        #headerall {
-            background: #f6f6f6;
-        }
+<title>헤더</title>
 
-        #header_top {
-            text-align: right;
-            background: #fb9fa9;
-        }
+<!-- Web Font -->
+<link
+	href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+	rel="stylesheet">
 
-        #logo {
-            width: 150px;
-        }
+<!-- Bizwheel Plugins CSS -->
+<link rel="stylesheet"
+	href="${contextPath}/resources/css/animate.min.css">
+<link rel="stylesheet"
+	href="${contextPath}/resources/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="${contextPath}/resources/css/cubeportfolio.min.css">
+<link rel="stylesheet"
+	href="${contextPath}/resources/css/font-awesome.css">
+<link rel="stylesheet"
+	href="${contextPath}/resources/css/jquery.fancybox.min.css">
+<link rel="stylesheet"
+	href="${contextPath}/resources/css/magnific-popup.min.css">
+<link rel="stylesheet"
+	href="${contextPath}/resources/css/owl-carousel.min.css">
+<link rel="stylesheet"
+	href="${contextPath}/resources/css/slicknav.min.css">
 
-        #header_ser {
-            text-align: center;
-            margin-top: -40px;
-            margin-bottom: 50px;
-        }
+<!-- Bizwheel Stylesheet -->
+<link rel="stylesheet" href="${contextPath}/resources/css/reset.css">
+<link rel="stylesheet"
+	href="${contextPath}/resources/css/skins/style.css">
+<link rel="stylesheet"
+	href="${contextPath}/resources/css/responsive.css">
 
-        #header_menu {
-            background: #621920;
-        }
+<!-- Bizwheel Colors -->
+<link rel="stylesheet"
+	href="${contextPath}/resources/css/skins/skin-2.css">
+<!-- 헤더 템플릿 -->
 
-        .dropbtn {
-            background-color: #621920;
-            color: white;
-            padding: 16px;
-            font-size: 16px;
-            border: none;
-        }
 
-        .dropdown {
-            position: relative;
-            display: inline-block;
-        }
 
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            background-color: #f1f1f1;
-            min-width: 160px;
-            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-            z-index: 1;
-        }
+<!-- Jquery JS -->
+<script src="${contextPath}/resources/js/jquery.min.js"></script>
+<script src="${contextPath}/resources/js/jquery-migrate-3.0.0.js"></script>
+<!-- Popper JS -->
+<script src="${contextPath}/resources/js/popper.min.js"></script>
+<!-- Bootstrap JS -->
+<script src="${contextPath}/resources/js/bootstrap.min.js"></script>
+<!-- Modernizr JS -->
+<script src="${contextPath}/resources/js/modernizr.min.js"></script>
+<!-- ScrollUp JS -->
+<script src="${contextPath}/resources/js/scrollup.js"></script>
+<!-- FacnyBox JS -->
+<script src="${contextPath}/resources/js/jquery-fancybox.min.js"></script>
+<!-- Cube Portfolio JS -->
+<script src="${contextPath}/resources/js/cubeportfolio.min.js"></script>
+<!-- Slick Nav JS -->
+<script src="${contextPath}/resources/js/slicknav.min.js"></script>
+<!-- Slick Nav JS -->
+<script src="${contextPath}/resources/js/slicknav.min.js"></script>
+<!-- Slick Slider JS -->
+<script src="${contextPath}/resources/js/owl-carousel.min.js"></script>
+<!-- Easing JS -->
+<script src="${contextPath}/resources/js/easing.js"></script>
+<!-- Magnipic Popup JS -->
+<script src="${contextPath}/resources/js/magnific-popup.min.js"></script>
+<!-- Active JS -->
+<script src="${contextPath}/resources/js/active.js"></script>
 
-        .dropdown-content a {
-            color: black;
-            padding: 12px 16px;
-            text-decoration: none;
-            display: block;
-        }
+<style>
+/* *{
+border: 1px solid red;
+} */
+ #test1{
+	line-height: 240%;
+} 
+</style>
 
-        .dropdown-content a:hover {
-            background-color: #ddd;
-        }
-
-        .dropdown:hover .dropdown-content {
-            display: block;
-        }
-
-        .dropdown:hover .dropbtn {
-            background-color: #3e8e41;
-        }
-
-    </style>
 </head>
 <body>
-
-    <div id="headerall">
-        <div class="row" id="header_top">
-            <div class="col-md-12">
-                <c:choose>
-                    <c:when test="${isLogOn == true  && member!= null}">
-                        <p>${member.user_name} 로그인 되었습니다</p>
-                        <a href="${contextPath}/member/logout.do">로그아웃</a>
-                        <span>/</span>
-                    </c:when>
-                    <c:otherwise>
-                        <a href="${contextPath}/member/loginForm.do">로그인</a>
-                        <span>/</span>
-                        <a href="${contextPath}/member/addmember.do">회원가입</a>
-                    </c:otherwise>
-                </c:choose>
-
-                <!-- 사용자에 따라서 버튼 표시 -->
-                <c:if test="${member.user_auth eq '관리자'}">
-                    <a href="http://localhost:8090/pro/mypage/mypage.do">마이페이지</a>
-                    <span>/</span>
-                    <a href="http://localhost:8090/pro/board/admin_board_list.do?brd_num=1">관리자</a>
-                </c:if>
-                <c:if test="${member.user_auth eq '일반'}">
-                    <a href="http://localhost:8090/pro/mypage/mypage.do">마이페이지</a>
-                </c:if>
-                <c:if test="${member.user_auth eq '블랙리스트'}">
-                    <h3>블랙리스트ㅇ</h3>
-                </c:if>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-6 col-md-1">
-                <a href="http://localhost:8090/pro/main/main.do"> <img id="logo" src="${contextPath}/resources/image/logo.png">
-                </a>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-">
-                <div class="container">
-                    <div class="row" id="header_ser">
-                        <div class="col-xs-8 col-xs-offset-2">
-                            <!-- 검색창 !-->
-                            <div class="input-group">
-                                <div class="input-group-btn search-panel">
-                                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                                        <span id="search_concept">통합검색</span>
-                                    </button>
-                                    <ul class="dropdown-menu" role="menu">
-                                        <li><a href="#contains">작성자</a></li>
-                                        <li><a href="#its_equal">제목</a></li>
-                                    </ul>
-                                </div>
-                                <input type="hidden" name="search_param" value="all" id="search_param"> <input type="text" class="form-control" name="x" placeholder="Search term...">
-                                <span class="input-group-btn">
-                                    <button class="btn btn-default" type="button">
-                                        <span class="glyphicon glyphicon-search"></span>
-                                    </button>
-                                </span>
-                            </div>
-                            <!-- 검색창끝 !-->
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="row" id="header_menu">
-            <div class="col">
-                <div class="dropdown">
-                    <button class="dropbtn" onclick="location.href=' http://localhost:8090/pro/center/center.do'">센터 소개</button>
-                    <div class="dropdown-content">
-                        <a href="${contextPath}/center/center.do#center_intro">사업소개</a>
-                        <a href="${contextPath}/center/center.do#center_video">홍보영상</a>
-                        <a href="${contextPath}/center/center.do#center_service">지원소개</a>
-                        <a href="${contextPath}/center/center.do#center_come">오시는길</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="dropdown">
-                    <button class="dropbtn" onclick="location.href=' http://localhost:8090/pro/equip/view_Eq_list.do'">장비예약</button>
-                    <div class="dropdown-content">
-                        <a href="${contextPath}/equip/view_Eq_list.do">장비리스트</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="dropdown">
-                    <button class="dropbtn" onclick="location.href=' http://localhost:8090/pro/education/edu_list.do'">장비교육</button>
-                    
-                </div>
-            </div>
-            <div class="col">
-                <div class="dropdown">
-                    <button class="dropbtn">고객 지원</button>
-                    <div class="dropdown-content">
-                        <a href="${contextPath}/cust/cust_notice.do">공지사항</a>
-                        <a href="${contextPath}/cust/cust_faq.do">FAQ</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+	<!-- Header -->
+	<header class="header">
+		<!-- Topbar -->
+		<div class="topbar">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-4 col-12" id="test1">
+						<!-- Top Contact -->
+							<div class="single-contact">
+								<c:choose>
+									<c:when test="${isLogOn == true  && member!= null}">
+										<span>${member.user_name}님&nbsp;로그인 되었습니다</span>
+									</c:when>
+									<c:otherwise>
+										<button type="button" class="btn btn-outline-danger" onclick="location.href='${contextPath}/member/loginForm.do' ">로그인</button>
+										<button type="button" class="btn btn-outline-danger" onclick="location.href='${contextPath}/member/addmember.do' ">회원가입</button>
+									</c:otherwise>
+								</c:choose>
+							</div>
+						<!-- End Top Contact -->
+					</div>
+					<div class="col">
+						<div class="topbar-right">
+							<!-- Social Icons -->
+							<c:if test="${member.user_auth eq '관리자'}">
+								<button type="button" class="btn btn-outline-danger" onclick="location.href='${contextPath}/member/logout.do' ">로그아웃</button>
+								<button type="button" class="btn btn-outline-danger" onclick="location.href='${contextPath}/mypage/mypage.do'">마이페이지</button>
+								<button type="button" class="btn btn-outline-danger" onclick="location.href='${contextPath}/board/admin_board_list.do?brd_num=1'">관리자</button>
+							</c:if>
+							<c:if test="${member.user_auth eq '일반'}">
+								<button type="button" class="btn" onclick="location.href='${contextPath}/member/logout.do' ">로그아웃</button>
+								<button type="button" class="btn btn-outline-danger" onclick="location.href='${contextPath}/mypage/mypage.do'">마이페이지</button>
+							</c:if>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--/ End Topbar -->
+		<!-- Middle Header -->
+		<div class="middle-header">
+			<div class="container">
+				<div class="row">
+					<div class="col-12">
+						<div class="middle-inner">
+							<div class="row">
+								<div class="col-lg-2 col-md-3 col-12">
+									<!-- Logo -->
+									<div class="logo">
+										<!-- Image Logo -->
+										<div class="img-logo">
+											<a href="${contextPath}/main/main.do"> <img src="${contextPath}/resources/image/logo_dnb.png" id="logo_dnb" alt="#">
+											</a>
+										</div>
+									</div>
+									<div class="mobile-nav"></div>
+								</div>
+								<div class="col-lg-10 col-md-9 col-12">
+									<div class="menu-area">
+										<!-- Main Menu -->
+										<nav class="navbar navbar-expand-lg">
+											<div class="navbar-collapse">
+												<div class="nav-inner">
+													<div class="menu-home-menu-container">
+														<!-- Naviagiton -->
+														<ul id="nav" class="nav main-menu menu navbar-nav">
+															<li><a href="${contextPath}/main/main.do">Home</a></li>
+															<li class="icon-active"><a href="${contextPath}/center/center.do#center_intro">center</a>
+															<ul class="sub-menu">
+																<li><a href="${contextPath}/center/center.do#center_intro">Info</a></li>
+																<li><a href="${contextPath}/center/center.do#center_video">Video</a></li>
+																<li><a href="${contextPath}/center/center.do#center_service">Service</a></li>
+																<li><a href="${contextPath}/center/center.do#center_come">Come on</a></li>
+															</ul></li>
+															<li><a href="${contextPath}/equip/view_Eq_list.do">Equipment</a>
+															<li><a href="${contextPath}/education/edu_list.do">Education</a></li>
+															<li class="icon-active"><a href="${contextPath}/cust/cust_notice.do">Support</a>
+															<ul class="sub-menu">
+																<li><a href="${contextPath}/cust/cust_notice.do">Notice</a></li>
+																<li><a href="${contextPath}/cust/cust_faq.do">FAQ</a></li>
+															</ul></li>
+														</ul>
+														<!--/ End Naviagiton -->
+													</div>
+												</div>
+											</div>
+										</nav>
+										<!--/ End Main Menu -->
+										<!-- Right Bar -->
+										<div class="right-bar">
+											<ul class="right-nav">
+											</ul>
+										</div>
+										<!--/ End Right Bar -->
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--/ End Middle Header -->
+	</header>
+	<!--/ End Header -->
 </body>
 
 </html>

@@ -231,7 +231,6 @@ a {
 					</div>
 
 				</c:when>
-				<%-- <c:when test="${listMembers != null } "> --%>
 				<c:otherwise>
 					<div class="listrow">
 						<div class="col_top" id="brd_div1">
@@ -262,27 +261,6 @@ a {
 							</div>
 							<div class="col_list" id='brd_div6'>
 								${listMember.user_auth }
-							<%-- 	<c:if test="${listMember.user_auth eq '관리자'}">
-								<select class="mem_auth_option">
-									<option value="">${listMember.user_auth }</option>
-									<option value="">일반</option>
-									<option value="">블랙리스트</option>
-								</select>
-								</c:if>
-								<c:if test="${listMember.user_auth eq '일반'}">
-								<select class="mem_auth_option">
-									<option value="">${listMember.user_auth }</option>
-									<option value="">블랙리스트</option>
-									<option value="">일반</option>
-								</select>
-								</c:if>
-								<c:if test="${listMember.user_auth eq '블랙리스트'}">
-								<select class="mem_auth_option">
-									<option value="">${listMember.user_auth }</option>
-									<option value="">일반</option>
-									<option value="">관리자</option>
-								</select>
-								</c:if> --%>
 						
 							</div>
 
@@ -290,27 +268,24 @@ a {
 						</div>
 					</c:forEach>
 				</c:otherwise>
-				<%-- </c:when>
- --%>
 			</c:choose>
 
 			<div id="listPaging">
 				<ul>
 					<c:if test="${pageMaker.prev}">
 						<li><a
-							href="list${pageMaker.makeQuery(pageMaker.startPage - 1)}">이전</a></li>
+							href="mem_list.do${pageMaker.makeQuery(pageMaker.startPage - 1)}">이전</a></li>
 					</c:if>
 
 					<c:forEach begin="${pageMaker.startPage}"
 						end="${pageMaker.endPage}" var="idx">
-						<!-- <li><a href="list${pageMaker.makeQuery(idx)}">${idx}</a></li> -->
 						<li><a href="mem_list.do${pageMaker.makeQuery(idx)}">${idx}</a></li>
 
 					</c:forEach>
 
 					<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
 						<li><a
-							href="list${pageMaker.makeQuery(pageMaker.endPage + 1)}">다음</a></li>
+							href="mem_list.do${pageMaker.makeQuery(pageMaker.endPage + 1)}">다음</a></li>
 					</c:if>
 				</ul>
 			</div>
@@ -320,9 +295,9 @@ a {
   <div class="search">
     <select name="searchType">
       <option value="no"<c:out value="${scri.searchType == null ? 'selected' : ''}"/>>-----</option>
+       <option value="tc"<c:out value="${scri.searchType eq 'tc' ? 'selected' : ''}"/>selected>아이디+이름</option>
       <option value="i"<c:out value="${scri.searchType eq 'i' ? 'selected' : ''}"/>>아이디</option>
       <option value="n"<c:out value="${scri.searchType eq 'n' ? 'selected' : ''}"/>>이름</option>
-      <option value="tc"<c:out value="${scri.searchType eq 'tc' ? 'selected' : ''}"/>>아이디+이름</option>
     </select>
 
     <input type="text" name="keyword" id="keywordInput" value="${scri.keyword}"/>
@@ -331,7 +306,7 @@ a {
     <script>
       $(function(){
         $('#searchBtn').click(function() {
-          self.location = "list" + '${pageMaker.makeQuery(1)}' + "&searchType=" + $("select option:selected").val() + "&keyword=" + encodeURIComponent($('#keywordInput').val());
+          self.location = "mem_list.do" + '${pageMaker.makeQuery(1)}' + "&searchType=" + $("select option:selected").val() + "&keyword=" + encodeURIComponent($('#keywordInput').val());
         });
       });   
     </script>

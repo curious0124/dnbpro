@@ -20,21 +20,22 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
-
 import com.dnb.pro.equip.service.EquipService;
+import com.dnb.pro.equip.vo.Criteria;
 import com.dnb.pro.equip.vo.EquipVO;
+import com.dnb.pro.equip.vo.PageMaker;
 import com.dnb.pro.member.vo.MemberVO;
+
+
+
 
 
 
@@ -56,19 +57,26 @@ public class EquipControllerImpl implements EquipController {
 		private EquipService equipService;
 		@Autowired
 		private EquipVO equipVO;
+		@Autowired
+		private MemberVO memberVO;
 		
 		
 		
 		@Override
 		@RequestMapping(value="/view_Eq_list.do" ,method = {RequestMethod.GET,RequestMethod.POST})
-		public ModelAndView listequips(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		public ModelAndView listequips(Criteria cri,HttpServletRequest request, HttpServletResponse response) throws Exception {
 			String viewName = (String)request.getAttribute("viewName");
 			
-			
-			
-			List listequips = equipService.listequips();
 			ModelAndView mav = new ModelAndView(viewName);
+			
+			List listequips = equipService.listequips(cri);
 			mav.addObject("listequips", listequips);
+			
+			PageMaker pageMaker = new PageMaker();
+			pageMaker.setCri(cri);
+			pageMaker.setTotalCount(equipService.listeqviewpageCount(cri));
+			mav.addObject("pageMaker", pageMaker);
+			
 			return mav;
 		}
 		
@@ -86,7 +94,7 @@ public class EquipControllerImpl implements EquipController {
 			equipVO=equipService.viewequip(eq_name);
 			mav.addObject("equipVO", equipVO);
 			
-					if(fromDate != null) {
+					if(fromDate != null && toDate != null) {
 						Map<String,Object> selectElement = new HashMap<String, Object>();
 						selectElement.put("eq_name", eq_name);
 						selectElement.put("fromDate", fromDate);
@@ -97,52 +105,41 @@ public class EquipControllerImpl implements EquipController {
 						mav.addObject("toDate", toDate);
 						mav.addObject("ableEquipmentsList", ableEquipmentsList);
 						System.out.println(mav);
-						
 					}
-			
-			
 			return mav;
 		}
 		
-//		//날짜선택시 선택가능한 장비 리스트 조회
-//		@RequestMapping(value = "/seletAbleEquipment.do", method = { RequestMethod.GET, RequestMethod.POST})
-//		public ResponseEntity seletAbleEquipment(@RequestParam(value="eq_name") String eq_name,
-//												 @RequestParam(value="fromDate") Date fromDate,
-//												 @RequestParam(value="toDate") Date toDate,
-//												HttpServletResponse response) throws Exception{
-//			
-////			System.out.println(eq_name);
-////			System.out.println(fromDate);
-////			System.out.println(toDate);
-//			Map<String,Object> selectElement = new HashMap<String, Object>();
-//			selectElement.put("eq_name", eq_name);
-//			selectElement.put("fromDate", fromDate);
-//			selectElement.put("toDate", toDate);
-//			System.out.println(selectElement.get("eq_name"));
-//			System.out.println(selectElement.get("fromDate"));
-//			System.out.println(selectElement.get("toDate"));
-//			
-//			List ableEquipmentsList = equipService.seletAbleEquipment(selectElement);
-//			System.out.println("리스트 : "+ableEquipmentsList);
-//			
-//			return (ResponseEntity) ableEquipmentsList;
-//		}
 
 		
 		
 		
 		@Override
 		@RequestMapping(value="/admin_Eq_manage_list.do" ,method = {RequestMethod.GET,RequestMethod.POST})
-		public ModelAndView adminlistequips(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		public ModelAndView adminlistequips(Criteria cri,HttpServletRequest request, HttpServletResponse response) throws Exception {
 			String viewName = (String)request.getAttribute("viewName");
 			
-			
-			
-			List adminequipList = equipService.adminlistequips();
 			ModelAndView mav = new ModelAndView(viewName);
+			
+			List adminequipList = equipService.adminlistequips(cri);
+			
 			mav.addObject("adminequipList", adminequipList);
+			PageMaker pageMaker = new PageMaker();
+			pageMaker.setCri(cri);
+			pageMaker.setTotalCount(equipService.listserialpageCount(cri));
+			mav.addObject("pageMaker", pageMaker);
+			
 			return mav;
 		}
+		
+		
+		
+		
+	
+		
+		
+		
+		
+	
 		
 		@Override
 		@RequestMapping(value="/admin_Eq_manage_classify_list.do" ,method = {RequestMethod.GET,RequestMethod.POST})
@@ -253,7 +250,7 @@ public class EquipControllerImpl implements EquipController {
 			return mav;
 		}
 		
-		@RequestMapping(value="/admin_Eq_manage_serial.do" ,method = RequestMethod.GET)
+		@RequestMapping(value="/admin_Eq_manage_serial.do" ,method = {RequestMethod.GET,RequestMethod.POST})
 		public ModelAndView eqnamelistserial(@RequestParam("eq_name") String eq_name,  HttpServletRequest request, HttpServletResponse response) throws Exception{
 			String viewName = (String)request.getAttribute("viewName");
 			List eqnameonlyList = equipService.eqnamelistserial();
@@ -422,7 +419,7 @@ public class EquipControllerImpl implements EquipController {
 		
 	
 		@Override
-		@RequestMapping(value="/addserialname.do" ,method = RequestMethod.GET)
+		@RequestMapping(value="/addserialname.do" ,method = {RequestMethod.GET,RequestMethod.POST})
 		public ResponseEntity addserialname(@ModelAttribute("equipVO") EquipVO equipVO,
 				                    HttpServletRequest request, HttpServletResponse response)  throws Exception{
 			response.setContentType("text/html; charset=UTF-8");

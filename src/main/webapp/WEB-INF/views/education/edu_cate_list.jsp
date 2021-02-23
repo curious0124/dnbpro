@@ -40,12 +40,12 @@ width:5090px;
            <div class="card mb-4">
              <div class="card-body">
                <div class="table">
-                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                 <table class="table table-bordered" id="" width="100%" cellspacing="0">
                    <thead>
                      <div id='edu_cate_name'>
 						<select name="edu_cate" class="edu_cate" id="edu_cate" onchange="if(this.value) location.href=(this.value)">
 							<option >카테고리</option>
-							<option value="http://localhost:8090/pro/education/edu_list.do">전 체</option>
+							<option value="${contextPath}/education/edu_list.do">전 체</option>
 							<c:forEach items="${eduCateNameList }" var="list">
 								<option value="${contextPath}/education/edu_cate_list.do?cate_name=${list.cate_name}">${list.cate_name}
 								</option>

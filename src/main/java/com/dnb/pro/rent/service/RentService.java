@@ -3,12 +3,13 @@ package com.dnb.pro.rent.service;
 import java.util.List;
 import java.util.Map;
 
+import com.dnb.pro.rent.vo.Criteria;
 import com.dnb.pro.rent.vo.RentVO;
 
 public interface RentService {
 
 	
-	public List listlogs() throws Exception;
+	public List listlogs(Criteria cri) throws Exception;
 	
 	public List listresqs() throws Exception;
 	
@@ -34,6 +35,9 @@ public interface RentService {
 	public void ReturnExpressAuth(RentVO rentVO) throws Exception;
 	
 	
-	
+	public int listlogpageCount() throws Exception;
+//	public List<RentVO> listpagelogs(Criteria cri) throws Exception;
+
+	public void insertAskRent(RentVO rentVO) throws Exception;
 	
 }

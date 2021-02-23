@@ -38,6 +38,9 @@ import org.springframework.stereotype.Component;
 			private String cate_name;
 			private String eq_name;
 			
+			private int ableListCount;
+			private Date fromDate;
+			
 			
 			public int getResq_num() {
 				return resq_num;
@@ -158,6 +161,18 @@ import org.springframework.stereotype.Component;
 			}
 			public void setEq_name(String eq_name) {
 				this.eq_name = eq_name;
+			}
+			public int getAbleListCount() {
+				return ableListCount;
+			}
+			public void setAbleListCount(int ableListCount) {
+				this.ableListCount = ableListCount;
+			}
+			public Date getFromDate() {
+				return fromDate;
+			}
+			public void setFromDate(Date fromDate) {
+				this.fromDate = fromDate;
 			}
 		
 

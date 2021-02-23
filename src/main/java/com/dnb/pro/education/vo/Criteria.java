@@ -3,7 +3,6 @@ package com.dnb.pro.education.vo;
 public class Criteria {
 	private String eq_name;
 	
-
 	private int page;
 	private int perPageNum;
 	private int rowStart;

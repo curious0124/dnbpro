@@ -28,12 +28,34 @@
 	</resultMap>
 	
 	
-	<!--장비 리스트 -->
+	<!--장비 리스트 
 	<select id="selectAllEquipList" resultMap="EquipResult"   >
     <![CDATA[
       SELECT Eq_name, Eq_thumimg, Eq_spec, Eq_ma from Equipment	
     ]]>
   </select>
+  -->
+   <!--  장비 리스트  페이징  -->
+ 	<select id="selectAllEquipList" resultMap="EquipResult">
+      <![CDATA[
+         SELECT Eq_name, Eq_thumimg, Eq_spec, Eq_ma FROM ( 
+		      SELECT  Eq_name, Eq_thumimg, Eq_spec, Eq_ma,
+		               ROW_NUMBER() OVER(ORDER BY Eq_name DESC) AS RNUM
+		        	   FROM Equipment
+		        	   ) mp
+		WHERE RNUM BETWEEN #{rowStart} AND #{rowEnd}
+		ORDER BY Eq_name DESC 
+      ]]>
+	</select>
+	 <select id="listEquipCount" resultType="int">
+   		<![CDATA[
+   			select 
+   			count(Eq_name)
+   			from Equipment where 1=1
+   		]]>
+   </select>   
+<!--  페이징  -->
+
   
   <!--장비 상세페이지뷰 -->
 	<select id="EquipDetail" resultType="com.dnb.pro.equip.vo.EquipVO"  parameterType="EquipVO" >
@@ -54,13 +76,37 @@
             	]]>
     </select> 
     
-     <!--장비 등록 리스트 -->
+     <!--장비 등록 리스트 
    <select id="selectAdminEquipList" parameterType="EquipVO" resultType="com.dnb.pro.equip.vo.EquipVO">
     <![CDATA[
 	SELECT equipment.Cate_name, equipment.eq_name, Eq_list.eq_serial, Eq_list.eq_regist, eq_state from equipment,Eq_list
     where Eq_list.eq_name = Equipment.eq_name
             	]]>
     </select> 
+    -->
+    
+     <!--장비 등록 시리얼 리스트 -->
+   <select id="selectAdminEquipList" parameterType="EquipVO" resultType="com.dnb.pro.equip.vo.EquipVO">
+    <![CDATA[
+	SELECT *
+	from( 
+	   SELECT equipment.Cate_name, equipment.eq_name, Eq_list.eq_serial, Eq_list.eq_regist, Eq_list.eq_state,
+	   ROW_NUMBER() OVER(ORDER BY eq_serial DESC) AS RNUM
+	   FROM  Eq_list, equipment
+	   where Eq_list.eq_name = equipment.eq_name
+	   ) mp
+WHERE RNUM BETWEEN #{rowStart} AND #{rowEnd}
+ORDER BY eq_serial DESC 
+            	]]>
+    </select> 
+     <select id="listSerialCount" resultType="int">
+   		<![CDATA[
+   			select 
+   			count(eq_serial)
+   			from Eq_list 
+   		]]>
+   </select>   
+<!--  페이징  -->
     
     
     <!-- 장비 상세페이지 사용가능한 장비 수량 조회 
@@ -221,6 +267,17 @@ from (select eql.eq_name,eq_serial,eql.eq_state
     </select> 
     
     
+    <select id="selectAbleSerial" parameterType="com.dnb.pro.rent.vo.RentVO" resultType="String" >
+    <![CDATA[
+	  	select eq_serial FROM 
+		(SELECT eq_name, eq_serial,eq_state 
+		from (select eql.eq_name,eq_serial,eql.eq_state 
+		    from eq_list eql where eql.eq_state not in '수리' and eql.eq_state not in '폐기')  
+		        where eq_name= #{eq_name} and eq_serial not in(select eq_serial  
+		            from reserve where (res_start between #{resq_start} and #{resq_end} or (res_end between #{resq_start}  and #{resq_end})))) 
+		where rownum <= #{ableListCount} 
+            	]]>
+    </select> 
     
     
     

@@ -5,15 +5,23 @@ import java.util.Map;
 
 import org.springframework.dao.DataAccessException;
 
+import com.dnb.pro.equip.vo.Criteria;
 import com.dnb.pro.equip.vo.EquipVO;
+import com.dnb.pro.rent.vo.RentVO;
+
 
 
 public interface EquipDAO {
 
 	
-	public List selectAllEquipList() throws DataAccessException;
+	public List selectAllEquipList(Criteria cri) throws DataAccessException;
+	public int listEquipCount(Criteria cri) throws Exception;
+	
 	public EquipVO selectEquipByCode(String eq_name) throws DataAccessException;
-	public List selectAdminEquipList() throws DataAccessException;
+	
+	public List selectAdminEquipList(Criteria cri) throws DataAccessException;
+	public int listSerialCount(Criteria cri) throws Exception;
+	
 	public List selectCatenameList() throws DataAccessException;
 	public int insertCatename(String cate_name) throws DataAccessException;
 	public EquipVO selectCateByCode(String cate_name) throws DataAccessException;
@@ -42,5 +50,8 @@ public interface EquipDAO {
 
 //	public List selectStateList() throws DataAccessException;
 	public List selectAbleEquipment(Map<String, Object> selectElement);
+	
+//	선택한 장비와 수량의 이용가능한 시리얼을 가져온다.
+	public List selectAbleSerial(RentVO rentVO) throws DataAccessException;
 
 }

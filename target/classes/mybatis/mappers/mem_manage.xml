@@ -40,7 +40,9 @@
 	 <select id="listMemCount" resultType="int">
    		
    			select count(user_id)
-   			from userinfo where 1=1 <include refid="search"></include> and user_id is not null
+   			from userinfo where 1=1 
+   			<include refid="search"></include> 
+   			and user_id is not null
  
    	
    </select>
@@ -70,11 +72,7 @@
 			<if test="searchType == 'n'.toString()">AND user_name LIKE '%' || #{keyword} || '%'</if>
 			<if test="searchType == 'tc'.toString()">AND (user_id LIKE '%' || #{keyword} || '%') or (user_name LIKE '%' || #{keyword} || '%')</if>
 		</if>
-		<if test="searchType == null">
-			
-		</if>
-		
-		
+
 	</sql> 
    
 	
