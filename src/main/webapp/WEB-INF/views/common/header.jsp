@@ -164,13 +164,13 @@ border: 1px solid red;
 														<ul id="nav" class="nav main-menu menu navbar-nav">
 															<li><a href="${contextPath}/main/main.do">Home</a></li>
 															<li class="icon-active"><a href="${contextPath}/center/center.do#center_intro">center</a>
-															<li class="icon-active"><a href="${contextPath}/equip/view_Eq_list.do">Equipment</a>
 															<ul class="sub-menu">
 																<li><a href="${contextPath}/center/center.do#center_intro">Info</a></li>
 																<li><a href="${contextPath}/center/center.do#center_video">Video</a></li>
 																<li><a href="${contextPath}/center/center.do#center_service">Service</a></li>
 																<li><a href="${contextPath}/center/center.do#center_come">Come on</a></li>
 															</ul></li>
+															<li><a href="${contextPath}/equip/view_Eq_list.do">Equipment</a>
 															<li><a href="${contextPath}/education/edu_list.do">Education</a></li>
 															<li class="icon-active"><a href="${contextPath}/cust/cust_notice.do">Support</a>
 															<ul class="sub-menu">
