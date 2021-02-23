@@ -45,7 +45,7 @@
            <div class="card mb-4">
              <div class="card-body">
                <div class="table">
-                 <table class="table table-bordered" id="" width="100%" cellspacing="0">
+                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                    <thead>
                                     				<%-- 	<div id='edu_cate_name'>
 						<select name="edu_cate" class="edu_cate" id="edu_cate"

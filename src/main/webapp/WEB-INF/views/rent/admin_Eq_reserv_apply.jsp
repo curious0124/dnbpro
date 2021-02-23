@@ -229,11 +229,18 @@
 
 	});
 </script>
+<script>
+$(function() {
+	$('#menucontent').load("${contextPath}/resources/subjsp/admin_menubar.jsp");
+	});
+
+</script>
 </head>
 
 
 <body>
 
+<div id='menucontent'></div>
  <div class="tit"><strong>예약 신청 현황</strong></div><br>
     <div id='board_content'>
       

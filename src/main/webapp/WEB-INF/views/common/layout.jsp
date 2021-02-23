@@ -35,11 +35,11 @@
         text-align:center;
         border: 0px solid #bcbcbc;
       }
-      #header {
+/*       #header {
         padding: 5px;
         margin-bottom: 5px;
         border: 0px solid #bcbcbc;
-      }
+      } */
       #sidebar-left {
         width: 15%;
         height:700px;

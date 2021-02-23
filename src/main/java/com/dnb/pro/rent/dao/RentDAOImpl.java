@@ -8,7 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 
+
 import com.dnb.pro.equip.vo.EquipVO;
+import com.dnb.pro.rent.vo.Criteria;
 import com.dnb.pro.rent.vo.RentVO;
 
 
@@ -20,8 +22,8 @@ public class RentDAOImpl implements  RentDAO {
 		private SqlSession sqlSession;
 
 		@Override
-		public List selectAllLogList() throws DataAccessException {
-			List<RentVO> logList = logList = sqlSession.selectList("mapper.rent.selectAllLogList");
+		public List selectAllLogList(Criteria cri) throws DataAccessException {
+			List<RentVO> logList = logList = sqlSession.selectList("mapper.rent.selectAllLogList",cri);
 			return logList;
 		}
 
@@ -100,11 +102,7 @@ public class RentDAOImpl implements  RentDAO {
 			
 		}
 		
-//		@Override
-//		public int selectResnumByCode() throws DataAccessException{
-//			return sqlSession.selectOne("mapper.rent.selectResnumByCode",res_num);
-//			
-//		}
+
 		
 		
 		@Override
@@ -149,6 +147,17 @@ public class RentDAOImpl implements  RentDAO {
 		public int deleteExpressReturnRenting(int res_num) throws DataAccessException {
 			return sqlSession.delete("mapper.rent.deleteExpressReturnRenting", res_num);
 			
+		}
+		
+		
+//		@Override
+//		public List selectLogList(Criteria cri) throws DataAccessException {
+//			List<RentVO> logList = sqlSession.selectList("mapper.rent.selectLogList",cri);
+//			return logList;
+//		}
+		@Override
+		public int listlogCount() throws Exception {
+			return sqlSession.selectOne("mapper.rent.listlogCount");
 		}
 		
 }

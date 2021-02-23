@@ -40,12 +40,12 @@
     ]]>
   </select>
   
-   <!-- 로그리스트 조회 -->
+   <!-- 로그리스트 조회 
    <select id="selectAllLogList" resultMap="rentEquipResult"   >
     <![CDATA[
       SELECT Log_num, Resq_num, Res_num, Return_num, User_id, Status, Log_maker,Res_start,Res_end,Log_date,Eq_name,Cate_name,Eq_serial from Log	
     ]]>
-  </select>
+  </select>-->
    <!-- 예약리스트 조회 -->
    <select id="selectAllResList" resultMap="rentEquipResult"   >
     <![CDATA[
@@ -190,6 +190,27 @@
       delete from reserve where res_num=#{res_num}
     ]]>
   </delete>
+  
+    <!--  로그 페이징  -->
+ 	<select id="selectAllLogList" resultMap="rentEquipResult">
+      <![CDATA[
+         SELECT * FROM ( 
+		      SELECT Log_num, Resq_num, Res_num, Return_num, User_id, Status, Log_maker,Res_start,Res_end,Log_date,Eq_name,Cate_name,Eq_serial,
+		               ROW_NUMBER() OVER(ORDER BY Log_num DESC) AS RNUM
+		        	   FROM log) mp
+		WHERE RNUM BETWEEN #{rowStart} AND #{rowEnd}
+		ORDER BY Log_num DESC 
+      ]]>
+	</select>
+	 <select id="listlogCount" resultType="int">
+   		<![CDATA[
+   			select 
+   			count(Log_num)
+   			from log
+   		]]>
+   </select>   
+<!--  페이징  -->
+
   
 	
 </mapper>
