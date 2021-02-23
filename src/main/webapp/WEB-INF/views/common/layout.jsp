@@ -30,16 +30,16 @@
       }
       #container {
       	min-height:100%; /*수정 */
-        width: 100%;
+/*         width: 100%;
         margin: 0px auto;
         text-align:center;
-        border: 0px solid #bcbcbc;
+        border: 0px solid #bcbcbc; */
       }
-      #header {
+/*       #header {
         padding: 5px;
         margin-bottom: 5px;
         border: 0px solid #bcbcbc;
-      }
+      } */
       #sidebar-left {
         width: 15%;
         height:700px;
@@ -53,8 +53,8 @@
       }
       #content {
         width: 75%;
-        padding: 5px;
-        margin-right: 5px;
+        /* padding: 5px; */
+        /* margin-right: 5px; */
         margin : 0 auto;
         border: 0px solid #bcbcbc;
       }

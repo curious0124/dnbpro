@@ -16,7 +16,7 @@
 <!-- 배너 등록 글의 이미지 가져오기 -->   
    <select id="selectBannerImage" resultMap="bannerResult">
    <![CDATA[
-       	select board_img, board_num from brd_detail
+       	select board_img, board_num, board_content, board_title from brd_detail
         where         
         board_title like '%'|| '[배너등록]' || '%'
         order by board_img desc

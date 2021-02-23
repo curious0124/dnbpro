@@ -225,7 +225,7 @@
    <insert id="insertAskRentLog" parameterType="RentVO"  >
     <![CDATA[
      insert into log(log_num, resq_num,eq_serial,user_id,status,log_maker,reqs_start,resq_end) 
-	select log_num_SEQ.NEXTVAL, resq_num,eq_serial,user_id,'예약신청',#{user_id},resq_start,resq_end from reserve
+	select log_num_SEQ.NEXTVAL, resq_num,eq_serial,user_id,'예약신청',#{user_id},resq_start,resq_end from resq
 	where resq_num=(select max(resq_num) from RESQ)
     ]]>
   </insert>
