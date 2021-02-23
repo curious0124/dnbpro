@@ -106,6 +106,7 @@
                 <li class="admin_menusubli"><a href="${contextPath}/rent/admin_Eq_reserv_list.do">예약 관리</a></li>
                 <li class="admin_menusubli"><a href="${contextPath}/rent/admin_Eq_rent_list.do">대여/반납 관리</a></li>
                 <li class="admin_menusubli"><a href="${contextPath}/rent/admin_Eq_return_list.do">배송반납 신청 리스트</a></li>
+                 <li class="admin_menusubli"><a href="${contextPath}/rent/listlogs.do">사용자 로그조회</a></li>
                 <li class="admin_menusubli"><a href="${contextPath}/education/edu_admin_list.do">교육 등록/관리</a></li>
 
             </ul>

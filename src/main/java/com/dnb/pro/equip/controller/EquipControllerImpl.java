@@ -33,8 +33,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 
 import com.dnb.pro.equip.service.EquipService;
+import com.dnb.pro.equip.vo.Criteria;
 import com.dnb.pro.equip.vo.EquipVO;
-import com.dnb.pro.member.vo.MemberVO;
+import com.dnb.pro.equip.vo.PageMaker;
+
 
 
 
@@ -61,14 +63,19 @@ public class EquipControllerImpl implements EquipController {
 		
 		@Override
 		@RequestMapping(value="/view_Eq_list.do" ,method = {RequestMethod.GET,RequestMethod.POST})
-		public ModelAndView listequips(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		public ModelAndView listequips(Criteria cri,HttpServletRequest request, HttpServletResponse response) throws Exception {
 			String viewName = (String)request.getAttribute("viewName");
 			
-			
-			
-			List listequips = equipService.listequips();
 			ModelAndView mav = new ModelAndView(viewName);
+			
+			List listequips = equipService.listequips(cri);
 			mav.addObject("listequips", listequips);
+			
+			PageMaker pageMaker = new PageMaker();
+			pageMaker.setCri(cri);
+			pageMaker.setTotalCount(equipService.listeqviewpageCount(cri));
+			mav.addObject("pageMaker", pageMaker);
+			
 			return mav;
 		}
 		
@@ -133,16 +140,31 @@ public class EquipControllerImpl implements EquipController {
 		
 		@Override
 		@RequestMapping(value="/admin_Eq_manage_list.do" ,method = {RequestMethod.GET,RequestMethod.POST})
-		public ModelAndView adminlistequips(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		public ModelAndView adminlistequips(Criteria cri,HttpServletRequest request, HttpServletResponse response) throws Exception {
 			String viewName = (String)request.getAttribute("viewName");
 			
-			
-			
-			List adminequipList = equipService.adminlistequips();
 			ModelAndView mav = new ModelAndView(viewName);
+			
+			List adminequipList = equipService.adminlistequips(cri);
+			
 			mav.addObject("adminequipList", adminequipList);
+			PageMaker pageMaker = new PageMaker();
+			pageMaker.setCri(cri);
+			pageMaker.setTotalCount(equipService.listserialpageCount(cri));
+			mav.addObject("pageMaker", pageMaker);
+			
 			return mav;
 		}
+		
+		
+		
+		
+	
+		
+		
+		
+		
+	
 		
 		@Override
 		@RequestMapping(value="/admin_Eq_manage_classify_list.do" ,method = {RequestMethod.GET,RequestMethod.POST})
@@ -253,7 +275,7 @@ public class EquipControllerImpl implements EquipController {
 			return mav;
 		}
 		
-		@RequestMapping(value="/admin_Eq_manage_serial.do" ,method = RequestMethod.GET)
+		@RequestMapping(value="/admin_Eq_manage_serial.do" ,method = {RequestMethod.GET,RequestMethod.POST})
 		public ModelAndView eqnamelistserial(@RequestParam("eq_name") String eq_name,  HttpServletRequest request, HttpServletResponse response) throws Exception{
 			String viewName = (String)request.getAttribute("viewName");
 			List eqnameonlyList = equipService.eqnamelistserial();
@@ -422,7 +444,7 @@ public class EquipControllerImpl implements EquipController {
 		
 	
 		@Override
-		@RequestMapping(value="/addserialname.do" ,method = RequestMethod.GET)
+		@RequestMapping(value="/addserialname.do" ,method = {RequestMethod.GET,RequestMethod.POST})
 		public ResponseEntity addserialname(@ModelAttribute("equipVO") EquipVO equipVO,
 				                    HttpServletRequest request, HttpServletResponse response)  throws Exception{
 			response.setContentType("text/html; charset=UTF-8");
