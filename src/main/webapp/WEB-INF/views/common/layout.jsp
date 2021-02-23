@@ -52,7 +52,7 @@
         font-size:10px;
       }
       #content {
-        width: 75%;
+        width: 100%;
         /* padding: 5px; */
         /* margin-right: 5px; */
         margin : 0 auto;
@@ -62,10 +62,13 @@
       
       #footer{ /*수정 */
       	width:100%;
-      	position: relative;
-      	margin-top:100px;
+       position: relative;
+      /* 	margin-top:100px; */
       	z-index: -1;
 
+      }
+      #banner_img_size{
+      	width:100%;
       }
       
     </style>
@@ -81,7 +84,6 @@
       </div>
       <div id="content">
           <tiles:insertAttribute name="body"/>
-          
       </div>
     </div>
     
