@@ -62,8 +62,8 @@
       
       #footer{ /*수정 */
       	width:100%;
-      	position: relative;
-      	margin-top:100px;
+       position: relative;
+      /* 	margin-top:100px; */
       	z-index: -1;
 
       }
