@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.dnb.pro.board.vo.ArticleVO;
 import com.dnb.pro.cust.dao.CustDAO;
+import com.dnb.pro.board.vo.Criteria;
 
 @Service("custService")
 @Transactional(propagation = Propagation.REQUIRED)
@@ -16,10 +17,17 @@ public class CustServiceImpl implements CustService{
 	@Autowired
 	private CustDAO custDAO;
 	
-	public List<ArticleVO> listArticles() throws Exception{
-		List<ArticleVO> articlesList = custDAO.selectAllFaqList();
-		return articlesList;
+	@Override
+	public List listFaqArticles(Criteria cri) throws Exception {
+		
+		return custDAO.selectAllFaqList(cri);
 	}
+
+	@Override
+	public int listFaqCount(Criteria cri) throws Exception {
+		return custDAO.listFaqCount(cri);
+	}
+
 	
 	@Override
 	public List<ArticleVO> listNoticeArticles() throws Exception {
@@ -32,5 +40,7 @@ public class CustServiceImpl implements CustService{
 		ArticleVO articleVO = custDAO.selectNoticeArticle(board_num);
 		return articleVO;
 	}
+
+	
 
 }
