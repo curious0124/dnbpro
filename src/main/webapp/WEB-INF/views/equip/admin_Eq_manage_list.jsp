@@ -197,9 +197,7 @@ $("#allCheck").click(function(){
             <hr width="100%">
 
         </div>
-                 
-    </div>
-         <div id="listPaging" >
+           <div id="listPaging" >
 				<ul>
 					<c:if test="${pageMaker.prev}">
 						<li><a href="admin_Eq_manage_list.do${pageMaker.makeSearch(pageMaker.startPage - 1)}">이전</a></li>
@@ -212,5 +210,7 @@ $("#allCheck").click(function(){
 						<li><a href="admin_Eq_manage_list.do${pageMaker.makeSearch(pageMaker.endPage + 1)}">다음</a></li>
 					</c:if>
 				</ul>
-			</div>	
+			</div>	      
+    </div>
+         
 </body></html>

@@ -126,6 +126,9 @@ ORDER BY eq_serial DESC
    </select>   
 <!--  페이징  -->
     
+   
+	
+    
     <sql id="search">
 		
 		<if test="searchType != null">

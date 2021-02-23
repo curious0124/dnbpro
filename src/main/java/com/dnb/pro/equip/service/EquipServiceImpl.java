@@ -54,7 +54,7 @@ public class EquipServiceImpl implements EquipService{
 	
 	@Override
 	public int listserialpageCount(SearchCriteria scri) throws Exception {
-		return equipDAO.listEquipCount(scri);
+		return equipDAO.listSerialCount(scri);
 	}
 	
 	// 분류명가져오기
