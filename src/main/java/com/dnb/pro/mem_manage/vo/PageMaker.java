@@ -6,6 +6,7 @@ import java.net.URLEncoder;
 import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import com.dnb.pro.mem_manage.vo.SearchCriteria;
 
 public class PageMaker {
 
