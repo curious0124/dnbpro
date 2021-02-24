@@ -37,7 +37,7 @@
         .admin_menutitle{
             height: 35px;
             line-height: 35px;
-            background: #FA8072;
+            background: #2e2751;
             cursor: pointer;
             font-size:1.1em;
             color: white;
