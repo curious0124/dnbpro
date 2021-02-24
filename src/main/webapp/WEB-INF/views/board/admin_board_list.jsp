@@ -42,15 +42,11 @@
         }
         .col_top{
             float: left;
-            
             color: #2e2751;
             font-weight: bold;
             border-bottom:2px solid #2e2751;
             border-top:2px solid #2e2751;
             
-        }
-        .toplow{
-        	/* border: 1px solid #2e2751; */
         }
         .col_list{
             float: left;
@@ -89,7 +85,6 @@
             height:10px;
             padding: 2px;
             line-height:5px;
-            
         }
         #listPaging{  clear:both; text-align:center; margin:0 auto;}
         #listPaging > ul{margin:0 auto;width:500px;}
@@ -100,7 +95,7 @@
            
            
 =======
-        	list-style: none; float: left; padding: 6px;
+           list-style: none; float: left; padding: 6px;
 >>>>>>> branch 'develop' of https://github.com/curious0124/dnbpro.git
         }
     </style>
@@ -170,15 +165,9 @@
     <!--board_container -->
     <div class="board_container">
   <div id='top_buttonbox'>
-<<<<<<< HEAD
         ${articlesList[0].brd_name} 게시판
-       <button type="button" class="btn btn-light " id="addarticle" onclick="location.href='${contextPath}/board/admin_board_articleForm.do?brd_num=${articlesList[0].brd_num}'">글쓰기</button>
-       <button type="button" class="btn btn-light" id="selectDelete_btn">선택삭제</button>
-=======
-  		${articlesList[0].brd_name} 게시판
        <button type="button" class="btn btn-light fs" id="addarticle" onclick="location.href='${contextPath}/board/admin_board_articleForm.do?brd_num=${articlesList[0].brd_num}'">글쓰기</button>
        <button type="button" class="btn btn-light fs" id="selectDelete_btn">선택삭제</button>
->>>>>>> branch 'develop' of https://github.com/curious0124/dnbpro.git
    </div>
   <div class="listrow toplow">
     <div class="col_top" id="brd_div1">
@@ -267,34 +256,20 @@
     </c:choose>
   
   
-  <div id="listPaging">
+    <div id="listPaging">
   <ul>
     <c:if test="${pageMaker.prev}">
-<<<<<<< HEAD
-       <li><a href="admin_board_list.do${pageMaker.makeQuery(pageMaker.startPage - 1)}">이전</a></li>
-=======
-    	<li><a class="fs" href="admin_board_list.do${pageMaker.makeQuery(pageMaker.startPage - 1)}">이전</a></li>
->>>>>>> branch 'develop' of https://github.com/curious0124/dnbpro.git
+       <li><a class="fs" href="admin_board_list.do${pageMaker.makeQuery(pageMaker.startPage - 1)}">이전</a></li>
     </c:if> 
 
     <c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
-<<<<<<< HEAD
        <!-- <li><a href="list${pageMaker.makeQuery(idx)}">${idx}</a></li> -->
-       <li><a href="admin_board_list.do${pageMaker.makeQuery(idx)}">${idx}</a></li>
+       <li><a class="fs" href="admin_board_list.do${pageMaker.makeQuery(idx)}">${idx}</a></li>
        
-=======
-    	<!-- <li><a href="list${pageMaker.makeQuery(idx)}">${idx}</a></li> -->
-    	<li><a class="fs" href="admin_board_list.do${pageMaker.makeQuery(idx)}">${idx}</a></li>
-    	
->>>>>>> branch 'develop' of https://github.com/curious0124/dnbpro.git
     </c:forEach>
 
     <c:if test="${pageMaker.next && pageMaker.endPage > 0}">
-<<<<<<< HEAD
-       <li><a href="admin_board_list.do${pageMaker.makeQuery(pageMaker.endPage + 1)}">다음</a></li>
-=======
-    	<li><a class="fs" href="admin_board_list.do${pageMaker.makeQuery(pageMaker.endPage + 1)}">다음</a></li>
->>>>>>> branch 'develop' of https://github.com/curious0124/dnbpro.git
+       <li><a class="fs" href="admin_board_list.do${pageMaker.makeQuery(pageMaker.endPage + 1)}">다음</a></li>
     </c:if> 
   </ul>
 </div>
