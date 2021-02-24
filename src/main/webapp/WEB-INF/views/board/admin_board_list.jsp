@@ -88,10 +88,10 @@
         #listPaging{  clear:both; text-align:center;}
         #listPaging > ul{margin:0 auto;}
         #listPaging > ul > li{
-        	list-style: none; float: left; padding: 6px;
-        	
-        	
-        	
+           list-style: none; float: left; padding: 6px;
+           
+           
+           
         }
     </style>
      <script src="${contextPath}/resources/js/jquery-3.5.1.min.js"> </script>
@@ -101,38 +101,38 @@
             $('#menucontent').load("${contextPath}/resources/subjsp/admin_menubar.jsp");
             
             $("#selectDelete_btn").click(function(){
-            	
-	          	var confirm_val = confirm("정말 삭제하시겠습니까?");
-	          	var reurl = ${articlesList[0].brd_num };
-          		
-          	  if(confirm_val) {
-          	   var checkArr = new Array();
-          	   
-          	   $("input[class='chBox']:checked").each(function(){
-          	    checkArr.push($(this).attr("value"));
-          	   });
-          	    
-          	  
-          	   
-          	 $.ajax({
-          	    
-          	    type : "post",
-          	    data : { chbox : checkArr },
-          	  	url : "${contextPath}/board/deleteSelectArticle.do",
-          	    success : function(){
-          	     location.href = "${contextPath}/board/admin_board_list.do?brd_num="+reurl;
-          	    }
-          	   });
-          	
-          	  } 
-          	 });
+               
+                var confirm_val = confirm("정말 삭제하시겠습니까?");
+                var reurl = ${articlesList[0].brd_num };
+                
+               if(confirm_val) {
+                var checkArr = new Array();
+                
+                $("input[class='chBox']:checked").each(function(){
+                 checkArr.push($(this).attr("value"));
+                });
+                 
+               
+                
+              $.ajax({
+                 
+                 type : "post",
+                 data : { chbox : checkArr },
+                  url : "${contextPath}/board/deleteSelectArticle.do",
+                 success : function(){
+                  location.href = "${contextPath}/board/admin_board_list.do?brd_num="+reurl;
+                 }
+                });
+             
+               } 
+              });
 
     });
     function allChk(obj){
         var chkObj = document.getElementsByName("RowCheck");
         var rowCnt = chkObj.length - 1;
         var check = obj.checked;
-        if (check) {﻿
+        if (check) { 
             for (var i=0; i<=rowCnt; i++){
              if(chkObj[i].type == "checkbox")
                  chkObj[i].checked = true;
@@ -160,7 +160,7 @@
     <!--board_container -->
     <div class="board_container">
   <div id='top_buttonbox'>
-  		${articlesList[0].brd_name} 게시판
+        ${articlesList[0].brd_name} 게시판
        <button type="button" class="btn btn-light " id="addarticle" onclick="location.href='${contextPath}/board/admin_board_articleForm.do?brd_num=${articlesList[0].brd_num}'">글쓰기</button>
        <button type="button" class="btn btn-light" id="selectDelete_btn">선택삭제</button>
    </div>
@@ -211,7 +211,7 @@
     </div>
     <!-- 
     <div class="col_list" id='brd_div6'> -->
-	<!-- <button type="button" class="btn btn-light" id='brd_btn'onclick="location.href='${contextPath}/board/admin_board_deleteArticle.do?board_num=${article.board_num}'">삭제</button>-->
+   <!-- <button type="button" class="btn btn-light" id='brd_btn'onclick="location.href='${contextPath}/board/admin_board_deleteArticle.do?board_num=${article.board_num}'">삭제</button>-->
       <!-- <button type="button" class="btn btn-light" id='brd_btn'onclick="location.href='${contextPath}/board/admin_board_modArticleForm.do?board_num=${article.board_num}'">수정</button>-->
    <!--  </div> -->
     
@@ -254,17 +254,17 @@
   <div id="listPaging">
   <ul>
     <c:if test="${pageMaker.prev}">
-    	<li><a href="admin_board_list.do${pageMaker.makeQuery(pageMaker.startPage - 1)}">이전</a></li>
+       <li><a href="admin_board_list.do${pageMaker.makeQuery(pageMaker.startPage - 1)}">이전</a></li>
     </c:if> 
 
     <c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
-    	<!-- <li><a href="list${pageMaker.makeQuery(idx)}">${idx}</a></li> -->
-    	<li><a href="admin_board_list.do${pageMaker.makeQuery(idx)}">${idx}</a></li>
-    	
+       <!-- <li><a href="list${pageMaker.makeQuery(idx)}">${idx}</a></li> -->
+       <li><a href="admin_board_list.do${pageMaker.makeQuery(idx)}">${idx}</a></li>
+       
     </c:forEach>
 
     <c:if test="${pageMaker.next && pageMaker.endPage > 0}">
-    	<li><a href="admin_board_list.do${pageMaker.makeQuery(pageMaker.endPage + 1)}">다음</a></li>
+       <li><a href="admin_board_list.do${pageMaker.makeQuery(pageMaker.endPage + 1)}">다음</a></li>
     </c:if> 
   </ul>
 </div>
