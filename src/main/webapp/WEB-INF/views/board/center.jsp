@@ -20,6 +20,7 @@
     <style>
          .center_container {
             margin: 0 auto;
+            margin-top:50px;
 			text-align: center;
             background-color: #f7f7f7;
         } 
@@ -33,14 +34,7 @@
 <body>
    
     <div class="center_container">
-        <div class="center_navi">
-            <ul class="nav navbar-nav">
-                <li class="active"><a href="#center_intro">사업소개</a></li>
-                <li class="active"><a href="#center_video">홍보영상</a></li>
-                <li class="active"><a href="#center_service">지원서비스</a></li>
-                <li class="active"><a href="#center_come">오시는길</a></li>
-            </ul>
-        </div>
+       
         <div data-spy="scroll" data-target="#navbar-example" data-offset="0"  class="center_content">
             <div>
                 <h4 id="center_intro" class="title_H4">사업소개</h4>
