@@ -93,7 +93,7 @@
 
 <style>
 .my_reserv_appling {
-	border: 1px solid red;
+	
 }
 
 .rent_area {
