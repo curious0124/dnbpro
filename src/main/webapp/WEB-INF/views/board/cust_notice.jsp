@@ -69,7 +69,20 @@
         #cust_notice_div4{
             width: 20%;
         }
-        
+        #listPaging {
+	clear: both;
+	text-align: center;
+}
+
+#listPaging>ul {
+	margin: 0 auto;
+}
+
+#listPaging>ul>li {
+	list-style: none;
+	float: left;
+	padding: 6px;
+}
     
 </style>
 <script>
@@ -136,42 +149,50 @@ $(document).ready(function() {
     </div>
 		</c:when>
 	</c:choose> 
-	
-	
-	
-	
-<%--    	<div id="layoutSidenav_content">
-      <main>
-        <div class="container-fluid">
-          <h1 class="mt-4">공지사항</h1>
-           <div class="card mb-4">
-             <div class="card-body">
-               <div class="table">
-                 <table class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0">
-                   <thead>
-                     <tr>
-                      <th>글 번호</th>
-                      <th>제목</th>
-                      <th>작성자</th>
-                      <th>작성일자</th>
-                     </tr>
-                   </thead>
-                   <tbody>
-					<c:forEach var="article" items="${articlesNoticeList }" varStatus="articleNum" >
-						<tr align="center">
-							<td>${articleNum.count}</td>
-							<td><a href="${contextPath}/cust/viewNoticeArticle.do?board_num=${article.board_num}">${article.board_title }</a></td>
-							<td>${article.board_writer }</td>
-							<td>${article.board_date }</td>
-						</tr>
+
+				<div id="listPaging">
+				<ul>
+					<c:if test="${pageMaker.prev}">
+						<li><a
+							href="cust_notice.do${pageMaker.makeSearch(pageMaker.startPage - 1)}">이전</a></li>
+					</c:if>
+
+					<c:forEach begin="${pageMaker.startPage}"
+						end="${pageMaker.endPage}" var="idx">
+						<li><a href="cust_notice.do${pageMaker.makeSearch(idx)}">${idx}</a></li>
+
 					</c:forEach>
-				</tbody>
-                   </table>
-                  </div>
-                </div>
-               </div>
-              </div>
-		</main>
-	</div> --%>
+
+					<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
+						<li><a
+							href="cust_notice.do${pageMaker.makeSearch(pageMaker.endPage + 1)}">다음</a></li>
+					</c:if>
+				</ul>
+			</div>
+<div>
+	<form role="form" method="get">
+		
+  <div class="search">
+    <select name="searchType">
+       <option value="tc"<c:out value="${scri.searchType eq 'tc' ? 'selected' : ''}"/>selected>내용+제목</option>
+      <option value="c"<c:out value="${scri.searchType eq 'c' ? 'selected' : ''}"/>>내용</option>
+      <option value="t"<c:out value="${scri.searchType eq 't' ? 'selected' : ''}"/>>제목</option>
+    </select>
+
+    <input type="text" name="keyword" id="keywordInput" value="${scri.keyword}"/>
+
+    <button id="searchBtn" type="button">검색</button>
+    <script>
+      $(function(){
+        $('#searchBtn').click(function() {
+          self.location = "cust_notice.do" + '${pageMaker.makeQuery(1)}' + "&searchType=" + $("select option:selected").val() + "&keyword=" + encodeURIComponent($('#keywordInput').val());
+        });
+      });   
+    </script>
+  </div>
+		</form>
+</div>
+
+	
 </body>
 </html>

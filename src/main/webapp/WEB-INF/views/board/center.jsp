@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" isELIgnored="false"%>
+   pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <%
-	request.setCharacterEncoding("UTF-8");
+   request.setCharacterEncoding("UTF-8");
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -20,13 +20,18 @@
     <style>
          .center_container {
             margin: 0 auto;
+<<<<<<< HEAD
             
 			text-align: center;
+=======
+            margin-top:50px;
+         text-align: center;
+>>>>>>> branch 'develop' of https://github.com/curious0124/dnbpro.git
             background-color: #f7f7f7;
         } 
-		.title_H4{
-			font-family: 'RIDIBatang';
-		}
+      .title_H4{
+         font-family: 'RIDIBatang';
+      }
 
     </style>
 </head>
@@ -36,7 +41,11 @@
     <div class="center_container">
         
         <div data-spy="scroll" data-target="#navbar-example" data-offset="0"  class="center_content">
+<<<<<<< HEAD
             <div><br><br><br>
+=======
+            <div>
+>>>>>>> branch 'develop' of https://github.com/curious0124/dnbpro.git
                 <h4 id="center_intro" class="title_H4">사업소개</h4>
                 <c:forEach var="intro" items="${intro }">
                     <p>${intro.board_content}</p>
