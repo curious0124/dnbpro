@@ -92,6 +92,10 @@ border: 1px solid red;
  #test1{
 	line-height: 240%;
 } 
+.sub-menu>li>a{text-decoration: none;}
+#nav>li>a{text-decoration: none;}
+.headerfs{
+font-family: 'SDSamliphopangche_Basic';}
 </style>
 
 </head>
@@ -108,7 +112,7 @@ border: 1px solid red;
 					<div class="col" id="test1">
 						<!-- Top Contact -->
 							<div class="single-contact">
-											<span>${member.user_name}님&nbsp;로그인 되었습니다</span>
+											<span class="headerfs">${member.user_name}님&nbsp;로그인 되었습니다</span>
 									
 							</div>
 						<!-- End Top Contact -->
@@ -117,13 +121,13 @@ border: 1px solid red;
 						<div class="topbar-right">
 							<!-- Social Icons -->
 							<c:if test="${member.user_auth eq '관리자'}">
-								<button type="button" class="btn btn-outline-danger" onclick="location.href='${contextPath}/member/logout.do' ">로그아웃</button>
-								<button type="button" class="btn btn-outline-danger" onclick="location.href='${contextPath}/mypage/mypage.do'">마이페이지</button>
-								<button type="button" class="btn btn-outline-danger" onclick="location.href='${contextPath}/rent/admin_Eq_reserv_apply.do'">관리자</button>
+								<button type="button" class="btn btn-outline-danger headerfs" onclick="location.href='${contextPath}/member/logout.do' ">Logout</button>
+								<button type="button" class="btn btn-outline-danger headerfs" onclick="location.href='${contextPath}/mypage/mypage.do'">MyPage</button>
+								<button type="button" class="btn btn-outline-danger headerfs" onclick="location.href='${contextPath}/rent/admin_Eq_reserv_apply.do'">관리자</button>
 							</c:if>
 							<c:if test="${member.user_auth eq '일반'}">
-								<button type="button" class="btn" onclick="location.href='${contextPath}/member/logout.do' ">로그아웃</button>
-								<button type="button" class="btn btn-outline-danger" onclick="location.href='${contextPath}/mypage/mypage.do'">마이페이지</button>
+								<button type="button" class="btn btn-outline-danger headerfs" onclick="location.href='${contextPath}/member/logout.do' ">Logout</button>
+								<button type="button" class="btn btn-outline-danger headerfs" onclick="location.href='${contextPath}/mypage/mypage.do'">MyPage</button>
 							</c:if>
 						</div>
 					</div>
@@ -140,8 +144,8 @@ border: 1px solid red;
 					<div class="col">
 						<div class="topbar-right">
 							<!-- Social Icons -->
-							<button type="button" class="btn btn-outline-danger" onclick="location.href='${contextPath}/member/loginForm.do' ">로그인</button>
-							<button type="button" class="btn btn-outline-danger" onclick="location.href='${contextPath}/member/addmember.do' ">회원가입</button>
+							<button type="button" class="btn btn-outline-danger headerfs" onclick="location.href='${contextPath}/member/loginForm.do' ">Login</button>
+							<button type="button" class="btn btn-outline-danger headerfs" onclick="location.href='${contextPath}/member/addmember.do' ">&nbspJoin&nbsp</button>
 						</div>
 					</div>
 					</c:otherwise>

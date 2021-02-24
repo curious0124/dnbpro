@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.springframework.dao.DataAccessException;
 
+import com.dnb.pro.mypage.vo.Criteria;
 import com.dnb.pro.member.vo.MemberVO;
 import com.dnb.pro.mypage.vo.MyPageVO;
 import com.dnb.pro.rent.vo.RentVO;
@@ -18,8 +19,8 @@ public interface MyPageDAO {
 	public List<RentVO> selectMyResqInfo(String user_id) throws DataAccessException;
 	public List<RentVO> selectMyResInfo(String user_id) throws DataAccessException;
 	public List<RentVO> selectMyReturnInfo(String user_id) throws DataAccessException;
-	public List<RentVO> selectMyLogInfo(String user_id) throws DataAccessException;
-	
+	public List<RentVO> selectMyLogInfo(Criteria cri) throws DataAccessException;
+	public int listCount(String user_id) throws DataAccessException;
 	
 	public List<RentVO> selectMyResqHistoryList(Map dateMap) throws DataAccessException;
 	

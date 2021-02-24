@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 
+import com.dnb.pro.mypage.vo.Criteria;
 import com.dnb.pro.member.vo.MemberVO;
 import com.dnb.pro.mypage.vo.MyPageVO;
 import com.dnb.pro.rent.vo.RentVO;
@@ -63,10 +64,15 @@ public class MyPageDAOImpl implements MyPageDAO {
 		List myReturnList=(List)sqlSession.selectList("mapper.mypage.selectMyReturnResult",user_id);
 		return myReturnList;
 	}
-	////π›≥≥
-	public List selectMyLogInfo(String user_id) throws DataAccessException {
-		List myLogList=(List)sqlSession.selectList("mapper.mypage.selectMyLogResult",user_id);
+	////π›≥≥ + ∆‰¿Ã¬°
+	public List selectMyLogInfo(Criteria cri) throws DataAccessException {
+		List myLogList=(List)sqlSession.selectList("mapper.mypage.selectMyLogResult",cri);
 		return myLogList;
+	}
+	
+	@Override
+	public int listCount(String user_id) throws DataAccessException {
+		return sqlSession.selectOne("mapper.mypage.listCount",user_id);
 	}
 	
 ////√Îº“ ∏ﬁº≠µÂ
@@ -165,6 +171,7 @@ public class MyPageDAOImpl implements MyPageDAO {
 	public void addQuit(Map<String, Object> firemap) throws DataAccessException {
 		sqlSession.insert("mapper.mypage.addQuit",firemap);
 	}
+	
 
 	
 

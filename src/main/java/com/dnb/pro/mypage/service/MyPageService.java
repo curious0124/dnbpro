@@ -6,6 +6,7 @@ import java.util.Map;
 import org.springframework.dao.DataAccessException;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.dnb.pro.mypage.vo.Criteria;
 import com.dnb.pro.member.vo.MemberVO;
 import com.dnb.pro.mypage.vo.MyPageVO;
 import com.dnb.pro.rent.vo.RentVO;
@@ -16,7 +17,8 @@ public interface MyPageService {
 	public Map<String, List<RentVO>> findMyResqInfo(String user_id) throws DataAccessException;
 	public Map<String, List<RentVO>> findMyResInfo(String user_id) throws DataAccessException;
 	public Map<String, List<RentVO>> findMyReturnInfo(String user_id) throws DataAccessException;
-	public Map<String, List<RentVO>> findMyLogInfo(String user_id) throws DataAccessException;
+	public Map<String, List<RentVO>> findMyLogInfo(Criteria cri) throws DataAccessException;
+	public int listCount(String user_id) throws DataAccessException;
 	
 	public List<RentVO> listMyRentHistory(Map dateMap) throws DataAccessException;
 	public MemberVO  modifyMyInfo(Map userMap) throws DataAccessException;
