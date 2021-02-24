@@ -96,11 +96,7 @@ $(document).ready(function() {
 </script>
 
 <body>
-<<<<<<< HEAD
- 	<c:choose>
-=======
 <c:choose>
->>>>>>> branch 'develop' of https://github.com/curious0124/dnbpro.git
 		<c:when test="${articlesNoticeList ==null }">
 			<div class="cust_notice_container">
         <div id='top_buttonbox'>
@@ -153,7 +149,7 @@ $(document).ready(function() {
     </div>
 		</c:when>
 	</c:choose> 
-<<<<<<< HEAD
+
 				<div id="listPaging">
 				<ul>
 					<c:if test="${pageMaker.prev}">
@@ -196,49 +192,7 @@ $(document).ready(function() {
   </div>
 		</form>
 </div>
-=======
->>>>>>> branch 'develop' of https://github.com/curious0124/dnbpro.git
+
 	
-	
-	
-	
-<<<<<<< HEAD
-	
-   	<%-- <div id="layoutSidenav_content">
-=======
-<%--    	<div id="layoutSidenav_content">
->>>>>>> branch 'develop' of https://github.com/curious0124/dnbpro.git
-      <main>
-        <div class="container-fluid">
-          <h1 class="mt-4">공지사항</h1>
-           <div class="card mb-4">
-             <div class="card-body">
-               <div class="table">
-                 <table class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0">
-                   <thead>
-                     <tr>
-                      <th>글 번호</th>
-                      <th>제목</th>
-                      <th>작성자</th>
-                      <th>작성일자</th>
-                     </tr>
-                   </thead>
-                   <tbody>
-					<c:forEach var="article" items="${articlesNoticeList }" varStatus="articleNum" >
-						<tr align="center">
-							<td>${articleNum.count}</td>
-							<td><a href="${contextPath}/cust/viewNoticeArticle.do?board_num=${article.board_num}">${article.board_title }</a></td>
-							<td>${article.board_writer }</td>
-							<td>${article.board_date }</td>
-						</tr>
-					</c:forEach>
-				</tbody>
-                   </table>
-                  </div>
-                </div>
-               </div>
-              </div>
-		</main>
-	</div> --%>
 </body>
 </html>
