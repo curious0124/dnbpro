@@ -126,6 +126,7 @@ public class MyPageControllerImpl implements MyPageController{
 	@RequestMapping(value = "/myLogDetail.do", method = {RequestMethod.GET,RequestMethod.POST})
 	public ModelAndView myLogDetail(Criteria cri, HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
+		
 		String viewName=(String)request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView(viewName);
 		
@@ -134,8 +135,8 @@ public class MyPageControllerImpl implements MyPageController{
 		
 		String user_id= renter.getUser_id();
 		
-		 Map<String, List<RentVO>> myRentList= myPageService.findMyLogInfo(cri);
-		 mav.addObject("renter", renter);
+		Map<String, List<RentVO>> myRentList= myPageService.findMyLogInfo(cri);
+		mav.addObject("renter", renter);
 		mav.addObject("myRentList", myRentList);
 		
 		PageMaker pageMaker = new PageMaker();
@@ -177,7 +178,6 @@ public class MyPageControllerImpl implements MyPageController{
 	@RequestMapping(value="/cancelRes.do" ,method = {RequestMethod.POST,RequestMethod.GET})
 	public ModelAndView cancelRes(HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
-		
 		
 		HttpSession session = request.getSession();
 		
