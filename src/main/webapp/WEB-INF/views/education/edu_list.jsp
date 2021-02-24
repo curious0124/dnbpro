@@ -8,7 +8,7 @@
 <head>
 
 
-<!-- 부트스트랩 페이징 -->
+<%--  <!-- 부트스트랩 페이징 -->
 	
 	<!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" crossorigin="anonymous"></script>  -->
 	<script src="${contextPath}/resources/js/jquery-3.5.1.min.js"></script> 
@@ -21,87 +21,214 @@
 
 <!-- 부트스트랩 경로 지정 폴더에 넣어놨음-->
 <link rel="stylesheet"
-	href="${contextPath}/resources/bootstrap/bootstrap.css">
+	href="${contextPath}/resources/bootstrap/bootstrap.css"> --%>
 
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>boardList</title>
 <style>
-#listPaging{  clear:both; text-align:center;}
-        #listPaging > ul{margin:0 auto;}
-        #listPaging > ul > li{
-        	list-style: none; float: left; padding: 6px;
-        	
-        	
-        	
-        }
-        </style>
+#listPaging {
+	clear: both;
+	text-align: center;
+}
+
+#listPaging>ul {
+	margin: 0 auto;
+}
+
+#listPaging>ul>li {
+	list-style: none;
+	float: left;
+	padding: 6px;
+}
+
+#edu_table {
+	border: 0.5px solid;
+	border-radius: 1% 1% 1% 1%;
+}
+
+#page_bottom {
+	margin-top: 50px;
+}
+</style>
+
+<script>
+	$(function() {
+		$('#searchBtn').click(
+				function() {
+					self.location = "edu_list.do" + '${pageMaker.makeQuery(1)}'
+							+ "&searchType="
+							+ $("select option:selected").val() + "&keyword="
+							+ encodeURIComponent($('#keywordInput').val());
+				});
+	});
+</script>
 </head>
 <body>
-		<div id="layoutSidenav_content">
-      <main>
-        <div class="container-fluid">
-          <h1 class="mt-4">장비 교육</h1>
-           <div class="card mb-4">
-             <div class="card-body">
-               <div class="table">
-                 <table class="table table-bordered" id="" width="100%" cellspacing="0">
-                   <thead>
-                                    				<%-- 	<div id='edu_cate_name'>
-						<select name="edu_cate" class="edu_cate" id="edu_cate"
-							onchange="if(this.value) location.href=(this.value)">
-								<option disabled>카테고리</option>
-							<option value="http://localhost:8090/pro/education/edu_list.do">전 체</option>
-							<c:forEach items="${eduCateNameList }" var="list">
-								<option
-									value="${contextPath}/education/edu_cate_list.do?cate_name=${list.cate_name}">${list.cate_name}
-								</option>
-							</c:forEach>
-						</select>
-					</div> --%>
-                     <tr>
-                      <th>글 번호</th>
-                      <th>썸네일</th>
-                      <th>제목</th>
-                      <th>대분류</th>
-                      <th>소분류</th>
-                      <th>등록날짜</th>
-                      <th>작성자</th>
-                     </tr>
-                   </thead>
-                   <tbody>
-					<c:forEach items="${educationList}" var="list" varStatus="educationNum">
-						<tr align="center">						
-							<td>${educationNum.count}</td>
-							<td>
-							  									<c:choose>  									
-			  							<c:when test="${not empty list.edu_thuming && list.edu_thuming!='null' }">
-				     					 <input  type= "hidden"   name="originalFileName" value="${list.edu_thuming}" /> 
-				    					 <img src="${contextPath}/edu_download.do?edu_num=${list.edu_num}&edu_thuming=${list.edu_thuming}" id="preview"  /><br>
-			 							</c:when>
-			 							<c:otherwise>	
-			 										<b>이미지가 없습니다.</b>
-										</c:otherwise>								
-									</c:choose>
-							
-							</td>
-							<td><a href="${contextPath}/education/edu_detail.do?educationNO=${list.edu_num}">${list.edu_title}</a></td>
-							<td>${list.cate_name}</td>
-							<td>${list.eq_name}</td>
-							<td>${list.edu_pub_date}</td>
-							<td>${list.edu_writer}</td>
+
+	<!-- 상단 배너 -->
+	<div class="breadcrumbs overlay"
+		style="background-image:url('${contextPath}/resources/image/page_banner.jpg')">
+		<div class="container">
+			<div class="row">
+				<div class="col-12">
+					<div class="bread-inner">
+						<!-- Bread Menu -->
+						<div class="bread-menu">
+							<ul>
+								<li><a href="${contextPath}/main/main.do">Home</a></li>
+								<li><a href="${contextPath}/education/edu_list.do">Education</a></li>
+							</ul>
+						</div>
+						<!-- Bread Title -->
+						<div class="bread-title">
+							<h2>Education</h2>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 상단 배너 -->
+
+	<!-- 수정 한 테이블 -->
+	<section class="features-area section-bg">
+		<div class="container" id="edu_table">
+			<table class="table table-light table-hover align-middle">
+				<thead class="table-light text-center">
+					<tr>
+						<th class="col-1">글 번호</th>
+						<th>썸네일</th>
+						<th>제목</th>
+						<th class="col-1">대분류</th>
+						<th class="col-1">소분류</th>
+						<th class="col-1">등록날짜</th>
+						<th class="col-1">작성자</th>
+					</tr>
+				</thead>
+				<tbody>
+					<c:forEach items="${educationList}" var="list"
+						varStatus="educationNum">
+						<tr align="center">
+							<td class="col-1">${educationNum.count}</td>
+							<td><c:choose>
+									<c:when
+										test="${not empty list.edu_thuming && list.edu_thuming!='null' }">
+										<input type="hidden" name="originalFileName"
+											value="${list.edu_thuming}" />
+										<img
+											src="${contextPath}/edu_download.do?edu_num=${list.edu_num}&edu_thuming=${list.edu_thuming}"
+											id="preview" />
+										<br>
+									</c:when>
+									<c:otherwise>
+										<b>이미지가 없습니다.</b>
+									</c:otherwise>
+								</c:choose></td>
+							<td><a
+								href="${contextPath}/education/edu_detail.do?educationNO=${list.edu_num}">${list.edu_title}</a></td>
+							<td class="col-1">${list.cate_name}</td>
+							<td class="col-1">${list.eq_name}</td>
+							<td class="col-1">${list.edu_pub_date}</td>
+							<td class="col-1">${list.edu_writer}</td>
 						</tr>
 					</c:forEach>
 				</tbody>
-                   </table>
-                  </div>
-                </div>
-               </div>
-              </div>
-		</main>
-	</div>
-	
-					<div id="listPaging">
+			</table>
+		</div>
+		<div class="container" id="page_bottom">
+			<div class="row">
+				<div class="col float-left" id="listPaging">
+					<nav aria-label="...">
+					  <ul class="pagination pagination-lg">
+					  <c:if test="${pageMaker.prev}">
+					    <li class="page-item active" aria-current="page"><span class="page-link"><a href="list${pageMaker.makeSearch(pageMaker.startPage - 1)}">이전</a></span></li>
+					    </c:if>
+					    <c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
+					    <li class="page-item"><a class="page-link" href="edu_list.do${pageMaker.makeSearch(idx)}">${idx}</a></li>
+					    </c:forEach>
+					    <c:if test="${pageMaker.next && pageMaker.endPage > 0}">
+					    <li class="page-item"><a class="page-link" href="list${pageMaker.makeSearch(pageMaker.endPage + 1)}">다음</a></li>
+					    </c:if>
+					  </ul>
+					</nav>
+				</div>
+				<div class="col-5 float-right" id="edu_search">
+					<form role="form" method="get">
+						<div class="search input-group mb-3 text-right  ">
+							<select name="searchType">
+								<option value="ctn"
+									<c:out value="${scri.searchType eq 'ctn' ? 'selected' : ''}"/>
+									selected>카테고리+타이틀+장비이름</option>
+								<option value="c"
+									<c:out value="${scri.searchType eq 'c' ? 'selected' : ''}"/>>카테고리</option>
+								<option value="t"
+									<c:out value="${scri.searchType eq 't' ? 'selected' : ''}"/>>타이틀</option>
+								<option value="n"
+									<c:out value="${scri.searchType eq 'n' ? 'selected' : ''}"/>>장비이름</option>
+							</select> <input type="text" name="keyword" id="keywordInput"
+								value="${scri.keyword}" />
+							<button id="searchBtn" type="button">검색</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- 수정 한 테이블 -->
+	<%-- 	<section class="features-area section-bg">
+		<div class="container">
+			<div id="layoutSidenav_content">
+				<main>
+					<div class="container-fluid">
+						<h1 class="mt-4">장비 교육</h1>
+						<div class="card mb-4">
+							<div class="card-body">
+								<div class="table">
+									<table class="table table-bordered" id="" width="100%" cellspacing="0">
+										<thead>
+											<tr>
+												<th>글 번호</th>
+												<th>썸네일</th>
+												<th>제목</th>
+												<th>대분류</th>
+												<th>소분류</th>
+												<th>등록날짜</th>
+												<th>작성자</th>
+											</tr>
+										</thead>
+										<tbody>
+											<c:forEach items="${educationList}" var="list" varStatus="educationNum">
+												<tr align="center">
+													<td>${educationNum.count}</td>
+													<td><c:choose>
+															<c:when test="${not empty list.edu_thuming && list.edu_thuming!='null' }">
+																<input type="hidden" name="originalFileName" value="${list.edu_thuming}" />
+																<img src="${contextPath}/edu_download.do?edu_num=${list.edu_num}&edu_thuming=${list.edu_thuming}" id="preview" />
+																<br>
+															</c:when>
+															<c:otherwise>
+																<b>이미지가 없습니다.</b>
+															</c:otherwise>
+														</c:choose></td>
+													<td><a href="${contextPath}/education/edu_detail.do?educationNO=${list.edu_num}">${list.edu_title}</a></td>
+													<td>${list.cate_name}</td>
+													<td>${list.eq_name}</td>
+													<td>${list.edu_pub_date}</td>
+													<td>${list.edu_writer}</td>
+												</tr>
+											</c:forEach>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+				</main>
+			</div> --%>
+
+
+	<%-- 			<div id="listPaging">
 				<ul>
 					<c:if test="${pageMaker.prev}">
 						<li><a
@@ -121,95 +248,24 @@
 				</ul>
 			</div>
 			<form role="form" method="get">
-		
-  <div class="search">
-    <select name="searchType">
-       <option value="ctn"<c:out value="${scri.searchType eq 'ctn' ? 'selected' : ''}"/>selected>카테고리+타이틀+장비이름</option>
-       <option value="c"<c:out value="${scri.searchType eq 'c' ? 'selected' : ''}"/>>카테고리</option>
-      <option value="t"<c:out value="${scri.searchType eq 't' ? 'selected' : ''}"/>>타이틀</option>
-      <option value="n"<c:out value="${scri.searchType eq 'n' ? 'selected' : ''}"/>>장비이름</option>
-    </select>
 
-    <input type="text" name="keyword" id="keywordInput" value="${scri.keyword}"/>
+				<div class="search">
+					<select name="searchType">
+						<option value="ctn"
+							<c:out value="${scri.searchType eq 'ctn' ? 'selected' : ''}"/>
+							selected>카테고리+타이틀+장비이름</option>
+						<option value="c"
+							<c:out value="${scri.searchType eq 'c' ? 'selected' : ''}"/>>카테고리</option>
+						<option value="t"
+							<c:out value="${scri.searchType eq 't' ? 'selected' : ''}"/>>타이틀</option>
+						<option value="n"
+							<c:out value="${scri.searchType eq 'n' ? 'selected' : ''}"/>>장비이름</option>
+					</select> <input type="text" name="keyword" id="keywordInput"
+						value="${scri.keyword}" />
 
-    <button id="searchBtn" type="button">검색</button>
-    <script>
-      $(function(){
-        $('#searchBtn').click(function() {
-          self.location = "edu_list.do" + '${pageMaker.makeQuery(1)}' + "&searchType=" + $("select option:selected").val() + "&keyword=" + encodeURIComponent($('#keywordInput').val());
-        });
-      });   
-    </script>
-  </div>
-		</form>
+					<button id="searchBtn" type="button">검색</button>
+
+				</div>
+			</form> --%>
 </body>
 </html>
-
-<%-- 	<div class="page-wrapper">
-		<div class="container-fluid">
-			<div class="col-lg-8">
-				<!--게시판 넓이 -->
-				<div class="col-lg-12">
-					<h1 class="page-header">교육리스트</h1>
-				</div>
-				<div class="panel panel-default">
-					<div class="panel-heading">교육리스트</div>
-
-					<div id='edu_cate_name'>
-						<select name="edu_cate" class="edu_cate" id="edu_cate"
-							onchange="if(this.value) location.href=(this.value)">
-								<option >카테고리</option>
-							<option value="http://localhost:8090/pro/education/edu_list.do">전 체</option>
-							<c:forEach items="${eduCateNameList }" var="list">
-								<option
-									value="${contextPath}/education/edu_cate_list.do?cate_name=${list.cate_name}">${list.cate_name}
-								</option>
-							</c:forEach>
-						</select>
-					</div>
-
-					<div class="panel-body">
-						<table class="table table-hover">
-							<thead>
-								<tr>
-									<th>교육 번호</th>
-									<th>사진</th>
-									<th>제목</th>
-									<th>카테고리</th>
-								</tr>
-							</thead>
-							<tbody>
-								<c:forEach items="${educationList}" var="list" varStatus="educationNum">
-									<tr>
-										<td><a href="${contextPath}/education/edu_detail.do?educationNO=${list.edu_num}">${educationNum.count}</a></td>
-										<td><a
-											href="${contextPath}/education/edu_detail.do?educationNO=${list.edu_num}">									<td>
-  									<c:choose>  									
-			  							<c:when test="${not empty list.edu_thuming && list.edu_thuming!='null' }">
-				     					 <input  type= "hidden"   name="originalFileName" value="${list.edu_thuming}" /> 
-				    					 <img src="${contextPath}/edu_download.do?edu_num=${list.edu_num}&edu_thuming=${list.edu_thuming}" id="preview"  /><br>
-			 							</c:when>
-			 							<c:otherwise>	
-			 										<b>이미지가 없습니다.</b>
-										</c:otherwise>								
-									</c:choose>
-	 								</td></a></td>
-										<td><a
-											href="${contextPath}/education/edu_detail.do?educationNO=${list.edu_num}">${list.edu_title}</a></td>
-										<td>${list.cate_name}</td>
-
-									</tr>
-								</c:forEach>
-
-							</tbody>									
-
-							</tbody>
-
-
-
-						</table>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div> --%>

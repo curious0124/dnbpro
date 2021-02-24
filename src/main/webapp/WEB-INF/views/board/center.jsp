@@ -20,7 +20,7 @@
     <style>
          .center_container {
             margin: 0 auto;
-            margin-top:50px;
+            
 			text-align: center;
             background-color: #f7f7f7;
         } 
@@ -34,12 +34,12 @@
 <body>
    
     <div class="center_container">
-       
+        
         <div data-spy="scroll" data-target="#navbar-example" data-offset="0"  class="center_content">
-            <div>
+            <div><br><br><br>
                 <h4 id="center_intro" class="title_H4">사업소개</h4>
                 <c:forEach var="intro" items="${intro }">
-                	 <p>${intro.board_content}</p>
+                    <p>${intro.board_content}</p>
                 </c:forEach>
                
             </div>
@@ -47,7 +47,7 @@
             <div>
                 <h4 id="center_video" class="title_H4">홍보영상</h4>
                 <c:forEach var="video" items="${video }">
-                	 <p>${video.board_content}</p>
+                    <p>${video.board_content}</p>
                 </c:forEach>
             
             </div>
@@ -55,7 +55,7 @@
             <div>
                 <h4 id="center_service" class="title_H4">지원서비스</h4>
                  <c:forEach var="service" items="${service }">
-                	 <p>${service.board_content}</p>
+                    <p>${service.board_content}</p>
                 </c:forEach>
             
             </div>

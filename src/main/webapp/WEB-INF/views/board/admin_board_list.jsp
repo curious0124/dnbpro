@@ -42,15 +42,11 @@
         }
         .col_top{
             float: left;
-            
             color: #2e2751;
             font-weight: bold;
             border-bottom:2px solid #2e2751;
             border-top:2px solid #2e2751;
             
-        }
-        .toplow{
-        	/* border: 1px solid #2e2751; */
         }
         .col_list{
             float: left;
@@ -89,7 +85,6 @@
             height:10px;
             padding: 2px;
             line-height:5px;
-            
         }
         #listPaging{  clear:both; text-align:center; margin:0 auto;}
         #listPaging > ul{margin:0 auto;width:500px;}
