@@ -69,7 +69,20 @@
         #cust_notice_div4{
             width: 20%;
         }
-        
+        #listPaging {
+	clear: both;
+	text-align: center;
+}
+
+#listPaging>ul {
+	margin: 0 auto;
+}
+
+#listPaging>ul>li {
+	list-style: none;
+	float: left;
+	padding: 6px;
+}
     
 </style>
 <script>
@@ -83,7 +96,7 @@ $(document).ready(function() {
 </script>
 
 <body>
-<%-- 	<c:choose>
+ 	<c:choose>
 		<c:when test="${articlesNoticeList ==null }">
 			<div class="cust_notice_container">
         <div id='top_buttonbox'>
@@ -135,12 +148,55 @@ $(document).ready(function() {
   
     </div>
 		</c:when>
-	</c:choose> --%>
+	</c:choose> 
+				<div id="listPaging">
+				<ul>
+					<c:if test="${pageMaker.prev}">
+						<li><a
+							href="cust_notice.do${pageMaker.makeSearch(pageMaker.startPage - 1)}">이전</a></li>
+					</c:if>
+
+					<c:forEach begin="${pageMaker.startPage}"
+						end="${pageMaker.endPage}" var="idx">
+						<li><a href="cust_notice.do${pageMaker.makeSearch(idx)}">${idx}</a></li>
+
+					</c:forEach>
+
+					<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
+						<li><a
+							href="cust_notice.do${pageMaker.makeSearch(pageMaker.endPage + 1)}">다음</a></li>
+					</c:if>
+				</ul>
+			</div>
+<div>
+	<form role="form" method="get">
+		
+  <div class="search">
+    <select name="searchType">
+       <option value="tc"<c:out value="${scri.searchType eq 'tc' ? 'selected' : ''}"/>selected>내용+제목</option>
+      <option value="c"<c:out value="${scri.searchType eq 'c' ? 'selected' : ''}"/>>내용</option>
+      <option value="t"<c:out value="${scri.searchType eq 't' ? 'selected' : ''}"/>>제목</option>
+    </select>
+
+    <input type="text" name="keyword" id="keywordInput" value="${scri.keyword}"/>
+
+    <button id="searchBtn" type="button">검색</button>
+    <script>
+      $(function(){
+        $('#searchBtn').click(function() {
+          self.location = "cust_notice.do" + '${pageMaker.makeQuery(1)}' + "&searchType=" + $("select option:selected").val() + "&keyword=" + encodeURIComponent($('#keywordInput').val());
+        });
+      });   
+    </script>
+  </div>
+		</form>
+</div>
 	
 	
 	
 	
-   	<div id="layoutSidenav_content">
+	
+   	<%-- <div id="layoutSidenav_content">
       <main>
         <div class="container-fluid">
           <h1 class="mt-4">공지사항</h1>
@@ -172,6 +228,6 @@ $(document).ready(function() {
                </div>
               </div>
 		</main>
-	</div>
+	</div> --%>
 </body>
 </html>

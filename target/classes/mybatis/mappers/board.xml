@@ -105,15 +105,29 @@
    		]]>
    </select>
    
-
+	<!-- 페이징 검색 추가 -->
    <!-- 공지사항 정보 받아오기 -->
    <select id="selectAllNoticeList" resultMap="articlesResult">
-        <![CDATA[
-        select * 
-        from brd_detail, board 
-        where brd_detail.brd_num=board.brd_num 
-        and brd_name='공지사항' ORDER BY board_num desc
-        ]]>
+ 
+        SELECT brd_num, board_num, board_title, board_writer, board_file, board_img, board_date, board_content FROM ( 
+		        SELECT brd_num, board_num, board_title, board_writer, board_file, board_img, board_date, board_content, 
+		               ROW_NUMBER() OVER(ORDER BY board_num DESC) AS RNUM
+		        	   FROM brd_detail 
+                       where 1=1 and brd_num = 1
+		        	    <include refid="search"></include>
+		        	   ) mp
+		WHERE RNUM BETWEEN #{rowStart} AND #{rowEnd}
+		ORDER BY brd_num DESC
+   </select>
+   <!-- 공지사항 카운트 -->
+   <select id="listNoticeCount" resultType="int">
+   		<![CDATA[
+   			select count(board_num)
+   			from brd_detail
+   			where 1=1 and 
+   			brd_num=1
+   			and board_num > 0
+   		]]>
    </select>
 
    <!-- 공지사항 상세페이지 -->
@@ -122,6 +136,15 @@
            select *  
          from brd_detail,board
          where board.brd_num=1 and brd_detail.board_num=#{board_num}
+        ]]>
+   </select>
+   <!--  공지사항 메인 팝업 -->
+    <select id="selectAllNoticeList2" resultMap="articlesResult">
+        <![CDATA[
+        select * 
+        from brd_detail, board 
+        where brd_detail.brd_num=board.brd_num 
+        and brd_name='공지사항' ORDER BY board_num desc
         ]]>
    </select>
 
@@ -180,6 +203,15 @@
            where board_num=#{board_num}
            ]]>   
    </delete>
+   
+   <sql id="search">
+		
+		<if test="searchType != null">
+			<if test="searchType == 't'.toString()">AND board_title LIKE '%' || #{keyword} || '%'</if>
+			<if test="searchType == 'c'.toString()">AND board_content LIKE '%' || #{keyword} || '%'</if>
+			<if test="searchType == 'tc'.toString()">AND (board_title LIKE '%' || #{keyword} || '%') or (board_content LIKE '%' || #{keyword} || '%')</if>
+		</if>
+	</sql> 
    
 
 </mapper>
