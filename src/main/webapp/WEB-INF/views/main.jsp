@@ -41,6 +41,8 @@
         body{
         background-color: #F4F9FC;
         }
+        .developerIMG{height:410px;width:100%;
+        }
 
     </style>
     <script>
@@ -199,7 +201,7 @@
 						<!-- Single Service -->
 						<div class="single-service">
 							<div class="service-head">
-								<img src="https://ichef.bbci.co.uk/news/640/cpsprodpb/036C/production/_111867800_-1.jpg" alt="#">
+								<img class="developerIMG" src="${contextPath}/resources/image/client/KakaoTalk_20210224_144605126.gif" alt="#">
 								<div class="icon-bg"><i class="fa fa-handshake-o"></i></div>
 							</div>
 							<div class="service-content">
@@ -214,7 +216,7 @@
 						<!-- Single Service -->
 						<div class="single-service">
 							<div class="service-head">
-								<img src="https://ichef.bbci.co.uk/news/640/cpsprodpb/7D6A/production/_110360123_origin_.jpg" alt="#">
+								<img class="developerIMG" src="${contextPath}/resources/image/client/KakaoTalk_20210224_144037341.gif" alt="#">
 								<div class="icon-bg"><i class="fa fa-html5"></i></div>
 							</div>
 							<div class="service-content">
@@ -229,7 +231,7 @@
 						<!-- Single Service -->
 						<div class="single-service">
 							<div class="service-head">
-								<img src="https://lh3.googleusercontent.com/proxy/YHMwWUlrcnn8yFyrFmw7f3B13ks-_ljyj8EcEyhFEG2VKR4aiuCErUJgmNJZbF_sfrmLt4bez2wgalYdwP_S9V4vXIPIskiruL178aVmPjsWMHOPPXGpQ9yRb3Y5Sls-" alt="#">
+								<img class="developerIMG" src="${contextPath}/resources/image/client/KakaoTalk_20210224_144632853.gif" alt="#">
 								<div class="icon-bg"><i class="fa fa-cube"></i></div>
 							</div>
 							<div class="service-content">
@@ -244,7 +246,7 @@
 						<!-- Single Service -->
 						<div class="single-service">
 							<div class="service-head">
-								<img src="https://pds.joins.com/news/component/htmlphoto_mmdata/201903/11/4a961d17-e4bd-4d4f-b550-1e2dff8cd6c0.jpg" alt="#">
+								<img class="developerIMG" src="${contextPath}/resources/image/client/KakaoTalk_20210224_145709567.gif" alt="#">
 								<div class="icon-bg"><i class="fa fa-cube"></i></div>
 							</div>
 							<div class="service-content">
@@ -259,7 +261,7 @@
 						<!-- Single Service -->
 						<div class="single-service">
 							<div class="service-head">
-								<img src="https://img4.yna.co.kr/etc/inner/KR/2019/04/13/AKR20190413020900504_01_i_P4.jpg" alt="#">
+								<img class="developerIMG" src="${contextPath}/resources/image/client/KakaoTalk_20210224_144645803.gif" alt="#">
 								<div class="icon-bg"><i class="fa fa-cube"></i></div>
 							</div>
 							<div class="service-content">
@@ -274,7 +276,7 @@
 						<!-- Single Service -->
 						<div class="single-service">
 							<div class="service-head">
-								<img src="https://www.dailynk.com/wp-content/uploads/2021/01/%EA%B9%80%EC%A0%95%EC%9D%80-%EC%B4%9D%EB%B9%84%EC%84%9C-%EC%B6%94%EB%8C%80.jpg" alt="#">
+								<img class="developerIMG" src="${contextPath}/resources/image/client/KakaoTalk_20210224_144702371.gif" alt="#">
 								<div class="icon-bg"><i class="fa fa-cube"></i></div>
 							</div>
 							<div class="service-content">

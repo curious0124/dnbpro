@@ -11,6 +11,7 @@
 <head>
 <meta charset="UTF-8">
 <title>FAQ</title>
+
 <style>
 .accordion {
 	background-color: #eee;
@@ -50,97 +51,83 @@
 	text-align: justify;
 }
 
-#listPaging {
-	clear: both;
-	text-align: center;
-}
-
-#listPaging>ul {
-	margin: 0 auto;
-}
-
-#listPaging>ul>li {
-	list-style: none;
-	float: left;
-	padding: 6px;
-}
+#edu_top{margin-bottom: 20px;}
+body{background-color: #F4F9FC;}
+#page_bottom{margin-top: 30px;}
+#faq_preview{width:20%; height: 20%;}
 </style>
 
 </head>
 <body>
+	<!-- 상단 배너 -->
+	<div class="breadcrumbs overlay"
+		style="background-image:url('${contextPath}/resources/image/page_banner.jpg')">
+		<div class="container">
+			<div class="row">
+				<div class="col-12">
+					<div class="bread-inner">
+						<!-- Bread Menu -->
+						<div class="bread-menu">
+							<ul>
+								<li><a href="${contextPath}/main/main.do">Home</a></li>
+								<li><a href="${contextPath}/cust/cust_notice.do">FAQ</a></li>
+							</ul>
+						</div>
+						<!-- Bread Title -->
+						<div class="bread-title">
+							<h2>FAQ</h2>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 상단 배너 -->
 
-
-
+	<section class="features-area section-bg">
+		<div class="container" id="edu_table">
 	<c:forEach var="article" items="${articlesList }"
 		varStatus="articleNum">
 		<button class="accordion">
 			<div class="cust_faq_title">${article.board_title }</div>
 		</button>
 		<div class="panel">
-			<p>
 			<div class="cust_faq_content">${article.board_content}</div>
-			</p>
-
 			<c:choose>
 				<c:when
 					test="${not empty article.board_img && article.board_img!='null' }">
-					<input type="hidden" name="originalFileName"
-						value="${article.board_img }" />
-					<img
-						src="${contextPath}/download.do?board_num=${article.board_num}&board_img=${article.board_img}"
-						id="preview" />
+					<input type="hidden" name="originalFileName" value="${article.board_img }" />
+					<img src="${contextPath}/download.do?board_num=${article.board_num}&board_img=${article.board_img}" id="faq_preview" />
 					<br>
 				</c:when>
 				<c:otherwise>
 				</c:otherwise>
 			</c:choose>
-
 		</div>
 	</c:forEach>
-	
-		<div id="listPaging">
-				<ul>
-					<c:if test="${pageMaker.prev}">
-						<li><a
-							href="cust_faq.do${pageMaker.makeQuery(pageMaker.startPage - 1)}">이전</a></li>
-					</c:if>
-
-					<c:forEach begin="${pageMaker.startPage}"
-						end="${pageMaker.endPage}" var="idx">
-						<li><a href="cust_faq.do${pageMaker.makeQuery(idx)}">${idx}</a></li>
-
-					</c:forEach>
-
-					<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
-						<li><a
-							href="cust_faq.do${pageMaker.makeQuery(pageMaker.endPage + 1)}">다음</a></li>
-					</c:if>
-				</ul>
+	</div>
+		<div class="container" id="page_bottom">
+			<div class="row">
+				<div class="col float-center" id="listPaging">
+					<nav aria-label="...">
+					  <ul class="pagination pagination-lg justify-content-center">
+					  <c:if test="${pageMaker.prev}">
+					    <li class="page-item active " aria-current="page"><span class="page-link"><a href="cust_faq.do${pageMaker.makeQuery(pageMaker.startPage - 1)}">이전</a></span></li>
+					   </c:if>
+					   <c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
+					    <li class="page-item"><a class="page-link" href="cust_faq.do${pageMaker.makeQuery(idx)}">${idx}</a></li>
+					   </c:forEach>
+					   <c:if test="${pageMaker.next && pageMaker.endPage > 0}">
+					    <li class="page-item"><a class="page-link" href="cust_faq.do${pageMaker.makeQuery(pageMaker.endPage + 1)}">다음</a></li>
+					   </c:if>
+					  </ul>
+					</nav>
+				</div>
 			</div>
-			<form role="form" method="get">
-		
-  <div class="search">
-   <%--  <select name="searchType">
-      <option value="no"<c:out value="${scri.searchType == null ? 'selected' : ''}"/>>-----</option>
-       <option value="tc"<c:out value="${scri.searchType eq 'tc' ? 'selected' : ''}"/>selected>아이디+이름</option>
-      <option value="i"<c:out value="${scri.searchType eq 'i' ? 'selected' : ''}"/>>아이디</option>
-      <option value="n"<c:out value="${scri.searchType eq 'n' ? 'selected' : ''}"/>>이름</option>
-    </select>
-
-    <input type="text" name="keyword" id="keywordInput" value="${scri.keyword}"/>
-
-    <button id="searchBtn" type="button">검색</button> --%>
-    <script>
-      $(function(){
-        $('#searchBtn').click(function() {
-          self.location = "cust_faq.do" + '${pageMaker.makeQuery(1)}' + "&searchType=" + $("select option:selected").val() + "&keyword=" + encodeURIComponent($('#keywordInput').val());
-        });
-      });   
-    </script>
-  </div>
-		</form>
-		
-			<script>
+		</div>
+	</section>
+	
+<script>
 		var acc = document.getElementsByClassName("accordion");
 		var i;
 
@@ -155,36 +142,6 @@
 				}
 			});
 		}
-	</script>
-
-
-
-
-
-
-
-
-	<%-- 	  <c:choose>
-	  <c:when test="${articlesList ==null }" >
-	  	<div class="cust_faq">
-		<div class="cust_faq_title">등록된 글이 없습니다.</div>
-		<div class="cust_faq_content"></div>
-		<div class="cust_faq_br">
-			<br>
-		</div>
-	</div>
-	  </c:when>
-	  <c:when test="${articlesList !=null }" >
-	   <c:forEach  var="article" items="${articlesList }" varStatus="articleNum" >
-	<div class="cust_faq">
-		<div class="cust_faq_title">${article.board_title }</div>
-		<div class="cust_faq_content">${article.board_content }</div>
-		<div class="cust_faq_br">
-			<br>
-		</div>
-	</div>
-	</c:forEach>
-	</c:when>
-	</c:choose>	 --%>
+</script>	
 </body>
 </html>

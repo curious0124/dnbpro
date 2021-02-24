@@ -6,52 +6,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-
-
-<%--  <!-- 부트스트랩 페이징 -->
-	
-	<!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" crossorigin="anonymous"></script>  -->
-	<script src="${contextPath}/resources/js/jquery-3.5.1.min.js"></script> 
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-	<script src="${contextPath}/resources/js/scripts.js"></script>
-	<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
-	<script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
-	<script src="${contextPath}/resources/assets/demo/datatables-demo.js"></script>
-<!-- 부트스트랩 페이징 -->
-
-<!-- 부트스트랩 경로 지정 폴더에 넣어놨음-->
-<link rel="stylesheet"
-	href="${contextPath}/resources/bootstrap/bootstrap.css"> --%>
-
-
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>boardList</title>
-<style>
-#listPaging {
-	clear: both;
-	text-align: center;
-}
-
-#listPaging>ul {
-	margin: 0 auto;
-}
-
-#listPaging>ul>li {
-	list-style: none;
-	float: left;
-	padding: 6px;
-}
-
-#edu_table {
-	border: 0.5px solid;
-	border-radius: 1% 1% 1% 1%;
-}
-
-#page_bottom {
-	margin-top: 50px;
-}
-</style>
-
 <script>
 	$(function() {
 		$('#searchBtn').click(
@@ -63,6 +19,11 @@
 				});
 	});
 </script>
+<style>
+#edu_top{margin-bottom: 20px;}
+body{background-color: #F4F9FC;}
+#page_bottom{margin-top: 30px;}
+</style>
 </head>
 <body>
 
@@ -94,6 +55,27 @@
 	<!-- 수정 한 테이블 -->
 	<section class="features-area section-bg">
 		<div class="container" id="edu_table">
+				<div class="col" id="edu_search">
+				<div class="row">
+					<form role="form" method="get">
+						<div class="btn-group pull-right"  id="edu_top" >
+							<select name="searchType">
+								<option value="ctn"
+									<c:out value="${scri.searchType eq 'ctn' ? 'selected' : ''}"/>
+									selected>카테고리+타이틀+장비이름</option>
+								<option value="c"
+									<c:out value="${scri.searchType eq 'c' ? 'selected' : ''}"/>>카테고리</option>
+								<option value="t"
+									<c:out value="${scri.searchType eq 't' ? 'selected' : ''}"/>>타이틀</option>
+								<option value="n"
+									<c:out value="${scri.searchType eq 'n' ? 'selected' : ''}"/>>장비이름</option>
+							</select> <input type="text" name="keyword" id="keywordInput"
+								value="${scri.keyword}" />
+							<button id="searchBtn" type="button">검색</button>
+						</div>
+					</form>
+					</div>
+				</div>
 			<table class="table table-light table-hover align-middle">
 				<thead class="table-light text-center">
 					<tr>
@@ -138,11 +120,11 @@
 		</div>
 		<div class="container" id="page_bottom">
 			<div class="row">
-				<div class="col float-left" id="listPaging">
+				<div class="col float-center" id="listPaging">
 					<nav aria-label="...">
-					  <ul class="pagination pagination-lg">
+					  <ul class="pagination pagination-lg justify-content-center">
 					  <c:if test="${pageMaker.prev}">
-					    <li class="page-item active" aria-current="page"><span class="page-link"><a href="list${pageMaker.makeSearch(pageMaker.startPage - 1)}">이전</a></span></li>
+					    <li class="page-item active " aria-current="page"><span class="page-link"><a href="list${pageMaker.makeSearch(pageMaker.startPage - 1)}">이전</a></span></li>
 					    </c:if>
 					    <c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
 					    <li class="page-item"><a class="page-link" href="edu_list.do${pageMaker.makeSearch(idx)}">${idx}</a></li>
@@ -152,25 +134,6 @@
 					    </c:if>
 					  </ul>
 					</nav>
-				</div>
-				<div class="col-5 float-right" id="edu_search">
-					<form role="form" method="get">
-						<div class="search input-group mb-3 text-right  ">
-							<select name="searchType">
-								<option value="ctn"
-									<c:out value="${scri.searchType eq 'ctn' ? 'selected' : ''}"/>
-									selected>카테고리+타이틀+장비이름</option>
-								<option value="c"
-									<c:out value="${scri.searchType eq 'c' ? 'selected' : ''}"/>>카테고리</option>
-								<option value="t"
-									<c:out value="${scri.searchType eq 't' ? 'selected' : ''}"/>>타이틀</option>
-								<option value="n"
-									<c:out value="${scri.searchType eq 'n' ? 'selected' : ''}"/>>장비이름</option>
-							</select> <input type="text" name="keyword" id="keywordInput"
-								value="${scri.keyword}" />
-							<button id="searchBtn" type="button">검색</button>
-						</div>
-					</form>
 				</div>
 			</div>
 		</div>

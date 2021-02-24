@@ -20,8 +20,15 @@
     <style>
          .center_container {
             margin: 0 auto;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
             margin-top:50px;
+>>>>>>> branch 'develop' of https://github.com/curious0124/dnbpro.git
          text-align: center;
+=======
+			text-align: center;
+>>>>>>> branch 'develop' of https://github.com/curious0124/dnbpro.git
             background-color: #f7f7f7;
         } 
       .title_H4{
@@ -35,9 +42,19 @@
    
     <div class="center_container">
         
-        <div data-spy="scroll" data-target="#navbar-example" data-offset="0"  class="center_content">
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+        <div data-spy="scroll" data-target="#navbar-example" data-offset="0"  class="center_content" id="center_intro">
             <div>
+                <h4  class="title_H4">사업소개</h4>
+=======
+>>>>>>> branch 'develop' of https://github.com/curious0124/dnbpro.git
+        <div data-spy="scroll" data-target="#navbar-example" data-offset="0"  class="center_content">
+
+            <div><br><br><br>
                 <h4 id="center_intro" class="title_H4">사업소개</h4>
+>>>>>>> branch 'develop' of https://github.com/curious0124/dnbpro.git
                 <c:forEach var="intro" items="${intro }">
                     <p>${intro.board_content}</p>
                 </c:forEach>
