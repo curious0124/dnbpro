@@ -6,24 +6,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-
-
-<%--  <!-- 부트스트랩 페이징 -->
-	
-	<!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" crossorigin="anonymous"></script>  -->
-	<script src="${contextPath}/resources/js/jquery-3.5.1.min.js"></script> 
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-	<script src="${contextPath}/resources/js/scripts.js"></script>
-	<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
-	<script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
-	<script src="${contextPath}/resources/assets/demo/datatables-demo.js"></script>
-<!-- 부트스트랩 페이징 -->
-
-<!-- 부트스트랩 경로 지정 폴더에 넣어놨음-->
-<link rel="stylesheet"
-	href="${contextPath}/resources/bootstrap/bootstrap.css"> --%>
-
-
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>boardList</title>
 <script>
@@ -38,15 +20,9 @@
 	});
 </script>
 <style>
-#edu_top{
-	margin-bottom: 20px;
-	}
-	        body{
-        background-color: #F4F9FC;
-        }
-        #page_bottom{
-        margin-top: 30px;
-        }
+#edu_top{margin-bottom: 20px;}
+body{background-color: #F4F9FC;}
+#page_bottom{margin-top: 30px;}
 </style>
 </head>
 <body>
@@ -159,7 +135,6 @@
 					  </ul>
 					</nav>
 				</div>
-
 			</div>
 		</div>
 	</section>
