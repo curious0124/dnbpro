@@ -50,7 +50,7 @@
 	    <![CDATA[ 
 			select * 
 			from resq rq, eq_list el, equipment eq
-			where rq.user_id =#{user_id} and rq.eq_serial = el.eq_serial and el.eq_name = eq.eq_name
+			where rq.user_id =#{user_id} and rq.eq_serial = el.eq_serial and el.eq_name = eq.eq_name and rownum <= 5
 			order by rq.resq_date desc
 		]]>
 	</select>
@@ -59,8 +59,8 @@
 		parameterType="String">
 	    <![CDATA[ 
 			SELECT *
-			from reserve rs, eq_list el, resq rq, equipment eq
-			where rs.user_id =#{user_id} and rs.eq_serial = el.eq_serial and rs.user_id = rq.user_id and el.eq_name = eq.eq_name and res_status = '예약중'
+			from reserve rs, eq_list el, equipment eq
+			where rs.user_id =#{user_id} and rs.eq_serial = el.eq_serial and el.eq_name = eq.eq_name and res_status = '예약중' and rownum <= 5
 			order by rs.res_start desc
 		]]>
 	</select>
@@ -69,8 +69,8 @@
 		parameterType="String">
 	    <![CDATA[ 
 			SELECT *
-			from reserve rs, eq_list el, resq rq, equipment eq
-			where rs.user_id =#{user_id} and rs.eq_serial = el.eq_serial and rs.user_id = rq.user_id and el.eq_name = eq.eq_name and res_status = '대여중'
+			from reserve rs, eq_list el, equipment eq
+			where rs.user_id =#{user_id} and rs.eq_serial = el.eq_serial and el.eq_name = eq.eq_name and res_status = '대여중' and rownum <= 5
 			order by rs.res_start desc
 		]]>
 	</select>
@@ -78,9 +78,13 @@
 	<select id="selectMyLogList" resultMap="RentResult"
 		parameterType="String">
 	    <![CDATA[ 
-			select *
-			from Log
-			where user_id =#{user_id} and status = '반납승인' or user_id =#{user_id} and status = '예약취소'or user_id =#{user_id} and status = '예약신청취소'
+			select * 
+			from(
+    			select *
+    			from Log
+    			where user_id =#{user_id} and status = '반납승인' or user_id =#{user_id} and status = '예약취소'or user_id =#{user_id} and status = '예약신청취소'
+    			order by log_date desc)
+			where rownum <=5
 		]]>
 	</select>
 
@@ -100,8 +104,8 @@
 		parameterType="String">
 	    <![CDATA[ 
 			SELECT *
-			from reserve rs, eq_list el, resq rq, equipment eq
-			where rs.user_id =#{user_id} and rs.eq_serial = el.eq_serial and rs.user_id = rq.user_id and el.eq_name = eq.eq_name and res_status = '예약중'
+			from reserve rs, eq_list el, equipment eq
+			where rs.user_id =#{user_id} and rs.eq_serial = el.eq_serial and el.eq_name = eq.eq_name and res_status = '예약중'
 			order by rs.res_start desc
 		]]>
 	</select>
@@ -110,20 +114,42 @@
 		parameterType="String">
 	    <![CDATA[ 
 			SELECT *
-			from reserve rs, eq_list el, resq rq, equipment eq
-			where rs.user_id =#{user_id} and rs.eq_serial = el.eq_serial and rs.user_id = rq.user_id and el.eq_name = eq.eq_name and res_status = '대여중'
+			from reserve rs, eq_list el, equipment eq
+			where rs.user_id =#{user_id} and rs.eq_serial = el.eq_serial and el.eq_name = eq.eq_name and res_status = '예약중' and rownum <= 5
 			order by rs.res_start desc
 		]]>
 	</select>
-
+<!-- 상세페이지 / 페이징 -->
 	<select id="selectMyLogResult" resultMap="RentResult"
 		parameterType="String">
 	    <![CDATA[ 
 			select *
-			from Log
-			where user_id =#{user_id} and status = '반납승인' or user_id =#{user_id} and status = '예약취소'or user_id =#{user_id} and status = '예약신청취소'
+			from (
+				select  log_num,
+                        eq_serial,
+                        eq_name,
+                        log_date,
+                        res_start,
+                        res_end,
+                        status, row_number() over(order by log_date desc) as rNum
+				from log
+				where user_id =#{user_id} and status = '반납승인' 
+						or user_id =#{user_id} and status = '예약취소'
+						or user_id =#{user_id} and status = '예약신청취소') mp
+			where rNum between #{rowStart} and #{rowEnd}
+			ORDER BY log_date DESC
 		]]>
 	</select>
+	
+	<select id="listCount" resultType="int">
+   		<![CDATA[
+   			select count(user_id)
+			from log
+			where user_id=#{user_id} and  status = '반납승인' 
+				or user_id =#{user_id} and status = '예약취소'
+				or user_id =#{user_id} and status = '예약신청취소'
+   		]]>
+   </select>
 
 
 	<!-- 취소 sql문 -->

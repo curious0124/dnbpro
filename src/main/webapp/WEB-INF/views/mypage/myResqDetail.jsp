@@ -35,7 +35,11 @@
 	});
 </script>
 <title>Insert title here</title>
-
+<style>
+		.rent_table {
+			width: 100%;
+		}
+</style>
 </head>
 <body>
 
