@@ -12,6 +12,7 @@
 <meta charset="UTF-8">
 <title>로그인창</title>
 <style>
+		.loginfs{font-family: 'SDSamliphopangche_Basic';}
         .wrap2{
             width : 600px;
             margin: 0 auto;
@@ -38,7 +39,7 @@
         font-size: 2em; 
         font-weight:bold;
         color:white;
-        background-color:#000042;
+        background-color:#2e2751;
     }
     .login_btn:hover{
     	color:#000042;
@@ -100,11 +101,11 @@
 	<form name="login" method="post"
 		action="${contextPath}/member/login.do">
 		 <div class="wrap2">
-       <div class="grid1"><input type="text" class="inputbox inputid" name="user_id" value="" size="20" placeholder="ID를 입력하세요."></div>
-       <div class="grid2"><button type="submit" class="login_btn">Login</button></div>
-       <div class="grid3"><input type="password" class="inputbox inputpw" name="user_pwd" value="" size="20"placeholder="비밀번호를 입력하세요."></div>
-       <div class="grid4"><button type="button" class="find_btn find_id_form" onclick="location.href='${contextPath}/member/find_id_form.do'">ID 찾기</button></div>
-       <div class="grid5"><button type="button" class="find_btn find_pw_form" onclick="location.href='${contextPath}/member/find_pw_form.do'">PW 찾기</button></div>
+       <div class="grid1"><input type="text" class="inputbox inputid loginfs" name="user_id" value="" size="20" placeholder="ID를 입력하세요."></div>
+       <div class="grid2"><button type="submit" class="login_btn loginfs">Login</button></div>
+       <div class="grid3"><input type="password" class="inputbox inputpw loginfs" name="user_pwd" value="" size="20"placeholder="비밀번호를 입력하세요."></div>
+       <div class="grid4"><button type="button" class="find_btn find_id_form loginfs" onclick="location.href='${contextPath}/member/find_id_form.do'">ID 찾기</button></div>
+       <div class="grid5"><button type="button" class="find_btn find_pw_form loginfs" onclick="location.href='${contextPath}/member/find_pw_form.do'">PW 찾기</button></div>
        
        
    </div>

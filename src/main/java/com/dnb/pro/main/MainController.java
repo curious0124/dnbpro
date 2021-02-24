@@ -37,7 +37,7 @@ public class MainController {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName(viewName);
 		
-		List articlesNoticeList = custService.listNoticeArticles();
+		List articlesNoticeList = custService.listNoticeArticles2();
 		//±ÔºÀ
 		List bannerList = BannerService.selectBannerImage();
 		mav.addObject("bannerList",bannerList);

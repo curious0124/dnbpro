@@ -37,12 +37,12 @@
         .admin_menutitle{
             height: 35px;
             line-height: 35px;
-            background: #FA8072;
+            background: #2e2751;
             cursor: pointer;
             font-size:1.1em;
             color: white;
             font-weight: bold;
-            text-align: left;
+            text-align: left;font-family: 'YiSunShinDotumM';
         }
         .admin_menusub{
             margin: 0;
@@ -62,7 +62,7 @@
             width:100%;
             height:100%;
             color: white;
-            text-indent: 40px;
+            text-indent: 40px;font-family: 'YiSunShinDotumM';
         }
         .admin_menusub li a:hover{
             background: #FFF5EE;
