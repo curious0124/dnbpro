@@ -20,7 +20,6 @@
     <style>
          .center_container {
             margin: 0 auto;
-            margin-top:50px;
          text-align: center;
             background-color: #f7f7f7;
         } 
@@ -36,7 +35,8 @@
     <div class="center_container">
         
         <div data-spy="scroll" data-target="#navbar-example" data-offset="0"  class="center_content">
-            <div>
+
+            <div><br><br><br>
                 <h4 id="center_intro" class="title_H4">사업소개</h4>
                 <c:forEach var="intro" items="${intro }">
                     <p>${intro.board_content}</p>
