@@ -28,6 +28,7 @@
       body{ /*수정 */
       	margin: 0;
       }
+      
       #container {
       	min-height:100%; /*수정 */
         width: 100%;

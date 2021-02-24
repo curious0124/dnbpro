@@ -31,15 +31,18 @@
         .grid4{grid-column-start: 1; grid-column-end: 3;margin: 0 auto;margin-top:20px;}
         .grid5{grid-column-start: 3; grid-column-end: 6;margin: 0 auto;margin-top:20px;}
     .login_btn{
-        width: 140px; height: 190px;
+        width: 140px; height: 130px;
         border-radius: 5px;
-        margin-top:15px;
+        margin-top:50px;
+        margin-left:-10px;
         font-size: 2em; 
+        font-weight:bold;
         color:white;
         background-color:#000042;
     }
     .login_btn:hover{
     	color:#000042;
+    	font-weight:bold;
         background-color:white;
         border : 2px solid  #000042;
     }
