@@ -188,7 +188,6 @@
 						<td>예약번호</td>
 						<td>장비시리얼번호</td>
 						<td>모델명</td>
-						<td>신청일</td>
 						<td>시작일</td>
 						<td>반납일</td>
 						<td>상태</td>
@@ -204,8 +203,6 @@
 									<td>${myResListNum.count}</td>
 									<td>${myResList.eq_serial}</td>
 									<td>${myResList.eq_name}</td>
-									<td><fmt:formatDate pattern="yyyy-MM-dd"
-											value="${myResList.resq_date}" /></td>
 									<td><fmt:formatDate pattern="yyyy-MM-dd"
 											value="${myResList.res_start}" /></td>
 									<td><fmt:formatDate pattern="yyyy-MM-dd"
@@ -239,7 +236,6 @@
 							<td>대여번호</td>
 							<td>장비시리얼번호</td>
 							<td>모델명</td>
-							<td>신청일</td>
 							<td>시작일</td>
 							<td>반납일</td>
 							<td>상태</td>
@@ -253,8 +249,6 @@
 										<td>${myReturnListNum.count}</td>
 										<td>${myReturnList.eq_serial}</td>
 										<td>${myReturnList.eq_name}</td>
-										<td><fmt:formatDate pattern="yyyy-MM-dd"
-												value="${myReturnList.resq_date}" /></td>
 										<td><fmt:formatDate pattern="yyyy-MM-dd"
 												value="${myReturnList.res_start}" /></td>
 										<td><fmt:formatDate pattern="yyyy-MM-dd"

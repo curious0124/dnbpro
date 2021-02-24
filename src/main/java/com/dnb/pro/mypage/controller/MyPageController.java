@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.dnb.pro.mypage.vo.Criteria;
 import com.dnb.pro.member.vo.MemberVO;
 
 public interface MyPageController {
@@ -18,7 +19,7 @@ public interface MyPageController {
 	public ModelAndView myResqDetail(HttpServletRequest request, HttpServletResponse response)  throws Exception;
 	public ModelAndView myResDetail(HttpServletRequest request, HttpServletResponse response)  throws Exception;
 	public ModelAndView myReturnDetail(HttpServletRequest request, HttpServletResponse response)  throws Exception;
-	public ModelAndView myLogDetail(HttpServletRequest request, HttpServletResponse response)  throws Exception;
+	public ModelAndView myLogDetail(Criteria cri, HttpServletRequest request, HttpServletResponse response)  throws Exception;
 	public ModelAndView cancelResq(HttpServletRequest request, HttpServletResponse response)  throws Exception;
 	public ModelAndView cancelRes(HttpServletRequest request, HttpServletResponse response)  throws Exception;
 	public ModelAndView cancelReturn(HttpServletRequest request, HttpServletResponse response)  throws Exception;

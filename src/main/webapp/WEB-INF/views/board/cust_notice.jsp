@@ -96,7 +96,11 @@ $(document).ready(function() {
 </script>
 
 <body>
+<<<<<<< HEAD
  	<c:choose>
+=======
+<c:choose>
+>>>>>>> branch 'develop' of https://github.com/curious0124/dnbpro.git
 		<c:when test="${articlesNoticeList ==null }">
 			<div class="cust_notice_container">
         <div id='top_buttonbox'>
@@ -149,6 +153,7 @@ $(document).ready(function() {
     </div>
 		</c:when>
 	</c:choose> 
+<<<<<<< HEAD
 				<div id="listPaging">
 				<ul>
 					<c:if test="${pageMaker.prev}">
@@ -191,12 +196,18 @@ $(document).ready(function() {
   </div>
 		</form>
 </div>
+=======
+>>>>>>> branch 'develop' of https://github.com/curious0124/dnbpro.git
 	
 	
 	
 	
+<<<<<<< HEAD
 	
    	<%-- <div id="layoutSidenav_content">
+=======
+<%--    	<div id="layoutSidenav_content">
+>>>>>>> branch 'develop' of https://github.com/curious0124/dnbpro.git
       <main>
         <div class="container-fluid">
           <h1 class="mt-4">공지사항</h1>

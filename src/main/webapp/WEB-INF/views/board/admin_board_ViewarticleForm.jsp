@@ -19,7 +19,7 @@
     #board_content{
             margin: 0 auto;
             width: 1050px;
-            
+            margin-top:50px;
         }
        
        .board_container{
@@ -34,7 +34,7 @@
             height: 2em;
             line-height: 18px;
             font-size: 15px;
-            background: #FA8072;
+            background: #2e2751;
             
             margin-right: 3px;
         }
@@ -44,24 +44,30 @@
             margin-right: 10px;
         }
         .input-group{
-            width: 700px;
+            width: 650px;
             float: left;
         }
         .brd_writer{
-            width: 150px;
+            width: 130px;
             margin-right: 10px;
         }
         .brd_date{
-            width: 200px;
+            width: 170px;
         }
         #articlefrom1{
             clear: both;
         }
         .form-floating{
-        width: 800px;
-        
+        width: 650px;margin:0 auto;
         text-align:justify;
-        
+        }
+        .brd_btn_group{width:260px;margin: 0 auto;
+        }
+        #brd_btn{
+        margin-top:50px;
+        }
+        #preview{
+        	width:750px;margin: 0 auto;
         }
         
     </style>
@@ -180,12 +186,13 @@
             
         </div><br><br>
         <div id="articlefrom1"> 
-        <button type="button" class="btn btn-light" id='brd_btn'onclick="location.href='${contextPath}/board/admin_board_modArticleForm.do?board_num=${article.board_num}'">수정</button>
-        &nbsp;&nbsp;
-        <button type="button" class="btn btn-light deleteArticle" id='brd_btn'>삭제</button>
-        &nbsp;&nbsp;
-        <button type="button" class="btn btn-light" id='brd_btn'onClick="backToList(this.form)">목록보기</button>
-	       
+        	<div class="brd_btn_group">
+		        <button type="button" class="btn btn-light" id='brd_btn'onclick="location.href='${contextPath}/board/admin_board_modArticleForm.do?board_num=${article.board_num}'">수정</button>
+		        &nbsp;&nbsp;
+		        <button type="button" class="btn btn-light deleteArticle" id='brd_btn'>삭제</button>
+		        &nbsp;&nbsp;
+		        <button type="button" class="btn btn-light" id='brd_btn'onClick="backToList(this.form)">목록보기</button>
+	       </div>
         </div>  
   
     </div>

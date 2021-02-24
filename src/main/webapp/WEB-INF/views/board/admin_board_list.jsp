@@ -19,36 +19,42 @@
     #board_content{
             margin: 0 auto;
             width: 1050px;
+            margin-top:50px;
+            
         }
-        
-        a{
+       
+        .fs{
             color: black;
+            font-family: 'RIDIBatang';
             text-decoration: none;
         }
+        
         .board_container{
-            margin:0 auto;
+            margin-left:20px;
             float: left;
-            width: 825px;
-            
+            width: 750px;
         }
         .listrow{
-            width: 825px;
+            width: 750px;
             clear:both;
             text-align: center;
-            
-            
             
         }
         .col_top{
             float: left;
-            background: #FA8072;
-            color: white;
-            font-weight: bold;
             
+            color: #2e2751;
+            font-weight: bold;
+            border-bottom:2px solid #2e2751;
+            border-top:2px solid #2e2751;
+            
+        }
+        .toplow{
+        	/* border: 1px solid #2e2751; */
         }
         .col_list{
             float: left;
-            background: #FFF5EE;
+            border-bottom:1px solid #f0f0f0;
             padding: 0px 0px 0px 0px;
            
         }
@@ -72,9 +78,9 @@
             width: 80px;
         }
         #top_buttonbox{
-            min-width: 800px;
+            min-width: 750px;
             text-align: right;
-            padding-right: 50px;
+            padding-right: 20px;
             margin-bottom: 8px;
         }
         #brd_btn{
@@ -85,13 +91,17 @@
             line-height:5px;
             
         }
-        #listPaging{  clear:both; text-align:center;}
-        #listPaging > ul{margin:0 auto;}
+        #listPaging{  clear:both; text-align:center; margin:0 auto;}
+        #listPaging > ul{margin:0 auto;width:500px;}
         #listPaging > ul > li{
+<<<<<<< HEAD
            list-style: none; float: left; padding: 6px;
            
            
            
+=======
+        	list-style: none; float: left; padding: 6px;
+>>>>>>> branch 'develop' of https://github.com/curious0124/dnbpro.git
         }
     </style>
      <script src="${contextPath}/resources/js/jquery-3.5.1.min.js"> </script>
@@ -160,24 +170,30 @@
     <!--board_container -->
     <div class="board_container">
   <div id='top_buttonbox'>
+<<<<<<< HEAD
         ${articlesList[0].brd_name} 게시판
        <button type="button" class="btn btn-light " id="addarticle" onclick="location.href='${contextPath}/board/admin_board_articleForm.do?brd_num=${articlesList[0].brd_num}'">글쓰기</button>
        <button type="button" class="btn btn-light" id="selectDelete_btn">선택삭제</button>
+=======
+  		${articlesList[0].brd_name} 게시판
+       <button type="button" class="btn btn-light fs" id="addarticle" onclick="location.href='${contextPath}/board/admin_board_articleForm.do?brd_num=${articlesList[0].brd_num}'">글쓰기</button>
+       <button type="button" class="btn btn-light fs" id="selectDelete_btn">선택삭제</button>
+>>>>>>> branch 'develop' of https://github.com/curious0124/dnbpro.git
    </div>
-  <div class="listrow">
+  <div class="listrow toplow">
     <div class="col_top" id="brd_div1">
       <input type="checkbox"  id="allCheck" onclick="allChk(this);"/>
     </div>
-    <div class="col_top" id='brd_div2'>
+    <div class="col_top fs" id='brd_div2'>
       글 번호
     </div>
-    <div class="col_top" id='brd_div3'>
+    <div class="col_top fs" id='brd_div3'>
       제목
     </div>
-    <div class="col_top" id='brd_div4'>
+    <div class="col_top fs" id='brd_div4'>
       작성자
     </div>
-    <div class="col_top" id='brd_div5'>
+    <div class="col_top fs" id='brd_div5'>
       작성일자
     </div>
     <!-- <div class="col_top" id='brd_div6'>
@@ -191,22 +207,22 @@
   
     <c:forEach  var="article" items="${articlesList }" varStatus="articleNum" >
      <div class="listrow">
-    <div class="col_list" id='brd_div1'>
+    <div class="col_list fs" id='brd_div1'>
     
       <input type="checkbox" name="RowCheck" class="chBox" value="${article.board_num}" />
       
     </div>
-    <div class="col_list" id='brd_div2'>
+    <div class="col_list fs" id='brd_div2'>
       <!-- ${articleNum.count} -->
       ${article.board_num }
     </div>
-    <div class="col_list" id='brd_div3'>
-        <a href="${contextPath}/board/viewArticle.do?board_num=${article.board_num}">${article.board_title }</a>
+    <div class="col_list fs" id='brd_div3'>
+        <a class="fs" href="${contextPath}/board/viewArticle.do?board_num=${article.board_num}">${article.board_title }</a>
     </div>
-    <div class="col_list" id='brd_div4'>
+    <div class="col_list fs" id='brd_div4'>
       ${article.board_writer }
     </div>
-    <div class="col_list" id='brd_div5'>
+    <div class="col_list fs" id='brd_div5'>
       ${article.board_date}
     </div>
     <!-- 
@@ -254,17 +270,31 @@
   <div id="listPaging">
   <ul>
     <c:if test="${pageMaker.prev}">
+<<<<<<< HEAD
        <li><a href="admin_board_list.do${pageMaker.makeQuery(pageMaker.startPage - 1)}">이전</a></li>
+=======
+    	<li><a class="fs" href="admin_board_list.do${pageMaker.makeQuery(pageMaker.startPage - 1)}">이전</a></li>
+>>>>>>> branch 'develop' of https://github.com/curious0124/dnbpro.git
     </c:if> 
 
     <c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
+<<<<<<< HEAD
        <!-- <li><a href="list${pageMaker.makeQuery(idx)}">${idx}</a></li> -->
        <li><a href="admin_board_list.do${pageMaker.makeQuery(idx)}">${idx}</a></li>
        
+=======
+    	<!-- <li><a href="list${pageMaker.makeQuery(idx)}">${idx}</a></li> -->
+    	<li><a class="fs" href="admin_board_list.do${pageMaker.makeQuery(idx)}">${idx}</a></li>
+    	
+>>>>>>> branch 'develop' of https://github.com/curious0124/dnbpro.git
     </c:forEach>
 
     <c:if test="${pageMaker.next && pageMaker.endPage > 0}">
+<<<<<<< HEAD
        <li><a href="admin_board_list.do${pageMaker.makeQuery(pageMaker.endPage + 1)}">다음</a></li>
+=======
+    	<li><a class="fs" href="admin_board_list.do${pageMaker.makeQuery(pageMaker.endPage + 1)}">다음</a></li>
+>>>>>>> branch 'develop' of https://github.com/curious0124/dnbpro.git
     </c:if> 
   </ul>
 </div>
