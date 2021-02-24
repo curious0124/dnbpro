@@ -83,7 +83,7 @@ $(document).ready(function() {
 </script>
 
 <body>
-<%-- 	<c:choose>
+<c:choose>
 		<c:when test="${articlesNoticeList ==null }">
 			<div class="cust_notice_container">
         <div id='top_buttonbox'>
@@ -135,12 +135,12 @@ $(document).ready(function() {
   
     </div>
 		</c:when>
-	</c:choose> --%>
+	</c:choose> 
 	
 	
 	
 	
-   	<div id="layoutSidenav_content">
+<%--    	<div id="layoutSidenav_content">
       <main>
         <div class="container-fluid">
           <h1 class="mt-4">공지사항</h1>
@@ -172,6 +172,6 @@ $(document).ready(function() {
                </div>
               </div>
 		</main>
-	</div>
+	</div> --%>
 </body>
 </html>

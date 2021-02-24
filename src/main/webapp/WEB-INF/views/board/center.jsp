@@ -52,20 +52,42 @@
 </head>
 
 <body>
+
+		<!-- 상단 배너 -->
+		<div class="breadcrumbs overlay" style="background-image:url('${contextPath}/resources/image/page_banner.jpg')">
+			<div class="container">
+				<div class="row">
+					<div class="col-12">
+						<div class="bread-inner">
+							<!-- Bread Menu -->
+							<div class="bread-menu">
+								<ul>
+									<li><a href="${contextPath}/main/main.do">Home</a></li>
+									<li><a href="${contextPath}/center/center.do#center_intro">Center</a></li>
+								</ul>
+							</div>
+							<!-- Bread Title -->
+							<div class="bread-title"><h2>Center Info</h2></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 상단 배너 -->
    
     <div class="center_container">
-        <div class="center_navi">
+<!--         <div class="center_navi">
             <ul class="nav navbar-nav">
                 <li class="active"><a href="#center_intro">사업소개</a></li>
                 <li class="active"><a href="#center_video">홍보영상</a></li>
                 <li class="active"><a href="#center_service">지원서비스</a></li>
                 <li class="active"><a href="#center_come">오시는길</a></li>
             </ul>
-        </div>
+        </div> -->
         <div data-spy="scroll" data-target="#navbar-example" data-offset="0"  class="center_content">
             <div>
                 <h4 id="center_intro">사업소개</h4>
-                <c:forEach var="intro" items="${intro }">
+                <c:forEach var="intro" items="${intro}">
                 	 <p>${intro.board_content}</p>
                 </c:forEach>
                
@@ -73,7 +95,7 @@
             <br><br>
             <div>
                 <h4 id="center_video">홍보영상</h4>
-                <c:forEach var="video" items="${video }">
+                <c:forEach var="video" items="${video}">
                 	 <p>${video.board_content}</p>
                 </c:forEach>
             
@@ -81,7 +103,7 @@
             <br><br>
             <div>
                 <h4 id="center_service">지원서비스</h4>
-                 <c:forEach var="service" items="${service }">
+                 <c:forEach var="service" items="${service}">
                 	 <p>${service.board_content}</p>
                 </c:forEach>
             
