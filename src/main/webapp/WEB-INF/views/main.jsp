@@ -41,7 +41,7 @@
         body{
         background-color: #F4F9FC;
         }
-        .developerIMG{height:200px;width:100%;
+        .developerIMG{height:410px;width:100%;
         }
 
     </style>
