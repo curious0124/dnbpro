@@ -49,12 +49,27 @@ $(function() {
 <body>
   	<div id='menucontent'></div>
     <div class="row align-items-start">
-        <div class="col1" >
-            <input type="search" placeholder="검색어를 입력해주세요.">
-        </div>
-        <div class="col1" >
-            <button>검색</button>
-        </div>
+<form role="form" method="get">
+ 
+    <div class="search"> <select name="searchType">
+      <option value="no"<c:out value="${cri.searchType == null ? 'selected' : ''}"/>>-----</option>
+       <option value="tc"<c:out value="${cri.searchType eq 'tc' ? 'selected' : ''}"/>selected>모델명+시리얼명</option>
+      <option value="i"<c:out value="${cri.searchType eq 'i' ? 'selected' : ''}"/>>모델명</option>
+      <option value="n"<c:out value="${cri.searchType eq 'n' ? 'selected' : ''}"/>>시리얼명</option>
+    </select>
+                        
+                        <input type="text" name="keyword" id="keywordInput" value="${cri.keyword}"/>
+
+    <button id="searchBtn" type="button">검색</button>
+    <script>
+      $(function(){
+        $('#searchBtn').click(function() {
+          self.location = "admin_Eq_manage_list.do" + '${pageMaker.makeQuery(1)}' + "&searchType=" + $("select option:selected").val() + "&keyword=" + encodeURIComponent($('#keywordInput').val());
+        });
+      });   
+    </script>
+                    </div>
+                    </form>
 
         <div class="col1" >
             <input type="button" value="분류등록" onclick="location.href='admin_Eq_manage_classify_list.do'">
@@ -182,20 +197,20 @@ $("#allCheck").click(function(){
             <hr width="100%">
 
         </div>
-                 
-    </div>
-         <div id="listPaging" >
+           <div id="listPaging" >
 				<ul>
 					<c:if test="${pageMaker.prev}">
-						<li><a href="admin_Eq_manage_list.do${pageMaker.makeQuery(pageMaker.startPage - 1)}">이전</a></li>
+						<li><a href="admin_Eq_manage_list.do${pageMaker.makeSearch(pageMaker.startPage - 1)}">이전</a></li>
 					</c:if>
 					<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
 						
-						<li><a href="admin_Eq_manage_list.do${pageMaker.makeQuery(idx)}">${idx}</a></li>
+						<li><a href="admin_Eq_manage_list.do${pageMaker.makeSearch(idx)}">${idx}</a></li>
 					</c:forEach>
 					<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
-						<li><a href="admin_Eq_manage_list.do${pageMaker.makeQuery(pageMaker.endPage + 1)}">다음</a></li>
+						<li><a href="admin_Eq_manage_list.do${pageMaker.makeSearch(pageMaker.endPage + 1)}">다음</a></li>
 					</c:if>
 				</ul>
-			</div>	
+			</div>	      
+    </div>
+         
 </body></html>

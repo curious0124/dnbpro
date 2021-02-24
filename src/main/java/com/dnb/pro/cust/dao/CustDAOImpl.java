@@ -8,6 +8,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 
 import com.dnb.pro.board.vo.ArticleVO;
+import com.dnb.pro.board.vo.Criteria;
 
 @Repository("custDAO")
 public class CustDAOImpl implements CustDAO{
@@ -15,9 +16,14 @@ public class CustDAOImpl implements CustDAO{
 	private SqlSession sqlSession;
 	
 	@Override
-	public List selectAllFaqList() throws DataAccessException {
-		List<ArticleVO> articlesList = sqlSession.selectList("mapper.board.selectAllFaqList");
-		return articlesList;
+	public List selectAllFaqList(Criteria cri) throws DataAccessException {
+		return sqlSession.selectList("mapper.board.selectAllFaqList", cri);
+	}
+
+	@Override
+	public int listFaqCount(Criteria cri) throws DataAccessException {
+		
+		return sqlSession.selectOne("mapper.board.listFaqCount",cri);
 	}
 	
 	@Override
@@ -30,4 +36,6 @@ public class CustDAOImpl implements CustDAO{
 	public ArticleVO selectNoticeArticle(int board_num) throws DataAccessException {
 		return sqlSession.selectOne("mapper.board.selectNoticeArticle", board_num);
 	}
+
+	
 }

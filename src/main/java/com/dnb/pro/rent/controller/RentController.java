@@ -8,6 +8,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.dnb.pro.rent.vo.Criteria;
+import com.dnb.pro.rent.vo.SearchCriteria;
 
 
 
@@ -15,7 +16,7 @@ public interface RentController {
 
 	
 	
-//	public ModelAndView listlogs(Criteria cri, HttpServletRequest request, HttpServletResponse response) throws Exception;
+	public ModelAndView listlogs(SearchCriteria scri, HttpServletRequest request, HttpServletResponse response) throws Exception;
 	
 	public ModelAndView listresqs(HttpServletRequest request, HttpServletResponse response) throws Exception;
 	

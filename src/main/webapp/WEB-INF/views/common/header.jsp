@@ -102,18 +102,14 @@ border: 1px solid red;
 		<div class="topbar">
 			<div class="container">
 				<div class="row">
-					<div class="col-lg-4 col-12" id="test1">
+				
+				<c:choose>
+					<c:when test="${isLogOn == true  && member!= null}">
+					<div class="col" id="test1">
 						<!-- Top Contact -->
 							<div class="single-contact">
-								<c:choose>
-									<c:when test="${isLogOn == true  && member!= null}">
-										<span>${member.user_name}님&nbsp;로그인 되었습니다</span>
-									</c:when>
-									<c:otherwise>
-										<button type="button" class="btn btn-outline-danger" onclick="location.href='${contextPath}/member/loginForm.do' ">로그인</button>
-										<button type="button" class="btn btn-outline-danger" onclick="location.href='${contextPath}/member/addmember.do' ">회원가입</button>
-									</c:otherwise>
-								</c:choose>
+											<span>${member.user_name}님&nbsp;로그인 되었습니다</span>
+									
 							</div>
 						<!-- End Top Contact -->
 					</div>
@@ -123,7 +119,7 @@ border: 1px solid red;
 							<c:if test="${member.user_auth eq '관리자'}">
 								<button type="button" class="btn btn-outline-danger" onclick="location.href='${contextPath}/member/logout.do' ">로그아웃</button>
 								<button type="button" class="btn btn-outline-danger" onclick="location.href='${contextPath}/mypage/mypage.do'">마이페이지</button>
-								<button type="button" class="btn btn-outline-danger" onclick="location.href='${contextPath}/board/admin_board_list.do?brd_num=1'">관리자</button>
+								<button type="button" class="btn btn-outline-danger" onclick="location.href='${contextPath}/rent/admin_Eq_reserv_apply.do'">관리자</button>
 							</c:if>
 							<c:if test="${member.user_auth eq '일반'}">
 								<button type="button" class="btn" onclick="location.href='${contextPath}/member/logout.do' ">로그아웃</button>
@@ -131,6 +127,27 @@ border: 1px solid red;
 							</c:if>
 						</div>
 					</div>
+					</c:when>
+					<c:otherwise>
+						<div class="col">
+						<!-- Top Contact -->
+							<div class="single-contact">
+										
+									
+							</div>
+						<!-- End Top Contact -->
+					</div>
+					<div class="col">
+						<div class="topbar-right">
+							<!-- Social Icons -->
+							<button type="button" class="btn btn-outline-danger" onclick="location.href='${contextPath}/member/loginForm.do' ">로그인</button>
+							<button type="button" class="btn btn-outline-danger" onclick="location.href='${contextPath}/member/addmember.do' ">회원가입</button>
+						</div>
+					</div>
+					</c:otherwise>
+					</c:choose>
+					
+					
 				</div>
 			</div>
 		</div>

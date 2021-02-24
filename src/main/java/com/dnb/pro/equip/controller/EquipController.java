@@ -14,13 +14,14 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.dnb.pro.equip.vo.Criteria;
 import com.dnb.pro.equip.vo.EquipVO;
+import com.dnb.pro.equip.vo.SearchCriteria;
 
 public interface EquipController {
 
 	
-	public ModelAndView listequips(Criteria cri,HttpServletRequest request, HttpServletResponse response) throws Exception;
+	public ModelAndView listequips(SearchCriteria scri,HttpServletRequest request, HttpServletResponse response) throws Exception;
 //	public ModelAndView viewequip(EquipVO equipVO, HttpServletRequest request, HttpServletResponse response) throws Exception;
-	public ModelAndView adminlistequips(Criteria cri, HttpServletRequest request, HttpServletResponse response) throws Exception;
+	public ModelAndView adminlistequips(SearchCriteria scri, HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ModelAndView catelistequips(HttpServletRequest request, HttpServletResponse response) throws Exception;
 	
 	public ModelAndView viewecatename(@RequestParam("cate_name") String cate_name,  HttpServletRequest request, HttpServletResponse response) throws Exception;

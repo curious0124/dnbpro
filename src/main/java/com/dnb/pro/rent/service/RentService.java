@@ -5,11 +5,12 @@ import java.util.Map;
 
 import com.dnb.pro.rent.vo.Criteria;
 import com.dnb.pro.rent.vo.RentVO;
+import com.dnb.pro.rent.vo.SearchCriteria;
 
 public interface RentService {
 
 	
-	public List listlogs(Criteria cri) throws Exception;
+	public List listlogs(SearchCriteria scri) throws Exception;
 	
 	public List listresqs() throws Exception;
 	
@@ -35,7 +36,7 @@ public interface RentService {
 	public void ReturnExpressAuth(RentVO rentVO) throws Exception;
 	
 	
-	public int listlogpageCount() throws Exception;
+	public int listlogpageCount(SearchCriteria scri) throws Exception;
 //	public List<RentVO> listpagelogs(Criteria cri) throws Exception;
 
 	public void insertAskRent(RentVO rentVO) throws Exception;
