@@ -58,6 +58,7 @@
 }
 	
 	*{font-family: 'RIDIBatang';
+	
 	}
 
       html,body{/*수정 */
@@ -73,6 +74,7 @@
         width: 100%;
         margin: 0px auto;
         margin-bottom:100px;
+        
       }
       #sidebar-left {
         width: 15%;
@@ -92,6 +94,7 @@
         /* text-align: center; */
         margin : 0 auto;
         border: 0px solid #bcbcbc;
+         background-color: #F4F9FC;
       }
 
       
