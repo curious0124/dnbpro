@@ -19,12 +19,15 @@
     #board_content{
             margin: 0 auto;
             width: 1050px;
+            
         }
         
-        a{
+        .fs{
             color: black;
+            font-family: 'Binggrae';
             text-decoration: none;
         }
+        
         .board_container{
             margin:0 auto;
             float: left;
@@ -36,20 +39,18 @@
             clear:both;
             text-align: center;
             
-            
-            
         }
         .col_top{
             float: left;
             background: #FA8072;
             color: white;
-            font-weight: bold;
+            font-weight: bold;font-family: 'Binggrae';
             
         }
         .col_list{
             float: left;
             background: #FFF5EE;
-            padding: 0px 0px 0px 0px;
+            padding: 0px 0px 0px 0px;font-family: 'Binggrae';
            
         }
         
@@ -161,23 +162,23 @@
     <div class="board_container">
   <div id='top_buttonbox'>
   		${articlesList[0].brd_name} 게시판
-       <button type="button" class="btn btn-light " id="addarticle" onclick="location.href='${contextPath}/board/admin_board_articleForm.do?brd_num=${articlesList[0].brd_num}'">글쓰기</button>
-       <button type="button" class="btn btn-light" id="selectDelete_btn">선택삭제</button>
+       <button type="button" class="btn btn-light fs" id="addarticle" onclick="location.href='${contextPath}/board/admin_board_articleForm.do?brd_num=${articlesList[0].brd_num}'">글쓰기</button>
+       <button type="button" class="btn btn-light fs" id="selectDelete_btn">선택삭제</button>
    </div>
   <div class="listrow">
     <div class="col_top" id="brd_div1">
       <input type="checkbox"  id="allCheck" onclick="allChk(this);"/>
     </div>
-    <div class="col_top" id='brd_div2'>
+    <div class="col_top fs" id='brd_div2'>
       글 번호
     </div>
-    <div class="col_top" id='brd_div3'>
+    <div class="col_top fs" id='brd_div3'>
       제목
     </div>
-    <div class="col_top" id='brd_div4'>
+    <div class="col_top fs" id='brd_div4'>
       작성자
     </div>
-    <div class="col_top" id='brd_div5'>
+    <div class="col_top fs" id='brd_div5'>
       작성일자
     </div>
     <!-- <div class="col_top" id='brd_div6'>
@@ -191,22 +192,22 @@
   
     <c:forEach  var="article" items="${articlesList }" varStatus="articleNum" >
      <div class="listrow">
-    <div class="col_list" id='brd_div1'>
+    <div class="col_list fs" id='brd_div1'>
     
       <input type="checkbox" name="RowCheck" class="chBox" value="${article.board_num}" />
       
     </div>
-    <div class="col_list" id='brd_div2'>
+    <div class="col_list fs" id='brd_div2'>
       <!-- ${articleNum.count} -->
       ${article.board_num }
     </div>
-    <div class="col_list" id='brd_div3'>
-        <a href="${contextPath}/board/viewArticle.do?board_num=${article.board_num}">${article.board_title }</a>
+    <div class="col_list fs" id='brd_div3'>
+        <a class="fs" href="${contextPath}/board/viewArticle.do?board_num=${article.board_num}">${article.board_title }</a>
     </div>
-    <div class="col_list" id='brd_div4'>
+    <div class="col_list fs" id='brd_div4'>
       ${article.board_writer }
     </div>
-    <div class="col_list" id='brd_div5'>
+    <div class="col_list fs" id='brd_div5'>
       ${article.board_date}
     </div>
     <!-- 
@@ -254,17 +255,17 @@
   <div id="listPaging">
   <ul>
     <c:if test="${pageMaker.prev}">
-    	<li><a href="admin_board_list.do${pageMaker.makeQuery(pageMaker.startPage - 1)}">이전</a></li>
+    	<li><a class="fs" href="admin_board_list.do${pageMaker.makeQuery(pageMaker.startPage - 1)}">이전</a></li>
     </c:if> 
 
     <c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
     	<!-- <li><a href="list${pageMaker.makeQuery(idx)}">${idx}</a></li> -->
-    	<li><a href="admin_board_list.do${pageMaker.makeQuery(idx)}">${idx}</a></li>
+    	<li><a class="fs" href="admin_board_list.do${pageMaker.makeQuery(idx)}">${idx}</a></li>
     	
     </c:forEach>
 
     <c:if test="${pageMaker.next && pageMaker.endPage > 0}">
-    	<li><a href="admin_board_list.do${pageMaker.makeQuery(pageMaker.endPage + 1)}">다음</a></li>
+    	<li><a class="fs" href="admin_board_list.do${pageMaker.makeQuery(pageMaker.endPage + 1)}">다음</a></li>
     </c:if> 
   </ul>
 </div>
