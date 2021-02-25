@@ -123,7 +123,7 @@ font-family: 'SDSamliphopangche_Basic';}
 							<c:if test="${member.user_auth eq '관리자'}">
 								<button type="button" class="btn btn-outline-danger headerfs" onclick="location.href='${contextPath}/member/logout.do' ">Logout</button>
 								<button type="button" class="btn btn-outline-danger headerfs" onclick="location.href='${contextPath}/mypage/mypage.do'">MyPage</button>
-								<button type="button" class="btn btn-outline-danger headerfs" onclick="location.href='${contextPath}/rent/admin_Eq_reserv_apply.do'">관리자</button>
+								<button type="button" class="btn btn-outline-danger headerfs" onclick="location.href='${contextPath}/rent/admin_Eq_reserv_apply.do'">Admin</button>
 							</c:if>
 							<c:if test="${member.user_auth eq '일반'}">
 								<button type="button" class="btn btn-outline-danger headerfs" onclick="location.href='${contextPath}/member/logout.do' ">Logout</button>
@@ -184,7 +184,7 @@ font-family: 'SDSamliphopangche_Basic';}
 														<!-- Naviagiton -->
 														<ul id="nav" class="nav main-menu menu navbar-nav">
 															<li><a href="${contextPath}/main/main.do">Home</a></li>
-															<li class="icon-active"><a href="${contextPath}/center/center.do#center_intro">center</a>
+															<li class="icon-active"><a href="${contextPath}/center/center.do">center</a>
 															<ul class="sub-menu">
 																<li><a href="${contextPath}/center/center.do#center_intro">Info</a></li>
 																<li><a href="${contextPath}/center/center.do#center_video">Video</a></li>
