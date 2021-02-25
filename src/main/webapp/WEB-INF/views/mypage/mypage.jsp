@@ -156,6 +156,7 @@
 						name="user_id" value="${resqList[1].user_id}">
 				</div>
 				</form>
+<<<<<<< HEAD
 				</div>
 				</div>
 				<table class="table table-light table-hover align-middle">
@@ -191,6 +192,43 @@
 							</tr>
 						</c:forEach>
 					</tbody>
+=======
+				<table class=rent_table border=1px>
+					<tr bgcolor=#ccc>
+						<td>예약번호</td>
+						<td>장비시리얼번호</td>
+						<td>모델명</td>
+						<td>시작일</td>
+						<td>반납일</td>
+						<td>상태</td>
+						<td>취소반납신청</td>
+
+					</tr>
+					<c:choose>
+						<c:when test="${resList !=null }">
+							<c:forEach var="myResList" items="${resList}"
+								varStatus="myResListNum">
+
+								<tr>
+									<td>${myResListNum.count}</td>
+									<td>${myResList.eq_serial}</td>
+									<td>${myResList.eq_name}</td>
+									<td><fmt:formatDate pattern="yyyy-MM-dd"
+											value="${myResList.res_start}" /></td>
+									<td><fmt:formatDate pattern="yyyy-MM-dd"
+											value="${myResList.res_end}" /></td>
+
+									<td>${myResList.res_Status}</td>
+
+									<td><input type="button" class="Res" value="예약취소" /> <input
+										type="hidden" value="${myResList.cate_name}"> <input
+										type="hidden" value="${myResList.res_num}"></td>
+
+								</tr>
+							</c:forEach>
+						</c:when>
+					</c:choose>
+>>>>>>> branch 'develop' of https://github.com/curious0124/dnbpro.git
 				</table>
 			
 		</div>
