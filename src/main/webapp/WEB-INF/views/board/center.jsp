@@ -19,7 +19,7 @@
 <style>
 .center_container {
    margin: 0 auto;
-
+   margin-top: 50px;
    text-align: center;
    background-color: #f7f7f7;
 }
