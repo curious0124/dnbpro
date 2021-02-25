@@ -19,6 +19,8 @@
 #edu_top{margin-bottom: 20px;}
 body{background-color: #F4F9FC;}
 #page_bottom{margin-top: 30px;}
+#Notice_title_link{color: black; text-decoration: none;}
+#Notice_title_link:hover{color: red;}
 </style>
 <script>
 <script>
@@ -91,7 +93,7 @@ $(function(){
    					<c:forEach var="article" items="${articlesNoticeList }" varStatus="articleNum" >
 						<tr align="center">
 							<td class="col-1">${articleNum.count}</td>
-							<td class="col-1"><a href="${contextPath}/cust/viewNoticeArticle.do?board_num=${article.board_num}">${article.board_title }</a></td>
+							<td class="col-1"><a id="Notice_title_link" href="${contextPath}/cust/viewNoticeArticle.do?board_num=${article.board_num}">${article.board_title }</a></td>
 							<td class="col-1">${article.board_writer }</td>
 							<td class="col-1">${article.board_date }</td>
 						</tr>
