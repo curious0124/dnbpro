@@ -1,6 +1,7 @@
 package com.dnb.pro.rent.controller;
 
 import java.io.File;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.HashMap;
@@ -145,34 +146,55 @@ import com.dnb.pro.rent.vo.SearchCriteria;
 			return mav;
 		}
 		
-		@Override
 		@RequestMapping(value="/AuthRes.do" ,method = {RequestMethod.POST,RequestMethod.GET})
-		public ModelAndView AuthRes(HttpServletRequest request, HttpServletResponse response)
+		public ResponseEntity AuthRes(RentVO rentVO, HttpServletRequest request, HttpServletResponse response)
 				throws Exception {
-			
+
 			HttpSession session = request.getSession();
-			
-//			MemberVO member = (MemberVO)session.getAttribute("member");
-			
-//			String user_id = member.getUser_id();
-//			String cate_name = request.getParameter("ResCate");
-			int resq_num =Integer.parseInt(request.getParameter("Resqnum"));
-			
-//			rentVO.setUser_id(user_id);
-//			rentVO.setCate_name(cate_name);
-			rentVO.setResq_num(resq_num);
-			
-//			System.out.println(rentVO.getUser_id());
-			
-			ModelAndView mav = new ModelAndView();
-			rentService.AuthRes(rentVO);
-			
-			mav.addObject("message", "Auth_resq");
-			mav.setViewName("redirect:/rent/admin_Eq_reserv_apply.do");
-			
-			return mav;
+
+	         int resq_num =Integer.parseInt(request.getParameter("Resqnum"));
+	         Date resq_start =Date.valueOf(request.getParameter("Resqstart"));
+	         Date resq_end =Date.valueOf(request.getParameter("Resqend"));
+	         String eq_serial = request.getParameter("Eqserial");
+	         System.out.println(resq_num+" : "+resq_start+" : "+resq_end+" : "+eq_serial);
+	         rentVO.setResq_num(resq_num);
+	         rentVO.setResq_start(resq_start);
+	         rentVO.setResq_end(resq_end);
+	         rentVO.setEq_serial(eq_serial);
+	         
+	         String message = null;
+	         ResponseEntity resEnt=null;
+	 		HttpHeaders responseHeaders = new HttpHeaders();
+	 		responseHeaders.add("Content-Type", "text/html; charset=utf-8");
+	 		
+	         List checkList = rentService.selectResoverlap(rentVO); 
+				System.out.println("널이니 아니니? :" + checkList);
+				if(checkList.isEmpty()) {
+					rentService.AuthRes(rentVO);
+					 
+					 message = "<script>";
+					 message += " alert('예약이 승인되었습니다 .');";
+					 message += " location.href='"+request.getContextPath() +"/rent/admin_Eq_reserv_apply.do';";
+						message += " </script>";
+						resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
+				}else {
+					
+					 
+					 message = "<script>";
+					 message += " alert('중복된 예약이 존재합니다 .');";
+					 message += " location.href='"+request.getContextPath() +"/rent/admin_Eq_reserv_apply.do';";
+						message += " </script>";
+						resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
+						
+				}
+	       
+	      
+	         
+	         return resEnt;
 		}
-		
+
+
+
 		@Override
 		@RequestMapping(value="/CancleResq.do" ,method = {RequestMethod.POST,RequestMethod.GET})
 		public ModelAndView CancleResq(HttpServletRequest request, HttpServletResponse response)

@@ -17,6 +17,7 @@ public interface EquipDAO {
 	
 	public List selectAllEquipList(SearchCriteria scri) throws DataAccessException;
 	public int listEquipCount(SearchCriteria scri) throws Exception;
+	public List catelist() throws DataAccessException;
 	
 	public EquipVO selectEquipByCode(String eq_name) throws DataAccessException;
 	

@@ -30,7 +30,7 @@ public class RentDAOImpl implements  RentDAO {
 
 		@Override
 		public List selectResqList() throws DataAccessException {
-			List<RentVO> resqList = resqList = sqlSession.selectList("mapper.rent.selectResqList");
+			List<RentVO>  resqList = sqlSession.selectList("mapper.rent.selectResqList");
 			return resqList;
 		}
 
@@ -38,20 +38,20 @@ public class RentDAOImpl implements  RentDAO {
 
 		@Override
 		public List selectAllResList() throws DataAccessException {
-			List<RentVO> resList = resList = sqlSession.selectList("mapper.rent.selectAllResList");
+			List<RentVO>  resList = sqlSession.selectList("mapper.rent.selectAllResList");
 			return resList;
 		}
 
 		
 		@Override
 		public List selectAllRentList() throws DataAccessException {
-			List<RentVO> rentList = rentList = sqlSession.selectList("mapper.rent.selectAllRentList");
+			List<RentVO>  rentList = sqlSession.selectList("mapper.rent.selectAllRentList");
 			return rentList;
 		}
 		
 		@Override
 		public List selectAllReturnList() throws DataAccessException {
-			List<RentVO> retrunList = retrunList = sqlSession.selectList("mapper.rent.selectAllReturnList");
+			List<RentVO>  retrunList = sqlSession.selectList("mapper.rent.selectAllReturnList");
 			return retrunList;
 		}
 		
@@ -168,5 +168,16 @@ public class RentDAOImpl implements  RentDAO {
 			sqlSession.insert("mapper.rent.insertAskRentLog",rentVO);
 			
 		}
+		
+		// 예약신청승인 중복체크
+		@Override
+		public List selectResoverlap(RentVO rentVO) throws Exception {
+		     System.out.println("sfs" + rentVO.getResq_start());
+		     System.out.println("sfs" + rentVO.getResq_end());
+		     List checkList = sqlSession.selectList("mapper.rent.selectResoverlap", rentVO);
+		     System.out.println("DAO check : "+checkList);
+		     return  checkList;
+	 }
+		
 		
 }

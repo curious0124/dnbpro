@@ -50,6 +50,8 @@ public interface RentDAO {
 	//예약신청
 	public void insertAskRent(RentVO rentVO) throws Exception;
 	
+	public List selectResoverlap(RentVO rentVO) throws Exception;
+	
 //	public void reservationrequest1(RentVO vo) throws DataAccessException;
 	
 //	public void reservationrequest2(RentVO vo) throws DataAccessException;

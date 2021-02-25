@@ -70,6 +70,16 @@
       
     ]]>
   </select>
+   
+   <!-- 예약신청 승인  중복조회-->
+    <select id="selectResoverlap" parameterType="com.dnb.pro.rent.vo.RentVO"   resultMap="rentEquipResult" >
+    <![CDATA[
+    select eq_serial,res_start,res_end
+	from reserve 
+	where eq_serial=#{eq_serial} 
+	    and ((res_start between #{resq_start} and #{resq_end}) or (res_end between #{resq_start} and #{resq_end}))
+   ]]>
+  </select>
   
   <!-- 예약신청 승인 예약중추가-->
    <insert id="insertRes" parameterType="RentVO"   >

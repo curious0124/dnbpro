@@ -20,9 +20,14 @@ public interface EquipController {
 
 	
 	public ModelAndView listequips(SearchCriteria scri,HttpServletRequest request, HttpServletResponse response) throws Exception;
-//	public ModelAndView viewequip(EquipVO equipVO, HttpServletRequest request, HttpServletResponse response) throws Exception;
+	public ModelAndView listcatename(HttpServletRequest request, HttpServletResponse response) throws Exception;
+	
+	
 	public ModelAndView adminlistequips(SearchCriteria scri, HttpServletRequest request, HttpServletResponse response) throws Exception;
+	
 	public ModelAndView catelistequips(HttpServletRequest request, HttpServletResponse response) throws Exception;
+	
+	
 	
 	public ModelAndView viewecatename(@RequestParam("cate_name") String cate_name,  HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ResponseEntity addcatename(String cate_name, HttpServletRequest request, HttpServletResponse response)
