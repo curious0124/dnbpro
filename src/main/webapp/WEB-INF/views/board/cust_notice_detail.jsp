@@ -10,15 +10,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
-	crossorigin="anonymous">
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
-	integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
-	crossorigin="anonymous"></script>
+
 <title>admin_board_articleForm</title>
     <style>
     	body {
@@ -85,19 +77,13 @@
 		<div class="container notice_detail" id="edu_table">
           
                 <h1 class="fs">${article.brd_name }</h1>
-          
                 <div class="input-group input-group-sm mb-3 brd_title">
                     ${article.board_title }
                 </div>
-            
-            
 	            <div class="input-group input-group-sm mb-3 brd_date">
                     ${article.board_date }
                 </div>
-            
-
-            <hr>
-            
+            <hr>   
                 <div class="form-floating">${article.board_content } </div>
             <br>
                <c:choose>
@@ -119,5 +105,6 @@
          
     </div>
 	</section>
+
 </body>
 </html>

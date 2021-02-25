@@ -85,7 +85,7 @@ body{background-color: #F4F9FC;}
 	<!-- 상단 배너 -->
 
 	<section class="features-area section-bg">
-		<div class="container" id="edu_table">
+		<div class="container" id="">
 	<c:forEach var="article" items="${articlesList }"
 		varStatus="articleNum">
 		<button class="accordion">
