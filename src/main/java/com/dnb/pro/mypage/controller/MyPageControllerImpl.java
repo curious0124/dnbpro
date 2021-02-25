@@ -251,12 +251,8 @@ public class MyPageControllerImpl implements MyPageController{
 		memberVO=(MemberVO)session.getAttribute("member");
 		String user_id=memberVO.getUser_id();
 		String viewName=(String)request.getAttribute("viewName");
-		System.out.println("Method'modmemberForm'Name : " + viewName);
-		
-		System.out.println("modmemberFormReq "+ user_id);
 		
 		MemberVO memberVO = myPageService.selectMemberById(user_id);
-		System.out.println("VO? :"+memberVO.getUser_id()+memberVO.getUser_pwd());
 		request.setAttribute("member", memberVO);
 		
 		if(memberVO.getUser_identity() != null && memberVO.getUser_identity().length() != 0) {
@@ -292,6 +288,7 @@ public class MyPageControllerImpl implements MyPageController{
 //		bind(request, memberVO);
 		int result = 0;
 		result = myPageService.modMember(member);
+		
 		ModelAndView mav = new ModelAndView("redirect:/mypage/mypage.do");
 		return mav;
 		
@@ -315,7 +312,6 @@ public class MyPageControllerImpl implements MyPageController{
 		}else {
 		
 			String user_id=member.getUser_id();
-			System.out.println("멤버아이디 : " + user_id);
 			String removelist="";
 			if(!cbArr.equals(null)) {
 				for(String i : cbArr) {
@@ -348,9 +344,21 @@ request.setCharacterEncoding("utf-8");
 		MemberVO member=(MemberVO)session.getAttribute("member");
 		
 		String user_id=member.getUser_id();
-		System.out.println("remove id : " + user_id);
 		
 		ModelAndView mav = new ModelAndView(viewName);
+		return mav;
+	}
+	
+	@RequestMapping(value="/fireBye.do", method=RequestMethod.GET)
+	public ModelAndView fireAlert(HttpServletRequest request, HttpServletResponse response) throws Exception{
+		System.out.println("작동");
+		
+		HttpSession session = request.getSession();
+		session.removeAttribute("member");
+		session.removeAttribute("isLogOn");
+		
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("/mypage/memberRemove");
 		return mav;
 	}
 
@@ -367,21 +375,6 @@ request.setCharacterEncoding("utf-8");
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
-	@RequestMapping(value="/fireBye.do", method=RequestMethod.GET)
-	public ModelAndView fireAlert(HttpServletRequest request, HttpServletResponse response) throws Exception{
-		System.out.println("작동");
-		
-		HttpSession session = request.getSession();
-		session.removeAttribute("member");
-		session.removeAttribute("isLogOn");
-		
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("/mypage/memberRemove");
-		return mav;
-	}
-
-	
 
 	
 
