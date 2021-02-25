@@ -58,8 +58,8 @@ $(function(){
 
 	<!-- 수정 한 테이블 -->
 	<section class="features-area section-bg">
-		<div class="container" id="edu_table">
-				<div class="col" id="edu_search">
+		<div class="container" id="">
+				<div class="col" id="">
 				<div class="row">
 					<form role="form" method="get">
 						<div class="btn-group pull-right"  id="edu_top" >
