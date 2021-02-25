@@ -235,7 +235,7 @@
   	<update id="updateMember" parameterType="memberVO">
   		<![CDATA[
   			update userinfo 
-  			set user_pwd=#{user_pwd}, user_name=#{user_name}, user_identity=#{user_identity}, user_addr=#{user_addr}, user_fax=#{user_fax}, user_email=#{user_email} 
+  			set user_pwd=#{user_pwd}, user_name=#{user_name}, user_identity=#{user_identity}, user_addr=#{user_addr}, user_fax=#{user_fax}, user_email=#{user_email}, user_phone=#{user_phone} 
   			where user_id=#{user_id}
   		]]>
   	</update>

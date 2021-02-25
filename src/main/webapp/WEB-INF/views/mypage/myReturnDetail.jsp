@@ -15,21 +15,24 @@
 				function() {
 					var result = prompt("운송장 번호를 입력하세요", "0000-0000-0000");
 					
-					var cate_name = $(this).parent().find(
+					if (result != null && result.length != 0 && result != "0000-0000-0000") {
+						var cate_name = $(this).parent().find(
 								"input:nth-child(2)").val();
-					var res_num = $(this).parent().find(
+						var res_num = $(this).parent().find(
 								"input:nth-child(3)").val();
-
+						
 					console.log(cate_name);
 					console.log(res_num);
 					console.log(result);
-
 					$("#ReturnCate").val(cate_name);
 					$("#Returnnum").val(res_num);
 					$("#Expressnum").val(result);
 					
 					$("#ReturnForm").submit();
-					alert("신청이 완료되었습니다.")
+						alert("배송반납신청이 완료되었습니다.");
+					} else {
+						alert("배송반납신청이 취소되었습니다.");
+					}
 				});
 		
 	});

@@ -218,7 +218,6 @@
 										type="hidden" value="${myResList.res_num}"></td>
 
 								</tr>
-
 							</c:forEach>
 						</c:when>
 					</c:choose>

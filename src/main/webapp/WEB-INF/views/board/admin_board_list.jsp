@@ -90,6 +90,7 @@
         #listPaging > ul{margin:0 auto;width:500px;}
         #listPaging > ul > li{
 <<<<<<< HEAD
+<<<<<<< HEAD
            list-style: none; float: left; padding: 6px;
            
            
@@ -101,9 +102,14 @@
 <<<<<<< HEAD
            list-style: none; float: left; padding: 6px;
 =======
+=======
+>>>>>>> branch 'develop' of https://github.com/curious0124/dnbpro.git
         	list-style: none; float: left; padding: 6px;
+<<<<<<< HEAD
 >>>>>>> branch 'develop' of https://github.com/curious0124/dnbpro.git
 >>>>>>> branch 'develop' of https://github.com/curious0124/dnbpro.git
+>>>>>>> branch 'develop' of https://github.com/curious0124/dnbpro.git
+=======
 >>>>>>> branch 'develop' of https://github.com/curious0124/dnbpro.git
         }
     </style>
@@ -173,12 +179,18 @@
     <!--board_container -->
     <div class="board_container">
   <div id='top_buttonbox'>
+<<<<<<< HEAD
         ${articlesList[0].brd_name} 게시판
 <<<<<<< HEAD
 =======
 =======
-  		${articlesList[0].brd_name} 게시판
+=======
 >>>>>>> branch 'develop' of https://github.com/curious0124/dnbpro.git
+  		${articlesList[0].brd_name} 게시판
+<<<<<<< HEAD
+>>>>>>> branch 'develop' of https://github.com/curious0124/dnbpro.git
+>>>>>>> branch 'develop' of https://github.com/curious0124/dnbpro.git
+=======
 >>>>>>> branch 'develop' of https://github.com/curious0124/dnbpro.git
        <button type="button" class="btn btn-light fs" id="addarticle" onclick="location.href='${contextPath}/board/admin_board_articleForm.do?brd_num=${articlesList[0].brd_num}'">글쓰기</button>
        <button type="button" class="btn btn-light fs" id="selectDelete_btn">선택삭제</button>

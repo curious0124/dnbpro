@@ -16,60 +16,95 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
     <title>admin_board_articleForm</title>
     <style>
-    #board_content{
+    	body {
+            background: #f4f9fc;
+        }
+		.fs{font-family: 'RIDIBatang';padding-left:10px;
+		}
+        #board_content {
             margin: 0 auto;
             width: 1050px;
-            margin-top:50px;
-        }
-       
-       .board_container{
-            margin:0 auto;
-            float: left;
-            
             margin-top: 50px;
+        }
+
+        .board_container {
+            margin: 0 auto;
+            float: left;
+
+            margin-top:-10px;
             margin-left: 20px;
         }
-        .badge{
+
+        .badge {
             float: left;
             height: 2em;
             line-height: 18px;
             font-size: 15px;
-            background: #2e2751;
-            
+            color: #2e2751;
+
             margin-right: 3px;
         }
-        .form-select{
+
+        .form-select {
             width: 130px;
             float: left;
             margin-right: 10px;
         }
-        .input-group{
+
+        .input-group {
             width: 650px;
             float: left;
         }
-        .brd_writer{
+
+        .brd_title {
+            background: #a4a4a4;
+            color: white;
+            font-size: 20px;
+            font-weight: 600;
+            height: 60px;
+            width:100%;
+            line-height: 60px;
+            padding-left: 20px;
+        }
+
+        .brd_name {
             width: 130px;
             margin-right: 10px;
         }
-        .brd_date{
+
+        .brd_writer {
+            width: 130px;
+            margin-right: 300px;
+        }
+
+        .brd_date {
             width: 170px;
         }
-        #articlefrom1{
+
+        #articlefrom1 {
             clear: both;
         }
-        .form-floating{
-        width: 650px;margin:0 auto;
-        text-align:justify;
+
+        .form-floating {
+            width: 650px;
+            margin: 0 auto;
+            text-align: justify;
         }
-        .brd_btn_group{width:260px;margin: 0 auto;
+
+        .brd_btn_group {
+            width: 260px;
+            margin: 0 auto;
         }
-        #brd_btn{
-        margin-top:50px;
+
+        #brd_btn {
+            margin-top: 50px;
         }
-        #preview{
-        	width:750px;margin: 0 auto;
+
+        #preview {
+            width: 750px;
+            margin: 0 auto;
         }
-        
+
     </style>
       <script src="${contextPath}/resources/js/jquery-3.5.1.min.js"> </script>
 <script>
@@ -113,91 +148,82 @@
     
 </head>
 <body>
-   <div id='board_content'>
-   <!--menu bar -->
-   <div id='menucontent'>
-   
-   </div>
-    
-    
-    
-    <!--board_container -->
-    <form name="articleForm" method="post"   action="${contextPath}"   enctype="multipart/form-data">
-    <div class="board_container">
-        <div id="articlefrom1">
-            <div class="badge text-wrap" style="width: 6rem;">
-                  분류
-            </div>
-            <select class="form-select form-select-sm" aria-label=".form-select-sm example"name="brd_num" disabled>
-                  <option value="${article.brd_num }">${article.brd_name }</option>
-                  
-                  
-            </select>
-            
-             <div class="badge text-wrap" style="width: 6rem;">
-                  글 작성자
-            </div>
-            <div class="input-group input-group-sm mb-3 brd_writer">
-              <input type="text" id="board_titleinput" name="brd_writer"class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="${article.board_writer }"disabled>
-            </div>
-            <div class="badge text-wrap" style="width: 6rem;">
-                  글 작성일
-            </div>
-            <div class="input-group input-group-sm mb-3 brd_date">
-              <input type="text" id="board_titleinput" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="${article.board_date }"disabled>
-            </div>
-            
-            
-        </div>
-        
-        
-        <div id="articlefrom1">   
-            <div class="badge text-wrap" style="width: 6rem;">
-                  제목
-            </div>
-            <div class="input-group input-group-sm mb-3">
-              <input type="text" id="board_titleinput" name="board_title" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="${article.board_title }"disabled>
-            </div>
-         </div>
-         <div id="articlefrom1"> 
-             <div class="form-floating">
-              ${article.board_content }
-              
-             </div>
-        </div><br>
-        
-         <div id="articlefrom1"> 
-            
-            
-            <c:choose> 
-			  <c:when test="${not empty article.board_img && article.board_img!='null' }">
-			   	
-				     <input  type= "hidden"   name="originalFileName" value="${article.board_img }" />
-				    <img src="${contextPath}/download.do?board_num=${article.board_num}&board_img=${article.board_img}" id="preview"  /><br>
-				   
-			 </c:when>
-			<c:otherwise>	 
-			</c:otherwise>
-	 </c:choose>
-            
-        </div>
-        
-            
-            
-        </div><br><br>
-        <div id="articlefrom1"> 
-        	<div class="brd_btn_group">
-		        <button type="button" class="btn btn-light" id='brd_btn'onclick="location.href='${contextPath}/board/admin_board_modArticleForm.do?board_num=${article.board_num}'">수정</button>
-		        &nbsp;&nbsp;
-		        <button type="button" class="btn btn-light deleteArticle" id='brd_btn'>삭제</button>
-		        &nbsp;&nbsp;
-		        <button type="button" class="btn btn-light" id='brd_btn'onClick="backToList(this.form)">목록보기</button>
-	       </div>
-        </div>  
-  
-    </div>
-       </form>
+    <div id='board_content'>
+        <!--menu bar -->
+        <div id='menucontent'>
 
-</div>
+        </div>
+
+
+
+        <!--board_container -->
+
+        <div class="board_container">
+            <div id="articlefrom1">
+                <h1 class="fs">${article.brd_name }</h1>
+            </div>
+            <div id="articlefrom1">
+                <div class="input-group input-group-sm mb-3 brd_title">
+                    ${article.board_title }
+                </div>
+            </div>
+            <div id="articlefrom1">
+	            <div class="badge text-wrap" style="width: 6rem;">
+	                  	글 작성자
+	            </div>
+	            <div class="input-group input-group-sm mb-3 brd_writer">
+	              ${article.board_writer }
+	            </div>
+                <div class="badge text-wrap" style="width: 6rem;">
+                    	글 작성일
+                </div>
+                <div class="input-group input-group-sm mb-3 brd_date">
+                    ${article.board_date }
+                </div>
+            </div>
+
+
+
+
+
+            <br>
+            <hr>
+            <div id="articlefrom1">
+                <div class="form-floating">${article.board_content } </div>
+            </div><br>
+
+            <div id="articlefrom1">
+
+
+                <c:choose>
+                    <c:when test="${not empty article.board_img && article.board_img!='null' }">
+
+                        <input type="hidden" name="originalFileName" value="${article.board_img }" />
+                        <img src="${contextPath}/download.do?board_num=${article.board_num}&board_img=${article.board_img}" id="preview" /><br>
+
+                    </c:when>
+                    <c:otherwise>
+                    </c:otherwise>
+                </c:choose>
+
+            </div>
+
+
+
+            <br><br>
+            <div id="articlefrom1">
+                <div class="brd_btn_group">
+                    <button type="button" class="btn btn-light" id='brd_btn' onclick="location.href='${contextPath}/board/admin_board_modArticleForm.do?board_num=${article.board_num}'">수정</button>
+                    &nbsp;&nbsp;
+                    <button type="button" class="btn btn-light deleteArticle" id='brd_btn'>삭제</button>
+                    &nbsp;&nbsp;
+                    <button type="button" class="btn btn-light" id='brd_btn' onClick="backToList(this.form)">목록보기</button>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
 </body>
+
 </html>
