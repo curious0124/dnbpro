@@ -22,111 +22,41 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
     <title>반납리스트</title>
     <style>
-        #board_content {
+        #board_content{
             margin: 0 auto;
-            width: 1950px;
-            border: 1px solid red;
-         
-        }
-
-        #admin_menu {
-            margin: 0;
-            font-size: 0.9em;
-            padding: 0;
-            width: 200px;
-            margin-top: 45px;
-            float: left;
-        }
-
-        #admin_menugroup {
-            width: 200px;
-            text-indent: 10px;
-            margin: 0;
-            padding: 0;
-            
-        }
-
-        #main_menu {
-            margin-bottom: 5px;
-        }
-
-        #admin_menugroup li {
-            list-style: none;
-        }
-
-        .admin_menutitle {
-            height: 35px;
-            line-height: 35px;
-            background: #FA8072;
-            cursor: pointer;
-            font-size: 1.1em;
-            color: white;
-            font-weight: bold;
-            text-align: left;
-        }
-
-        .admin_menusub {
-            margin: 0;
-            padding: 0;
-        }
-
-        .admin_menusub li {
-            margin-bottom: 2px;
-            height: 35px;
-            line-height: 35px;
-            background: #a4a4a4;
-            text-align: left;
-            /*            margin-left: -32px;*/
-        }
-
-        .admin_menusub li a {
-            text-decoration: none;
-            display: block;
-            width: 100%;
-            height: 100%;
-            color: white;
-            text-indent: 40px;
-        }
-
-        .admin_menusub li a:hover {
-            background: #FFF5EE;
-            color: black;
-            font-weight: bold;
-        }
-
-        a {
-            color: black;
-            text-decoration: none;
-        }
-
-        .board_container {
+            width: 1100px;
+            margin-top:50px;
+        }    
+       .board_container {
             margin: 0 auto;
             float: left;
-            width: 1600px;
+            width: 850px;
+            margin-left:20px;
         }
 
         .listrow {
-            width: 900px;
+            width: 850px;
             clear: both;
             text-align: center;
-
-
-
+			margin-top:-10px;
         }
 
         .col_top {
             float: left;
-            background: #FA8072;
-            color: white;
+            color: #2e2751;
             font-weight: bold;
-
+            border-bottom:2px solid #2e2751;
+            border-top:2px solid #2e2751;
         }
 
         .col_list {
             float: left;
-            background: #FFF5EE;
+            border-bottom:1px solid #f0f0f0;
             padding: 0px 0px 0px 0px;
-
+        }
+        
+        .tit{
+          font-size: 25px;
         }
 
         #brd_div1 {
@@ -135,7 +65,6 @@
 
         #brd_div2 {
             width: 120px;
-            height: 24px;
         }
 
         #brd_div3 {
@@ -144,44 +73,26 @@
 
         #brd_div4 {
             width: 120px;
-             height: 24px;
         }
 
         #brd_div5 {
             width: 120px;
-             height: 24px;
         }
 
         #brd_div6 {
             width: 120px;
-             height: 24px;
         }
 
         #brd_div7 {
             width: 120px;
         }
-
-        #top_buttonbox {
-            min-width: 1200px;
-            text-align: right;
-            padding-right: 50px;
-            margin-bottom: 8px;
-        }
-
         #brd_btn {
             font-size: 0.5em;
             width: 50px;
             height: 10px;
             padding: 2px;
             line-height: 5px;
-
         }
-        .tit{
-          
-          font-size: 25px;
-        }
-        
-
     </style>
     <script src="${contextPath}/resources/js/jquery-3.5.1.min.js"> </script>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
@@ -219,14 +130,14 @@ $(function() {
 </head>
 
 <body>
-<div id='menucontent'></div>
- <div class="tit"><strong>배송반납 현황</strong></div><br>
+
+
     <div id='board_content'>
-       
+       <div id='menucontent'></div>
 
         <!--board_container -->
         <div class="board_container">
-
+			 <div class="tit"><strong>배송반납 현황</strong></div><br>
             <div class="listrow">
 
                 <div class="col_top" id='brd_div1'>

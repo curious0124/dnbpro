@@ -27,19 +27,31 @@
 		
 	</resultMap>
 	
-	
-	<!--장비 리스트 
-	<select id="selectAllEquipList" resultMap="EquipResult"   >
-    <![CDATA[
-      SELECT Eq_name, Eq_thumimg, Eq_spec, Eq_ma from Equipment	
-    ]]>
-  </select>
-  -->
+	<!--  장비 리스트 카테고리 페이징  -->
+<select id="catelist" parameterType="EquipVO" resultType="com.dnb.pro.equip.vo.EquipVO" >
+<![CDATA[
+SELECT Eq_name, Eq_thumimg, cate_name, Eq_ma  
+		        	   from Equipment 
+		        	   where cate_name = #{cate_name}
+		        	     	]]>
+</select>
+
+
+
+<!-- from(
+SELECT  Eq_name, Eq_thumimg, cate_name, Eq_ma,
+ ROW_NUMBER() OVER(ORDER BY Eq_name DESC) AS RNUM1=1 and    <include refid="searchviewlist"></include>
+		        	      ) mp
+            WHERE RNUM BETWEEN #{rowStart} AND #{rowEnd}
+		ORDER BY Eq_name DESC  -->
+		
+		
+		
    <!--  장비 리스트  페이징  -->
- 	<select id="selectAllEquipList" resultMap="EquipResult">
+ 	<select id="selectAllEquipList" resultType="com.dnb.pro.equip.vo.EquipVO" >
      
-         SELECT Eq_name, Eq_thumimg, Eq_spec, Eq_ma FROM ( 
-		      SELECT  Eq_name, Eq_thumimg, Eq_spec, Eq_ma,
+         SELECT Eq_name, Eq_thumimg, cate_name, Eq_ma FROM ( 
+		      SELECT  Eq_name, Eq_thumimg, cate_name, Eq_ma,
 		               ROW_NUMBER() OVER(ORDER BY Eq_name DESC) AS RNUM
 		        	   FROM Equipment
 		        	    where 1=1
@@ -71,6 +83,9 @@
 
 	</sql> 
 	
+	
+	
+
 
   
   <!--장비 상세페이지뷰 -->

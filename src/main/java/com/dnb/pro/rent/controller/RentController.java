@@ -8,6 +8,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.dnb.pro.rent.vo.Criteria;
+import com.dnb.pro.rent.vo.RentVO;
 import com.dnb.pro.rent.vo.SearchCriteria;
 
 
@@ -25,7 +26,7 @@ public interface RentController {
 	
 	public ModelAndView listreturn(HttpServletRequest request, HttpServletResponse response) throws Exception;
 	
-	public ModelAndView AuthRes(HttpServletRequest request, HttpServletResponse response) throws Exception;
+//	public ResponseEntity AuthRes(RentVO rentVO, HttpServletRequest request, HttpServletResponse response) throws Exception;
 	
 	public ModelAndView CancleResq(HttpServletRequest request, HttpServletResponse response) throws Exception;
 	

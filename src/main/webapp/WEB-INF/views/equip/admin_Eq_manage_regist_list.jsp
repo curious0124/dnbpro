@@ -103,7 +103,7 @@
         #brd_btn {
             font-size: 0.5em;
             width: 50px;
-            height: 10px;
+            height: 30px;
             padding: 2px;
             line-height: 5px;
 
@@ -239,7 +239,7 @@ $("#allCheck").click(function(){
         
 
     </div>
-
+ <input type="button"   class="btn btn-light fs" id='brd_btn' value="이전페이지" onClick="history.back()" />
 </body>
 
 </html>

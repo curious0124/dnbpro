@@ -8,6 +8,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import javax.activation.CommandMap;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -33,7 +34,7 @@ import com.dnb.pro.equip.vo.Criteria;
 import com.dnb.pro.equip.vo.EquipVO;
 import com.dnb.pro.equip.vo.PageMaker;
 import com.dnb.pro.equip.vo.SearchCriteria;
-import com.dnb.pro.member.vo.MemberVO;
+
 
 
 
@@ -58,8 +59,7 @@ public class EquipControllerImpl implements EquipController {
 		private EquipService equipService;
 		@Autowired
 		private EquipVO equipVO;
-		@Autowired
-		private MemberVO memberVO;
+		
 		
 		
 		
@@ -72,6 +72,13 @@ public class EquipControllerImpl implements EquipController {
 			
 			List listequips = equipService.listequips(scri);
 			mav.addObject("listequips", listequips);
+	
+			
+			List cateList = equipService.catelistequips();
+			mav.addObject("cateList", cateList);
+			
+//			List catenameList =  equipService.listcatename();
+//			mav.addObject("catenameList", catenameList);
 			
 			PageMaker pageMaker = new PageMaker();
 			pageMaker.setCri(scri);
@@ -80,6 +87,24 @@ public class EquipControllerImpl implements EquipController {
 			
 			return mav;
 		}
+		
+		
+		@Override
+		@RequestMapping(value="/selectcate.do" ,method ={ RequestMethod.GET, RequestMethod.POST})
+		public ModelAndView listcatename(HttpServletRequest request, HttpServletResponse response) throws Exception{
+			
+			String viewName = (String)request.getAttribute("viewName");
+			ModelAndView mav = new ModelAndView();
+			mav.setViewName(viewName);
+//		 System.out.println("catenameList : " );
+			
+			List catenameList =  equipService.listcatename();
+			mav.addObject("catenameList", catenameList);
+
+			return mav;
+			}
+		
+	
 		
 		//장비예약 상세페이지
 		@RequestMapping(value="/view_Eq_detail.do" ,method = { RequestMethod.GET, RequestMethod.POST})
@@ -166,6 +191,8 @@ public class EquipControllerImpl implements EquipController {
 		}
 		
 		
+		
+		
 	
 		
 		
@@ -241,7 +268,7 @@ public class EquipControllerImpl implements EquipController {
 		
 
 		
-		@RequestMapping(value="/admin_Eq_manage_regist.do" ,method = RequestMethod.GET)
+		@RequestMapping(value="/admin_Eq_manage_regist.do" ,method = {RequestMethod.GET,RequestMethod.POST})
 		public ModelAndView catelistequips(@RequestParam("cate_name") String cate_name,  HttpServletRequest request, HttpServletResponse response) throws Exception{
 			String viewName = (String)request.getAttribute("viewName");
 			List cateList = equipService.catelistequips();
@@ -250,6 +277,13 @@ public class EquipControllerImpl implements EquipController {
 		
 			return mav;
 		}
+		
+
+		
+		
+
+
+		
 		
 		@RequestMapping(value="/admin_Eq_manage_serial.do" ,method = {RequestMethod.GET,RequestMethod.POST})
 		public ModelAndView eqnamelistserial(@RequestParam("eq_name") String eq_name,  HttpServletRequest request, HttpServletResponse response) throws Exception{
@@ -577,6 +611,20 @@ public class EquipControllerImpl implements EquipController {
 			mav.addObject("equipVO", equipVO);
 			return mav;
 		}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 		
 		

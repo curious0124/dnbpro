@@ -37,6 +37,14 @@ public class EquipServiceImpl implements EquipService{
 	public int listeqviewpageCount(SearchCriteria scri) throws Exception {
 		return equipDAO.listEquipCount(scri);
 	}
+	
+	
+	@Override
+	public List<EquipVO> listcatename() throws Exception {
+		List<EquipVO> catenameList = equipDAO.catelist();
+		return catenameList;
+	
+	}
 
 	
 	@Override
@@ -64,6 +72,8 @@ public class EquipServiceImpl implements EquipService{
 		
 		return cateList;
 	}
+		
+	
 	
 	@Override
 	public int addcatename(String cate_name) throws Exception {

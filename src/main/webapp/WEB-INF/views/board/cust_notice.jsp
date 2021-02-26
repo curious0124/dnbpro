@@ -21,7 +21,6 @@ body{background-color: #F4F9FC;}
 #page_bottom{margin-top: 30px;}
 </style>
 <script>
-<script>
 $(function(){
   $('#searchBtn').click(function() {
     self.location = "cust_notice.do" + '${pageMaker.makeQuery(1)}' + "&searchType=" + $("select option:selected").val() + "&keyword=" + encodeURIComponent($('#keywordInput').val());

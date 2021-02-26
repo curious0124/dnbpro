@@ -70,6 +70,16 @@
       
     ]]>
   </select>
+   
+   <!-- 예약신청 승인  중복조회-->
+    <select id="selectResoverlap" parameterType="com.dnb.pro.rent.vo.RentVO"   resultMap="rentEquipResult" >
+    <![CDATA[
+    select eq_serial,res_start,res_end
+	from reserve 
+	where eq_serial=#{eq_serial} 
+	    and ((res_start between #{resq_start} and #{resq_end}) or (res_end between #{resq_start} and #{resq_end}))
+   ]]>
+  </select>
   
   <!-- 예약신청 승인 예약중추가-->
    <insert id="insertRes" parameterType="RentVO"   >
@@ -237,9 +247,9 @@
 	<!-- 예약신청  로그추가  -->
    <insert id="insertAskRentLog" parameterType="RentVO"  >
     <![CDATA[
-     insert into log(log_num, resq_num,eq_serial,user_id,status,log_maker,res_start,res_end) 
-	select log_num_SEQ.NEXTVAL, resq_num,eq_serial,user_id,'예약신청',#{user_id},resq_start,resq_end from resq
-	where resq_num=(select max(resq_num) from RESQ)
+     insert into log(log_num, resq_num,eq_serial,eq_name,user_id,status,log_maker,res_start,res_end,cate_name) 
+	select log_num_SEQ.NEXTVAL, resq.resq_num,resq.eq_serial,eq_list.eq_name,resq.user_id,'예약신청',#{user_id},resq.resq_start,resq.resq_end,equipment.cate_name from resq, eq_list, equipment
+	where resq.eq_serial=eq_list.eq_serial and equipment.eq_name=eq_list.eq_name and resq_num=(select max(resq_num) from RESQ)
     ]]>
   </insert>
 

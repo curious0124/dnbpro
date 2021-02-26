@@ -41,4 +41,6 @@ public interface RentService {
 
 	public void insertAskRent(RentVO rentVO) throws Exception;
 	
+	public List selectResoverlap(RentVO rentVO) throws Exception;
+	
 }

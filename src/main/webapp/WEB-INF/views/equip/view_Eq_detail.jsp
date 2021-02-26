@@ -149,11 +149,12 @@
     	var resq_end =  document.getElementById("searchEndDate").value;
     	var ableListCount =  document.getElementById("ableListCount").value;
     	var eq_name = '${equipVO.eq_name}';
+    	var cate_name = '${equipVO.cate_name}';
     	console.log('수량 '+ableListCount);
     	console.log('모델명 '+eq_name);
     	console.log('시작일 '+resq_start);
     	console.log('종료일 '+resq_end);
-    	var sendingData = {"eq_name":eq_name, "resq_start":resq_start, "resq_end":resq_end, "ableListCount":ableListCount};
+    	var sendingData = {"eq_name":eq_name, "resq_start":resq_start, "resq_end":resq_end, "ableListCount":ableListCount,"cate_name":cate_name};
     	
     		
     		if(resq_start != "" && resq_end !=""){

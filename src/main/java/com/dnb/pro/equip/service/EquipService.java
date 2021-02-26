@@ -15,7 +15,7 @@ public interface EquipService {
 
 	public List listequips(SearchCriteria scri) throws Exception;
 	public int listeqviewpageCount(SearchCriteria scri) throws Exception;
-	
+	public List listcatename() throws Exception;
 	
 	public EquipVO viewequip(String eq_name) throws Exception;
 	

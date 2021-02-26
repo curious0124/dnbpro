@@ -89,7 +89,7 @@
         #listPaging{  clear:both; text-align:center; margin:0 auto;}
         #listPaging > ul{margin:0 auto;width:500px;}
         #listPaging > ul > li{
-        	list-style: none; float: left; padding: 6px;
+           list-style: none; float: left; padding: 6px;
         }
     </style>
      <script src="${contextPath}/resources/js/jquery-3.5.1.min.js"> </script>
@@ -158,7 +158,7 @@
     <!--board_container -->
     <div class="board_container">
   <div id='top_buttonbox'>
-  		${articlesList[0].brd_name} 게시판
+        ${articlesList[0].brd_name} 게시판
        <button type="button" class="btn btn-light fs" id="addarticle" onclick="location.href='${contextPath}/board/admin_board_articleForm.do?brd_num=${articlesList[0].brd_num}'">글쓰기</button>
        <button type="button" class="btn btn-light fs" id="selectDelete_btn">선택삭제</button>
    </div>

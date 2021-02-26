@@ -61,7 +61,8 @@ import com.dnb.pro.rent.vo.SearchCriteria;
 		@Override
 		public void AuthRes(RentVO rentVO) throws Exception {
 			int resq_num = rentVO.getResq_num();
-		
+		    
+			
 			rentDAO.insertRes(rentVO);
 			rentDAO.authinsertLogres(rentVO);
 			rentDAO.deleteResqapply(resq_num);
@@ -148,6 +149,15 @@ import com.dnb.pro.rent.vo.SearchCriteria;
 		@Override
 		public void insertAskRent(RentVO rentVO) throws Exception {
 			rentDAO.insertAskRent(rentVO);
+			
+		}
+		
+		@Override
+		public List selectResoverlap(RentVO rentVO) throws Exception {
+			System.out.println("SERVICE : " + rentVO.getResq_start());
+			List<RentVO> checkList = rentDAO.selectResoverlap(rentVO);
+		return	checkList;
+			
 			
 		}
 		
