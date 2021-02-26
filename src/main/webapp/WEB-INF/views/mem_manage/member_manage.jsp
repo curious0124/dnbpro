@@ -12,20 +12,12 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
-	crossorigin="anonymous">
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
-	integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
-	crossorigin="anonymous"></script>
 <title>member_manage</title>
 <style>
 #board_content {
 	margin: 0 auto;
-	width: 1150px;
+	width: 1050px;
+	margin-top:50px;
 }
 
 a {
@@ -34,7 +26,8 @@ a {
 }
 
 .board_container {
-	margin: 0 auto;
+	margin-left:20px;
+	margin-top:10px;
 	float: left;
 	width: 825px;
 }
@@ -47,14 +40,15 @@ a {
 
 .col_top {
 	float: left;
-	background: #FA8072;
-	color: white;
-	font-weight: bold;
+            color: #2e2751;
+            font-weight: bold;
+            border-bottom:2px solid #2e2751;
+            border-top:2px solid #2e2751;
 }
 
 .col_list {
 	float: left;
-	background: #FFF5EE;
+	border-bottom:1px solid #f0f0f0;
 	padding: 0px 0px 0px 0px;
 }
 
@@ -82,35 +76,25 @@ a {
 	width: 150px;
 }
 
-#top_buttonbox {
-	min-width: 800px;
-	text-align: right;
-	padding-right: 50px;
-	margin-bottom: 8px;
-}
+#top_buttonbox{
+            min-width: 750px;
+            text-align: right;
+            padding-right: 20px;
+            margin-bottom: 8px;
+        }
+#brd_btn{
+    font-size:0.5em;
+    width:50px;
+	height:10px;
+    padding: 2px;
+    line-height:5px;
+        }
 
-#brd_btn {
-	font-size: 0.5em;
-	width: 50px;
-	height: 10px;
-	padding: 2px;
-	line-height: 5px;
-}
-
-#listPaging {
-	clear: both;
-	text-align: center;
-}
-
-#listPaging>ul {
-	margin: 0 auto;
-}
-
-#listPaging>ul>li {
-	list-style: none;
-	float: left;
-	padding: 6px;
-}
+#listPaging{  clear:both; text-align:center; margin:0 auto;}
+        #listPaging > ul{margin:0 auto;width:500px;}
+        #listPaging > ul > li{
+        	list-style: none; float: left; padding: 6px;
+        }
 .mem_auth_option{
 	width: 120px;}
 </style>
@@ -178,10 +162,10 @@ a {
 		<!--board_container -->
 		<div class="board_container">
 			<div id='top_buttonbox'>
-				회원목록 게시판
+				
 				<div>
 					<form name="memAuth" method="post"  >
-					<div>
+					<div>회원목록 게시판
 						<select class="mem_auth_option" name="user_auth">
 								<option value="">권한 수정</option>
 								<option value="일반">일반</option>
@@ -274,18 +258,18 @@ a {
 				<ul>
 					<c:if test="${pageMaker.prev}">
 						<li><a
-							href="mem_list.do${pageMaker.makeQuery(pageMaker.startPage - 1)}">이전</a></li>
+							href="mem_list.do${pageMaker.makeSearch(pageMaker.startPage - 1)}">이전</a></li>
 					</c:if>
 
 					<c:forEach begin="${pageMaker.startPage}"
 						end="${pageMaker.endPage}" var="idx">
-						<li><a href="mem_list.do${pageMaker.makeQuery(idx)}">${idx}</a></li>
+						<li><a href="mem_list.do${pageMaker.makeSearch(idx)}">${idx}</a></li>
 
 					</c:forEach>
 
 					<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
 						<li><a
-							href="mem_list.do${pageMaker.makeQuery(pageMaker.endPage + 1)}">다음</a></li>
+							href="mem_list.do${pageMaker.makeSearch(pageMaker.endPage + 1)}">다음</a></li>
 					</c:if>
 				</ul>
 			</div>

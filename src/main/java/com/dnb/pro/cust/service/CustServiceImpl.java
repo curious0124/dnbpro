@@ -9,6 +9,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.dnb.pro.board.vo.ArticleVO;
 import com.dnb.pro.cust.dao.CustDAO;
+import com.dnb.pro.mem_manage.vo.SearchCriteria;
+import com.dnb.pro.mem_manage.vo.Criteria;
 
 @Service("custService")
 @Transactional(propagation = Propagation.REQUIRED)
@@ -16,15 +18,27 @@ public class CustServiceImpl implements CustService{
 	@Autowired
 	private CustDAO custDAO;
 	
-	public List<ArticleVO> listArticles() throws Exception{
-		List<ArticleVO> articlesList = custDAO.selectAllFaqList();
-		return articlesList;
+	@Override
+	public List listFaqArticles(Criteria cri) throws Exception {
+		
+		return custDAO.selectAllFaqList(cri);
+	}
+
+	@Override
+	public int listFaqCount(Criteria cri) throws Exception {
+		return custDAO.listFaqCount(cri);
+	}
+
+	
+	@Override
+	public List<ArticleVO> listNoticeArticles(SearchCriteria scri) throws Exception {
+		List<ArticleVO> articlesNoticeList = custDAO.selectAllNoticeList(scri);
+		return articlesNoticeList;
 	}
 	
 	@Override
-	public List<ArticleVO> listNoticeArticles() throws Exception {
-		List<ArticleVO> articlesNoticeList = custDAO.selectAllNoticeList();
-		return articlesNoticeList;
+	public int listNoticeCount(SearchCriteria scri) throws Exception {
+		return custDAO.listNoticeCount(scri);
 	}
 	
 	@Override
@@ -32,5 +46,16 @@ public class CustServiceImpl implements CustService{
 		ArticleVO articleVO = custDAO.selectNoticeArticle(board_num);
 		return articleVO;
 	}
+	
+//ÆË¾÷
+	@Override
+	public List<ArticleVO> listNoticeArticles2() throws Exception {
+		List<ArticleVO> articlesNoticeList = custDAO.selectAllNoticeList2();
+		return articlesNoticeList;
+	}
+
+	
+
+	
 
 }

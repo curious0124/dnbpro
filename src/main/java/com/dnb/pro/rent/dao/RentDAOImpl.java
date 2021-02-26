@@ -164,6 +164,7 @@ public class RentDAOImpl implements  RentDAO {
 		//예약신청
 		@Override
 		public void insertAskRent(RentVO rentVO) throws Exception {
+			System.out.println("DAO 확인 : "+rentVO.getResq_start());
 			sqlSession.insert("mapper.rent.insertAskRent", rentVO);
 			sqlSession.insert("mapper.rent.insertAskRentLog",rentVO);
 			

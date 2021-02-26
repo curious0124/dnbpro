@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.dnb.pro.mypage.vo.Criteria;
 import com.dnb.pro.member.vo.MemberVO;
 import com.dnb.pro.mypage.dao.MyPageDAO;
 import com.dnb.pro.mypage.vo.MyPageVO;
@@ -72,13 +73,18 @@ public class MyPageServiceImpl implements MyPageService {
 	}
 
 	@Override
-	public Map<String, List<RentVO>> findMyLogInfo(String user_id) throws DataAccessException {
+	public Map<String, List<RentVO>> findMyLogInfo(Criteria cri) throws DataAccessException {
 		Map<String, List<RentVO>> MapDAO5 = new HashMap<String, List<RentVO>>();
-		List<RentVO> logList= myPageDAO.selectMyLogInfo(user_id);
+		List<RentVO> logList= myPageDAO.selectMyLogInfo(cri);
 		
 		MapDAO5.put("log", logList);
 		
 		return MapDAO5;
+	}
+	
+	@Override
+	public int listCount(String user_id) throws DataAccessException {
+		return myPageDAO.listCount(user_id);
 	}
 	
 	
@@ -161,6 +167,8 @@ public class MyPageServiceImpl implements MyPageService {
 		myPageDAO.removeMember((String)firemap.get("user_id"));
 		myPageDAO.addQuit(firemap);
 	}
+
+	
 
 	
 	

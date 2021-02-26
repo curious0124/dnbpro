@@ -21,7 +21,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.dnb.pro.member.vo.MemberVO;
 import com.dnb.pro.mypage.service.MyPageService;
+import com.dnb.pro.mypage.vo.Criteria;
 import com.dnb.pro.mypage.vo.MyPageVO;
+import com.dnb.pro.mypage.vo.PageMaker;
 import com.dnb.pro.rent.vo.RentVO;
 
 
@@ -122,8 +124,9 @@ public class MyPageControllerImpl implements MyPageController{
 
 	@Override
 	@RequestMapping(value = "/myLogDetail.do", method = {RequestMethod.GET,RequestMethod.POST})
-	public ModelAndView myLogDetail( HttpServletRequest request, HttpServletResponse response)
+	public ModelAndView myLogDetail(Criteria cri, HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
+		
 		String viewName=(String)request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView(viewName);
 		
@@ -132,9 +135,14 @@ public class MyPageControllerImpl implements MyPageController{
 		
 		String user_id= renter.getUser_id();
 		
-		 Map<String, List<RentVO>> myRentList= myPageService.findMyLogInfo(user_id);
-		 mav.addObject("renter", renter);
+		Map<String, List<RentVO>> myRentList= myPageService.findMyLogInfo(cri);
+		mav.addObject("renter", renter);
 		mav.addObject("myRentList", myRentList);
+		
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(cri);
+		pageMaker.setTotalCount(myPageService.listCount(cri.getUser_id()));
+		mav.addObject("pageMaker", pageMaker);
 
 		return mav;
 	}
@@ -170,7 +178,6 @@ public class MyPageControllerImpl implements MyPageController{
 	@RequestMapping(value="/cancelRes.do" ,method = {RequestMethod.POST,RequestMethod.GET})
 	public ModelAndView cancelRes(HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
-		
 		
 		HttpSession session = request.getSession();
 		
@@ -244,12 +251,8 @@ public class MyPageControllerImpl implements MyPageController{
 		memberVO=(MemberVO)session.getAttribute("member");
 		String user_id=memberVO.getUser_id();
 		String viewName=(String)request.getAttribute("viewName");
-		System.out.println("Method'modmemberForm'Name : " + viewName);
-		
-		System.out.println("modmemberFormReq "+ user_id);
 		
 		MemberVO memberVO = myPageService.selectMemberById(user_id);
-		System.out.println("VO? :"+memberVO.getUser_id()+memberVO.getUser_pwd());
 		request.setAttribute("member", memberVO);
 		
 		if(memberVO.getUser_identity() != null && memberVO.getUser_identity().length() != 0) {
@@ -285,6 +288,7 @@ public class MyPageControllerImpl implements MyPageController{
 //		bind(request, memberVO);
 		int result = 0;
 		result = myPageService.modMember(member);
+		
 		ModelAndView mav = new ModelAndView("redirect:/mypage/mypage.do");
 		return mav;
 		
@@ -308,7 +312,6 @@ public class MyPageControllerImpl implements MyPageController{
 		}else {
 		
 			String user_id=member.getUser_id();
-			System.out.println("멤버아이디 : " + user_id);
 			String removelist="";
 			if(!cbArr.equals(null)) {
 				for(String i : cbArr) {
@@ -341,9 +344,21 @@ request.setCharacterEncoding("utf-8");
 		MemberVO member=(MemberVO)session.getAttribute("member");
 		
 		String user_id=member.getUser_id();
-		System.out.println("remove id : " + user_id);
 		
 		ModelAndView mav = new ModelAndView(viewName);
+		return mav;
+	}
+	
+	@RequestMapping(value="/fireBye.do", method=RequestMethod.GET)
+	public ModelAndView fireAlert(HttpServletRequest request, HttpServletResponse response) throws Exception{
+		System.out.println("작동");
+		
+		HttpSession session = request.getSession();
+		session.removeAttribute("member");
+		session.removeAttribute("isLogOn");
+		
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("/mypage/memberRemove");
 		return mav;
 	}
 
@@ -359,19 +374,6 @@ request.setCharacterEncoding("utf-8");
 			HttpServletResponse response) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
-	}
-	
-	@RequestMapping(value="/fireBye.do", method=RequestMethod.GET)
-	public ModelAndView fireAlert(HttpServletRequest request, HttpServletResponse response) throws Exception{
-		System.out.println("작동");
-		
-		HttpSession session = request.getSession();
-		session.removeAttribute("member");
-		session.removeAttribute("isLogOn");
-		
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("/mypage/memberRemove");
-		return mav;
 	}
 
 	

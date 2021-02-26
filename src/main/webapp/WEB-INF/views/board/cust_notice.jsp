@@ -10,80 +10,143 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script> -->
-    
-    <!-- 부트스트랩 페이징 -->	
-	<!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" crossorigin="anonymous"></script>  -->
-	<script src="${contextPath}/resources/js/jquery-3.5.1.min.js"></script> 
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-	<script src="${contextPath}/resources/js/scripts.js"></script>
-	<script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
-	<script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
-	<script src="${contextPath}/resources/assets/demo/datatables-demo.js"></script>
-<!-- 부트스트랩 페이징 -->
+
     
     
-    <title>공지사항</title>
+<title>공지사항</title>
 </head>
 <style>
-    .cust_notice_container{
-            margin:0 auto;
-            width: 90%;   
-        }
-    .cust_notice_listrow{
-        width: 100%;
-        clear:both;
-        text-align: center;
-    }
-    #top_buttonbox{
-            text-align: right;
-            padding-right: 50px;
-            margin-bottom: 8px;
-        }
-    .cust_notice_col_top{
-            float: left;
-            background: #FA8072;
-            color: white;
-            font-weight: bold;
-            
-        }
-        .cust_notice_col_list{
-            float: left;
-            background: #FFF5EE;
-            padding: 0px 0px 0px 0px;
-           
-        }
-         #cust_notice_div0{
-            width: 5%;
-        }
-        #cust_notice_div1{
-            width: 5%;
-        }
-        #cust_notice_div2{
-            width: 50%;
-        }
-        #cust_notice_div3{
-            width: 15%;
-        }
-        #cust_notice_div4{
-            width: 20%;
-        }
-        
-    
+#edu_top{margin-bottom: 20px;}
+body{background-color: #F4F9FC;}
+#page_bottom{margin-top: 30px;}
 </style>
 <script>
-$(document).ready(function() {
-    $('#example').DataTable( {
-        "paging":   false,
-        "ordering": false,
-        "info":     false
-    } );
-} );
+$(function(){
+  $('#searchBtn').click(function() {
+    self.location = "cust_notice.do" + '${pageMaker.makeQuery(1)}' + "&searchType=" + $("select option:selected").val() + "&keyword=" + encodeURIComponent($('#keywordInput').val());
+  });
+});   
 </script>
 
+
 <body>
-<%-- 	<c:choose>
+	<!-- 상단 배너 -->
+	<div class="breadcrumbs overlay"
+		style="background-image:url('${contextPath}/resources/image/page_banner.jpg')">
+		<div class="container">
+			<div class="row">
+				<div class="col-12">
+					<div class="bread-inner">
+						<!-- Bread Menu -->
+						<div class="bread-menu">
+							<ul>
+								<li><a href="${contextPath}/main/main.do">Home</a></li>
+								<li><a href="${contextPath}/cust/cust_notice.do">Notice</a></li>
+							</ul>
+						</div>
+						<!-- Bread Title -->
+						<div class="bread-title">
+							<h2>Notice</h2>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 상단 배너 -->
+
+	<!-- 수정 한 테이블 -->
+	<section class="features-area section-bg">
+		<div class="container" id="">
+				<div class="col" id="">
+				<div class="row">
+					<form role="form" method="get">
+						<div class="btn-group pull-right"  id="edu_top" >
+							<select name="searchType">
+								<option value="tc"<c:out value="${scri.searchType eq 'tc' ? 'selected' : ''}"/>selected>내용+제목</option>
+							      <option value="c"<c:out value="${scri.searchType eq 'c' ? 'selected' : ''}"/>>내용</option>
+							      <option value="t"<c:out value="${scri.searchType eq 't' ? 'selected' : ''}"/>>제목</option>
+							</select> <input type="text" name="keyword" id="keywordInput"
+								value="${scri.keyword}" />
+							<button id="searchBtn" type="button">검색</button>
+						</div>
+					</form>
+					</div>
+				</div>
+				
+
+			<table class="table table-light table-hover align-middle">
+				<thead class="table-light text-center">
+					<tr>
+						<th class="col-1">글 번호</th>
+						<th>제목</th>
+						<th class="col-1">작성자</th>
+						<th class="col-1">등록날짜</th>
+					</tr>
+				</thead>
+				
+
+				<tbody>
+   					<c:forEach var="article" items="${articlesNoticeList }" varStatus="articleNum" >
+						<tr align="center">
+							<td class="col-1">${articleNum.count}</td>
+							<td class="col-1"><a href="${contextPath}/cust/viewNoticeArticle.do?board_num=${article.board_num}">${article.board_title }</a></td>
+							<td class="col-1">${article.board_writer }</td>
+							<td class="col-1">${article.board_date }</td>
+						</tr>
+					</c:forEach>
+				</tbody>
+			</table>
+		</div>
+		<div class="container" id="page_bottom">
+			<div class="row">
+				<div class="col float-center" id="listPaging">
+					<nav aria-label="...">
+					  <ul class="pagination pagination-lg justify-content-center">
+					  <c:if test="${pageMaker.prev}">
+					    <li class="page-item active " aria-current="page"><span class="page-link"><a href="cust_notice.do${pageMaker.makeSearch(pageMaker.startPage - 1)}">이전</a></span></li>
+					    </c:if>
+					    <c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
+					    <li class="page-item"><a class="page-link" href="cust_notice.do${pageMaker.makeSearch(idx)}">${idx}</a></li>
+					    </c:forEach>
+					    <c:if test="${pageMaker.next && pageMaker.endPage > 0}">
+					    <li class="page-item"><a class="page-link" href="cust_notice.do${pageMaker.makeSearch(pageMaker.endPage + 1)}">다음</a></li>
+					    </c:if>
+					  </ul>
+					</nav>
+				</div>
+			</div>
+		</div>
+	</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<%-- <c:choose>
 		<c:when test="${articlesNoticeList ==null }">
 			<div class="cust_notice_container">
         <div id='top_buttonbox'>
@@ -135,43 +198,44 @@ $(document).ready(function() {
   
     </div>
 		</c:when>
-	</c:choose> --%>
-	
-	
-	
-	
-   	<div id="layoutSidenav_content">
-      <main>
-        <div class="container-fluid">
-          <h1 class="mt-4">공지사항</h1>
-           <div class="card mb-4">
-             <div class="card-body">
-               <div class="table">
-                 <table class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0">
-                   <thead>
-                     <tr>
-                      <th>글 번호</th>
-                      <th>제목</th>
-                      <th>작성자</th>
-                      <th>작성일자</th>
-                     </tr>
-                   </thead>
-                   <tbody>
-					<c:forEach var="article" items="${articlesNoticeList }" varStatus="articleNum" >
-						<tr align="center">
-							<td>${articleNum.count}</td>
-							<td><a href="${contextPath}/cust/viewNoticeArticle.do?board_num=${article.board_num}">${article.board_title }</a></td>
-							<td>${article.board_writer }</td>
-							<td>${article.board_date }</td>
-						</tr>
+	</c:choose> 
+
+				<div id="listPaging">
+				<ul>
+					<c:if test="${pageMaker.prev}">
+						<li><a href="cust_notice.do${pageMaker.makeSearch(pageMaker.startPage - 1)}">이전</a></li>
+					</c:if>
+
+					<c:forEach begin="${pageMaker.startPage}"
+						end="${pageMaker.endPage}" var="idx">
+						<li><a href="cust_notice.do${pageMaker.makeSearch(idx)}">${idx}</a></li>
+
 					</c:forEach>
-				</tbody>
-                   </table>
-                  </div>
-                </div>
-               </div>
-              </div>
-		</main>
-	</div>
+
+					<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
+						<li><a
+							href="cust_notice.do${pageMaker.makeSearch(pageMaker.endPage + 1)}">다음</a></li>
+					</c:if>
+				</ul>
+			</div>
+<div>
+	<form role="form" method="get">
+		
+  <div class="search">
+    <select name="searchType">
+       <option value="tc"<c:out value="${scri.searchType eq 'tc' ? 'selected' : ''}"/>selected>내용+제목</option>
+      <option value="c"<c:out value="${scri.searchType eq 'c' ? 'selected' : ''}"/>>내용</option>
+      <option value="t"<c:out value="${scri.searchType eq 't' ? 'selected' : ''}"/>>제목</option>
+    </select>
+
+    <input type="text" name="keyword" id="keywordInput" value="${scri.keyword}"/>
+
+    <button id="searchBtn" type="button">검색</button>
+
+  </div>
+		</form>
+</div>
+ --%>
+	
 </body>
 </html>

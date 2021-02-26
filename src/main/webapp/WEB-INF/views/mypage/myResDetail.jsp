@@ -35,6 +35,11 @@
 
 	});
 </script>
+	<style>
+		.rent_table {
+			width: 100%;
+		}
+	</style>
 </head>
 <body>
 	<div class=my_reserv_appling>

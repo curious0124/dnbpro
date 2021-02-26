@@ -234,7 +234,7 @@
 <body>
 
 <div id='menucontent'></div>
- <div class="tit"><strong>예약 신청 현황</strong></div><br>
+ <div class="tit"><strong>예약 신청 관리</strong></div><br>
     <div id='board_content'>
       
 
@@ -346,6 +346,10 @@
 	 <form action="${contextPath}/rent/CancleResq.do" id="ResqcancleForm" method="post">
 		<input type="hidden" id="cancleResqnum" name="Resqnum" value="" />
 	</form>
+	
+	<div>
+	
+	</div>
     
 </body>
 

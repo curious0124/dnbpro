@@ -19,7 +19,7 @@
     #board_content{
             margin: 0 auto;
             width: 1050px;
-            
+            margin-top:50px;
         }
        
        .board_container{
@@ -34,7 +34,7 @@
             height: 2em;
             line-height: 18px;
             font-size: 15px;
-            background: #FA8072;
+            background: #2e2751;
             
             margin-right: 3px;
         }
@@ -56,6 +56,11 @@
         }
         #articlefrom1{
             clear: both;
+        }
+        .brd_btn_group{width:200px;margin: 0 auto;
+        }
+        #brd_btn{
+        margin-top:50px;
         }
         
     </style>
@@ -147,8 +152,10 @@
             
         </div><br><br>
         <div id="articlefrom1"> 
-        <input type="submit" value="글쓰기" />
-	       <input type=button value="목록보기"onClick="backToList(this.form)" />
+        	<div class="brd_btn_group">
+	        	<input type="submit" class="btn btn-light fs" id='brd_btn' value="글쓰기" />
+		       <input type="button" class="btn btn-light fs" id='brd_btn' value="목록보기"onClick="backToList(this.form)" />
+		    </div>   
         </div>  
   
     </div>

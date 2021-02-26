@@ -69,31 +69,35 @@
 
 		$(".Return").click(
 				function() {
+
 					var result = prompt("운송장 번호를 입력하세요", "0000-0000-0000");
-					
-					var cate_name = $(this).parent().find(
+					if (result != null && result.length != 0 && result != "0000-0000-0000") {
+						var cate_name = $(this).parent().find(
 								"input:nth-child(2)").val();
-					var res_num = $(this).parent().find(
+						var res_num = $(this).parent().find(
 								"input:nth-child(3)").val();
 
-					console.log(cate_name);
-					console.log(res_num);
-					console.log(result);
+						console.log(cate_name);
+						console.log(res_num);
+						console.log(result);
 
-					$("#ReturnCate").val(cate_name);
-					$("#Returnnum").val(res_num);
-					$("#Expressnum").val(result);
-					
-					$("#ReturnForm").submit();
-					alert("신청이 완료되었습니다.")
+						$("#ReturnCate").val(cate_name);
+						$("#Returnnum").val(res_num);
+						$("#Expressnum").val(result);
+
+						$("#ReturnForm").submit();
+						alert("배송반납신청이 완료되었습니다.");
+					} else {
+						alert("배송반납신청이 취소되었습니다.");
+					}
 				});
-		
+
 	});
 </script>
 
 <style>
 .my_reserv_appling {
-	border: 1px solid red;
+	
 }
 
 .rent_area {
@@ -118,8 +122,7 @@
 	<div class=my_reserv_total>
 		<a class='cls1'
 			href="${contextPath}/mypage/modmemberForm.do?user_id=${user_id}">내
-			정보수정</a>
-			<a class='cls1'
+			정보수정</a> <a class='cls1'
 			href="${contextPath}/mypage/removeMember.do?user_id=${user_id}">회원탈퇴</a>
 		<div class=my_reserv_apply>
 			<form action="myResqDetail.do" method="post">
@@ -128,10 +131,10 @@
 					<c:choose>
 						<c:when test="${resqList !=null }">
 							<div class=rent_area>
-								<input type="submit" value=자세히보기> 
-								<input type="hidden" name="user_id" value="${resqList[1].user_id}">
+								<input type="submit" value=자세히보기> <input type="hidden"
+									name="user_id" value="${resqList[1].user_id}">
 							</div>
-							
+
 							<table class=rent_table border=1px>
 								<tr bgcolor=#ccc>
 									<td>예약신청번호</td>
@@ -158,9 +161,9 @@
 										<td><fmt:formatDate pattern="yyyy-MM-dd"
 												value="${resqApplyList.resq_end}" /></td>
 										<td>예약신청</td>
-										<td><input type="button" class="Resq" value="예약신청취소" /> <input
-											type="hidden" value="${resqApplyList.cate_name}"> <input
-											type="hidden" value="${resqApplyList.resq_num}"></td>
+										<td><input type="button" class="Resq" value="예약신청취소" />
+											<input type="hidden" value="${resqApplyList.cate_name}">
+											<input type="hidden" value="${resqApplyList.resq_num}"></td>
 
 
 									</tr>
@@ -188,7 +191,6 @@
 						<td>예약번호</td>
 						<td>장비시리얼번호</td>
 						<td>모델명</td>
-						<td>신청일</td>
 						<td>시작일</td>
 						<td>반납일</td>
 						<td>상태</td>
@@ -205,20 +207,17 @@
 									<td>${myResList.eq_serial}</td>
 									<td>${myResList.eq_name}</td>
 									<td><fmt:formatDate pattern="yyyy-MM-dd"
-											value="${myResList.resq_date}" /></td>
-									<td><fmt:formatDate pattern="yyyy-MM-dd"
 											value="${myResList.res_start}" /></td>
 									<td><fmt:formatDate pattern="yyyy-MM-dd"
 											value="${myResList.res_end}" /></td>
 
 									<td>${myResList.res_Status}</td>
 
-									<td><input type="button" class="Res" value="예약취소" />
-										<input type="hidden" value="${myResList.cate_name}"> 
-										<input type="hidden" value="${myResList.res_num}"></td>
+									<td><input type="button" class="Res" value="예약취소" /> <input
+										type="hidden" value="${myResList.cate_name}"> <input
+										type="hidden" value="${myResList.res_num}"></td>
 
 								</tr>
-
 							</c:forEach>
 						</c:when>
 					</c:choose>
@@ -239,7 +238,6 @@
 							<td>대여번호</td>
 							<td>장비시리얼번호</td>
 							<td>모델명</td>
-							<td>신청일</td>
 							<td>시작일</td>
 							<td>반납일</td>
 							<td>상태</td>
@@ -254,16 +252,13 @@
 										<td>${myReturnList.eq_serial}</td>
 										<td>${myReturnList.eq_name}</td>
 										<td><fmt:formatDate pattern="yyyy-MM-dd"
-												value="${myReturnList.resq_date}" /></td>
-										<td><fmt:formatDate pattern="yyyy-MM-dd"
 												value="${myReturnList.res_start}" /></td>
 										<td><fmt:formatDate pattern="yyyy-MM-dd"
 												value="${myReturnList.res_end}" /></td>
 
 										<td>${myReturnList.res_Status}</td>
-										<td>
-											<input type="button" class="Return" value="배송반납신청" />
-											<input type="hidden" value="${myReturnList.cate_name}"> 
+										<td><input type="button" class="Return" value="배송반납신청" />
+											<input type="hidden" value="${myReturnList.cate_name}">
 											<input type="hidden" value="${myReturnList.res_num}">
 										</td>
 									</tr>
@@ -323,20 +318,23 @@
 		</div>
 	</div>
 
-	<form action="${contextPath}/mypage/cancelResq.do" id="ResqForm" method="post">
-		<input type="hidden" id="ResqCate" name="ResqCate" value="" /> 
-		<input type="hidden" id="Resqnum" name="Resqnum" value="" />
+	<form action="${contextPath}/mypage/cancelResq.do" id="ResqForm"
+		method="post">
+		<input type="hidden" id="ResqCate" name="ResqCate" value="" /> <input
+			type="hidden" id="Resqnum" name="Resqnum" value="" />
 	</form>
-	
-	<form action="${contextPath}/mypage/cancelRes.do" id="ResForm" method="post">
-		<input type="hidden" id="ResCate" name="ResCate" value="" /> 
-		<input type="hidden" id="Resnum" name="Resnum" value="" />
+
+	<form action="${contextPath}/mypage/cancelRes.do" id="ResForm"
+		method="post">
+		<input type="hidden" id="ResCate" name="ResCate" value="" /> <input
+			type="hidden" id="Resnum" name="Resnum" value="" />
 	</form>
-	
-	<form action="${contextPath}/mypage/cancelReturn.do" id="ReturnForm" method="post">
-		<input type="hidden" id="ReturnCate" name="ReturnCate" value="" /> 
-		<input type="hidden" id="Returnnum" name="Returnnum" value="" />
-		<input type="hidden" id="Expressnum" name="Expressnum" value="" />
+
+	<form action="${contextPath}/mypage/cancelReturn.do" id="ReturnForm"
+		method="post">
+		<input type="hidden" id="ReturnCate" name="ReturnCate" value="" /> <input
+			type="hidden" id="Returnnum" name="Returnnum" value="" /> <input
+			type="hidden" id="Expressnum" name="Expressnum" value="" />
 	</form>
 
 </body>

@@ -237,11 +237,11 @@
 	
 	
 	
-	<!-- 예약신청  로그추가  -->
+	<!-- 예약신청  추가  -->
 	<insert id="insertAskRent" parameterType="RentVO"   >
     <![CDATA[
      insert into Resq (Resq_num, User_id, Eq_serial, Resq_start, Resq_end) 
-      values (Resq_num_seq.NEXTVAL,#{user_id},#{eq_serial},to_date(#{resq_start},'YYYY-MM-DD'),to_date(#{resq_end},'YYYY-MM-DD'))
+      values (Resq_num_seq.NEXTVAL,#{user_id},#{eq_serial},#{resq_start},#{resq_end})
     ]]>
   </insert>
 	<!-- 예약신청  로그추가  -->

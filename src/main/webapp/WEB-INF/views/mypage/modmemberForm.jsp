@@ -52,6 +52,10 @@
 	       <td width="400"><p><input type="text" name="user_email" value="${member.user_email}"></td>
 	    </tr>
 	    <tr>
+	       <td width="200"><p align="right">전화번호</td>
+	       <td width="400"><p><input type="text" name="user_phone" value="${member.user_phone}"></td>
+	    </tr>
+	    <tr>
 	       <td width="200"><p>&nbsp;</p></td>
 	       <td width="400"><input type="submit" value="수정하기"><input type="reset" value="다시입력"></td>
 	    </tr>

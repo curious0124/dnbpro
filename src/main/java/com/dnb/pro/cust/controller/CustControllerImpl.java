@@ -16,7 +16,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.dnb.pro.board.vo.ArticleVO;
 import com.dnb.pro.cust.service.CustService;
-import com.dnb.pro.member.vo.MemberVO;
+import com.dnb.pro.mem_manage.vo.SearchCriteria;
+import com.dnb.pro.mem_manage.vo.PageMaker;
+import com.dnb.pro.mem_manage.vo.Criteria;
+
 
 
 @Controller("custController")
@@ -31,34 +34,46 @@ private static final Logger logger = LoggerFactory.getLogger(CustControllerImpl.
 	private CustService custService;
 	@Autowired
 	private ArticleVO articleVO;
-	@Autowired
-	private MemberVO memberVO;
+
 	
 	@Override
 	@RequestMapping(value="/cust_faq.do", method = {RequestMethod.GET, RequestMethod.POST})
-	public ModelAndView cust_faq(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public ModelAndView cust_faq(Criteria cri, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String viewName = (String)request.getAttribute("viewName");
-		logger.info("info 레벨: viewName = "+viewName);
-		logger.debug("debug 레벨: viewName = "+viewName);
-		
-		List articlesList = custService.listArticles();
+//		logger.info("info 레벨: viewName = "+viewName);
+//		logger.debug("debug 레벨: viewName = "+viewName);
 		
 		ModelAndView mav = new ModelAndView(viewName);
+		
+		List articlesList = custService.listFaqArticles(cri);
 		mav.addObject("articlesList",articlesList);
+		
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(cri);
+		pageMaker.setTotalCount(custService.listFaqCount(cri));
+		mav.addObject("pageMaker",pageMaker);
+		
+		
 		return mav;
 	}
 	
 	@Override
 	@RequestMapping(value="/cust_notice.do", method = {RequestMethod.GET, RequestMethod.POST})
-	public ModelAndView cust_notice(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public ModelAndView cust_notice(SearchCriteria scri,HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String viewName = (String)request.getAttribute("viewName");
 		logger.info("info 레벨: viewName = "+viewName);
 		logger.debug("debug 레벨: viewName = "+viewName);
 		
-		List articlesNoticeList = custService.listNoticeArticles();
-		
 		ModelAndView mav = new ModelAndView(viewName);
+		
+		List articlesNoticeList = custService.listNoticeArticles(scri);
 		mav.addObject("articlesNoticeList",articlesNoticeList);
+		
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(scri);
+		pageMaker.setTotalCount(custService.listNoticeCount(scri));
+		mav.addObject("pageMaker", pageMaker);
+		
 		return mav;
 	}
 	
