@@ -31,6 +31,15 @@
         width: 150px;
         float: left;
     }
+      #brd_btn {
+            font-size: 0.5em;
+            width: 50px;
+            height: 30px;
+            padding: 2px;
+            line-height: 5px;
+         
+
+        }
    	
 </style>
 <script src="${contextPath}/resources/js/jquery-3.5.1.min.js"> </script>
@@ -104,5 +113,5 @@
         
                </form>     
     </div>
-       
+       <center><input type="button"   class="btn btn-light fs" id='brd_btn' value="이전페이지" onClick="history.back()" /></center>
 </body></html>

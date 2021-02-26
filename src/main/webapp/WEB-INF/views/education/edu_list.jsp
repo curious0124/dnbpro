@@ -23,6 +23,8 @@
 #edu_top{margin-bottom: 20px;}
 body{background-color: #F4F9FC;}
 #page_bottom{margin-top: 30px;}
+#edu_title_link{color: black; text-decoration: none;}
+#edu_title_link:hover{color: red;}
 </style>
 </head>
 <body>
@@ -107,7 +109,7 @@ body{background-color: #F4F9FC;}
 										<b>이미지가 없습니다.</b>
 									</c:otherwise>
 								</c:choose></td>
-							<td><a
+							<td><a id="edu_title_link"
 								href="${contextPath}/education/edu_detail.do?educationNO=${list.edu_num}">${list.edu_title}</a></td>
 							<td class="col-1">${list.cate_name}</td>
 							<td class="col-1">${list.eq_name}</td>

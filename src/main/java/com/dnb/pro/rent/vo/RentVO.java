@@ -42,6 +42,7 @@ import org.springframework.stereotype.Component;
 			private Date fromDate;
 			
 			
+			
 			public int getResq_num() {
 				return resq_num;
 			}

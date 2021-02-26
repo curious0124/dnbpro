@@ -157,7 +157,7 @@
 
 
         <!--board_container -->
-
+<form name="articleForm" method="post"   action=""   enctype="multipart/form-data">
         <div class="board_container">
             <div id="articlefrom1">
                 <h1 class="fs">${article.brd_name }</h1>
@@ -223,6 +223,7 @@
 
 
         </div>
+        </form>
     </div>
 </body>
 
