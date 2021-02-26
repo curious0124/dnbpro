@@ -16,9 +16,15 @@
 
 <head>
     <meta charset="UTF-8">
+    <title>예약신청리스트</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
-    <title>예약신청리스트</title>
+   
+		<link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css"/>
+  		<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+		<script src="http://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+		<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/i18n/datepicker-ko.js"></script>
+    
     <style>
         #board_content {
             margin: 0 auto;
@@ -178,70 +184,57 @@
         }
 
     </style>
-    <script src="${contextPath}/resources/js/jquery-3.5.1.min.js"> </script>
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
-   
+      
+<!--	    	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>-->
    <script>
-	$(function() {
-		$(".Authres").click(
-				function() {
-					var answer = confirm("예약신청을 승인하시겠습니까?");
-					if (answer == true) {
-
-						
-						var resq_num = $(this).parent().find(
-								"input:nth-child(2)").val();
-
-				
-						console.log(resq_num);
-						$("#Resqnum").val(resq_num);
-						
-
-					$("#ResauthForm").submit();
-					}
-				});
-
-	});
-</script>
-
-<script>
-	$(function() {
-
-		$(".CancleResq").click(
-				function() {
-					var answer = confirm("예약신청을 취소하시겠습니까?");
-					if (answer == true) {
-
-						
-						var resq_num = $(this).parent().find(
-								"input:nth-child(2)").val();
-
-				
-						
-						$("#cancleResqnum").val(resq_num);
-						var test = $('#cancleResqnum').val();
-						
-						
-
-						$("#ResqcancleForm").submit();
-					}
-				});
-
-	});
-</script>
-<script>
-$(function() {
+   $(document).ready(function() {
 	$('#menucontent').load("${contextPath}/resources/subjsp/admin_menubar.jsp");
+	
+	$(".Authres").click(
+			function() {
+				var answer = confirm("예약신청을 승인하시겠습니까?");
+				if (answer == true) {
+
+					
+					var resq_num = $(this).parent().find(
+							"input:nth-child(2)").val();
+					console.log(resq_num);
+					var resq_start = $(this).parent().find(
+					"input:nth-child(3)").val();
+					    
+					var resq_end = $(this).parent().find(
+					"input:nth-child(4)").val();
+					var eq_serial = $(this).parent().find(
+					"input:nth-child(5)").val();					
+
+					
+					$("#Resqnum").val(resq_num);
+					$("#Resqstart").val(resq_start);
+					$("#Resqend").val(resq_end);
+					$("#Eqserial").val(eq_serial);
+
+				$("#ResauthForm").submit();
+				}
+			});
+	
+	
+	
+	
 	});
 
+
+	
 </script>
+
+
+
 </head>
 
 
 <body>
 
 <div id='menucontent'></div>
- <div class="tit"><strong>예약 신청 현황</strong></div><br>
+ <div class="tit"><strong>예약 신청 관리</strong></div><br>
     <div id='board_content'>
       
 
@@ -280,7 +273,7 @@ $(function() {
                     <c:set var="List" value="${listresqs }" />
                     <c:forEach var="List" items="${listresqs }" varStatus="Resq_Num">
                         <div class="listrow">
-                            <div class="col_list" id='brd_div1'>
+                            <div class="col_list " id='brd_div1'>
                                 ${List.resq_num}
                             </div>
                             <div class="col_list" id="brd_div2">
@@ -289,20 +282,25 @@ $(function() {
                             <div class="col_list" id='brd_div3'>
                                 ${List.eq_serial}
                             </div>
-                            <div class=" col_list" id='brd_div4'>
+                            <div class=" col_list " id='brd_div4'>
                                 ${List.resq_start}
                             </div>
-                            <div class="col_list" id='brd_div5'>
+                            <div class="col_list " id='brd_div5'>
                                 ${List.resq_end}
                             </div>
                             <div class="col_list" id='brd_div6'>
-                                ${List.resq_date}
+                               ${List.resq_date}
                             </div>
                             <div class="col_list" id='brd_div7'>
                                 <button type="button" class="btn btn-light Authres" id='brd_btn'>승인</button>
-                                <input type="hidden" value="${List.resq_num}"/>
+                                <input type="hidden" id="resq_num" value="${List.resq_num}"/>
+                                <input type="hidden" id="resq_start" value="${List.resq_start}"/>
+                                <input type="hidden" id="resq_end" value="${List.resq_end}"/>
+                                <input type="hidden" id="eq_serial" value="${List.eq_serial}"/>
+                               
                                  <button type="button" class="btn btn-light CancleResq" id='brd_btn'>취소</button>
-                                 <input type="hidden" value="${resq_num}" />
+                                 <input type="hidden" id="resq_num" value="${List.resq_num}"/>
+                                  
                             </div>
                             
                         </div>
@@ -340,11 +338,18 @@ $(function() {
     
     <form action="${contextPath}/rent/AuthRes.do" id="ResauthForm" method="post">
 		<input type="hidden" id="Resqnum" name="Resqnum" value="" />
+		<input type="hidden"  id="Resqstart" name="Resqstart"  value="" />
+        <input type="hidden"   id="Resqend" name="Resqend"  value="" />
+        <input type="hidden"   id="Eqserial" name="Eqserial"  value="" />
 	</form>
-	
+	 
 	 <form action="${contextPath}/rent/CancleResq.do" id="ResqcancleForm" method="post">
 		<input type="hidden" id="cancleResqnum" name="Resqnum" value="" />
 	</form>
+	
+	<div>
+	
+	</div>
     
 </body>
 

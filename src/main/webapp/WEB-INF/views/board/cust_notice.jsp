@@ -23,7 +23,6 @@ body{background-color: #F4F9FC;}
 #Notice_title_link:hover{color: red;}
 </style>
 <script>
-<script>
 $(function(){
   $('#searchBtn').click(function() {
     self.location = "cust_notice.do" + '${pageMaker.makeQuery(1)}' + "&searchType=" + $("select option:selected").val() + "&keyword=" + encodeURIComponent($('#keywordInput').val());

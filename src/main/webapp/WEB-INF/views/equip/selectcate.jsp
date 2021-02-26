@@ -128,115 +128,20 @@
 <script src="${contextPath}/resources/js/jquery-3.5.1.min.js"> </script>
    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
 
-<script>
 
-//function fn_process(){
-	
-//	var item  = catenameList;  
-//	    console.log('sfs');
-//	$.ajax({ 
-  
-// type: "get", // 타입
-//	dataType:"json", //받아올 형태 지정 
-//	data : {}, // 파라미터 데이터
-//	url: "${contextPath}/equip/selectcate.do",  //url
-	
-	//data : $("#form1").serialize(), //파라미터형태로 전송할 경우
-//	success: function(data){       //성공시 data라는 변수에 리턴값이 매칭됨 오브젝트형으로 리턴시 개별 파싱해야됨 
-//		 location.href = "${contextPath}/equip/view_Eq_list.do?cate_name="+reurl;
-//	   alert("성공!"); 
-	  
-//	},complete: function(data){
-	   //실패 했었도 완료가 되었을때..
-//	},error: function (request, status, error) {
-//	   alert("에러"); 
-//	} 
-//	});
-	
-// }
-</script>
-
-<script>
-	$(function() {
-
-		$(".CancleResq").click(
-				function() {
-					var answer = confirm("예약신청을 취소하시겠습니까?");
-					if (answer == true) {
-
-						
-						var resq_num = $(this).parent().find(
-								"input:nth-child(2)").val();
-
-				
-						
-						$("#cancleResqnum").val(resq_num);
-						var test = $('#cancleResqnum').val();
-						
-						
-
-						$("#ResqcancleForm").submit();
-					}
-				});
-
-	});
-</script>
 
 </head>
 
 <body>
 
-   <div id='admin_menu'>
+  
     
        
        
-       <ul class="listrow" > 
-   <li class="admin_menutitle"><a href="${contextPath}/equip/view_Eq_list.do">전체</a></li>
-  <c:choose>
-  <c:when test="${cateList !=null }" >
-    <c:forEach  var="cate" items="${cateList }" varStatus="cateNum" >
-    
-    
-    <li class="listrow" id='brd_div2' onClick="fn_process()" value="${cate.cate_name}"><a href="${contextPath}/equip/view_Eq_list.do?cate_name=${equip.cate_name}">${cate.cate_name}</a></li>
- 
-    </c:forEach>
-     </c:when>
-  <c:when test="${cateList == null }" >
    
-    <li class="listrow" id='brd_div2'></li>
- 
-  </c:when>
-    </c:choose>
-             
-               
- </ul>
-    </div>
  
 
-<form role="form" method="get">
- 
-    <div class="searchviewlist"> <select name="searchType">
-      <option value="no"<c:out value="${cri.searchType == null ? 'selected' : ''}"/>>-----</option>
-       <option value="qw"<c:out value="${cri.searchType eq 'qw' ? 'selected' : ''}"/>selected>모델명+제조사</option>
-      <option value="q"<c:out value="${cri.searchType eq 'q' ? 'selected' : ''}"/>>모델명</option>
-      <option value="w"<c:out value="${cri.searchType eq 'w' ? 'selected' : ''}"/>>제조사</option>
-    </select>
-                        
-                        <input type="text" name="keyword" id="keywordInput" value="${cri.keyword}"/>
 
-    <button id="searchBtn" type="button">검색</button>
-    <script>
-      $(function(){
-        $('#searchBtn').click(function() {
-          self.location = "view_Eq_list.do" + '${pageMaker.makeQuery(1)}' + "&searchType=" + $("select option:selected").val() + "&keyword=" + encodeURIComponent($('#keywordInput').val());
-        });
-      });   
-    </script>
-    
-    
-    
-                    </div>
-                    </form>
 
 
 
@@ -287,28 +192,14 @@
               
         </c:when>
         <c:when test="${listequips ==null }">
- <div class="row align-items-end">
+
     <div class="col">
     등록된장비가없습니다
     </div>
       </c:when>
     </c:choose>
     <hr width="100%">
-    
-    <div id="listPaging" >
-				<ul>
-					<c:if test="${pageMaker.prev}">
-						<li><a href="view_Eq_list.do${pageMaker.makeSearch(pageMaker.startPage - 1)}">이전</a></li>
-					</c:if>
-					<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
-						
-						<li><a href="view_Eq_list.do${pageMaker.makeSearch(idx)}">${idx}</a></li>
-					</c:forEach>
-					<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
-						<li><a href="view_Eq_list.do${pageMaker.makeSearch(pageMaker.endPage + 1)}">다음</a></li>
-					</c:if>
-				</ul>
-			</div>	
+
     
     
 </div>

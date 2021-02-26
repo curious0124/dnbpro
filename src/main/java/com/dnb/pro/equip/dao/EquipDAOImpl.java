@@ -34,10 +34,22 @@ public class EquipDAOImpl implements  EquipDAO  {
 		return sqlSession.selectList("mapper.equip.selectAllEquipList",scri);
 	}
 	
+	
+	@Override
+	public List catelist() throws DataAccessException {
+		List<EquipVO> catenameList  = (List)sqlSession.selectList("mapper.equip.catelist");
+		return catenameList;
+	
+		
+	}
+	
 	@Override
 	public int listEquipCount(SearchCriteria scri) throws Exception {
 		return sqlSession.selectOne("mapper.equip.listEquipCount",scri);
 	}
+	
+	
+	
 	
 	@Override
 	public EquipVO selectEquipByCode(String eq_name) throws DataAccessException {
