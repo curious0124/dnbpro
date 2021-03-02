@@ -73,7 +73,7 @@
         
         #co1{
             width: 300px;
-             float: left;
+             float: right;
             color: #2e2751;
             font-weight: bold;
            
@@ -81,7 +81,7 @@
         
          #co2{
           width: 300px;
-           float: left;
+           float: right;
             color: #2e2751;
             font-weight: bold;
           
@@ -90,7 +90,7 @@
         
          #co3{
           width: 300px;
-           float: left;
+           float: right;
             color: #2e2751;
             font-weight: bold;
           
@@ -162,38 +162,16 @@
         color: #2e2751;
         
         }
+        
+       
 
+#eq_namelink{color: black; text-decoration: none;}
+#eq_namelink:hover{color: red;}
 </style>
 <script src="${contextPath}/resources/js/jquery-3.5.1.min.js"> </script>
    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
 
-<script>
 
-//function fn_process(){
-	
-//	var item  = catenameList;  
-//	    console.log('sfs');
-//	$.ajax({ 
-  
-// type: "get", // 타입
-//	dataType:"json", //받아올 형태 지정 
-//	data : {}, // 파라미터 데이터
-//	url: "${contextPath}/equip/selectcate.do",  //url
-	
-	//data : $("#form1").serialize(), //파라미터형태로 전송할 경우
-//	success: function(data){       //성공시 data라는 변수에 리턴값이 매칭됨 오브젝트형으로 리턴시 개별 파싱해야됨 
-//		 location.href = "${contextPath}/equip/view_Eq_list.do?cate_name="+reurl;
-//	   alert("성공!"); 
-	  
-//	},complete: function(data){
-	   //실패 했었도 완료가 되었을때..
-//	},error: function (request, status, error) {
-//	   alert("에러"); 
-//	} 
-//	});
-	
-// }
-</script>
 
 <script>
 	$(function() {
@@ -224,32 +202,35 @@
 </head>
 
 <body>
-
-   <div id='admin_menu'>
-    
-       
-       
-       <ul class="listrow" > 
-   <!--  <li class="admin_menutitle"><a href="${contextPath}/equip/view_Eq_list.do">전체</a></li>  -->
-  <c:choose>
-  <c:when test="${cateList !=null }" >
-    <c:forEach  var="cate" items="${cateList }" varStatus="cateNum" >
-    
-    <!--  
-    <li class="listrow" id='brd_div2' onClick="fn_process()" value="${cate.cate_name}"><a href="${contextPath}/equip/view_Eq_list.do?cate_name=${equip.cate_name}">${cate.cate_name}</a></li>
- -->
-    </c:forEach>
-     </c:when>
-  <c:when test="${cateList == null }" >
-   
-    <li class="listrow" id='brd_div2'></li>
- 
-  </c:when>
-    </c:choose>
-             
-               
- </ul>
-    </div>
+	<!-- 상단 배너 -->
+	<div class="breadcrumbs overlay"
+		style="background-image:url('${contextPath}/resources/image/page_banner.jpg')">
+	
+		<div class="container">
+			<div class="row">
+				<div class="col-12">
+					<div class="bread-inner">
+						<!-- Bread Menu -->
+						<div class="bread-menu">
+							<ul>
+								<li><a href="${contextPath}/main/main.do">Home</a></li>
+								<li><a href="${contextPath}/equip/view_Eq_list.do">Equipment</a></li>
+							</ul>
+						</div>
+						<!-- Bread Title -->
+						<div class="bread-title">
+							<h2>Equipment</h2>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 상단 배너 -->
+	
+	<section class="features-area section-bg">
+		<div class="container" id="edu_table">
+  
  
 
 <form role="form" method="get">
@@ -286,7 +267,7 @@
   
   
   <div class="row align-items-start">
-    <div class="col" id="co1">
+    <div class="col" id="co1" >
      모델명
     </div>
     <div class="col" id="co2">
@@ -308,7 +289,7 @@
  
   <div class="row align-items-center">
     <div class="col" id="co1">
-      <a href="${contextPath}/equip/view_Eq_detail.do?eq_name=${equip.eq_name}">${equip.eq_name}&nbsp;</a>
+      <a id="eq_namelink" href="${contextPath}/equip/view_Eq_detail.do?eq_name=${equip.eq_name}">${equip.eq_name}&nbsp;</a>
     </div>
     <div class="col" id="co2">
     <input  type= "hidden"   name="originalFileName" value="${equip.eq_thumimg}" /> 
@@ -352,7 +333,8 @@
     
 </div>
 
-   
+   </div>
+	</section>
 </body>
 
 </html>
