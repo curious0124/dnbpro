@@ -191,14 +191,14 @@
        
        
        <ul class="listrow" > 
-   <li class="admin_menutitle"><a href="${contextPath}/equip/view_Eq_list.do">전체</a></li>
+   <!--  <li class="admin_menutitle"><a href="${contextPath}/equip/view_Eq_list.do">전체</a></li>  -->
   <c:choose>
   <c:when test="${cateList !=null }" >
     <c:forEach  var="cate" items="${cateList }" varStatus="cateNum" >
     
-    
+    <!--  
     <li class="listrow" id='brd_div2' onClick="fn_process()" value="${cate.cate_name}"><a href="${contextPath}/equip/view_Eq_list.do?cate_name=${equip.cate_name}">${cate.cate_name}</a></li>
- 
+ -->
     </c:forEach>
      </c:when>
   <c:when test="${cateList == null }" >
@@ -216,10 +216,10 @@
 <form role="form" method="get">
  
     <div class="searchviewlist"> <select name="searchType">
-      <option value="no"<c:out value="${cri.searchType == null ? 'selected' : ''}"/>>-----</option>
-       <option value="qw"<c:out value="${cri.searchType eq 'qw' ? 'selected' : ''}"/>selected>모델명+제조사</option>
+      <option value="no" <c:out value="${cri.searchType == null ? 'selected' : ''}"/>>-----</option>
+       <option value="qw"<c:out value="${cri.searchType eq 'qw' ? 'selected' : ''}"/>selected>모델명+카테고리</option>
       <option value="q"<c:out value="${cri.searchType eq 'q' ? 'selected' : ''}"/>>모델명</option>
-      <option value="w"<c:out value="${cri.searchType eq 'w' ? 'selected' : ''}"/>>제조사</option>
+      <option value="w"<c:out value="${cri.searchType eq 'w' ? 'selected' : ''}"/>>카테고리</option>
     </select>
                         
                         <input type="text" name="keyword" id="keywordInput" value="${cri.keyword}"/>

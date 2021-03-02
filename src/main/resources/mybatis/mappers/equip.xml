@@ -77,8 +77,8 @@ SELECT  Eq_name, Eq_thumimg, cate_name, Eq_ma,
 		
 		<if test="searchType != null">
 			<if test="searchType == 'q'.toString()">AND equipment.eq_name LIKE '%' || #{keyword} || '%'</if>
-			<if test="searchType == 'w'.toString()">AND equipment.eq_ma LIKE '%' || #{keyword} || '%'</if>
-			<if test="searchType == 'qw'.toString()">AND (equipment.eq_name LIKE '%' || #{keyword} || '%') or (equipment.eq_ma LIKE '%' || #{keyword} || '%')</if>
+			<if test="searchType == 'w'.toString()">AND equipment.cate_name LIKE '%' || #{keyword} || '%'</if>
+			<if test="searchType == 'qw'.toString()">AND (equipment.eq_name LIKE '%' || #{keyword} || '%') or (equipment.cate_name LIKE '%' || #{keyword} || '%')</if>
 		</if>
 
 	</sql> 
