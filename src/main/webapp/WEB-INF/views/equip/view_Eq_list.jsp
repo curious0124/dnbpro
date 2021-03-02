@@ -216,7 +216,7 @@
 <form role="form" method="get">
  
     <div class="searchviewlist"> <select name="searchType">
-      <option value="no"<c:out value="${cri.searchType == null ? 'selected' : ''}"/>>-----</option>
+      <option value="no" <c:out value="${cri.searchType == null ? 'selected' : ''}"/>>-----</option>
        <option value="qw"<c:out value="${cri.searchType eq 'qw' ? 'selected' : ''}"/>selected>모델명+카테고리</option>
       <option value="q"<c:out value="${cri.searchType eq 'q' ? 'selected' : ''}"/>>모델명</option>
       <option value="w"<c:out value="${cri.searchType eq 'w' ? 'selected' : ''}"/>>카테고리</option>

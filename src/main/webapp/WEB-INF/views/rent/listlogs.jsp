@@ -97,35 +97,64 @@
         }
         .col_top{
             float: left;
-            background: #FA8072;
             color: white;
             font-weight: bold;
             
         }
-        .col_list{
-            float: left;
-            background: #FFF5EE;
-            padding: 0px 0px 0px 0px;
-           
-        }
+      
         
-        #brd_div1{
-            width: 30px;
-        }
-        #brd_div2{
-            width: 90px;
-        }
-        #brd_div3{
-            width: 400px;
-        }
-        #brd_div4{
-            width: 100px;
-        }
-        #brd_div5{
-            width: 120px;
-        }
-        #brd_div6{
+         #brd_div1 {
             width: 80px;
+            height:27px;
+        }
+         #brd_div2 {
+            width: 100px;
+            height:27px;
+        }
+         #brd_div3 {
+            width: 100px;
+            height:27px;
+        }
+         #brd_div4 {
+            width: 100px;
+            height:27px;
+        }
+         #brd_div5 {
+            width: 100px;
+            height:27px;
+        }
+         #brd_div6 {
+            width: 100px;
+            height:27px;
+        }
+         #brd_div7 {
+            width: 100px;
+            height:27px;
+        }
+         #brd_div8 {
+            width: 100px;
+            height:27px;
+        }
+         #brd_div9 {
+            width: 100px;
+            height:27px;
+        }
+      
+       #brd_div10 {
+            width: 100px;
+            height:27px;
+        }
+         #brd_div11 {
+            width: 100px;
+            height:27px;
+        }
+         #brd_div12 {
+            width: 150px;
+            height:27px;
+        }
+         #brd_div13 {
+            width: 100px;
+            height:27px;
         }
         #top_buttonbox{
             min-width: 800px;
@@ -141,6 +170,19 @@
             line-height:5px;
             
         }
+        .col_top {
+            float: left;
+            color: #2e2751;
+            font-weight: bold;
+            border-bottom:2px solid #2e2751;
+            border-top:2px solid #2e2751;
+        }
+         .col_list {
+            float: left;
+            border-bottom:1px solid #f0f0f0;
+            padding: 0px 0px 0px 0px;
+        }
+        
     
         .search {
             float: right;
@@ -152,7 +194,15 @@
         }
 
         .tr1 {
-            background: #FA8072;
+       
+           
+        }
+        .ta1 {
+        width: 1350px;
+           
+        }
+        .tit{
+          font-size: 25px;
         }
 
  #listPaging{  clear:both; text-align:center;}
@@ -193,49 +243,49 @@ $(function() {
       <form role="form" method="get">
  
     <div class="search"> <select name="searchType">
-      <option value="no"<c:out value="${cri.searchType == null ? 'selected' : ''}"/>>-----</option>
-       <option value="tc"<c:out value="${cri.searchType eq 'tc' ? 'selected' : ''}"/>selected>아이디+현황</option>
-      <option value="i"<c:out value="${cri.searchType eq 'i' ? 'selected' : ''}"/>>아이디</option>
-      <option value="n"<c:out value="${cri.searchType eq 'n' ? 'selected' : ''}"/>>현황</option>
-    </select>
-                        
-                        <input type="text" name="keyword" id="keywordInput" value="${cri.keyword}"/>
-
-    <button id="searchBtn" type="button">검색</button>
-    <script>
-      $(function(){
-        $('#searchBtn').click(function() {
-          self.location = "listlogs.do" + '${pageMaker.makeQuery(1)}' + "&searchType=" + $("select option:selected").val() + "&keyword=" + encodeURIComponent($('#keywordInput').val());
-        });
-      });   
-    </script>
-                    </div>
+	      <option value="no"<c:out value="${cri.searchType == null ? 'selected' : ''}"/>>-----</option>
+	       <option value="tc"<c:out value="${cri.searchType eq 'tc' ? 'selected' : ''}"/>selected>아이디+현황</option>
+	      <option value="i"<c:out value="${cri.searchType eq 'i' ? 'selected' : ''}"/>>아이디</option>
+	      <option value="n"<c:out value="${cri.searchType eq 'n' ? 'selected' : ''}"/>>현황</option>
+	    </select>
+	                        
+	                        <input type="text" name="keyword" id="keywordInput" value="${cri.keyword}"/>
+	
+	    <button id="searchBtn" type="button">검색</button>
+	    <script>
+	      $(function(){
+	        $('#searchBtn').click(function() {
+	          self.location = "listlogs.do" + '${pageMaker.makeQuery(1)}' + "&searchType=" + $("select option:selected").val() + "&keyword=" + encodeURIComponent($('#keywordInput').val());
+	        });
+	      });   
+	    </script>
+	   </div>
                     </form>
     
         <form action="#" method="post">
 
             <fieldset>
-               <strong>사용자 이력 보기</strong>
+               <div class="tit"><strong>사용자 이력 보기</strong></div>
                     
              
 
 
-                <div>
-                    <table align="center" border="1">
+                <div >
+                    <table align="center" border="1" class="ta1">
                         <tr class="tr1">
-                            <td>로그번호</td>
-                            <td>예약신청번호</td>
-                            <td>예약번호</td>
-                            <td>반납배송번호</td>
-                            <td>회원아이디</td>
-                            <td>로그발생자</td>
-                            <td>예약시작일</td>
-                            <td>예약반납일</td>
-                            <td>로그발생일</td>
-                            <td>모델명</td>
-                            <td>분류명</td>
-                            <td>시리얼번호</td>
-                            <td>현황</td>
+                            <td class="col_top" id="brd_div1">로그번호</td>
+                            <td class="col_top" id="brd_div2">예약신청번호</td>
+                            <td class="col_top" id="brd_div3">예약번호</td>
+                            <td class="col_top" id="brd_div4">반납배송번호</td>
+                            <td class="col_top" id="brd_div5">회원아이디</td>
+                            <td class="col_top" id="brd_div6">로그발생자</td>
+                            <td class="col_top" id="brd_div7">예약시작일</td>
+                            <td class="col_top" id="brd_div8">예약반납일</td>
+                            <td class="col_top" id="brd_div9">로그발생일</td>
+                            <td class="col_top" id="brd_div10">모델명</td>
+                            <td class="col_top" id="brd_div11">분류명</td>
+                            <td class="col_top" id="brd_div12">시리얼번호</td>
+                            <td class="col_top" id="brd_div13">현황</td>
                         </tr>
 
 
@@ -244,25 +294,19 @@ $(function() {
                                 <c:set var="List" value="${logList }" />
                                 <c:forEach var="List" items="${logList }" varStatus="Log_num">
                                     <tr>
-                                        <td>${List.log_num}</td>
-                                        <td>${List.resq_num}</td>
-                                        <td>${List.res_num}</td>
-                                        <td>${List.return_num}</td>
-                                        <td>${List.user_id}</td>
-                                        <td>${List.log_maker}</td>
-                                        <td>
-                                            <fmt:formatDate pattern="yyyy-MM-dd" value="${List.res_start}" />
-                                        </td>
-                                        <td>
-                                            <fmt:formatDate pattern="yyyy-MM-dd" value="${List.res_end}" />
-                                        </td>
-                                        <td>
-                                            <fmt:formatDate pattern="yyyy-MM-dd" value="${List.log_date}" />
-                                        </td>
-                                        <td>${List.eq_name}</td>
-                                        <td>${List.cate_name}</td>
-                                        <td>${List.eq_serial}</td>
-                                        <td>${List.status}</td>
+	                                        <td class="col_list" id="brd_div1">${List.log_num}</td>
+	                                        <td class="col_list" id="brd_div2">${List.resq_num}</td>
+	                                        <td class="col_list" id="brd_div3">${List.res_num}</td>
+	                                        <td class="col_list" id="brd_div4">${List.return_num}</td>
+	                                        <td class="col_list" id="brd_div5">${List.user_id}</td>
+	                                        <td class="col_list" id="brd_div6">${List.log_maker}</td>
+	                                        <td class="col_list" id="brd_div7">${List.res_start}</td>
+	                                        <td class="col_list" id="brd_div8">${List.res_end}</td >
+	                                        <td class="col_list" id="brd_div9">${List.log_date}</td>
+	                                        <td class="col_list" id="brd_div10">${List.eq_name}</td>
+	                                        <td class="col_list" id="brd_div11">${List.cate_name}</td>
+	                                        <td class="col_list" id="brd_div12">${List.eq_serial}</td>
+	                                        <td class="col_list" id="brd_div13">${List.status}</td>
                                     </tr>
                                 </c:forEach>
                             </c:when>
