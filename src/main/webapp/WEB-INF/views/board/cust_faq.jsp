@@ -49,12 +49,29 @@
 	overflow: hidden;
 	transition: max-height 0.2s ease-out;
 	text-align: justify;
+	
+	display: grid;
+	grid-template-columns:5% 60% 30% 5%;
+
+	
 }
+.grid0{
+	margin: 1px;
+	grid-column-start: 2; grid-column-end: 3;
+}
+
+.grid1{
+	margin: 10px;
+	grid-column-start: 3; grid-column-end: 4;
+}	
 
 #edu_top{margin-bottom: 20px;}
 body{background-color: #F4F9FC;}
 #page_bottom{margin-top: 30px;}
-#faq_preview{width:20%; height: 20%;}
+#faq_preview{width:100%; height: 100%;}
+.accordion span{
+			font-size: 20px;
+}
 </style>
 
 </head>
@@ -89,18 +106,29 @@ body{background-color: #F4F9FC;}
 	<c:forEach var="article" items="${articlesList }"
 		varStatus="articleNum">
 		<button class="accordion">
-			<div class="cust_faq_title">${article.board_title }</div>
+			<span class="col-3 cust_faq_num">Q </span>
+			<span class="col-9 cust_faq_title">${article.board_title }</span>
 		</button>
 		<div class="panel">
-			<div class="cust_faq_content">${article.board_content}</div>
+			<div class="grid0 cust_faq_content">
+				<span>
+					<h3>Answer</h3>
+				</span>
+				<span >
+					${article.board_content}
+				</span>
+			</div>
 			<c:choose>
 				<c:when
 					test="${not empty article.board_img && article.board_img!='null' }">
+					<div class="grid1">
 					<input type="hidden" name="originalFileName" value="${article.board_img }" />
 					<img src="${contextPath}/download.do?board_num=${article.board_num}&board_img=${article.board_img}" id="faq_preview" />
 					<br>
+					</div>
 				</c:when>
 				<c:otherwise>
+					<div class="grid1"></div>
 				</c:otherwise>
 			</c:choose>
 		</div>
