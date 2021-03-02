@@ -71,7 +71,8 @@
 				function() {
 
 					var result = prompt("운송장 번호를 입력하세요", "0000-0000-0000");
-					if (result != null && result.length != 0 && result != "0000-0000-0000") {
+					if (result != null && result.length != 0
+							&& result != "0000-0000-0000") {
 						var cate_name = $(this).parent().find(
 								"input:nth-child(2)").val();
 						var res_num = $(this).parent().find(
@@ -96,7 +97,7 @@
 </script>
 
 <style>
-.my_reserv_appling {
+/* .my_reserv_appling {
 	
 }
 
@@ -106,7 +107,7 @@
 
 .rent_table {
 	width: 100%;
-}
+} */
 </style>
 
 <title>Insert title here</title>
@@ -117,124 +118,151 @@
 
 </head>
 <body>
-
-
-	<div class=my_reserv_total>
-		<a class='cls1'
-			href="${contextPath}/mypage/modmemberForm.do?user_id=${user_id}">내
-			정보수정</a> <a class='cls1'
-			href="${contextPath}/mypage/removeMember.do?user_id=${user_id}">회원탈퇴</a>
-		<div class=my_reserv_apply>
+	<!-- 상단 배너 -->
+	<div class="breadcrumbs overlay"
+		style="background-image:url('${contextPath}/resources/image/page_banner.jpg')">
+		<div class="container">
+			<div class="row">
+				<div class="col-12">
+					<div class="bread-inner">
+						<!-- Bread Menu -->
+						<div class="bread-menu">
+							<ul>
+								<li><a href="${contextPath}/main/main.do">Home</a></li>
+								<li><a href="${contextPath}/mypage/mypage.do">MyPage</a></li>
+							</ul>
+						</div>
+						<!-- Bread Title -->
+						<div class="bread-title">
+							<h2>Reservation</h2>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 상단 배너 -->
+	      <a class='cls1'
+         href="${contextPath}/mypage/modmemberForm.do?user_id=${user_id}">내
+         정보수정</a> <a class='cls1'
+         href="${contextPath}/mypage/removeMember.do?user_id=${user_id}">회원탈퇴</a>
+	<!-- 수정 한 테이블 -->
+	<section class="features-area section-bg">
+		<div class="container" id="">
+		<div class="row">
+		<div class="col">
+			<h4>예약 신청</h4>
+			</div>
+			<div class="col">
 			<form action="myResqDetail.do" method="post">
-				<fieldset>
-					<legend>예약신청</legend>
-					<c:choose>
-						<c:when test="${resqList !=null }">
-							<div class=rent_area>
-								<input type="submit" value=자세히보기> <input type="hidden"
-									name="user_id" value="${resqList[1].user_id}">
-							</div>
-
-							<table class=rent_table border=1px>
-								<tr bgcolor=#ccc>
-									<td>예약신청번호</td>
-									<td>장비시리얼번호</td>
-									<td>모델명</td>
-									<td>신청일</td>
-									<td>시작일</td>
-									<td>반납일</td>
-									<td>상태</td>
-									<td>취소반납신청</td>
-
-								</tr>
-
-								<c:forEach var="resqApplyList" items="${resqList}"
-									varStatus="resqApplyListNum">
-									<tr>
-										<td>${resqApplyListNum.count}</td>
-										<td>${resqApplyList.eq_serial}</td>
-										<td>${resqApplyList.eq_name}</td>
-										<td><fmt:formatDate pattern="yyyy-MM-dd"
-												value="${resqApplyList.resq_date}" /></td>
-										<td><fmt:formatDate pattern="yyyy-MM-dd"
-												value="${resqApplyList.resq_start}" /></td>
-										<td><fmt:formatDate pattern="yyyy-MM-dd"
-												value="${resqApplyList.resq_end}" /></td>
-										<td>예약신청</td>
-										<td><input type="button" class="Resq" value="예약신청취소" />
-											<input type="hidden" value="${resqApplyList.cate_name}">
-											<input type="hidden" value="${resqApplyList.resq_num}"></td>
-
-
-									</tr>
-								</c:forEach>
-
-
-							</table>
-						</c:when>
-					</c:choose>
-				</fieldset>
-			</form>
-		</div>
-		<div class=my_reserv_appling>
-
-			<fieldset>
-				<legend>예약중</legend>
-				<form action="myResDetail.do" method="post">
-					<div class=rent_area>
-						<input type="submit" value=자세히보기> <input type="hidden"
-							name="user_id" value="${resList[1].user_id}">
-					</div>
+				<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+					<button type="submit" class="btn btn-outline-secondary" value=자세히보기>자세히 보기</button> <input type="hidden"
+						name="user_id" value="${resqList[1].user_id}">
+				</div>
 				</form>
-				<table class=rent_table border=1px>
-					<tr bgcolor=#ccc>
-						<td>예약번호</td>
-						<td>장비시리얼번호</td>
-						<td>모델명</td>
-						<td>시작일</td>
-						<td>반납일</td>
-						<td>상태</td>
-						<td>취소반납신청</td>
-
-					</tr>
-					<c:choose>
-						<c:when test="${resList !=null }">
-							<c:forEach var="myResList" items="${resList}"
-								varStatus="myResListNum">
-
-								<tr>
-									<td>${myResListNum.count}</td>
-									<td>${myResList.eq_serial}</td>
-									<td>${myResList.eq_name}</td>
-									<td><fmt:formatDate pattern="yyyy-MM-dd"
-											value="${myResList.res_start}" /></td>
-									<td><fmt:formatDate pattern="yyyy-MM-dd"
-											value="${myResList.res_end}" /></td>
-
-									<td>${myResList.res_Status}</td>
-
-									<td><input type="button" class="Res" value="예약취소" /> <input
-										type="hidden" value="${myResList.cate_name}"> <input
-										type="hidden" value="${myResList.res_num}"></td>
-
-								</tr>
-							</c:forEach>
-						</c:when>
-					</c:choose>
+				</div>
+				</div>
+				<table class="table table-light table-hover align-middle">
+					<thead class="table-light text-center">
+						<tr>
+							<th>예약 신청 번호</th>
+							<th>장비 시리얼 번호</th>
+							<th>모델명</th>
+							<th>신청일</th>
+							<th>시작일</th>
+							<th>반납일</th>
+							<th>상태</th>
+							<th>취소ο반납 신청</th>
+						</tr>
+					</thead>
+					<tbody>
+						<c:forEach var="resqApplyList" items="${resqList}"
+							varStatus="resqApplyListNum">
+							<tr>
+								<td>${resqApplyListNum.count}</td>
+								<td>${resqApplyList.eq_serial}</td>
+								<td>${resqApplyList.eq_name}</td>
+								<td><fmt:formatDate pattern="yyyy-MM-dd"
+										value="${resqApplyList.resq_date}" /></td>
+								<td><fmt:formatDate pattern="yyyy-MM-dd"
+										value="${resqApplyList.resq_start}" /></td>
+								<td><fmt:formatDate pattern="yyyy-MM-dd"
+										value="${resqApplyList.resq_end}" /></td>
+								<td>예약신청</td>
+								<td><button class="Resq btn-outline-success" value="예약신청취소" >예약신청취소</button> <input
+									type="hidden" value="${resqApplyList.cate_name}"> <input
+									type="hidden" value="${resqApplyList.resq_num}"></td>
+							</tr>
+						</c:forEach>
+					</tbody>
 				</table>
-			</fieldset>
-
+			
 		</div>
-		<div class=my_rent>
+		<!-- 예약 신청 테이블 -->
+		<!-- 예약 중 테이블 -->
+		<div class="container" id="">
+		<div class="row">
+		<div class="col">
+		<h4>예약중</h4>
+		</div>
+		<div class="col">
+			<form action="myResDetail.do" method="post">
+				<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+					<button type="submit" class="btn btn-outline-secondary"" value=자세히보기>자세히 보기</button> <input type="hidden"
+						name="user_id" value="${resList[1].user_id}">
+				</div>
+				</form>
+				</div>
+					
+				</div>
+				<table class="table table-light table-hover align-middle">
+					<thead class="table-light text-center">
+						<tr>
+							<td>예약번호</td>
+							<td>장비시리얼번호</td>
+							<td>모델명</td>
+							<td>시작일</td>
+							<td>반납일</td>
+							<td>상태</td>
+							<td>취소반납신청</td>
+						</tr>
+					</thead>
+					<tbody>
+						<c:forEach var="myResList" items="${resList}"
+							varStatus="myResListNum">
+							<tr>
+								<td>${myResListNum.count}</td>
+								<td>${myResList.eq_serial}</td>
+								<td>${myResList.eq_name}</td>
+								<td><fmt:formatDate pattern="yyyy-MM-dd"
+										value="${myResList.res_start}" /></td>
+								<td><fmt:formatDate pattern="yyyy-MM-dd"
+										value="${myResList.res_end}" /></td>
+								<td>${myResList.res_Status}</td>
+								<td><button class="Res btn-outline-success" value="예약 취소" >예약 취소</button><input
+									type="hidden" value="${myResList.cate_name}"> <input
+									type="hidden" value="${myResList.res_num}"></td>
+							</tr>
+						</c:forEach>
+					</tbody>
+				</table>
+		
+		</div>
+		<div class="container" id="">
+		<div class="row">
+		<div class="col">
+		<h4>대여중</h4>
 			<form action="myReturnDetail.do" method="post">
-				<fieldset>
-					<legend>대여중</legend>
-					<div class=rent_area>
-						<input type="submit" value=자세히보기> <input type="hidden"
-							name="user_id" value="${retList[1].user_id}">
-					</div>
-					<table class=rent_table border=1px>
-						<tr bgcolor=#ccc>
+				<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+					<button type="submit" class="btn btn-outline-secondary"" value=자세히보기>자세히 보기</button> <input type="hidden"
+						name="user_id" value="${retList[1].user_id}">
+				</div>
+				</form>
+				</div>
+				</div>
+				<table class="table table-light table-hover align-middle">
+					<thead class="table-light text-center">
+						<tr>
 							<td>대여번호</td>
 							<td>장비시리얼번호</td>
 							<td>모델명</td>
@@ -243,43 +271,46 @@
 							<td>상태</td>
 							<td>취소반납신청</td>
 						</tr>
-						<c:choose>
-							<c:when test="${retList !=null }">
-								<c:forEach var="myReturnList" items="${retList}"
-									varStatus="myReturnListNum">
-									<tr>
-										<td>${myReturnListNum.count}</td>
-										<td>${myReturnList.eq_serial}</td>
-										<td>${myReturnList.eq_name}</td>
-										<td><fmt:formatDate pattern="yyyy-MM-dd"
-												value="${myReturnList.res_start}" /></td>
-										<td><fmt:formatDate pattern="yyyy-MM-dd"
-												value="${myReturnList.res_end}" /></td>
+					</thead>
+					<tbody>
+						<c:forEach var="myReturnList" items="${retList}"
+							varStatus="myReturnListNum">
+							<tr>
+								<td>${myReturnListNum.count}</td>
+								<td>${myReturnList.eq_serial}</td>
+								<td>${myReturnList.eq_name}</td>
+								<td><fmt:formatDate pattern="yyyy-MM-dd"
+										value="${myReturnList.res_start}" /></td>
+								<td><fmt:formatDate pattern="yyyy-MM-dd"
+										value="${myReturnList.res_end}" /></td>
 
-										<td>${myReturnList.res_Status}</td>
-										<td><input type="button" class="Return" value="배송반납신청" />
-											<input type="hidden" value="${myReturnList.cate_name}">
-											<input type="hidden" value="${myReturnList.res_num}">
-										</td>
-									</tr>
-								</c:forEach>
-							</c:when>
-						</c:choose>
-					</table>
-
-				</fieldset>
-			</form>
+								<td>${myReturnList.res_Status}</td>
+								<td><button class="Return btn-outline-success" value="배송반납 신청" >배송반납 신청</button>
+									<input type="hidden" value="${myReturnList.cate_name}">
+									<input type="hidden" value="${myReturnList.res_num}"></td>
+							</tr>
+						</c:forEach>
+					</tbody>
+				</table>
+			
 		</div>
-		<div class=my_rent_log>
+		<div class="container" id="">
+		<div class="row">
+		<div class="col">
+		<h4>로그</h4>
+		</div>
+		<div class="col">
 			<form action="myLogDetail.do" method="post">
-				<fieldset>
-					<legend>반납 및 취소내역</legend>
-					<div class=rent_area>
-						<input type="submit" value=자세히보기> <input type="hidden"
-							name="user_id" value="${logList[1].user_id}">
-					</div>
-					<table class=rent_table border=1px>
-						<tr bgcolor=#ccc>
+				<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+					<button type="submit" class="btn btn-outline-secondary" value=자세히보기>자세히 보기</button>
+					<input type="hidden" name="user_id" value="${logList[1].user_id}">
+				</div>
+			</form>
+			</div>
+			</div>
+				<table class="table table-light table-hover align-middle">
+					<thead class="table-light text-center">
+						<tr>
 							<td>반납번호</td>
 							<td>장비시리얼번호</td>
 							<td>모델명</td>
@@ -288,35 +319,33 @@
 							<td>반납일</td>
 							<td>상태</td>
 						</tr>
-						<c:choose>
-							<c:when test="${logList !=null }">
-								<c:forEach var="myLogList" items="${logList}"
-									varStatus="myLogListNum">
-									<tr>
-										<td>${myLogListNum.count}</td>
-										<td>${myLogList.eq_serial}</td>
-										<td>${myLogList.eq_name}</td>
-										<td><fmt:formatDate pattern="yyyy-MM-dd"
-												value="${myLogList.log_date}" /></td>
-										<td><fmt:formatDate pattern="yyyy-MM-dd"
-												value="${myLogList.res_start}" /></td>
-										<td><fmt:formatDate pattern="yyyy-MM-dd"
-												value="${myLogList.res_end}" /></td>
-
-										<td>${myLogList.status}</td>
-
-									</tr>
-								</c:forEach>
-							</c:when>
-						</c:choose>
-
-					</table>
-
-				</fieldset>
-			</form>
-
+					</thead>
+					<tbody>
+						<c:forEach var="myLogList" items="${logList}"
+							varStatus="myLogListNum">
+							<tr>
+								<td>${myLogListNum.count}</td>
+								<td>${myLogList.eq_serial}</td>
+								<td>${myLogList.eq_name}</td>
+								<td><fmt:formatDate pattern="yyyy-MM-dd"
+										value="${myLogList.log_date}" /></td>
+								<td><fmt:formatDate pattern="yyyy-MM-dd"
+										value="${myLogList.res_start}" /></td>
+								<td><fmt:formatDate pattern="yyyy-MM-dd"
+										value="${myLogList.res_end}" /></td>
+								<td>${myLogList.status}</td>
+							</tr>
+						</c:forEach>
+					</tbody>
+				</table>
+			
 		</div>
-	</div>
+		<!-- 예약 중 테이블 -->
+	</section>
+	<!-- 수정 한 테이블 -->
+
+
+
 
 	<form action="${contextPath}/mypage/cancelResq.do" id="ResqForm"
 		method="post">
