@@ -329,7 +329,6 @@ private static final Logger logger = LoggerFactory.getLogger(BoardControllerImpl
 						}
 					}
 					mFile.transferTo(new File(ARTICLE_IMAGE_REPO+"\\"+"temp"+"\\"+board_Img));
-					
 				}			
 			}
 			return board_Img;		
