@@ -197,7 +197,7 @@
     <c:forEach  var="cate" items="${cateList }" varStatus="cateNum" >
     
     
-    <li class="listrow" id='brd_div2' onClick="fn_process()" value="${cate.cate_name}"><a href="${contextPath}/equip/view_Eq_list.do?cate_name=${equip.cate_name}">${cate.cate_name}</a></li>
+    <li class="listrow" id='brd_div2' onClick="fn_process()" value="${cate.cate_name}"><a href="${contextPath}/equip/view_Eq_list.do?cate_name=${cate.cate_name}">${cate.cate_name}</a></li>
  
     </c:forEach>
      </c:when>
