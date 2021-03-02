@@ -97,17 +97,23 @@
 </script>
 
 <style>
-/* .my_reserv_appling {
-	
+body {
+	background-color: #F4F9FC;
 }
 
-.rent_area {
-	float: right;
+td {
+	text-align: center;
 }
 
-.rent_table {
-	width: 100%;
-} */
+.table_top {
+	margin-top: 30px;
+	margin-bottom: 30px;
+}
+
+.bor {
+	border: 2px dashed #bcbcbc;
+	margin-bottom: 50px;
+}
 </style>
 
 <title>Insert title here</title>
@@ -142,25 +148,42 @@
 		</div>
 	</div>
 	<!-- 상단 배너 -->
-	      <a class='cls1'
-         href="${contextPath}/mypage/modmemberForm.do?user_id=${user_id}">내
-         정보수정</a> <a class='cls1'
-         href="${contextPath}/mypage/removeMember.do?user_id=${user_id}">회원탈퇴</a>
+	<section class="features-area section-bg">
+		<div class="container" id="mypage_all_container">
+			<center>
+				<div class="btn-group" role="group"
+					aria-label="Basic mixed styles">
+					<button type="button"
+						onclick="location.href='${contextPath}/mypage/mypage.do' "
+						class="btn btn-outline-danger">예약 내역</button>
+					<button type="button"
+						onclick="location.href='${contextPath}/mypage/modmemberForm.do?user_id=${user_id}' "
+						class="btn btn-outline-dark">내정보 수정</button>
+					<button type="button"
+						onclick="location.href='${contextPath}/mypage/removeMember.do?user_id=${user_id}' "
+						class="btn btn-outline-danger">회원 탈퇴</button>
+				</div>
+			</center>
+		</div>
+	</section>
 	<!-- 수정 한 테이블 -->
 	<section class="features-area section-bg">
-		<div class="container" id="">
-		<div class="row">
-		<div class="col">
-			<h4>예약 신청</h4>
-			</div>
-			<div class="col">
-			<form action="myResqDetail.do" method="post">
-				<div class="d-grid gap-2 d-md-flex justify-content-md-end">
-					<button type="submit" class="btn btn-outline-secondary" value=자세히보기>자세히 보기</button> <input type="hidden"
-						name="user_id" value="${resqList[1].user_id}">
-				</div>
-				</form>
-				</div>
+		<div class="container" id="mypage_all_container">
+			<div class="bor container" id="">
+				<div class="table_top row">
+					<div class="col">
+						<h4>예약 신청</h4>
+					</div>
+					<div class="col">
+						<form action="myResqDetail.do" method="post">
+							<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+								<button type="submit" class="btn btn-outline-secondary"
+									value=자세히보기>자세히 보기</button>
+								<input type="hidden" name="user_id"
+									value="${resqList[1].user_id}">
+							</div>
+						</form>
+					</div>
 				</div>
 				<table class="table table-light table-hover align-middle">
 					<thead class="table-light text-center">
@@ -172,7 +195,7 @@
 							<th>시작일</th>
 							<th>반납일</th>
 							<th>상태</th>
-							<th>취소ο반납 신청</th>
+							<th>취소/반납 신청</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -189,31 +212,33 @@
 								<td><fmt:formatDate pattern="yyyy-MM-dd"
 										value="${resqApplyList.resq_end}" /></td>
 								<td>예약신청</td>
-								<td><button class="Resq btn-outline-success" value="예약신청취소" >예약신청취소</button> <input
-									type="hidden" value="${resqApplyList.cate_name}"> <input
-									type="hidden" value="${resqApplyList.resq_num}"></td>
+								<td><button class="Resq btn-outline-success" value="예약신청취소">예약신청취소</button>
+									<input type="hidden" value="${resqApplyList.cate_name}">
+									<input type="hidden" value="${resqApplyList.resq_num}"></td>
 							</tr>
 						</c:forEach>
 					</tbody>
 				</table>
-			
-		</div>
-		<!-- 예약 신청 테이블 -->
-		<!-- 예약 중 테이블 -->
-		<div class="container" id="">
-		<div class="row">
-		<div class="col">
-		<h4>예약중</h4>
-		</div>
-		<div class="col">
-			<form action="myResDetail.do" method="post">
-				<div class="d-grid gap-2 d-md-flex justify-content-md-end">
-					<button type="submit" class="btn btn-outline-secondary"" value=자세히보기>자세히 보기</button> <input type="hidden"
-						name="user_id" value="${resList[1].user_id}">
-				</div>
-				</form>
-				</div>
-					
+
+			</div>
+			<!-- 예약 신청 테이블 -->
+			<!-- 예약 중 테이블 -->
+			<div class="bor container" id="">
+				<div class="table_top row">
+					<div class="col">
+						<h4>예약중</h4>
+					</div>
+					<div class="col">
+						<form action="myResDetail.do" method="post">
+							<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+								<button type="submit" class="btn btn-outline-secondary"
+									" value=자세히보기>자세히 보기</button>
+								<input type="hidden" name="user_id"
+									value="${resList[1].user_id}">
+							</div>
+						</form>
+					</div>
+
 				</div>
 				<table class="table table-light table-hover align-middle">
 					<thead class="table-light text-center">
@@ -224,7 +249,7 @@
 							<td>시작일</td>
 							<td>반납일</td>
 							<td>상태</td>
-							<td>취소반납신청</td>
+							<td>취소/반납 신청</td>
 						</tr>
 					</thead>
 					<tbody>
@@ -239,26 +264,31 @@
 								<td><fmt:formatDate pattern="yyyy-MM-dd"
 										value="${myResList.res_end}" /></td>
 								<td>${myResList.res_Status}</td>
-								<td><button class="Res btn-outline-success" value="예약 취소" >예약 취소</button><input
-									type="hidden" value="${myResList.cate_name}"> <input
+								<td><button class="Res btn-outline-success" value="예약 취소">예약
+										취소</button>
+									<input type="hidden" value="${myResList.cate_name}"> <input
 									type="hidden" value="${myResList.res_num}"></td>
 							</tr>
 						</c:forEach>
 					</tbody>
 				</table>
-		
-		</div>
-		<div class="container" id="">
-		<div class="row">
-		<div class="col">
-		<h4>대여중</h4>
-			<form action="myReturnDetail.do" method="post">
-				<div class="d-grid gap-2 d-md-flex justify-content-md-end">
-					<button type="submit" class="btn btn-outline-secondary"" value=자세히보기>자세히 보기</button> <input type="hidden"
-						name="user_id" value="${retList[1].user_id}">
-				</div>
-				</form>
-				</div>
+
+			</div>
+			<div class="bor container" id="">
+				<div class="table_top row">
+					<div class="col">
+						<h4>대여중</h4>
+					</div>
+					<div class="col">
+						<form action="myReturnDetail.do" method="post">
+							<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+								<button type="submit" class="btn btn-outline-secondary"
+									" value=자세히보기>자세히 보기</button>
+								<input type="hidden" name="user_id"
+									value="${retList[1].user_id}">
+							</div>
+						</form>
+					</div>
 				</div>
 				<table class="table table-light table-hover align-middle">
 					<thead class="table-light text-center">
@@ -269,7 +299,7 @@
 							<td>시작일</td>
 							<td>반납일</td>
 							<td>상태</td>
-							<td>취소반납신청</td>
+							<td>취소/반납 신청</td>
 						</tr>
 					</thead>
 					<tbody>
@@ -285,29 +315,32 @@
 										value="${myReturnList.res_end}" /></td>
 
 								<td>${myReturnList.res_Status}</td>
-								<td><button class="Return btn-outline-success" value="배송반납 신청" >배송반납 신청</button>
-									<input type="hidden" value="${myReturnList.cate_name}">
-									<input type="hidden" value="${myReturnList.res_num}"></td>
+								<td><button class="Return btn-outline-success"
+										value="배송반납 신청">배송반납 신청</button> <input type="hidden"
+									value="${myReturnList.cate_name}"> <input type="hidden"
+									value="${myReturnList.res_num}"></td>
 							</tr>
 						</c:forEach>
 					</tbody>
 				</table>
-			
-		</div>
-		<div class="container" id="">
-		<div class="row">
-		<div class="col">
-		<h4>로그</h4>
-		</div>
-		<div class="col">
-			<form action="myLogDetail.do" method="post">
-				<div class="d-grid gap-2 d-md-flex justify-content-md-end">
-					<button type="submit" class="btn btn-outline-secondary" value=자세히보기>자세히 보기</button>
-					<input type="hidden" name="user_id" value="${logList[1].user_id}">
+
+			</div>
+			<div class="bor container" id="">
+				<div class="table_top row">
+					<div class="col">
+						<h4>반납/취소 내역</h4>
+					</div>
+					<div class="col">
+						<form action="myLogDetail.do" method="post">
+							<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+								<button type="submit" class="btn btn-outline-secondary"
+									value=자세히보기>자세히 보기</button>
+								<input type="hidden" name="user_id"
+									value="${logList[1].user_id}">
+							</div>
+						</form>
+					</div>
 				</div>
-			</form>
-			</div>
-			</div>
 				<table class="table table-light table-hover align-middle">
 					<thead class="table-light text-center">
 						<tr>
@@ -338,9 +371,10 @@
 						</c:forEach>
 					</tbody>
 				</table>
-			
+
+			</div>
+			<!-- 예약 중 테이블 -->
 		</div>
-		<!-- 예약 중 테이블 -->
 	</section>
 	<!-- 수정 한 테이블 -->
 
