@@ -25,6 +25,7 @@ body{background-color: #F4F9FC;}
 #page_bottom{margin-top: 30px;}
 #edu_title_link{color: black; text-decoration: none;}
 #edu_title_link:hover{color: red;}
+.fs{ color: black; font-family: 'RIDIBatang'; text-decoration: none;}
 </style>
 </head>
 <body>
@@ -93,7 +94,7 @@ body{background-color: #F4F9FC;}
 				<tbody>
 					<c:forEach items="${educationList}" var="list"
 						varStatus="educationNum">
-						<tr align="center">
+						<tr class="align-middle" align="center">
 							<td class="col-1">${educationNum.count}</td>
 							<td><c:choose>
 									<c:when
@@ -109,7 +110,7 @@ body{background-color: #F4F9FC;}
 										<b>이미지가 없습니다.</b>
 									</c:otherwise>
 								</c:choose></td>
-							<td><a id="edu_title_link"
+							<td><a class="fs" id="edu_title_link"
 								href="${contextPath}/education/edu_detail.do?educationNO=${list.edu_num}">${list.edu_title}</a></td>
 							<td class="col-1">${list.cate_name}</td>
 							<td class="col-1">${list.eq_name}</td>
