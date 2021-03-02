@@ -20,6 +20,50 @@
 </style>
 </head>
 <body>
+<!-- 상단 배너 -->
+	<div class="breadcrumbs overlay"
+		style="background-image:url('${contextPath}/resources/image/page_banner.jpg')">
+		<div class="container">
+			<div class="row">
+				<div class="col-12">
+					<div class="bread-inner">
+						<!-- Bread Menu -->
+						<div class="bread-menu">
+							<ul>
+								<li><a href="${contextPath}/main/main.do">Home</a></li>
+								<li><a href="${contextPath}/mypage/mypage.do">MyPage</a></li>
+							</ul>
+						</div>
+						<!-- Bread Title -->
+						<div class="bread-title">
+							<h2>Member information modification</h2>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+		
+	<!-- 상단 배너 -->
+	<section class="features-area section-bg">
+		<div class="container">
+		<center>
+				<div class="btn-group" role="group"
+					aria-label="Basic mixed styles">
+					<button type="button"
+						onclick="location.href='${contextPath}/mypage/mypage.do' "
+						class="btn btn-outline-danger">예약 내역</button>
+					<button type="button"
+						onclick="location.href='${contextPath}/mypage/modmemberForm.do?user_id=${user_id}' "
+						class="btn btn-outline-dark">내정보 수정</button>
+					<button type="button"
+						onclick="location.href='${contextPath}/mypage/removeMember.do?user_id=${user_id}' "
+						class="btn btn-outline-danger">회원 탈퇴</button>
+				</div>
+			</center>
+			<div>&nbsp</div>
+			<div>&nbsp</div>
+			<div>&nbsp</div>
 	<form method="post" action="${contextPath}/mypage/modMember.do">
 	<h1  class="text_center">회원 정보 수정창</h1>
 	<table  align="center">
@@ -61,5 +105,7 @@
 	    </tr>
 	</table>
 	</form>
+	</div>
+	</section>
 </body>
 </html>

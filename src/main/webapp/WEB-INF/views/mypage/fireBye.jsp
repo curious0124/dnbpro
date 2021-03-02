@@ -71,6 +71,23 @@
 	<!-- 상단 배너 -->
 	<section class="features-area section-bg">
 		<div class="container">
+		<center>
+				<div class="btn-group" role="group"
+					aria-label="Basic mixed styles">
+					<button type="button"
+						onclick="location.href='${contextPath}/mypage/mypage.do' "
+						class="btn btn-outline-danger">예약 내역</button>
+					<button type="button"
+						onclick="location.href='${contextPath}/mypage/modmemberForm.do?user_id=${user_id}' "
+						class="btn btn-outline-dark">내정보 수정</button>
+					<button type="button"
+						onclick="location.href='${contextPath}/mypage/removeMember.do?user_id=${user_id}' "
+						class="btn btn-outline-danger">회원 탈퇴</button>
+				</div>
+			</center>
+			<div>&nbsp</div>
+			<div>&nbsp</div>
+			<div>&nbsp</div>
 	<div class="fire00">
 		<fieldset>
 		<div><span class="fire01">회원탈퇴가 </span><span class="fire02">&nbsp완료되었습니다.</span></div>
