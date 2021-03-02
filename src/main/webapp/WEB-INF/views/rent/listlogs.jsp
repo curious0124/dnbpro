@@ -92,15 +92,8 @@
             clear:both;
             text-align: center;
             
-            
-            
         }
-        .col_top{
-            float: left;
-            color: white;
-            font-weight: bold;
-            
-        }
+      
       
         
          #brd_div1 {
@@ -271,7 +264,7 @@ $(function() {
 
 
                 <div >
-                    <table align="center" border="1" class="ta1">
+                    <table align="center"  class="ta1">
                         <tr class="tr1">
                             <td class="col_top" id="brd_div1">로그번호</td>
                             <td class="col_top" id="brd_div2">예약신청번호</td>

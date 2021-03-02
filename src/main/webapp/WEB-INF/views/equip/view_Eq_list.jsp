@@ -70,6 +70,41 @@
         #admin_menugroup li{
             list-style: none;
         }
+        
+        #co1{
+            width: 300px;
+             float: left;
+            color: #2e2751;
+            font-weight: bold;
+           
+        }
+        
+         #co2{
+          width: 300px;
+           float: left;
+            color: #2e2751;
+            font-weight: bold;
+          
+            
+        }
+        
+         #co3{
+          width: 300px;
+           float: left;
+            color: #2e2751;
+            font-weight: bold;
+          
+            
+        }
+        
+         #co4{
+          width: 300px;
+           float: left;
+            color: #2e2751;
+            font-weight: bold;
+          
+            
+        }
         .admin_menutitle{
             height: 35px;
             line-height: 35px;	
@@ -122,6 +157,10 @@
             height:100%;
             color: white;
             text-indent: 40px;
+        }
+        .col{
+        color: #2e2751;
+        
         }
 
 </style>
@@ -247,38 +286,38 @@
   
   
   <div class="row align-items-start">
-    <div class="col">
+    <div class="col" id="co1">
      모델명
     </div>
-    <div class="col">
+    <div class="col" id="co2">
      썸네일
     </div>
-     <div class="col">
+     <div class="col" id="co3">
      분류명
     </div>
   
-    <div class="col">
+    <div class="col" id="co4">
    제조사
     </div>
   </div>
-    <hr width="100%">
+    <hr width="100%" >
  
     <c:choose>
         <c:when test="${listequips !=null }">
             <c:forEach var="equip" items="${listequips }">
  
   <div class="row align-items-center">
-    <div class="col">
+    <div class="col" id="co1">
       <a href="${contextPath}/equip/view_Eq_detail.do?eq_name=${equip.eq_name}">${equip.eq_name}&nbsp;</a>
     </div>
-    <div class="col">
+    <div class="col" id="co2">
     <input  type= "hidden"   name="originalFileName" value="${equip.eq_thumimg}" /> 
 	<img src="${contextPath}/equipthumimg_download.do?eq_name=${equip.eq_name}&eq_thumimg=${equip.eq_thumimg}" id="preview"  />
     </div>
-     <div class="col">
+     <div class="col" id="co3">
     ${equip.cate_name}
     </div>
-    <div class="col">
+    <div class="col" id="co4">
     ${equip.eq_ma}
     </div>
   </div>
