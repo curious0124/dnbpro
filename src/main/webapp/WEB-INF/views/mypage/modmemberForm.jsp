@@ -14,6 +14,7 @@
 <meta charset="UTF-8">
 <title>회원 정보 수정창</title>
 <style>
+body{background-color: #F4F9FC;}
    .text_center{
      text-align:center;
    }

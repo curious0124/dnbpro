@@ -15,6 +15,7 @@
 <title>Insert title here</title>
 <script src="${contextPath}/resources/js/jquery-3.5.1.min.js"> </script>
 <style>
+body{background-color: #F4F9FC;}
 .fire00{
 	text-align: center;
 }
