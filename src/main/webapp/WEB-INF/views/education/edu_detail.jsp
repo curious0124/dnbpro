@@ -58,7 +58,10 @@
         }
 
         #brd_btn {
-            margin-top: 50px;
+             margin-top: 10px;
+            width : 70px;
+            font-family: "굴림";
+            font-size: 20px;
         }
 
         .board_img {
@@ -67,12 +70,20 @@
         .iframeBox{
         	position: relative;
         	width: 100%;
+        	height: 510px;
         	
         }
         .iframeBox iframe{
         	position: absolute;
         	width: 95%;
-        	height: 0 auto;
+        	height: 90%;
+        }
+        .wrapIframe{
+        	height: 100%;
+        	border-bottom: solid 1px;
+        }
+         .articlefrom001{
+    		text-align: center;
         }
 </style>
 </head>
@@ -111,12 +122,18 @@
              <div class="input-group input-group-sm mb-3 brd_date">
                     ${educationVO.edu_pub_date }
                </div>
-			<hr>   
+			<hr> 
+				<div class="wrapIframe"> 
                 <div class="iframeBox form-floating">${educationVO.edu_content} </div>
                 <div>&nbsp</div>
                 <div>&nbsp</div>
                 <div>&nbsp</div>
+                </div> 
             <br>
+            
+        <div id="articlefrom1" class="articlefrom001"> 
+        	<button type="button" class="btn btn-light" id='brd_btn'onClick="location.href=' ${contextPath}/education/edu_list.do'" >목록보기</button>
+        </div>  
 		
 
 </div>

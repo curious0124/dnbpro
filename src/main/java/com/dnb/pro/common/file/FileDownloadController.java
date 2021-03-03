@@ -103,14 +103,14 @@ public class FileDownloadController {
 		
 
 				
-		File thumbnail = new File(equipthumimg_ARTICLE_IMAGE_REPO+"\\"+eq_name+"\\"+fileName+".jpg");	//원본이미지 파일이름과 같은 썸네일파일에 대한 File객체 생성
-		if(image.exists()) {	//원본이미지 파일을 가로세로50픽셀인 png형식의 썸네일 이미지파일로 생성
-			thumbnail.getParentFile().mkdirs();
-			Thumbnails.of(image).size(100,100).outputFormat("jpg").toFile(thumbnail);
-		}
+//		File thumbnail = new File(equipthumimg_ARTICLE_IMAGE_REPO+"\\"+eq_name+"\\"+fileName+".jpg");	//원본이미지 파일이름과 같은 썸네일파일에 대한 File객체 생성
+//		if(image.exists()) {	//원본이미지 파일을 가로세로50픽셀인 png형식의 썸네일 이미지파일로 생성
+//			thumbnail.getParentFile().mkdirs();
+//			Thumbnails.of(image).size(100,100).outputFormat("jpg").toFile(thumbnail);
+//		}
 		
 		//생성된 파일을 브라우저로 전송
-		FileInputStream in = new FileInputStream(thumbnail);
+		FileInputStream in = new FileInputStream(image);
 		byte[] buffer = new byte[1024 * 8];
 		while (true) {	//버퍼를 이용해 한번에 8Kbyte씩 브라우저로 전송 
 			int count = in.read(buffer); // 버퍼에 읽어들인 문자개수

@@ -15,7 +15,9 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
     <title>admin_board_list</title>
-    <style>
+    <style>body {
+            background: #f4f9fc;
+        }
     #board_content{
             margin: 0 auto;
             width: 1050px;
@@ -159,8 +161,8 @@
     <div class="board_container">
   <div id='top_buttonbox'>
         ${articlesList[0].brd_name} 게시판
-       <button type="button" class="btn btn-light fs" id="addarticle" onclick="location.href='${contextPath}/board/admin_board_articleForm.do?brd_num=${articlesList[0].brd_num}'">글쓰기</button>
-       <button type="button" class="btn btn-light fs" id="selectDelete_btn">선택삭제</button>
+       <input type="button" class="btn btn-light fs" id="addarticle" value="글쓰기" onclick="location.href='${contextPath}/board/admin_board_articleForm.do?brd_num=${articlesList[0].brd_num}'">
+       <input type="button" class="btn btn-light fs" id="selectDelete_btn"value="선택삭제" >
    </div>
   <div class="listrow toplow">
     <div class="col_top" id="brd_div1">
