@@ -15,7 +15,9 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
     <title>admin_board_modArticleForm</title>
-    <style>
+    <style>body {
+            background: #f4f9fc;
+        }
     #board_content{
             margin: 0 auto;
             width: 1050px;
@@ -55,12 +57,13 @@
             width: 230px;
         }
         #articlefrom1{
-            clear: both;
+            clear: both;width:800px;
         }
         .brd_btn_group{width:200px;margin: 0 auto;
         }
         #brd_btn{
         margin-top:50px;
+        margin-bottom:50px;
         }
         
     </style>
@@ -162,15 +165,15 @@
             
         </div>
         
-            
-            
-        </div><br><br>
-        <div id="articlefrom1"> 
+            <div id="articlefrom1"> 
         	<div class="brd_btn_group">
 	        	<input type="submit" class="btn btn-light fs" id='brd_btn' value="수정하기" />
 		        <input type=button class="btn btn-light fs" id='brd_btn' value="목록보기"onClick="backToList(this.form)" />
 		    </div>     
-        </div>  
+        </div> 
+            
+        </div><br><br>
+         
   
     </div>
        </form>

@@ -19,7 +19,7 @@
     #board_content{
             margin: 0 auto;
             width: 1050px;
-            
+            margin-top:50px;
         }
        
        .board_container{
@@ -34,7 +34,7 @@
             height: 2em;
             line-height: 18px;
             font-size: 15px;
-            background: #FA8072;
+            background: #2e2751;
             
             margin-right: 3px;
         }
@@ -57,7 +57,25 @@
         #articlefrom1{
             clear: both;
         }
+        .brd_btn_group{width:200px;margin: 0 auto;
+        }
+        #brd_btn{
+        margin-top:50px;
+        }
+        .form-control01{
+        	width: 200px;
+        }
+        .articlefrom001{
+        	text-align: center;
+        }
         
+
+        #brd_btn {
+            margin-top: 10px;
+            width : 85px;
+            font-family: "굴림";
+            font-size: 20px;
+        }
     </style>
       <script src="${contextPath}/resources/js/jquery-3.5.1.min.js"> </script>
       
@@ -102,22 +120,31 @@
         <input type="text" name="edu_writer" value="${educationVO.edu_writer }" hidden>
         <input type="text" name="edu_num" value="${educationVO.edu_num }" hidden>
         
-        <br>
-        <br>
+      
         <div id="articlefrom1">   
             <div class="badge text-wrap" style="width: 6rem;">
-                  제목
+                  	제목
             </div>
             <div class="input-group input-group-sm mb-3">
               <input type="text" id="board_titleinput" name="edu_title" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm"value="${educationVO.edu_title }">
             </div>
-            <div class="input-group input-group-sm mb-3">
-              <input type="text" id="board_titleinput" name="cate_name" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm"value="${educationVO.cate_name }">
-            </div>
-            <div class="input-group input-group-sm mb-3">
-              <input type="text" id="board_titleinput" name="eq_name" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm"value="${educationVO.eq_name }">
-            </div>
          </div>
+         <div id="articlefrom1">   
+            <div class="badge text-wrap" style="width: 6rem;">
+                  	분류명
+            </div>
+            <div class="input-group input-group-sm mb-3">
+              <input type="text" id="board_titleinput" name="cate_name" class="form-control01" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm"value="${educationVO.cate_name }">
+            </div>
+            </div>
+            <div id="articlefrom1">   
+            <div class="badge text-wrap" style="width: 6rem;">
+                  	장비명
+            </div>
+            <div class="input-group input-group-sm mb-3">
+              <input type="text" id="board_titleinput" name="eq_name" class="form-control01" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm"value="${educationVO.eq_name }">
+            </div>
+            </div>
          <div id="articlefrom1"> 
              <div class="form-floating">
               <textarea class="form-control" id="floatingTextarea2" name="edu_content"style="height: 500px" >
@@ -154,11 +181,14 @@
         
             
             
-        </div><br><br>
-        <div id="articlefrom1"> 
-        <input type="submit" value="수정하기" />
-	       <input type=button value="목록보기" onClick="location.href=' ${contextPath}/education/edu_admin_list.do'" />
+        <br><br>
+        
+        <div id="articlefrom1" class="articlefrom001"> 
+        	<input type="submit" value="수정하기" id='brd_btn'/>
+        	  &nbsp;&nbsp;
+	       	<input type=button value="목록보기" onClick="location.href=' ${contextPath}/education/edu_admin_list.do'" id='brd_btn'/>
         </div>  
+        </div>
   
     
        </form>

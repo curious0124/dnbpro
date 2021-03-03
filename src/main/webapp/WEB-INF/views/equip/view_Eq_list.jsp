@@ -48,9 +48,9 @@
      #listPaging{  clear:both; text-align:center;}
         #listPaging > ul{margin:0 auto;}
         #listPaging > ul > li{
-        	list-style: none; float: left; padding: 6px;
-        	}
-        	 #admin_menu{
+           list-style: none; float: left; padding: 6px;
+           }
+            #admin_menu{
             margin: 0;
             font-size: 0.9em;
             padding: 0;
@@ -107,7 +107,7 @@
         }
         .admin_menutitle{
             height: 35px;
-            line-height: 35px;	
+            line-height: 35px;   
             
            
             font-size:1.1em;
@@ -174,34 +174,64 @@
 
 
 <script>
-	$(function() {
+   $(function() {
 
-		$(".CancleResq").click(
-				function() {
-					var answer = confirm("예약신청을 취소하시겠습니까?");
-					if (answer == true) {
+      $(".CancleResq").click(
+            function() {
+               var answer = confirm("예약신청을 취소하시겠습니까?");
+               if (answer == true) {
 
-						
-						var resq_num = $(this).parent().find(
-								"input:nth-child(2)").val();
+                  
+                  var resq_num = $(this).parent().find(
+                        "input:nth-child(2)").val();
 
-				
-						
-						$("#cancleResqnum").val(resq_num);
-						var test = $('#cancleResqnum').val();
-						
-						
+            
+                  
+                  $("#cancleResqnum").val(resq_num);
+                  var test = $('#cancleResqnum').val();
+                  
+                  
 
-						$("#ResqcancleForm").submit();
-					}
-				});
+                  $("#ResqcancleForm").submit();
+               }
+            });
 
-	});
+   });
 </script>
 
 </head>
 
 <body>
+<<<<<<< HEAD
+   <!-- 상단 배너 -->
+   <div class="breadcrumbs overlay"
+      style="background-image:url('${contextPath}/resources/image/page_banner.jpg')">
+   
+      <div class="container">
+         <div class="row">
+            <div class="col-12">
+               <div class="bread-inner">
+                  <!-- Bread Menu -->
+                  <div class="bread-menu">
+                     <ul>
+                        <li><a href="${contextPath}/main/main.do">Home</a></li>
+                        <li><a href="${contextPath}/equip/view_Eq_list.do">Equipment</a></li>
+                     </ul>
+                  </div>
+                  <!-- Bread Title -->
+                  <div class="bread-title">
+                     <h2>Equipment</h2>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+   <!-- 상단 배너 -->
+   
+   <section class="features-area section-bg">
+      <div class="container" id="edu_table">
+=======
 	<!-- 상단 배너 -->
 	<div class="breadcrumbs overlay"
 		style="background-image:url('${contextPath}/resources/image/page_banner.jpg')">
@@ -230,6 +260,7 @@
 	
 	<section class="features-area section-bg">
 		<div class="container" id="edu_table">
+>>>>>>> branch 'develop' of https://github.com/curious0124/dnbpro.git
   
  
 
@@ -293,7 +324,7 @@
     </div>
     <div class="col" id="co2">
     <input  type= "hidden"   name="originalFileName" value="${equip.eq_thumimg}" /> 
-	<img src="${contextPath}/equipthumimg_download.do?eq_name=${equip.eq_name}&eq_thumimg=${equip.eq_thumimg}" id="preview"  />
+   <img src="${contextPath}/equipthumimg_download.do?eq_name=${equip.eq_name}&eq_thumimg=${equip.eq_thumimg}" id="preview"  />
     </div>
      <div class="col" id="co3">
     ${equip.cate_name}
@@ -316,25 +347,29 @@
     <hr width="100%">
     
     <div id="listPaging" >
-				<ul>
-					<c:if test="${pageMaker.prev}">
-						<li><a href="view_Eq_list.do${pageMaker.makeSearch(pageMaker.startPage - 1)}">이전</a></li>
-					</c:if>
-					<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
-						
-						<li><a href="view_Eq_list.do${pageMaker.makeSearch(idx)}">${idx}</a></li>
-					</c:forEach>
-					<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
-						<li><a href="view_Eq_list.do${pageMaker.makeSearch(pageMaker.endPage + 1)}">다음</a></li>
-					</c:if>
-				</ul>
-			</div>	
+            <ul>
+               <c:if test="${pageMaker.prev}">
+                  <li><a href="view_Eq_list.do${pageMaker.makeSearch(pageMaker.startPage - 1)}">이전</a></li>
+               </c:if>
+               <c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
+                  
+                  <li><a href="view_Eq_list.do${pageMaker.makeSearch(idx)}">${idx}</a></li>
+               </c:forEach>
+               <c:if test="${pageMaker.next && pageMaker.endPage > 0}">
+                  <li><a href="view_Eq_list.do${pageMaker.makeSearch(pageMaker.endPage + 1)}">다음</a></li>
+               </c:if>
+            </ul>
+         </div>   
     
     
 </div>
 
    </div>
+<<<<<<< HEAD
+   </section>
+=======
 	</section>
+>>>>>>> branch 'develop' of https://github.com/curious0124/dnbpro.git
 </body>
 
 </html>

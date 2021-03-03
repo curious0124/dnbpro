@@ -97,7 +97,7 @@
         }
 
         #brd_btn {
-            margin-top: 50px;
+            margin-top: 50px;margin-bottom:50px;
         }
 
         #preview {
@@ -213,11 +213,11 @@
             <br><br>
             <div id="articlefrom1">
                 <div class="brd_btn_group">
-                    <button type="button" class="btn btn-light" id='brd_btn' onclick="location.href='${contextPath}/board/admin_board_modArticleForm.do?board_num=${article.board_num}'">수정</button>
+                    <input type="button" class="btn btn-light" id='brd_btn' onclick="location.href='${contextPath}/board/admin_board_modArticleForm.do?board_num=${article.board_num}'"value="수정">
                     &nbsp;&nbsp;
-                    <button type="button" class="btn btn-light deleteArticle" id='brd_btn'>삭제</button>
+                    <input type="button" class="btn btn-light deleteArticle" id='brd_btn' value="삭제">
                     &nbsp;&nbsp;
-                    <button type="button" class="btn btn-light" id='brd_btn' onClick="backToList(this.form)">목록보기</button>
+                    <input type="button" class="btn btn-light" id='brd_btn' onClick="backToList(this.form)"value="목록보기">
                 </div>
             </div>
 
