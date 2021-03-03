@@ -147,7 +147,6 @@ $(function() {
 		    	<div class="search">
 		    	<select name="searchType">
 			      	<option value="no"<c:out value="${cri.searchType == null ? 'selected' : ''}"/>>-----</option>
-			       	<option value="tc"<c:out value="${cri.searchType eq 'tc' ? 'selected' : ''}"/>selected>모델명+시리얼명</option>
 			      	<option value="i"<c:out value="${cri.searchType eq 'i' ? 'selected' : ''}"/>>모델명</option>
 			      	<option value="n"<c:out value="${cri.searchType eq 'n' ? 'selected' : ''}"/>>시리얼명</option>
 		    	</select>
