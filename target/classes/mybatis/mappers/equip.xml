@@ -100,9 +100,9 @@ SELECT Eq_name, Eq_thumimg, cate_name, Eq_ma
  
 	SELECT *
 	from( 
-	   SELECT equipment.Cate_name, equipment.eq_name, Eq_list.eq_serial, Eq_list.eq_regist, Eq_list.eq_state,
+	   SELECT equipment.Cate_name, Eq_list.eq_name, Eq_list.eq_serial, Eq_list.eq_regist, Eq_list.eq_state,
 	   ROW_NUMBER() OVER(ORDER BY eq_serial DESC) AS RNUM
-	   FROM  Eq_list, equipment   
+	   FROM  Eq_list, equipment  
 	   where 1=1 and Eq_list.eq_name = equipment.eq_name
 	   <include refid="search"></include>
 	   ) mp
@@ -126,9 +126,9 @@ ORDER BY eq_serial DESC
     <sql id="search">
 		
 		<if test="searchType != null">
-			<if test="searchType == 'i'.toString()">AND equipment.eq_name LIKE '%' || #{keyword} || '%'</if>
+			<if test="searchType == 'i'.toString()">AND Eq_list.eq_name LIKE '%' || #{keyword} || '%'</if>
 			<if test="searchType == 'n'.toString()">AND Eq_list.eq_serial LIKE '%' || #{keyword} || '%'</if>
-			<if test="searchType == 'tc'.toString()">AND (equipment.eq_name LIKE '%' || #{keyword} || '%') or (Eq_list.eq_serial LIKE '%' || #{keyword} || '%')</if>
+			
 		</if>
 
 	</sql> 

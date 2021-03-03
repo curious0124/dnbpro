@@ -167,6 +167,11 @@
 
 #eq_namelink{color: black; text-decoration: none;}
 #eq_namelink:hover{color: red;}
+
+ #listPaging{  clear:both; text-align:center; margin:0 auto;}
+        #listPaging > ul{margin:0 auto; width:800px; display:center;  }
+        #listPaging > ul > li{
+        	list-style: none; display:inline-block; padding: 6px;}
 </style>
 <script src="${contextPath}/resources/js/jquery-3.5.1.min.js"> </script>
    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
