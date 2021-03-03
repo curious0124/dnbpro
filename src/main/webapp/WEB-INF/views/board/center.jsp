@@ -116,6 +116,7 @@
                      </div>
                   </div>
                </div>
+               <div id="center_come">
                <div class="row">
                   <div class="col-12">
                      <div class="blog-comments-form">
@@ -132,6 +133,7 @@
                         </div>
                      </div>
                   </div>
+               </div>
                </div>
             </div>
          </div>
