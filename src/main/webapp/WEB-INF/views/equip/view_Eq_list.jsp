@@ -45,11 +45,7 @@
         text-align: center;
         border: "1";
     }
-     #listPaging{  clear:both; text-align:center;}
-        #listPaging > ul{margin:0 auto;}
-        #listPaging > ul > li{
-           list-style: none; float: left; padding: 6px;
-           }
+   
             #admin_menu{
             margin: 0;
             font-size: 0.9em;
@@ -81,6 +77,7 @@
         
          #co2{
           width: 300px;
+          
            float: right;
             color: #2e2751;
             font-weight: bold;
@@ -171,7 +168,7 @@
  #listPaging{  clear:both; text-align:center; margin:0 auto;}
         #listPaging > ul{margin:0 auto; width:800px; display:center;  }
         #listPaging > ul > li{
-        	list-style: none; display:inline-block; padding: 6px;}
+        	list-style: none; display:inline-block; padding: 6px;
 </style>
 <script src="${contextPath}/resources/js/jquery-3.5.1.min.js"> </script>
    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
@@ -207,7 +204,7 @@
 </head>
 
 <body>
-<<<<<<< HEAD
+
    <!-- 상단 배너 -->
    <div class="breadcrumbs overlay"
       style="background-image:url('${contextPath}/resources/image/page_banner.jpg')">
@@ -236,36 +233,9 @@
    
    <section class="features-area section-bg">
       <div class="container" id="edu_table">
-=======
-	<!-- 상단 배너 -->
-	<div class="breadcrumbs overlay"
-		style="background-image:url('${contextPath}/resources/image/page_banner.jpg')">
+
 	
-		<div class="container">
-			<div class="row">
-				<div class="col-12">
-					<div class="bread-inner">
-						<!-- Bread Menu -->
-						<div class="bread-menu">
-							<ul>
-								<li><a href="${contextPath}/main/main.do">Home</a></li>
-								<li><a href="${contextPath}/equip/view_Eq_list.do">Equipment</a></li>
-							</ul>
-						</div>
-						<!-- Bread Title -->
-						<div class="bread-title">
-							<h2>Equipment</h2>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- 상단 배너 -->
-	
-	<section class="features-area section-bg">
-		<div class="container" id="edu_table">
->>>>>>> branch 'develop' of https://github.com/curious0124/dnbpro.git
+
   
  
 
@@ -369,12 +339,10 @@
     
 </div>
 
-   </div>
-<<<<<<< HEAD
-   </section>
-=======
+ 
+
 	</section>
->>>>>>> branch 'develop' of https://github.com/curious0124/dnbpro.git
+
 </body>
 
 </html>
