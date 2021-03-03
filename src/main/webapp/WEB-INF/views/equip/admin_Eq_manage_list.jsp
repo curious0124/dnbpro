@@ -18,7 +18,8 @@
 
     <title>보유장비리스트</title>
 </head>
-<style>body {
+<style>
+		body {
             background: #f4f9fc;
         }
 		.fs{
@@ -28,7 +29,7 @@
         }
 		#board_content{
             margin: 0 auto;
-            width: 1200px;
+            width: 1050px;
             margin-top:20px;
         }
         #menucontent{padding:50px 0px 0px 0px;
@@ -37,22 +38,21 @@
             margin-left:20px;
             margin-top:-50px;
             float: left;
-            width: 890px;
+            width: 800px;
         }
         #top_buttonbox{
-            min-width: 890px;
+            min-width: 800px;
             text-align: right;
             padding-right: 20px;
             margin-bottom: 10px;
         }
         .listrow{
-            width: 890px;
+            width: 800px;
             clear:both;
             text-align: center;
         }
 		.col1 {margin-top: 10px;
-	        width: 100px;
-	        float: right;text-align:center;
+	        float: right;text-align:right;
 	    }
 		.col2 {
 	        width: 50px;
@@ -64,7 +64,7 @@
 	        text-align:center;
 	    }
 	    .col4 {
-	        width: 100px;
+	        width: 50px;
 	        float: left;text-align:center;
 	    }
 	    .col_top{
@@ -81,7 +81,8 @@
             padding: 0px 0px 0px 0px;
            
         }
-        .modfiybt{height:15px;font-size:0.5em;padding: 2px;line-height:5px;}
+        .topbt{float:right;margin-left:10px;        }
+        .modfiybt{height:20px;font-size:0.5em;padding: 2px;line-height:5px;text-align:center;}
 	    
     
         #listPaging{  clear:both; text-align:center; margin:0 auto;}
@@ -133,9 +134,7 @@ $(function() {
 			  $("#allCheck").prop("checked", false);
 			});
 		
-		 $('#searchBtn').click(function() {
-	          self.location = "admin_Eq_manage_list.do" + '${pageMaker.makeQuery(1)}' + "&searchType=" + $("select option:selected").val() + "&keyword=" + encodeURIComponent($('#keywordInput').val());
-	        });
+		 
 		
 });
 </script>
@@ -144,8 +143,8 @@ $(function() {
   	<div id='menucontent'></div>
   	<div class="board_container">
   		<div id='top_buttonbox'>
-		<form role="form" method="get">
-		    <div class="search">
+		    	<form role="form" method="get">
+		    	<div class="search">
 		    	<select name="searchType">
 			      	<option value="no"<c:out value="${cri.searchType == null ? 'selected' : ''}"/>>-----</option>
 			       	<option value="tc"<c:out value="${cri.searchType eq 'tc' ? 'selected' : ''}"/>selected>모델명+시리얼명</option>
@@ -153,27 +152,22 @@ $(function() {
 			      	<option value="n"<c:out value="${cri.searchType eq 'n' ? 'selected' : ''}"/>>시리얼명</option>
 		    	</select>
 		        <input type="text" name="keyword" id="keywordInput" value="${cri.keyword}"/>
-		    	<button id="searchBtn" class="btn btn-light fs"  type="button">검색</button>
-		     </div>
-         </form>
-        
-
-        <div class="col1" >
-            <input type="button" class="btn btn-light fs" value="분류등록" onclick="location.href='admin_Eq_manage_classify_list.do'">
-        </div>
-        <div class="col1" >
-            <input type="button" class="btn btn-light fs" value="모델등록" onclick="location.href='admin_Eq_manage_regist_list.do'">
-        </div>
-        <div class="col1" >
-            <input type="button" class="btn btn-light fs" value="시리얼등록" onclick="location.href='${contextPath}/equip/admin_Eq_manage_serial.do?eq_name'">
-        </div>
-        <div class="col1" >
-            <input type="button" class="btn btn-light fs selectDelete_btn" value="선택삭제"  >
-             <script>
-				 
-			</script>
-        </div>
+		    	<button id="searchBtn"  type="button">검색</button>
+		    	<script>
+		    	$('#searchBtn').click(function() {
+			          self.location = "admin_Eq_manage_list.do" + '${pageMaker.makeQuery(1)}' + "&searchType=" + $("select option:selected").val() + "&keyword=" + encodeURIComponent($('#keywordInput').val());
+		        });
+		    	</script>
+		    	</div>
+		    	</form>
 		</div>
+        <div id='top_buttonbox'>
+            <input type="button" class="btn btn-light topbt selectDelete_btn" value="선택삭제"  >
+            <input type="button" class="btn btn-light topbt" value="새 시리얼" onclick="location.href='${contextPath}/equip/admin_Eq_manage_serial.do?eq_name'">
+            <input type="button" class="btn btn-light topbt" value="모델리스트" onclick="location.href='admin_Eq_manage_regist_list.do'">
+            <input type="button" class="btn btn-light topbt" value="분류리스트" onclick="location.href='admin_Eq_manage_classify_list.do'">
+        </div>
+		
  
         <div class="listrow toplow">
                 <div class="col2 col_top"><input type="checkbox" name="allCheck" id="allCheck"  onclick="checkAll(this)"></div>
