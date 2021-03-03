@@ -106,7 +106,7 @@ $(function(){
 					<nav aria-label="...">
 					  <ul class="pagination pagination-lg justify-content-center">
 					  <c:if test="${pageMaker.prev}">
-					    <li class="page-item active " aria-current="page"><span class="page-link"><a href="cust_notice.do${pageMaker.makeSearch(pageMaker.startPage - 1)}">이전</a></span></li>
+					    <li class="page-item" aria-current="page"><span><a class="page-link"  href="cust_notice.do${pageMaker.makeSearch(pageMaker.startPage - 1)}">이전</a></span></li>
 					    </c:if>
 					    <c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
 					    <li class="page-item"><a class="page-link" href="cust_notice.do${pageMaker.makeSearch(idx)}">${idx}</a></li>
