@@ -161,8 +161,8 @@
     <div class="board_container">
   <div id='top_buttonbox'>
         ${articlesList[0].brd_name} 게시판
-       <button type="button" class="btn btn-light fs" id="addarticle" onclick="location.href='${contextPath}/board/admin_board_articleForm.do?brd_num=${articlesList[0].brd_num}'">글쓰기</button>
-       <button type="button" class="btn btn-light fs" id="selectDelete_btn">선택삭제</button>
+       <input type="button" class="btn btn-light fs" id="addarticle" value="글쓰기" onclick="location.href='${contextPath}/board/admin_board_articleForm.do?brd_num=${articlesList[0].brd_num}'">
+       <input type="button" class="btn btn-light fs" id="selectDelete_btn"value="선택삭제" >
    </div>
   <div class="listrow toplow">
     <div class="col_top" id="brd_div1">

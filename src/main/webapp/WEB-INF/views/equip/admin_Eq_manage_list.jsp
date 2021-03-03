@@ -81,6 +81,7 @@
             padding: 0px 0px 0px 0px;
            
         }
+        .modfiybt{height:15px;font-size:0.5em;padding: 2px;line-height:5px;}
 	    
     
         #listPaging{  clear:both; text-align:center; margin:0 auto;}
@@ -158,16 +159,16 @@ $(function() {
         
 
         <div class="col1" >
-            <button type="button" class="btn btn-light fs" value="분류등록" onclick="location.href='admin_Eq_manage_classify_list.do'">분류등록</button>
+            <input type="button" class="btn btn-light fs" value="분류등록" onclick="location.href='admin_Eq_manage_classify_list.do'">
         </div>
         <div class="col1" >
-            <button type="button" class="btn btn-light fs" value="모델등록" onclick="location.href='admin_Eq_manage_regist_list.do'">모델등록</button>
+            <input type="button" class="btn btn-light fs" value="모델등록" onclick="location.href='admin_Eq_manage_regist_list.do'">
         </div>
         <div class="col1" >
-            <button type="button" class="btn btn-light fs" value="시리얼등록" onclick="location.href='${contextPath}/equip/admin_Eq_manage_serial.do?eq_name'">시리얼등록</button>
+            <input type="button" class="btn btn-light fs" value="시리얼등록" onclick="location.href='${contextPath}/equip/admin_Eq_manage_serial.do?eq_name'">
         </div>
         <div class="col1" >
-            <button type="button" class="btn btn-light fs selectDelete_btn" >선택삭제</button>
+            <input type="button" class="btn btn-light fs selectDelete_btn" value="선택삭제"  >
              <script>
 				 
 			</script>
@@ -194,7 +195,7 @@ $(function() {
                             <div class="col3 col_list">${adminequip.eq_serial}</div>
                             <div class="col3 col_list"><fmt:formatDate pattern="yyyy-MM-dd" value="${adminequip.eq_regist}" /></div>
                           	<div class="col4 col_list">${adminequip.eq_state}</div>
-                            <div class="col4 col_list"><input type="button" value="상태변경" onclick="location.href='admin_Eq_manage_serialmod.do?eq_serial=${adminequip.eq_serial}'"></div>    
+                            <div class="col4 col_list"><input type="button" class="btn btn-light fs modfiybt" value="상태변경" onclick="location.href='admin_Eq_manage_serialmod.do?eq_serial=${adminequip.eq_serial}'"></div>    
                         </div>
                     </c:forEach>
                 </c:when>
