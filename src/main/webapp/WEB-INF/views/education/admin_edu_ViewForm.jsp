@@ -16,53 +16,106 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
     <title>admin_board_articleForm</title>
     <style>
-    #board_content{
+   body {
+            background: #f4f9fc;
+        }
+		.fs{font-family: 'RIDIBatang';padding-left:10px;
+		}
+        #board_content {
             margin: 0 auto;
             width: 1050px;
-            
-        }
-       
-       .board_container{
-            margin:0 auto;
-            float: left;
-            
             margin-top: 50px;
+        }
+
+        .board_container {
+            margin: 0 auto;
+            float: left;
+
+            margin-top:-10px;
             margin-left: 20px;
         }
-        .badge{
+
+        .badge {
             float: left;
             height: 2em;
             line-height: 18px;
             font-size: 15px;
-            background: #FA8072;
-            
+            color: #2e2751;
+
             margin-right: 3px;
         }
-        .form-select{
+
+        .form-select {
             width: 130px;
             float: left;
             margin-right: 10px;
         }
-        .input-group{
-            width: 700px;
+
+        .input-group {
+            width: 650px;
             float: left;
         }
-        .brd_writer{
-            width: 150px;
+
+        .brd_title {
+            background: #a4a4a4;
+            color: white;
+            font-size: 20px;
+            font-weight: 600;
+            height: 60px;
+            width:100%;
+            line-height: 60px;
+            padding-left: 20px;
+        }
+
+        .brd_name {
+            width: 130px;
             margin-right: 10px;
         }
-        .brd_date{
-            width: 200px;
+
+        .brd_writer {
+            width: 130px;
+            margin-right: 300px;
         }
-        #articlefrom1{
+
+        .brd_date {
+            width: 170px;
+        }
+
+        #articlefrom1 {
             clear: both;
         }
-        .form-floating{
-        width: 800px;
-        
-        text-align:justify;
-        
+
+        .form-floating {
+            width: 650px;
+            margin: 0 auto;
+            text-align: justify;
         }
+
+        .brd_btn_group {
+            width: 260px;
+            margin: 0 auto;
+        }
+
+        #brd_btn {
+            margin-top: 10px;
+            width : 70px;
+            font-family: "굴림";
+            font-size: 20px;
+        }
+
+        #preview {
+        	
+            width: 300px;
+            margin: 0 auto;
+        }
+        .articleImg001{
+        	border-top: solid 1px;
+        	padding-top:10px;
+        }
+        .articlefrom001{
+        	text-align: center;
+        }
+
         
     </style>
       <script src="${contextPath}/resources/js/jquery-3.5.1.min.js"> </script>
@@ -118,55 +171,53 @@
     <!--board_container -->
     <form name="eduForm" method="post"   action="${contextPath}"   enctype="multipart/form-data">
     <div class="board_container">
-        <div id="articlefrom1">            
-             <div class="badge text-wrap" style="width: 6rem;">
-                  글 작성자
-            </div>
-            <div class="input-group input-group-sm mb-3 brd_writer">
-              <input type="text" id="" name="edu_writer"class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="${educationVO.edu_writer }"disabled>
-            </div>
-            <div class="badge text-wrap" style="width: 6rem;">
-                  글 작성일
-            </div>
-            <div class="input-group input-group-sm mb-3 brd_date">
-              <input type="text" id="" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="${educationVO.edu_pub_date }"disabled>
-            </div>
-            
-            
-            
-            
-            <div class="badge text-wrap" style="width: 6rem;">
-                  분류명
-            </div>
-            <div class="input-group input-group-sm mb-3 brd_date">
-              <input type="text" id="" name="cate_name" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="${educationVO.cate_name }">
-            </div>
-            <div class="badge text-wrap" style="width: 6rem;">
-                  장비이름
-            </div>
-            <div class="input-group input-group-sm mb-3 brd_date">
-              <input type="text" id="" name="eq_name" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="${educationVO.eq_name }">
-            </div>     
-            
+    	<div id="articlefrom1">
+             <h1 class="fs">${educationVO.cate_name}</h1>
         </div>
-        
-        
-        <div id="articlefrom1">   
-            <div class="badge text-wrap" style="width: 6rem;">
-                  제목
+        <div id="articlefrom1">
+           	<div class="input-group input-group-sm mb-3 brd_title">
+                ${educationVO.edu_title}
             </div>
-            <div class="input-group input-group-sm mb-3">
-              <input type="text" id="" name="edu_title" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="${educationVO.edu_title }"disabled>
-            </div>
-         </div>
+        </div>
+        <div id="articlefrom1">
+	            <div class="badge text-wrap" style="width: 6rem;">
+	                  	글 작성자
+	            </div>
+	            <div class="input-group input-group-sm mb-3 brd_writer">
+	              	<input type="text" id="" name="edu_writer"class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="${educationVO.edu_writer }"disabled>
+	            </div>
+                <div class="badge text-wrap" style="width: 6rem;">
+                    	글 작성일
+                </div>
+                <div class="input-group input-group-sm mb-3 brd_date">
+                    <input type="text" id="" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="${educationVO.edu_pub_date }"disabled>
+                </div>
+            </div>  
+            
+        <div id="articlefrom1">
+	            <div class="badge text-wrap" style="width: 6rem;">
+	                  	분류명
+	            </div>
+	            <div class="input-group input-group-sm mb-3 brd_writer">
+					<input type="text" id="" name="cate_name" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="${educationVO.cate_name }" disabled>
+	            </div>
+                <div class="badge text-wrap" style="width: 6rem;">
+                    	장비이름
+                </div>
+                <div class="input-group input-group-sm mb-3 brd_date">
+					<input type="text" id="" name="eq_name" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="${educationVO.eq_name }" disabled>
+                </div>
+         </div>  
+   		 <br>
+         <hr>
+
          <div id="articlefrom1"> 
              <div class="form-floating">
-              ${educationVO.edu_content}
-              
+              ${educationVO.edu_content} 
              </div>
         </div><br>
         
-         <div id="articlefrom1"> 
+         <div class="articleImg001" id="articlefrom1"> 
             
             
             <c:choose> 
@@ -183,13 +234,11 @@
             
         </div>
         
-            
-            
-        </div><br><br>
-        <div id="articlefrom1"> 
+           
+        <div id="articlefrom1" class="articlefrom001"> 
         <button type="button" class="btn btn-light" id='brd_btn'onclick="location.href='${contextPath}/education/admin_edu_modeducationForm.do?educationNO=${educationVO.edu_num}'">수정</button>
         &nbsp;&nbsp;
-        <button type="button" class="btn btn-light deleteArticle" id='delbtn'>삭제</button>
+        <button type="button" class="btn btn-light deleteArticle" id='brd_btn'>삭제</button>
         &nbsp;&nbsp;
         <button type="button" class="btn btn-light" id='brd_btn'onClick="location.href=' ${contextPath}/education/edu_admin_list.do'" >목록보기</button>
 	       
