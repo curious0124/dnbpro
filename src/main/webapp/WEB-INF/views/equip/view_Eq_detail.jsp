@@ -215,12 +215,12 @@ body {background-color: #F4F9FC;}
 						<div class="bread-menu">
 							<ul>
 								<li><a href="${contextPath}/main/main.do">Home</a></li>
-								<li><a href="${contextPath}/education/edu_list.do">Education</a></li>
+								<li><a href="${contextPath}/equip/view_Eq_list.do">Equipment list</a></li>
 							</ul>
 						</div>
 						<!-- Bread Title -->
 						<div class="bread-title">
-							<h2>Education</h2>
+							<h2>Equipment</h2>
 						</div>
 					</div>
 				</div>
