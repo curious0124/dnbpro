@@ -97,7 +97,7 @@
         }
 
         #brd_btn {
-            margin-top: 50px;
+            margin-top: 50px;margin-bottom:50px;
         }
 
         #preview {

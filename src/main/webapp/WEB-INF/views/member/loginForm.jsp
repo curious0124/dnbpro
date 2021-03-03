@@ -12,6 +12,7 @@
 <meta charset="UTF-8">
 <title>로그인창</title>
 <style>
+body{background-color: #F4F9FC;}
 		.loginfs{font-family: 'SDSamliphopangche_Basic';}
         .wrap2{
             width : 600px;
