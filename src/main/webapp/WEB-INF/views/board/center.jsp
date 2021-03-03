@@ -80,6 +80,7 @@
                            </c:forEach>
 </div>
 <div id="center_video">
+<div style="height: 100px;"></div>
                            <div class="row blog-space">
                               <div class="col-lg-6">
                                  <c:forEach var="video" items="${video }">
@@ -104,6 +105,8 @@
                            </div>
                            <!-- Blockquote -->
                            <div id="center_service">
+                           <div style="height: 100px;"></div>
+                           <h2 class="blog-title">DNB 지원서비스</h2>
                            <blockquote class="wp-block-quote">
                               <c:forEach var="service" items="${service }">
                                  <p>${service.board_content}</p>
@@ -119,9 +122,10 @@
                <div class="row">
                   <div class="col-12">
                      <div class="blog-comments-form">
-                        <div class="bottom-title">
-                           <h2>오시는 길</h2>
-                        </div>
+                        <div class="bottom-title" id="center_come">
+                        <div style="height: 100px;"></div>
+                        	<h2 class="blog-title">DNB 오시는 길</h2>
+                        
                         <div class="main-image">
                            <p>
                               <iframe
@@ -129,6 +133,7 @@
                                  width="100%" height="470" frameborder="0" style="border: 0;"
                                  allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
                            </p>
+                        </div>
                         </div>
                      </div>
                   </div>
