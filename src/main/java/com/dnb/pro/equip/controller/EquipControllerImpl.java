@@ -36,14 +36,6 @@ import com.dnb.pro.equip.vo.PageMaker;
 import com.dnb.pro.equip.vo.SearchCriteria;
 
 
-
-
-
-
-
-
-
-
 @Controller("EquipController")
 @RequestMapping(value="/equip")
 public class EquipControllerImpl implements EquipController {
@@ -77,9 +69,7 @@ public class EquipControllerImpl implements EquipController {
 			List cateList = equipService.catelistequips();
 			mav.addObject("cateList", cateList);
 			
-//			List catenameList =  equipService.listcatename();
-//			mav.addObject("catenameList", catenameList);
-			
+
 			PageMaker pageMaker = new PageMaker();
 			pageMaker.setCri(scri);
 			pageMaker.setTotalCount(equipService.listeqviewpageCount(scri));
@@ -135,10 +125,6 @@ public class EquipControllerImpl implements EquipController {
 			return mav;
 		}
 		
-
-		
-		
-		
 		@Override
 		@RequestMapping(value="/admin_Eq_manage_list.do" ,method = {RequestMethod.GET,RequestMethod.POST})
 		public ModelAndView adminlistequips(SearchCriteria scri,HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -156,16 +142,6 @@ public class EquipControllerImpl implements EquipController {
 			
 			return mav;
 		}
-		
-		
-		
-		
-	
-		
-		
-		
-		
-	
 		
 		@Override
 		@RequestMapping(value="/admin_Eq_manage_classify_list.do" ,method = {RequestMethod.GET,RequestMethod.POST})
@@ -189,13 +165,6 @@ public class EquipControllerImpl implements EquipController {
 			mav.addObject("cateList", cateList);
 			return mav;
 		}
-		
-		
-		
-		
-	
-		
-		
 		@Override
 		@RequestMapping(value="/addcatename.do" ,method = RequestMethod.POST)
 		public ResponseEntity addcatename(@RequestParam("cate_name") String cate_name,
@@ -224,13 +193,9 @@ public class EquipControllerImpl implements EquipController {
 			return resEntity;
 		}
 		
-		
-		
 		@RequestMapping(value = "/deleteCatename.do", method = RequestMethod.POST)
 		public ResponseEntity deleteCart(@RequestParam(value = "chbox[]") List<String> caArr, EquipVO equipVO) 
 				throws Exception {
-	
-		 
 		    String message = null;
 			ResponseEntity resEnt=null;
 			HttpHeaders responseHeaders = new HttpHeaders();
@@ -278,12 +243,6 @@ public class EquipControllerImpl implements EquipController {
 			return mav;
 		}
 		
-
-		
-		
-
-
-		
 		
 		@RequestMapping(value="/admin_Eq_manage_serial.do" ,method = {RequestMethod.GET,RequestMethod.POST})
 		public ModelAndView eqnamelistserial(@RequestParam("eq_name") String eq_name,  HttpServletRequest request, HttpServletResponse response) throws Exception{
@@ -294,36 +253,6 @@ public class EquipControllerImpl implements EquipController {
 		
 			return mav;
 		}
-		
-		
-//		@Override
-//		@RequestMapping(value="/addeqname.do" ,method = RequestMethod.GET)
-//		public ResponseEntity addeqname(@ModelAttribute("equipVO") EquipVO equipVO,
-//				                    HttpServletRequest request, HttpServletResponse response)  throws Exception{
-//			response.setContentType("text/html; charset=UTF-8");
-//			request.setCharacterEncoding("utf-8");
-//			String message = null;
-//			ResponseEntity resEntity = null;
-//			HttpHeaders responseHeaders = new HttpHeaders();
-//			responseHeaders.add("Content-Type", "text/html; charset=utf-8");
-//			try {
-//			    equipService.addeqname(equipVO);
-//			    message  = "<script>";
-//			    message +=" alert('모델명 등록을 마쳤습니다.모델 리스트 창으로 이동합니다.');";
-//			    message += " location.href='"+request.getContextPath()+"/equip/admin_Eq_manage_regist_list.do';";
-//			    message += " </script>";
-//			    
-//			}catch(Exception e) {
-//				message  = "<script>";
-//			    message +=" alert('작업 중 오류가 발생했습니다. 다시 시도해 주세요');";
-//			    message += " location.href='"+request.getContextPath()+"/equip/admin_Eq_manage_regist.do';";
-//			    message += " </script>";
-//				e.printStackTrace();
-//			}
-//			resEntity =new ResponseEntity(message, responseHeaders, HttpStatus.OK);   
-//			return resEntity;
-//		}
-		
 		@Override
 		@RequestMapping(value="/addeqname.do", method = {RequestMethod.POST,RequestMethod.GET})
 		public ResponseEntity addeqname(MultipartHttpServletRequest multipartRequest, HttpServletResponse response) throws Exception{
@@ -331,8 +260,6 @@ public class EquipControllerImpl implements EquipController {
 			response.setContentType("text/html; charset=UTF-8");
 		
 			Map<String,Object> eqnamemap = new HashMap<String, Object>();
-			
-		
 			Enumeration enu=multipartRequest.getParameterNames();
 			
 			while(enu.hasMoreElements()) {	
@@ -341,21 +268,13 @@ public class EquipControllerImpl implements EquipController {
 				eqnamemap.put(name, value);
 			}
 
-			
-			
 			String eq_img = upload(multipartRequest);
 			String eq_thumimg = upload2(multipartRequest);
 			HttpSession session = multipartRequest.getSession();
-			
-			
-//			memberVO = (MemberVO) session.getAttribute("member");
-//			String board_writer 	
-//				= memberVO.getUser_id(); 	//세션에 저장된 회원 정보로 부터 ID를 가져온다
-//			eqnamemap.put("board_writer", board_writer);
-			eqnamemap.put("eq_img", eq_img);//회원 ID, 이미지파일이름을 articleMap에 저장
-			eqnamemap.put("eq_thumimg", eq_thumimg);//회원 ID, 이미지파일이름을 articleMap에 저장
+
+			eqnamemap.put("eq_img", eq_img);
+			eqnamemap.put("eq_thumimg", eq_thumimg);
 			System.out.println("sfs"+eqnamemap);
-			
 			
 			String message = null;
 			ResponseEntity resEnt=null;
@@ -371,14 +290,12 @@ public class EquipControllerImpl implements EquipController {
 				FileUtils.moveFileToDirectory(srcFile, destDir, true);				
 			}
 	
-			
 			if(eq_thumimg!=null && eq_thumimg.length()!=0) {//모델명을 추가한 후 업로드한 이미지 파일을 모델명으로 명명한 폴더로 이동합니다.
 				File srcFile = new File(equipthumimg_ARTICLE_IMAGE_REPO+"\\"+"temp"+"\\"+eq_thumimg);
 				File destDir = new File(equipthumimg_ARTICLE_IMAGE_REPO+"\\"+ eqnamemap.get("eq_name"));
 				FileUtils.moveFileToDirectory(srcFile, destDir, true);				
 			}
 		
-			
 			message = "<script>";
 			message += " alert('모델명 등록을 완료 했습니다.');";
 			 message += " location.href='"+multipartRequest.getContextPath()+"/equip/admin_Eq_manage_regist_list.do';";
@@ -399,8 +316,6 @@ public class EquipControllerImpl implements EquipController {
 			 return  resEnt;
 			
 		}
-		
-		
 		
 		//업로드한 파일이름을 얻은후 반환합니다.
 		private String upload(MultipartHttpServletRequest multipartRequest) throws Exception{
@@ -548,10 +463,7 @@ public class EquipControllerImpl implements EquipController {
 			response.setContentType("text/html; charset=UTF-8");
 		
 			Map<String,Object> statemap = new HashMap<String, Object>();
-			
-		
 			Enumeration enu=multipartRequest.getParameterNames();
-			
 			while(enu.hasMoreElements()) {	
 				String name = (String)enu.nextElement();
 				String value = multipartRequest.getParameter(name);
@@ -566,8 +478,6 @@ public class EquipControllerImpl implements EquipController {
 		try {
 			 equipService.modSerialState(statemap);
 
-			
-			
 			//새 글을 추가한 후 메시지를 전달합니다.
 			message = "<script>";
 			message += " alert('상태 변경을 완료 했습니다.');";
@@ -589,11 +499,6 @@ public class EquipControllerImpl implements EquipController {
 			 return  resEnt;
 			
 		}
-		
-
-		
-		
-	
 		
 		@Override
 		@RequestMapping(value="/admin_Eq_manage_serialmod.do", method=RequestMethod.GET)

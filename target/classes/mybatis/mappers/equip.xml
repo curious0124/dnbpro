@@ -36,16 +36,6 @@ SELECT Eq_name, Eq_thumimg, cate_name, Eq_ma
 		        	     	]]>
 </select>
 
-
-
-<!-- from(
-SELECT  Eq_name, Eq_thumimg, cate_name, Eq_ma,
- ROW_NUMBER() OVER(ORDER BY Eq_name DESC) AS RNUM1=1 and    <include refid="searchviewlist"></include>
-		        	      ) mp
-            WHERE RNUM BETWEEN #{rowStart} AND #{rowEnd}
-		ORDER BY Eq_name DESC  -->
-		
-		
 		
    <!--  장비 리스트  페이징  -->
  	<select id="selectAllEquipList" resultType="com.dnb.pro.equip.vo.EquipVO" >
@@ -83,10 +73,6 @@ SELECT  Eq_name, Eq_thumimg, cate_name, Eq_ma,
 
 	</sql> 
 	
-	
-	
-
-
   
   <!--장비 상세페이지뷰 -->
 	<select id="EquipDetail" resultType="com.dnb.pro.equip.vo.EquipVO"  parameterType="EquipVO" >
@@ -107,23 +93,16 @@ SELECT  Eq_name, Eq_thumimg, cate_name, Eq_ma,
             	]]>
     </select> 
     
-     <!--장비 등록 리스트 
-   <select id="selectAdminEquipList" parameterType="EquipVO" resultType="com.dnb.pro.equip.vo.EquipVO">
-    <![CDATA[
-	SELECT equipment.Cate_name, equipment.eq_name, Eq_list.eq_serial, Eq_list.eq_regist, eq_state from equipment,Eq_list
-    where Eq_list.eq_name = Equipment.eq_name
-            	]]>
-    </select> 
-    -->
+   
     
      <!--장비 등록 시리얼 리스트 -->
    <select id="selectAdminEquipList" parameterType="EquipVO" resultType="com.dnb.pro.equip.vo.EquipVO">
  
 	SELECT *
 	from( 
-	   SELECT equipment.Cate_name, equipment.eq_name, Eq_list.eq_serial, Eq_list.eq_regist, Eq_list.eq_state,
+	   SELECT equipment.Cate_name, Eq_list.eq_name, Eq_list.eq_serial, Eq_list.eq_regist, Eq_list.eq_state,
 	   ROW_NUMBER() OVER(ORDER BY eq_serial DESC) AS RNUM
-	   FROM  Eq_list, equipment   
+	   FROM  Eq_list, equipment  
 	   where 1=1 and Eq_list.eq_name = equipment.eq_name
 	   <include refid="search"></include>
 	   ) mp
@@ -147,9 +126,9 @@ ORDER BY eq_serial DESC
     <sql id="search">
 		
 		<if test="searchType != null">
-			<if test="searchType == 'i'.toString()">AND equipment.eq_name LIKE '%' || #{keyword} || '%'</if>
+			<if test="searchType == 'i'.toString()">AND Eq_list.eq_name LIKE '%' || #{keyword} || '%'</if>
 			<if test="searchType == 'n'.toString()">AND Eq_list.eq_serial LIKE '%' || #{keyword} || '%'</if>
-			<if test="searchType == 'tc'.toString()">AND (equipment.eq_name LIKE '%' || #{keyword} || '%') or (Eq_list.eq_serial LIKE '%' || #{keyword} || '%')</if>
+			
 		</if>
 
 	</sql> 
@@ -274,13 +253,7 @@ ORDER BY eq_serial DESC
 	]]>
   </select>
   
-   <!--시리얼 상태  리스트 
-   <select id="selectStateList" parameterType="EquipVO" resultType="com.dnb.pro.equip.vo.EquipVO">
-    <![CDATA[
-	SELECT eq_state from eq_list
-            	]]>
-    </select> 
-    -->
+  
     
      <select id="selectAbleEquipList" parameterType="java.util.Map" resultMap="EquipResult" >
     <![CDATA[
