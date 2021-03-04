@@ -19,11 +19,7 @@
     <title>보유장비리스트</title>
 </head>
 <style>
-<<<<<<< HEAD
 		body {
-=======
-      body {
->>>>>>> branch 'develop' of https://github.com/curious0124/dnbpro.git
             background: #f4f9fc;
         }
       .fs{
@@ -55,7 +51,7 @@
             clear:both;
             text-align: center;
         }
-<<<<<<< HEAD
+
 		.col1 {margin-top: 10px;
 	        float: right;text-align:right;
 	    }
@@ -73,45 +69,19 @@
 	        float: left;text-align:center;
 	    }
 	    .col_top{
-=======
-      .col1 {margin-top: 10px;
-           float: right;text-align:right;
-       }
-      .col2 {
-           width: 50px;
-           float: left;text-align:center;
-       }
-       .col3 {
-           width: 160px;
-           float: left;
-           text-align:center;
-       }
-       .col4 {
-           width: 50px;
-           float: left;text-align:center;
-       }
-       .col_top{
->>>>>>> branch 'develop' of https://github.com/curious0124/dnbpro.git
             color: #2e2751;
             font-weight: bold;
             border-bottom:2px solid #2e2751;
             border-top:2px solid #2e2751;
             margin-top:10px;
-            
         }
         .col_list{
             float: left;
             border-bottom:1px solid #f0f0f0;
             padding: 0px 0px 0px 0px;
-           
         }
         .topbt{float:right;margin-left:10px;        }
         .modfiybt{height:20px;font-size:0.5em;padding: 2px;line-height:5px;text-align:center;}
-<<<<<<< HEAD
-	    
-=======
-       
->>>>>>> branch 'develop' of https://github.com/curious0124/dnbpro.git
     
         #listPaging{  clear:both; text-align:center; margin:0 auto;}
         #listPaging > ul{margin:0 auto;width:500px;}
@@ -125,47 +95,6 @@
  <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script>
 $(function() {
-<<<<<<< HEAD
-		$('#menucontent').load("${contextPath}/resources/subjsp/admin_menubar.jsp");
-		
-		$("#allCheck").click(function(){
-			 var chk = $("#allCheck").prop("checked");
-			 if(chk) {
-			  $(".chBox").prop("checked", true);
-			 } else {
-			  $(".chBox").prop("checked", false);
-			 }
-			});
-		
-		
-		$(".selectDelete_btn").click(function(){
-			  var confirm_val = confirm("정말 삭제하시겠습니까?");
-			  
-			  if(confirm_val) {
-			   var checkArr = new Array();
-			   
-			   $("input[class='chBox']:checked").each(function(){
-			    checkArr.push($(this).attr("value"));
-			   });	
-			    
-			   $.ajax({
-			    url : "${contextPath}/equip/deleteSerial.do",
-			    type : "post",
-			    data : { chbox : checkArr },
-			    success : function(){
-			     location.href = "${contextPath}/equip/admin_Eq_manage_list.do";
-			    }
-			   });
-			  } 
-			 });
-		
-		 $(".chBox").click(function(){
-			  $("#allCheck").prop("checked", false);
-			});
-		
-		 
-		
-=======
       $('#menucontent').load("${contextPath}/resources/subjsp/admin_menubar.jsp");
       
       $("#allCheck").click(function(){
@@ -202,43 +131,10 @@ $(function() {
        $(".chBox").click(function(){
            $("#allCheck").prop("checked", false);
          });
-      
-       
-      
->>>>>>> branch 'develop' of https://github.com/curious0124/dnbpro.git
 });
 </script>
 <body>
 <div id='board_content'>
-<<<<<<< HEAD
-  	<div id='menucontent'></div>
-  	<div class="board_container">
-  		<div id='top_buttonbox'>
-		    	<form role="form" method="get">
-		    	<div class="search">
-		    	<select name="searchType">
-			      	<option value="no"<c:out value="${cri.searchType == null ? 'selected' : ''}"/>>-----</option>
-			      	<option value="i"<c:out value="${cri.searchType eq 'i' ? 'selected' : ''}"/>>모델명</option>
-			      	<option value="n"<c:out value="${cri.searchType eq 'n' ? 'selected' : ''}"/>>시리얼명</option>
-		    	</select>
-		        <input type="text" name="keyword" id="keywordInput" value="${cri.keyword}"/>
-		    	<button id="searchBtn"  type="button">검색</button>
-		    	<script>
-		    	$('#searchBtn').click(function() {
-			          self.location = "admin_Eq_manage_list.do" + '${pageMaker.makeQuery(1)}' + "&searchType=" + $("select option:selected").val() + "&keyword=" + encodeURIComponent($('#keywordInput').val());
-		        });
-		    	</script>
-		    	</div>
-		    	</form>
-		</div>
-        <div id='top_buttonbox'>
-            <input type="button" class="btn btn-light topbt selectDelete_btn" value="선택삭제"  >
-            <input type="button" class="btn btn-light topbt" value="새 시리얼" onclick="location.href='${contextPath}/equip/admin_Eq_manage_serial.do?eq_name'">
-            <input type="button" class="btn btn-light topbt" value="모델리스트" onclick="location.href='admin_Eq_manage_regist_list.do'">
-            <input type="button" class="btn btn-light topbt" value="분류리스트" onclick="location.href='admin_Eq_manage_classify_list.do'">
-        </div>
-		
-=======
      <div id='menucontent'></div>
      <div class="board_container">
         <div id='top_buttonbox'>
@@ -266,8 +162,6 @@ $(function() {
             <input type="button" class="btn btn-light topbt" value="분류리스트" onclick="location.href='admin_Eq_manage_classify_list.do'">
         </div>
       
->>>>>>> branch 'develop' of https://github.com/curious0124/dnbpro.git
- 
         <div class="listrow toplow">
                 <div class="col2 col_top"><input type="checkbox" name="allCheck" id="allCheck"  onclick="checkAll(this)"></div>
                 <div class="col3 col_top">분류</div>
