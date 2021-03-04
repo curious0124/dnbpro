@@ -37,7 +37,7 @@
             margin:0 auto;
             float: left;
             width: 650px;  
-            margin-top: 30px;          
+            margin-top: 45px;          
         }
         .listrow{
             width: 500px;
@@ -73,7 +73,7 @@
             width: 100px;
         }
         #brd_div2{
-            width: 200px;
+            width: 400px;
             text-align: left;
         }
         
@@ -146,19 +146,12 @@
 		<!--board_container -->
 		<div class="board_container">
     <form  action="${contextPath}/equip/addcatename.do" method="post">
-
-        <div>
-
-  
-            <!--board_container -->
-            <div class="board_container">
-          
+               
                 <div class="listrow">
                    
                     <div class="col_top" id='brd_div2'>
                        		분류명 등록
                     </div>
-
 
                 </div>
                 
@@ -174,11 +167,7 @@
                     
 
                 </div>
-
-
-            </div>
-
-        </div>
+                    
     </form>
     
     <div class="btn_box001 board_container">
