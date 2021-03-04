@@ -34,7 +34,7 @@
             margin:0 auto;
             float: left;
             width: 650px;  
-            margin-top: 30px;          
+            margin-top: 60px;          
         }
         .listrow{
             width: 500px;
@@ -165,8 +165,7 @@
 		<!--menu bar -->
 		<div id='menucontent'></div>
 		
-		<!--board_container -->
-		<div class="board_container">
+	
    <form action="${contextPath}/equip/addeqname.do" method="post" enctype="multipart/form-data">
 
             <!--board_container -->
@@ -267,7 +266,7 @@
                    		<img  id="preview2" src="#"   width=200 height=200/>
                   </div>
 
-            </div>
+       
 
            <div class="listrow">
                     <input type="submit" class="btn btn-light " value="분류명등록" /> &nbsp;
