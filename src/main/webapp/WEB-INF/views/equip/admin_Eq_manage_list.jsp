@@ -19,7 +19,7 @@
     <title>보유장비리스트</title>
 </head>
 <style>
-      body {
+		body {
             background: #f4f9fc;
         }
       .fs{
@@ -51,39 +51,37 @@
             clear:both;
             text-align: center;
         }
-      .col1 {margin-top: 10px;
-           float: right;text-align:right;
-       }
-      .col2 {
-           width: 50px;
-           float: left;text-align:center;
-       }
-       .col3 {
-           width: 160px;
-           float: left;
-           text-align:center;
-       }
-       .col4 {
-           width: 50px;
-           float: left;text-align:center;
-       }
-       .col_top{
+
+		.col1 {margin-top: 10px;
+	        float: right;text-align:right;
+	    }
+		.col2 {
+	        width: 50px;
+	        float: left;text-align:center;
+	    }
+	    .col3 {
+	        width: 160px;
+	        float: left;
+	        text-align:center;
+	    }
+	    .col4 {
+	        width: 50px;
+	        float: left;text-align:center;
+	    }
+	    .col_top{
             color: #2e2751;
             font-weight: bold;
             border-bottom:2px solid #2e2751;
             border-top:2px solid #2e2751;
             margin-top:10px;
-            
         }
         .col_list{
             float: left;
             border-bottom:1px solid #f0f0f0;
             padding: 0px 0px 0px 0px;
-           
         }
         .topbt{float:right;margin-left:10px;        }
         .modfiybt{height:20px;font-size:0.5em;padding: 2px;line-height:5px;text-align:center;}
-       
     
         #listPaging{  clear:both; text-align:center; margin:0 auto;}
         #listPaging > ul{margin:0 auto;width:500px;}
@@ -133,9 +131,6 @@ $(function() {
        $(".chBox").click(function(){
            $("#allCheck").prop("checked", false);
          });
-      
-       
-      
 });
 </script>
 <body>
@@ -167,7 +162,6 @@ $(function() {
             <input type="button" class="btn btn-light topbt" value="분류리스트" onclick="location.href='admin_Eq_manage_classify_list.do'">
         </div>
       
- 
         <div class="listrow toplow">
                 <div class="col2 col_top"><input type="checkbox" name="allCheck" id="allCheck"  onclick="checkAll(this)"></div>
                 <div class="col3 col_top">분류</div>
