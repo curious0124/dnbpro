@@ -18,9 +18,14 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
     <title>Document</title>
     <style>
+    #content{
+     background-color: white;
+    }
      #board_content{
             margin: 0 auto;
             width: 1650px;
+            margin-top:50px;
+           
            
         }
         #admin_menu{
@@ -46,7 +51,7 @@
         .admin_menutitle{
             height: 35px;
             line-height: 35px;
-            background: #FA8072;
+        
             cursor: pointer;
             font-size:1.1em;
             color: white;
@@ -63,7 +68,7 @@
             line-height: 35px;
             background: #a4a4a4;
             text-align: left;
-/*            margin-left: -32px;*/
+
         }
         .admin_menusub li a{
             text-decoration: none;
@@ -73,11 +78,7 @@
             color: white;
             text-indent: 40px;
         }
-        .admin_menusub li a:hover{
-            background: #FFF5EE;
-            color: black;
-            font-weight: bold;
-        }
+      
         a{
             color: black;
             text-decoration: none;
@@ -86,6 +87,7 @@
             margin:0 auto;
             float: left;
             width: 825px;
+             margin-left:20px;
         }
         .listrow{
             width: 825px;
@@ -105,7 +107,7 @@
             height:27px;
         }
          #brd_div3 {
-            width: 100px;
+            width: 80px;
             height:27px;
         }
          #brd_div4 {
@@ -134,7 +136,7 @@
         }
       
        #brd_div10 {
-            width: 100px;
+            width: 150px;
             height:27px;
         }
          #brd_div11 {
@@ -142,7 +144,7 @@
             height:27px;
         }
          #brd_div12 {
-            width: 150px;
+            width: 180px;
             height:27px;
         }
          #brd_div13 {
@@ -191,17 +193,20 @@
            
         }
         .ta1 {
-        width: 1350px;
+        width: 1550px;
            
         }
         .tit{
           font-size: 25px;
         }
+          
+      
+      
 
- #listPaging{  clear:both; text-align:center;}
-        #listPaging > ul{margin:0 auto;}
+  #listPaging{  clear:both; text-align:center; margin:0 auto;}
+        #listPaging > ul{margin:0 auto; width:800px; display:center;  }
         #listPaging > ul > li{
-        	list-style: none; float: left; padding: 6px;
+        	list-style: none; display:inline-block; padding: 6px;
     </style>
 </head>
 <script src="${contextPath}/resources/js/jquery-3.5.1.min.js"> </script>
@@ -229,13 +234,14 @@ $(function() {
 
 </script>
 <body>
+
  <div id='board_content'>
-   <!--menu bar -->
   <div id='menucontent'></div>
-    
-      <form role="form" method="get">
+   <!--menu bar -->
  
-    <div class="search"> <select name="searchType">
+    <form role="form" method="get">
+ 
+    <div class="search" > <select name="searchType">
 	      <option value="no"<c:out value="${cri.searchType == null ? 'selected' : ''}"/>>-----</option>
 	       <option value="tc"<c:out value="${cri.searchType eq 'tc' ? 'selected' : ''}"/>selected>아이디+현황</option>
 	      <option value="i"<c:out value="${cri.searchType eq 'i' ? 'selected' : ''}"/>>아이디</option>
@@ -254,6 +260,9 @@ $(function() {
 	    </script>
 	   </div>
                     </form>
+      <!--board_container -->
+        <div class="board_container">
+   
     
         <form action="#" method="post">
 
@@ -263,7 +272,7 @@ $(function() {
              
 
 
-                <div >
+                <div class="tt1">
                     <table align="center"  class="ta1">
                         <tr class="tr1">
                             <td class="col_top" id="brd_div1">로그번호</td>
@@ -319,23 +328,25 @@ $(function() {
             
         </form>
     
-     <!--  -->
-     <div id="listPaging">
-				<ul>
-					<c:if test="${pageMaker.prev}">
-						<li><a href="listlogs.do${pageMaker.makeSearch(pageMaker.startPage - 1)}">이전</a></li>
-					</c:if>
-					<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
-						
-						<li><a href="listlogs.do${pageMaker.makeSearch(idx)}">${idx}</a></li>
-					</c:forEach>
-					<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
-						<li><a href="listlogs.do${pageMaker.makeSearch(pageMaker.endPage + 1)}">다음</a></li>
-					</c:if>
-				</ul>
-			</div>	
+    </div>
+     
+     
+			
       </div>
-    
+	           <div id="listPaging">
+					<ul class="pageclass">
+						<c:if test="${pageMaker.prev}">
+						<li><a href="listlogs.do${pageMaker.makeSearch(pageMaker.startPage - 1)}">이전</a></li>
+						</c:if>
+						<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
+							
+							<li><a href="listlogs.do${pageMaker.makeSearch(idx)}">${idx}</a></li>
+						</c:forEach>
+						<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
+							<li><a href="listlogs.do${pageMaker.makeSearch(pageMaker.endPage + 1)}">다음</a></li>
+						</c:if>
+					</ul>
+				</div>	
 </body>
 
 </html>

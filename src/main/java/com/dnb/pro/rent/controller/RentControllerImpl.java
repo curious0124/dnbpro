@@ -57,16 +57,11 @@ import com.dnb.pro.rent.vo.SearchCriteria;
 		@Autowired
 		private MemberVO memberVO;
 		
-		
-		
 		@RequestMapping(value="/listlogs.do" ,method = {RequestMethod.GET,RequestMethod.POST})
 		public ModelAndView listlogs(SearchCriteria scri, HttpServletRequest request, HttpServletResponse response) throws Exception {
 			String viewName = (String)request.getAttribute("viewName");
 			
-			
 			ModelAndView mav = new ModelAndView(viewName);
-			
-			
 			List logList = rentService.listlogs(scri);
 			
 			mav.addObject("logList", logList);
@@ -77,8 +72,6 @@ import com.dnb.pro.rent.vo.SearchCriteria;
 			mav.addObject("pageMaker", pageMaker);		
 			return mav;
 		}
-		
-	
 		@Override
 		@RequestMapping(value="/admin_Eq_reserv_apply.do" ,method = {RequestMethod.GET,RequestMethod.POST})
 		public ModelAndView listresqs(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -87,8 +80,6 @@ import com.dnb.pro.rent.vo.SearchCriteria;
 			
 			logger.info("info 레벨: viewName = "+viewName);
 			logger.debug("debug 레벨: viewName = "+viewName);
-			
-			
 			List listresqs = rentService.listresqs();
 			ModelAndView mav = new ModelAndView(viewName);
 			mav.addObject("listresqs", listresqs);
@@ -99,12 +90,8 @@ import com.dnb.pro.rent.vo.SearchCriteria;
 		@RequestMapping(value="/admin_Eq_reserv_list.do" ,method = {RequestMethod.GET,RequestMethod.POST})
 		public ModelAndView listres(HttpServletRequest request, HttpServletResponse response) throws Exception {
 			String viewName = (String)request.getAttribute("viewName");
-			
-			
 			logger.info("info 레벨: viewName = "+viewName);
 			logger.debug("debug 레벨: viewName = "+viewName);
-			
-			
 			List listres = rentService.listres();
 			ModelAndView mav = new ModelAndView(viewName);
 			mav.addObject("listres", listres);
@@ -128,8 +115,6 @@ import com.dnb.pro.rent.vo.SearchCriteria;
 			mav.addObject("listrent", listrent);
 			return mav;
 		}
-		
-		
 		@Override
 		@RequestMapping(value="/admin_Eq_return_list.do" ,method = {RequestMethod.GET,RequestMethod.POST})
 		public ModelAndView listreturn(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -171,7 +156,6 @@ import com.dnb.pro.rent.vo.SearchCriteria;
 				System.out.println("널이니 아니니? :" + checkList);
 				if(checkList.isEmpty()) {
 					rentService.AuthRes(rentVO);
-					 
 					 message = "<script>";
 					 message += " alert('예약이 승인되었습니다 .');";
 					 message += " location.href='"+request.getContextPath() +"/rent/admin_Eq_reserv_apply.do';";
@@ -188,8 +172,6 @@ import com.dnb.pro.rent.vo.SearchCriteria;
 						
 				}
 	       
-	      
-	         
 	         return resEnt;
 		}
 
@@ -202,12 +184,6 @@ import com.dnb.pro.rent.vo.SearchCriteria;
 			
 			
 			HttpSession session = request.getSession();
-			
-//			MemberVO member = (MemberVO)session.getAttribute("member");
-			
-//			String user_id = member.getUser_id();
-//			String cate_name = request.getParameter("ResCate");
-			
 			
 			int resq_num =Integer.parseInt(request.getParameter("Resqnum"));
 			
@@ -233,19 +209,11 @@ import com.dnb.pro.rent.vo.SearchCriteria;
 			
 			HttpSession session = request.getSession();
 			
-//			MemberVO member = (MemberVO)session.getAttribute("member");
-			
-//			String user_id = member.getUser_id();
-//			String cate_name = request.getParameter("ResCate");
-			
 			
 			int res_num =Integer.parseInt(request.getParameter("Resnum"));
 			
 
 			rentVO.setRes_num(res_num);
-			
-
-			
 			ModelAndView mav = new ModelAndView();
 			rentService.CancleRes(rentVO);
 			
@@ -254,11 +222,6 @@ import com.dnb.pro.rent.vo.SearchCriteria;
 			
 			return mav;
 		}
-		
-	
-		
-		
-
 		@Override
 		@RequestMapping(value="/ResStateupdate.do", method = {RequestMethod.POST,RequestMethod.GET})
 		public ResponseEntity ResStateupdate(MultipartHttpServletRequest multipartRequest, HttpServletResponse response) throws Exception{
@@ -317,18 +280,11 @@ import com.dnb.pro.rent.vo.SearchCriteria;
 			
 			HttpSession session = request.getSession();
 			
-//			MemberVO member = (MemberVO)session.getAttribute("member");
-			
-//			String user_id = member.getUser_id();
-//			String cate_name = request.getParameter("ResCate");
-			
 			
 			int res_num =Integer.parseInt(request.getParameter("Resnum"));
 			
 
 			rentVO.setRes_num(res_num);
-			
-
 			
 			ModelAndView mav = new ModelAndView();
 			rentService.ReturnRenting(rentVO);
@@ -347,11 +303,6 @@ import com.dnb.pro.rent.vo.SearchCriteria;
 			
 			
 			HttpSession session = request.getSession();
-			
-//			MemberVO member = (MemberVO)session.getAttribute("member");
-			
-//			String user_id = member.getUser_id();
-//			String cate_name = request.getParameter("ResCate");
 			
 			int return_num =Integer.parseInt(request.getParameter("Returnnum"));
 			int res_num =Integer.parseInt(request.getParameter("Resreturnnum"));
@@ -403,10 +354,5 @@ import com.dnb.pro.rent.vo.SearchCriteria;
 			return null;
 		}
 
-		
-		
-		
-		
-		
 		
 }
