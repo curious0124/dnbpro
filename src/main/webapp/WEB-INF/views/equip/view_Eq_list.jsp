@@ -24,21 +24,7 @@
         float: left
     }
 
-    .d1 {
-        width: 150px;
-
-    }
-
-    .d2 {
-        width: 200px;
-    }
-
-    .d3 {
-        width: 550px;
-    }
-    .d4{
-        width: 32px;
-    }
+   
 
     .td1 {
         width: 100px;
@@ -76,7 +62,7 @@
         }
         
          #co2{
-          width: 300px;
+          width: 250px;
           
            float: right;
             color: #2e2751;
@@ -95,12 +81,15 @@
         }
         
          #co4{
-          width: 300px;
+          width: 100px;
            float: left;
             color: #2e2751;
             font-weight: bold;
           
             
+        }
+        #co4.col{
+           width: 200px;
         }
         .admin_menutitle{
             height: 35px;
@@ -157,9 +146,53 @@
         }
         .col{
         color: #2e2751;
+        width: 200px;
+        
         
         }
         
+        .container{
+        width: 1000px;
+        }
+        
+        #preview{
+           width: 100px;
+          height: 100px;
+           
+            color: #2e2751;
+            font-weight: bold;
+          	
+        }
+        
+        .namec1{
+          font-weight: bold;
+          width: 250px;
+        }
+       
+       .namec2{
+          font-weight: bold;
+           width: 300px;
+        }
+        
+        .namec3{
+          font-weight: bold;
+           width: 300px;
+        }
+        
+        .namec4{
+          font-weight: bold;
+           width: 100px;
+        }
+        
+        .searchviewlist{
+        
+        }
+        
+a{
+font-family: RIDIBatang;
+font-weight: bold;
+}
+ 
        
 
 #eq_namelink{color: black; text-decoration: none;}
@@ -271,44 +304,46 @@
 <div class="container">
 
   
-  
+   <hr width="100%"  >
   <div class="row align-items-start">
-    <div class="col" id="co1" >
-     ¸ðµ¨¸í
-    </div>
-    <div class="col" id="co2">
+     <div class="namec1">
      ½æ³×ÀÏ
     </div>
-     <div class="col" id="co3">
+    <div class="namec2"  >
+     ¸ðµ¨¸í
+    </div>
+     <div class="namec3" >
      ºÐ·ù¸í
     </div>
   
-    <div class="col" id="co4">
+    <div class="namec4" >
    Á¦Á¶»ç
     </div>
   </div>
-    <hr width="100%" >
+    <hr width="100%" color="black" >
  
     <c:choose>
         <c:when test="${listequips !=null }">
             <c:forEach var="equip" items="${listequips }">
  
   <div class="row align-items-center">
-    <div class="col" id="co1">
-      <a id="eq_namelink" href="${contextPath}/equip/view_Eq_detail.do?eq_name=${equip.eq_name}">${equip.eq_name}&nbsp;</a>
-    </div>
-    <div class="col" id="co2">
+  
+    
+    <div  id="co2">
     <input  type= "hidden"   name="originalFileName" value="${equip.eq_thumimg}" /> 
    <img src="${contextPath}/equipthumimg_download.do?eq_name=${equip.eq_name}&eq_thumimg=${equip.eq_thumimg}" id="preview"  />
     </div>
-     <div class="col" id="co3">
+    <div id="co1">
+      <a id="eq_namelink" href="${contextPath}/equip/view_Eq_detail.do?eq_name=${equip.eq_name}">${equip.eq_name}&nbsp;</a>
+    </div>
+     <div  id="co3">
     ${equip.cate_name}
     </div>
-    <div class="col" id="co4">
+    <div  id="co4">
     ${equip.eq_ma}
     </div>
   </div>
-  
+   <hr width="100%" >
             </c:forEach>
               
         </c:when>
@@ -319,7 +354,7 @@
     </div>
       </c:when>
     </c:choose>
-    <hr width="100%">
+ 
     
     <div id="listPaging" >
             <ul>
