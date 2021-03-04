@@ -159,9 +159,9 @@ $(function() {
             <input type="button" class="btn btn-light topbt selectDelete_btn" value="선택삭제"  >
             <input type="button" class="btn btn-light topbt" value="새 시리얼" onclick="location.href='${contextPath}/equip/admin_Eq_manage_serial.do?eq_name'">
             <input type="button" class="btn btn-light topbt" value="모델리스트" onclick="location.href='admin_Eq_manage_regist_list.do'">
-			<input type="button" class="btn btn-light topbt" value="분류리스트" onclick="location.href='admin_Eq_manage_classify_list.do'">
+            <input type="button" class="btn btn-light topbt" value="분류리스트" onclick="location.href='admin_Eq_manage_classify_list.do'">
         </div>
-        
+      
         <div class="listrow toplow">
                 <div class="col2 col_top"><input type="checkbox" name="allCheck" id="allCheck"  onclick="checkAll(this)"></div>
                 <div class="col3 col_top">분류</div>
