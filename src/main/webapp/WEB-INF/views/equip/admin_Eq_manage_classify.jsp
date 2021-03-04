@@ -36,7 +36,8 @@
         .board_container{
             margin:0 auto;
             float: left;
-            width: 600px;  
+            width: 500px;  
+            margin-left: 50px;          
             margin-top: 20px;          
         }
         .listrow{
