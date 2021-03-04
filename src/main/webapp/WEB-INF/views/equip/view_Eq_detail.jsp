@@ -16,7 +16,8 @@
 <link rel="stylesheet"
 	href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" />
 <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
-<script src="http://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+<!-- <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script> -->
+<script src="${contextPath}/resources/js/jquery-ui.js"> </script>
 <!-- datepicker 한국어로 -->
 <script
 	src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/i18n/datepicker-ko.js"></script>
@@ -191,14 +192,17 @@
 <style>
 /* *{border: 1px solid;}  */
 body {background-color: #F4F9FC;}
-.preview_img{width:300px;}
-.detail_text{height:100px; line-height: 100px; border-bottom: 1px solid; border-right: 1px dashed #bcbcbc;}
+.preview_img{  background-image:url("${contextPath}/equipthumimg_download.do?eq_name=${equipVO.eq_name}&eq_thumimg=${equipVO.eq_thumimg}"); 
+background-size: 100% 100%;}
+.detail_text{height:50px; line-height: 50px;   border-right: 1px dashed #bcbcbc;}/*  line-height: 100px; */
 .eq_top_view{border: 2px dashed #bcbcbc;}
 .detail_text_bottom{height: 100%;}
 .datepicker{width:150px; height: 40px;}
 .select_btn_group{float: right; align-items: flex-end;}
 .btn_select{width:300px;}
 .select_btn{line-height: 100px;}
+.detail_text_spa{height: 100px; border-right: 1px dashed #bcbcbc;}
+/* #bottom_banner{margin-top: 300px;} */
 </style>
 
 </head>
@@ -233,8 +237,9 @@ body {background-color: #F4F9FC;}
 			<div class="container eq_top_view">
 				<div class="row">
 					<div class="col preview_img">
-						<input type="hidden" name="originalFileName" value="${equipVO.eq_thumimg}" /> 
-						<img src="${contextPath}/equipthumimg_download.do?eq_name=${equipVO.eq_name}&eq_thumimg=${equipVO.eq_thumimg}" id="preview2" width="100%" height="100%" />
+						<%-- <input type="hidden" name="originalFileName" value="${equipVO.eq_thumimg}" /> --%> 
+						<%-- <img src="${contextPath}/equipthumimg_download.do?eq_name=${equipVO.eq_name}&eq_thumimg=${equipVO.eq_thumimg}" id="preview2" width="100%" height="100%" /> --%>
+						
 					</div>
 					<div class="col">
 						<div class="row">
@@ -243,32 +248,36 @@ body {background-color: #F4F9FC;}
 						</div>
 						<div class="col detail_text">${equipVO.eq_name}</div>
 						</div>
+						<hr>
 						<div class="row">
 						<div class="col-3 text-center detail_text">
 						<b>제조사</b>
 						</div>
 						<div class="col detail_text">${equipVO.eq_ma}</div>
 						</div>
+						<hr>
 						<div class="row">
 						<div class="col-3 text-center detail_text">
 						<b>분류명</b>
 						</div>
 						<div class="col detail_text">${equipVO.cate_name}</div>
 						</div>
+						<hr>
 						<div class="row">
-						<div class="col-3 text-center detail_text">
+						<div class="col-3 text-center detail_text_spa">
 						<b>모델스펙</b>
 						</div>
-						<div class="col detail_text">${equipVO.eq_spec}</div>
+						<div class="col detail_text_spa">${equipVO.eq_spec}</div>
 						</div>
+						<hr>
 					
-<div class="row">
-<div class="col-3 text-center detail_text">
+						<div class="row">
+						<div class="col-3 text-center detail_text">
 						<b>기간 조회</b>
 						</div>
 						<div class="col detail_text">
 						<form>
-										<div class="clearfix">
+										<div class="clearfix ">
 											<!-- 시작일 -->
 											<span class="dset"> 
 											<input type="text" class="datepicker inpType" name="searchStartDate" id="searchStartDate" onchange="select_EQList();" value="${fromDate }"> 
@@ -281,10 +290,15 @@ body {background-color: #F4F9FC;}
 											</span>
 										</div>
 										</form>
+										
 						</div>
 						</div>
-						<div class="row pull-right select_btn">
-						<div class="col">
+						<hr>
+						<div class="row">
+						<div class="col-3 text-center detail_text">
+						<b>수량 선택</b>
+						</div>
+						<div class="col ">
 						<div class="btn-group btn_select" role="group" aria-label="Basic example">
 						<select id="ableListCount" class="form-select " aria-label="Default select example">
 					<option selected disabled value="">수량</option>
@@ -307,10 +321,9 @@ body {background-color: #F4F9FC;}
 			</div>
 		</div>
 		</div>
-		<div class="container">
-	<!-- 상단 배너 -->
-	<div class="breadcrumbs overlay"
-		style="background-image:url('${contextPath}/resources/image/sagsepage.png')">
+		<div class="container" id="bottom_banner">
+
+	<div class="breadcrumbs overlay" style="background-image:url('${contextPath}/resources/image/sagsepage.png')">
 		<div class="container">
 			<div class="row">
 				<div class="col-12">
@@ -326,7 +339,7 @@ body {background-color: #F4F9FC;}
 			</div>
 		</div>
 	</div>
-	<!-- 상단 배너 -->
+
 		</div>
 		<div class="container">
 		<center>
