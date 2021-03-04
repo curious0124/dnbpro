@@ -64,6 +64,7 @@
         margin: 0px auto;
         margin-bottom:100px;
         
+        
       }
       #sidebar-left {
         width: 15%;
@@ -85,6 +86,7 @@
         border: 0px solid #bcbcbc;
          background-color: #F4F9FC;
       }
+      
 
       
       #footer{ /*수정 */
