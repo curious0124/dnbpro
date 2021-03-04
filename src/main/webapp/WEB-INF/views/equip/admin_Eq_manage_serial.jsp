@@ -134,8 +134,6 @@
         	margin-top: -53px;
         }
       
-        
-
     </style>
   <script>
   $( function() {
