@@ -168,11 +168,37 @@ ORDER BY eq_serial DESC
     </select> 
     
       <!--모델명  리스트 -->
+      <!-- 페이징 검색 추가 -->
    <select id="selectEqnameList" parameterType="EquipVO" resultType="com.dnb.pro.equip.vo.EquipVO">
-    <![CDATA[
-   SELECT cate_name,Eq_name,Eq_ma,Eq_spec from equipment
-               ]]>
-    </select> 
+   
+  		SELECT cate_name,Eq_name,Eq_ma,Eq_spec from (
+  			select cate_name,Eq_name,Eq_ma,Eq_spec, row_number() over(order by cate_name) as RNUM from
+  			equipment where 1=1
+  			<include refid="searchEqName"></include>
+  			)mp
+  		where rnum between #{rowStart} AND #{rowEnd}
+  		order by cate_name	
+  	</select>
+  	<select id="listEqnameCount" resultType="int">
+  		select count(Eq_name) from equipment where 1=1
+  		<include refid="searchEqName"></include>
+  		and Eq_name is not null
+  	</select>
+  	
+  	<sql id="searchEqName">
+  		<if test="searchType != null">
+			<if test="searchType == 'n'.toString()">AND Eq_name LIKE '%' || #{keyword} || '%'</if>
+			<if test="searchType == 'm'.toString()">AND Eq_ma LIKE '%' || #{keyword} || '%'</if>
+			<if test="searchType == 'nm'.toString()">AND (Eq_name LIKE '%' || #{keyword} || '%') or (Eq_ma LIKE '%' || #{keyword} || '%')</if>
+		</if>
+  	
+  	</sql>
+  	
+               
+    
+    
+    
+    <!--  페이징 끝 -->
   
   <!--모델명  조회 -->
      <select id="selectEqnameByCode" parameterType="EquipVO" resultType="com.dnb.pro.equip.vo.EquipVO">

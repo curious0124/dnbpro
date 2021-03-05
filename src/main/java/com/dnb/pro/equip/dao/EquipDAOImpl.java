@@ -92,11 +92,21 @@ public class EquipDAOImpl implements  EquipDAO  {
 		
 	}
 	
+	//페이징 검색 추가
 	@Override
-	public List selectEqnameList() throws DataAccessException {
-		List<EquipVO> eqnameList  = sqlSession.selectList("mapper.equip.selectEqnameList");
+	public List selectEqnameList(SearchCriteria scri) throws DataAccessException {
+		List<EquipVO> eqnameList  = sqlSession.selectList("mapper.equip.selectEqnameList", scri);
 		return eqnameList;
 	}
+	@Override
+	public int listEqnameCount(SearchCriteria scri) throws DataAccessException{
+		return sqlSession.selectOne("mapper.equip.listEqnameCount", scri);
+	}
+	//페이징 검색 끝
+	
+	
+	
+	// 표시
 	
 	
 	@Override

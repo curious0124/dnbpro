@@ -28,7 +28,11 @@ public interface EquipDAO {
 	public int insertCatename(String cate_name) throws DataAccessException;
 	public EquipVO selectCateByCode(String cate_name) throws DataAccessException;
 	
-	public List selectEqnameList() throws DataAccessException;
+	//페이징 검색 추가
+	public List selectEqnameList(SearchCriteria scri) throws DataAccessException;
+	public int listEqnameCount(SearchCriteria scri) throws DataAccessException;
+	//페이징 검색 추가 끝
+	
 	public EquipVO selectEqnameByCode() throws DataAccessException;
 //	public int insertEquiplist(EquipVO equipVO) throws DataAccessException;
 	public EquipVO selectCateByCode2(String cate_name) throws DataAccessException;

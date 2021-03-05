@@ -35,7 +35,7 @@ public interface EquipController {
 
 	
 	
-	public ModelAndView eqnamelistequips(HttpServletRequest request, HttpServletResponse response) throws Exception;
+	public ModelAndView eqnamelistequips(SearchCriteria scri, HttpServletRequest request, HttpServletResponse response) throws Exception;
 
 //	public ResponseEntity addeqname(EquipVO equipVO, HttpServletRequest request, HttpServletResponse response)
 //			throws Exception;

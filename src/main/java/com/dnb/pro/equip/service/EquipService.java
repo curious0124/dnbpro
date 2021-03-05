@@ -26,7 +26,12 @@ public interface EquipService {
 	public int addcatename(String cate_name) throws Exception;
 	public EquipVO viewecatename(String cate_name) throws Exception;
 	public void deleteCatename(EquipVO equipVO) throws Exception;
-	public List eqnamelistequips() throws Exception;
+	
+	//페이징 검색 추가
+	public List eqnamelistequips(SearchCriteria scri) throws Exception;
+	public int listEqnameCount(SearchCriteria scri) throws Exception;
+	//페이징 검색 끝
+	
 	public EquipVO vieweqname() throws Exception;
 //	public int addeqname(EquipVO equipVO) throws Exception;
 	public int addserialname(EquipVO equipVO) throws Exception;

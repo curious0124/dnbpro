@@ -94,13 +94,20 @@ public class EquipServiceImpl implements EquipService{
 	
 		
 	}
-	
+	//페이징 검색 추가
 	@Override
-	public List<EquipVO> eqnamelistequips() throws Exception {
-		List<EquipVO> eqnameList = equipDAO.selectEqnameList();
+	public List<EquipVO> eqnamelistequips(SearchCriteria scri) throws Exception {
+		List<EquipVO> eqnameList = equipDAO.selectEqnameList(scri);
 		
 		return eqnameList;
 	}
+	
+	@Override
+	public int listEqnameCount(SearchCriteria scri) throws Exception{
+		return equipDAO.listEqnameCount(scri);
+		
+	}
+	//페이징 검색 끝
 	
 	@Override
 	public EquipVO vieweqname() throws Exception {

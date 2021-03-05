@@ -220,14 +220,18 @@ public class EquipControllerImpl implements EquipController {
 		
 		@Override
 		@RequestMapping(value="/admin_Eq_manage_regist_list.do" ,method = {RequestMethod.GET,RequestMethod.POST})
-		public ModelAndView eqnamelistequips(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		public ModelAndView eqnamelistequips(SearchCriteria scri, HttpServletRequest request, HttpServletResponse response) throws Exception {
 			String viewName = (String)request.getAttribute("viewName");
 			
-			
-			
-			List eqnameList = equipService.eqnamelistequips();
 			ModelAndView mav = new ModelAndView(viewName);
+			
+			List eqnameList = equipService.eqnamelistequips(scri);
 			mav.addObject("eqnameList", eqnameList);
+			
+			PageMaker pageMaker = new PageMaker();
+			pageMaker.setCri(scri);
+			pageMaker.setTotalCount(equipService.listEqnameCount(scri));
+			mav.addObject("pageMaker", pageMaker);
 			return mav;
 		}
 		
