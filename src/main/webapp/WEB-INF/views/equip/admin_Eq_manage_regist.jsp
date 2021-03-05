@@ -218,22 +218,15 @@
                   </div>
                 <div class="listrow">
                     <div class="col_top" id='brd_div1'>
-<<<<<<< HEAD
 							½ºÆå ÀÔ·Â
-=======
                            &nbsp;
->>>>>>> branch 'develop' of https://github.com/curious0124/dnbpro.git
                     </div>
                      <div class="col_top" id='brd_div1'>
                        &nbsp;
                     </div>
 
                     <div class="col_top" id='brd_div1'>
-<<<<<<< HEAD
                        	 &nbsp;
-=======
-                           ½ºÆå
->>>>>>> branch 'develop' of https://github.com/curious0124/dnbpro.git
                     </div>
                      <div class="col_top" id='brd_div2'>
                      	&nbsp;

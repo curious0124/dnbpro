@@ -210,7 +210,7 @@ background-size: 100% 100%;}
 .select_btn_group{float: right; align-items: flex-end;}
 .btn_select{width:300px;}
 .select_btn{line-height: 100px;}
-.detail_text_spa{height: 100px; border-right: 1px dashed #bcbcbc;}
+.detail_text_spa{height: auto; border-right: 1px dashed #bcbcbc;}
 /* #bottom_banner{margin-top: 300px;} */
 </style>
 

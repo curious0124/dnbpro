@@ -3,6 +3,15 @@
     isELIgnored="false" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>    
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!-- 줄 바꿈 시작 -->
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%> 
+ 
+<%
+    pageContext.setAttribute("br", "<br/>");
+    pageContext.setAttribute("cn", "\n");
+%> 
+<!-- 줄 바꿈 끝 -->
+
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
   
   
@@ -175,7 +184,7 @@ $(function() {
                                     ${model.eq_ma}
                                 </div>
                                 <div class="col_list" id='brd_div4'>
-                                    ${model.eq_spec}
+                                   ${fn:replace(model.eq_spec, cn, br)}
                                 </div>
                             </div>
                         </c:forEach>
