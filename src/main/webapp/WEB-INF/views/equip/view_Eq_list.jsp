@@ -20,17 +20,17 @@
 
 
 <style>
-    .d {
+/*     .d {
         float: left
     }
 
-   
+ */   
 
-    .td1 {
+/*     .td1 {
         width: 100px;
         text-align: center;
         border: "1";
-    }
+    } */
    
             #admin_menu{
             margin: 0;
@@ -88,9 +88,9 @@
           
             
         }
-        #co4.col{
+/*         #co4.col{
            width: 200px;
-        }
+        } */
         .admin_menutitle{
             height: 35px;
             line-height: 35px;   
@@ -144,16 +144,16 @@
             color: white;
             text-indent: 40px;
         }
-        .col{
+/*         .col{
         color: #2e2751;
         width: 200px;
         
         
         }
-        
-        .container{
+        */
+        .eq_list_view{
         width: 1000px;
-        }
+        } 
         
         #preview{
            width: 100px;
@@ -188,10 +188,10 @@
         
         }
         
-a{
+#eq_namelink{
 font-family: RIDIBatang;
 font-weight: bold;
-}
+} 
  
        
 
@@ -266,12 +266,7 @@ font-weight: bold;
    
    <section class="features-area section-bg">
       <div class="container" id="edu_table">
-
-	
-
-  
- 
-
+ <div class="container eq_list_view">
 <form role="form" method="get">
  
     <div class="searchviewlist"> <select name="searchType">
@@ -296,13 +291,6 @@ font-weight: bold;
     
                     </div>
                     </form>
-
-
-
-    
-
-<div class="container">
-
   
    <hr width="100%"  >
   <div class="row align-items-start">
@@ -351,7 +339,7 @@ font-weight: bold;
  <div class="row align-items-end">
     <div class="col">
     등록된장비가없습니다
-    </div>
+    </div></div>
       </c:when>
     </c:choose>
  
@@ -375,7 +363,7 @@ font-weight: bold;
 </div>
 
  
-
+</div>
 	</section>
 
 </body>
