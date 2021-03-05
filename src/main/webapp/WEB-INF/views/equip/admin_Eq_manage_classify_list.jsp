@@ -26,11 +26,7 @@
             margin-top: 20px;
             width: 850px;
         }
-        
-        a{
-            color: black;
-            text-decoration: none;
-        }
+
         .board_container{
             margin:0 auto;
             float: left;
@@ -59,8 +55,6 @@
             padding: 0px 0px 0px 0px;
            
         }
-        
-       
         .checkBox { 
         float:left; 
         }

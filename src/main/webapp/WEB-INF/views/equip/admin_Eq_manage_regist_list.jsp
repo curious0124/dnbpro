@@ -19,202 +19,164 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
     <title>모델명 리스트</title>
     <style>
+    	body {
+            background: #f4f9fc;
+        }
         #board_content {
             margin: 0 auto;
-            width: 1050px;
-        }
-
-        a {
-            color: black;
-            text-decoration: none;
+            margin-top: 70px;
+            width: 1100px;
         }
 
         .board_container {
             margin: 0 auto;
             float: left;
-            width: 825px;
-
+            width: 800px;
+            margin-top:-35px;   
         }
-
         .listrow {
-            width: 825px;
             clear: both;
             text-align: center;
-
-
-
+            width:710px;
+            margin:0 auto;
+			margin-top:-10px;
         }
 
         .col_top {
             float: left;
-            background: #FA8072;
-            color: white;
+            color: #2e2751;
             font-weight: bold;
-
+            border-bottom:2px solid #2e2751;
+            border-top:2px solid #2e2751;
         }
-
         .col_list {
             float: left;
-            background: #FFF5EE;
+            border-bottom:1px solid #f0f0f0;
             padding: 0px 0px 0px 0px;
-
         }
-
-
         .checkBox {
             float: left;
         }
-        
         .col1 {
         display: inline-block;
-       
         float: right;
-    }
+    	}
 
         #brd_div1 {
             width: 100px;
         }
 
         #brd_div2 {
-            width: 100px;
+            width: 150px;
         }
-
         #brd_div3 {
             width: 150px;
         }
 
         #brd_div4 {
-            width: 150px;
-        }
-
-        #brd_div5 {
             width: 300px;
+            white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
         }
-
-
-
+        .tit{width: 700px;margin:0 auto;
+        }
         #top_buttonbox {
-            min-width: 800px;
+            width: 700px;
             text-align: right;
-            padding-right: 50px;
-            margin-bottom: 8px;
+            padding-right: 20px;
+            margin:0 auto;
+            margin-bottom: 15px;
         }
-
-        #brd_btn {
-            font-size: 0.5em;
-            width: 50px;
-            height: 30px;
-            padding: 2px;
-            line-height: 5px;
-
-        }
+        
 
     </style>
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-
-
-   
-
+<script>
+$(function() {
+	$('#menucontent').load("${contextPath}/resources/subjsp/admin_menubar.jsp");
+	
+	$(".selectDelete_btn").click(function(){
+  	  var confirm_val = confirm("정말 삭제하시겠습니까?");
+  	  
+  	  if(confirm_val) {
+  	   var checkArr = new Array();
+  	   
+  	   $("input[class='chBox']:checked").each(function(){
+  	    checkArr.push($(this).attr("value"));
+  	   });
+  	    
+  	   $.ajax({
+  	    url : "${contextPath}/equip/deleteEqname.do",
+  	    type : "post",
+  	    data : { chbox : checkArr },
+  	    success : function(){
+  	     location.href = "${contextPath}/equip/admin_Eq_manage_regist_list.do";
+  	    }
+  	   });
+  	  } 
+  	 });
+	
+	
+	$("#allCheck").click(function(){
+		 var chk = $("#allCheck").prop("checked");
+		 if(chk) {
+		  $(".chBox").prop("checked", true);
+		 } else {
+		  $(".chBox").prop("checked", false);
+		 }
+		});
+	
+	 $(".chBox").click(function(){
+		  $("#allCheck").prop("checked", false);
+		 });
+});
+</script>
 </head>
 
 <body>
-    <div>
-  </div>
-        <div>
-            <strong>모델명 목록</strong>
-        </div>
-
+	<div id='board_content'>
+      	<div id='menucontent'></div>
       
             <!--board_container -->
             <div class="board_container">
+            	<div class="tit"><strong>모델명 목록</strong></div><br>
                 <div id='top_buttonbox'>
-
-                    <button type="button" class="col1" id="addcatename" onclick="location.href='${contextPath}/equip/admin_Eq_manage_regist.do?cate_name'">등록</button>
-                     <div  class="delBtn"><button type="button" class="selectDelete_btn col1" >삭제</button>
-                     
-                      <script>
-   
-    $(".selectDelete_btn").click(function(){
-    	  var confirm_val = confirm("정말 삭제하시겠습니까?");
-    	  
-    	  if(confirm_val) {
-    	   var checkArr = new Array();
-    	   
-    	   $("input[class='chBox']:checked").each(function(){
-    	    checkArr.push($(this).attr("value"));
-    	   });
-    	    
-    	   $.ajax({
-    	    url : "${contextPath}/equip/deleteEqname.do",
-    	    type : "post",
-    	    data : { chbox : checkArr },
-    	    success : function(){
-    	     location.href = "${contextPath}/equip/admin_Eq_manage_regist_list.do";
-    	    }
-    	   });
-    	  } 
-    	 });
-
-    </script>
+                    <input type="button" class="btn btn-light" id='brd_btn' onclick="location.href='${contextPath}/equip/admin_Eq_manage_regist.do?cate_name'"value="새모델등록">
+                    <input type="button" class="btn btn-light selectDelete_btn" id='brd_btn' value="선택삭제">
+                     <input type="button"   class="btn btn-light fs" id='brd_btn' value="이전페이지" onClick="history.back()" />
                 </div>
                 <div class="listrow">
-                    <div class="col_top allCheck" id="brd_div1">
+                    <div class="col_top" id="brd_div1">
                         <input type="checkbox" name="allCheck" id="allCheck"  onclick="checkAll(this)"> 
-
-    <script>
-$("#allCheck").click(function(){
- var chk = $("#allCheck").prop("checked");
- if(chk) {
-  $(".chBox").prop("checked", true);
- } else {
-  $(".chBox").prop("checked", false);
- }
-});
-</script>
-
                     </div>
-                   
+                    <div class="col_top" id='brd_div2'>
+                        	모델명
+                    </div>
                     <div class="col_top" id='brd_div3'>
-                        모델명
+                       	 제조사
                     </div>
                     <div class="col_top" id='brd_div4'>
-                        제조사
+                        	스펙
                     </div>
-                    <div class="col_top" id='brd_div5'>
-                        스펙
-                    </div>
-
-
                 </div>
 
                 <c:choose>
-
                     <c:when test="${eqnameList !=null }">
-
                         <c:forEach var="model" items="${eqnameList }" varStatus="cateNum">
                             <div class="listrow">
                                 <div class="col_list checkBox" id='brd_div1'>
                                     <input type="checkbox" name="RowCheck" class="chBox" value="${model.eq_name}">
- 
-                                         <script>
- $(".chBox").click(function(){
-  $("#allCheck").prop("checked", false);
- });
-</script>
-
                                 </div>
-                               
-                                <div class="col_list" id='brd_div3'>
+                                <div class="col_list" id='brd_div2'>
                                     ${model.eq_name}
                                 </div>
-                                <div class="col_list" id='brd_div4'>
+                                <div class="col_list" id='brd_div3'>
                                     ${model.eq_ma}
                                 </div>
-                                <div class="col_list" id='brd_div5'>
+                                <div class="col_list" id='brd_div4'>
                                     ${model.eq_spec}
                                 </div>
-
-
                             </div>
                         </c:forEach>
                     </c:when>
@@ -226,8 +188,10 @@ $("#allCheck").click(function(){
 
                     <c:when test="${eqnameList == null }">
                         <div class="listrow">
-
-
+							<div class="col_list checkBox" id='brd_div1'></div>
+							<div class="col_list" id='brd_div2'></div>
+							<div class="col_list" id='brd_div3'></div>
+							<div class="col_list" id='brd_div4'></div>
                         </div>
 
 
@@ -238,8 +202,9 @@ $("#allCheck").click(function(){
             </div>
         
 
-    </div>
- <input type="button"   class="btn btn-light fs" id='brd_btn' value="이전페이지" onClick="history.back()" />
+</div>
+
+
 </body>
 
 </html>
