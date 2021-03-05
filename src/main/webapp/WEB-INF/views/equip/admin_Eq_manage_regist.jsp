@@ -17,7 +17,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
     <title>모델명 등록</title>
         <style>
-    	body {
+       body {
             background: #f4f9fc;
         }
     #board_content{
@@ -93,9 +93,9 @@
             
         }
         .text_box01{
-        	width: 201px;
-        	height: 20px;
-        	padding: 0;
+           width: 201px;
+           height: 20px;
+           padding: 0;
         }
         .text_box02{
         	width: 500px;
@@ -103,28 +103,28 @@
         	padding: 0;
         }
         .img_box01{
-        	width: 201px;
-        	height: 30px;
-        	vertical-align: top;
-        	font-size: 16px;
-        	padding: 0;
+           width: 201px;
+           height: 30px;
+           vertical-align: top;
+           font-size: 16px;
+           padding: 0;
         }
         
         #articlefrom1{
-        	width: 400px;
+           width: 400px;
         }
         .articlefrom001{
-        	text-align: center;
+           text-align: center;
         }
         .btn_box001{
-        	width: 400px;
-        	text-align: center;
-			margin-left: 50px;
+           width: 400px;
+           text-align: center;
+         margin-left: 50px;
         }
         .model_title{
-        	text-align: left;
-        	font-size: 25px;
-        	margin-top: -53px;
+           text-align: left;
+           font-size: 25px;
+           margin-top: -53px;
         }
       
         
@@ -142,10 +142,10 @@
     
     function readURL(input) {
         if (input.files && input.files[0]) {
-  	      var reader = new FileReader();
-  	      reader.onload = function (e) {
-  	    	
-  	        $('#preview').attr('src', e.target.result);
+           var reader = new FileReader();
+           reader.onload = function (e) {
+            
+             $('#preview').attr('src', e.target.result);
             }
            reader.readAsDataURL(input.files[0]);
         }
@@ -166,11 +166,11 @@
 </head>
 
 <body>
-	<div id='board_content'>
-		<!--menu bar -->
-		<div id='menucontent'></div>
-		
-	
+   <div id='board_content'>
+      <!--menu bar -->
+      <div id='menucontent'></div>
+      
+   
    <form action="${contextPath}/equip/addeqname.do" method="post" enctype="multipart/form-data">
 
             <!--board_container -->
@@ -180,7 +180,7 @@
             </div>
                 <div class="listrow">
                     <div class="col_top" id='brd_div1'>
-                       	 분류코드
+                           분류코드
                     </div>
                      <div class="col_top" id='brd_div1'>
                         <select name="cate_name" >
@@ -193,7 +193,7 @@
                     </div>
 
                     <div class="col_top" id='brd_div1'>
-                       	 모델명
+                           모델명
                     </div>
                      <div class="col_top" id='brd_div2'>
                        <input type="text" name="eq_name" class="text_box01">
@@ -202,14 +202,14 @@
                   </div>
                 <div class="listrow">
                     <div class="col_top" id='brd_div1'>
-                       	 &nbsp;
+                           &nbsp;
                     </div>
                      <div class="col_top" id='brd_div1'>
                        &nbsp;
                     </div>
 
                     <div class="col_top" id='brd_div1'>
-                       	 제조사
+                           제조사
                     </div>
                      <div class="col_top" id='brd_div2'>
                        <input type="text" name="eq_ma" class="text_box01">
@@ -218,14 +218,22 @@
                   </div>
                 <div class="listrow">
                     <div class="col_top" id='brd_div1'>
+<<<<<<< HEAD
 							스펙 입력
+=======
+                           &nbsp;
+>>>>>>> branch 'develop' of https://github.com/curious0124/dnbpro.git
                     </div>
                      <div class="col_top" id='brd_div1'>
                        &nbsp;
                     </div>
 
                     <div class="col_top" id='brd_div1'>
+<<<<<<< HEAD
                        	 &nbsp;
+=======
+                           스펙
+>>>>>>> branch 'develop' of https://github.com/curious0124/dnbpro.git
                     </div>
                      <div class="col_top" id='brd_div2'>
                      	&nbsp;
@@ -238,7 +246,7 @@
                   </div>
                 <div class="listrow">
                     <div class="col_top" id='brd_div1'>
-                       	상세이미지
+                          상세이미지
                     </div>
                      <div class="col_top" id='brd_div1'>
                       &nbsp;
@@ -251,13 +259,13 @@
                     </div>
                  </div>
                  <div class="listrow">
-                       	 <input type="file" class="img_box01" id="img" aria-describedby="inputGroupFileAddon03" name="eq_img" aria-label="Upload" onchange="readURL(this);"  multiple >
-                 			 &nbsp; &nbsp;
-                   		<img  id="preview" src="#"   width=200 height=200/>
+                           <input type="file" class="img_box01" id="img" aria-describedby="inputGroupFileAddon03" name="eq_img" aria-label="Upload" onchange="readURL(this);"  multiple >
+                           &nbsp; &nbsp;
+                         <img  id="preview" src="#"   width=200 height=200/>
                   </div>
                 <div class="listrow">
                     <div class="col_top" id='brd_div1'>
-                       	썸네일
+                          썸네일
                     </div>
                      <div class="col_top" id='brd_div1'>
                       &nbsp;
@@ -270,9 +278,9 @@
                     </div>
                  </div>
                  <div class="listrow">
-                       	<input type="file" class="img_box01" id="thum" aria-describedby="inputGroupFileAddon04" name="eq_thumimg" aria-label="Upload2" onchange="readURL1(this);" multiple >
-                   		 &nbsp; &nbsp;
-                   		<img  id="preview2" src="#"   width=200 height=200/>
+                          <input type="file" class="img_box01" id="thum" aria-describedby="inputGroupFileAddon04" name="eq_thumimg" aria-label="Upload2" onchange="readURL1(this);" multiple >
+                          &nbsp; &nbsp;
+                         <img  id="preview2" src="#"   width=200 height=200/>
                   </div>
 
        
@@ -280,7 +288,7 @@
            <div class="listrow">
                     <input type="submit" class="btn btn-light " value="분류명등록" /> &nbsp;
                     <input type="reset" class="btn btn-light " value="다시입력" /> &nbsp;
-					<input type="button" class="btn btn-light fs" id='brd_btn' value="이전페이지" onClick="history.back()" />		
+               <input type="button" class="btn btn-light fs" id='brd_btn' value="이전페이지" onClick="history.back()" />      
             </div>
             &nbsp;&nbsp;
     </form>
