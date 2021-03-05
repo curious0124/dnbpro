@@ -199,7 +199,7 @@
                         <input type="text" name="eq_ma">
                     </div>
                     <div class="col_list" id='brd_div6'>
-                        <input type="text" name="eq_spec">
+                      <textarea  name="eq_spec"></textarea>
                     </div>
 
                 </div><br><br><br>
