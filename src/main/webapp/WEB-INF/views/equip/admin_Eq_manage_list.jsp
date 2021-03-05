@@ -52,25 +52,6 @@
             text-align: center;
         }
 
-<<<<<<< HEAD
-		.col1 {margin-top: 10px;
-	        float: right;text-align:right;
-	    }
-		.col2 {
-	        width: 50px;
-	        float: left;text-align:center;
-	    }
-	    .col3 {
-	        width: 160px;
-	        float: left;
-	        text-align:center;
-	    }
-	    .col4 {
-	        width: 50px;
-	        float: left;text-align:center;
-	    }
-	    .col_top{
-=======
       .col1 {margin-top: 10px;
            float: right;text-align:right;
        }
@@ -88,7 +69,6 @@
            float: left;text-align:center;
        }
        .col_top{
->>>>>>> branch 'develop' of https://github.com/curious0124/dnbpro.git
             color: #2e2751;
             font-weight: bold;
             border-bottom:2px solid #2e2751;

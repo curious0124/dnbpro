@@ -97,6 +97,11 @@
         	height: 20px;
         	padding: 0;
         }
+        .text_box02{
+        	width: 500px;
+        	height: 200px;
+        	padding: 0;
+        }
         .img_box01{
         	width: 201px;
         	height: 30px;
@@ -213,19 +218,23 @@
                   </div>
                 <div class="listrow">
                     <div class="col_top" id='brd_div1'>
-                       	 &nbsp;
+							½ºÆå ÀÔ·Â
                     </div>
                      <div class="col_top" id='brd_div1'>
                        &nbsp;
                     </div>
 
                     <div class="col_top" id='brd_div1'>
-                       	 ½ºÆå
+                       	 &nbsp;
                     </div>
                      <div class="col_top" id='brd_div2'>
-                       <input type="text" name="eq_spec" class="text_box01">
+                     	&nbsp;
                     </div>
                     
+                  </div>
+                  <div class="listrow">
+                  <textarea rows="" cols="" name="eq_spec" class="text_box02"></textarea>
+                  
                   </div>
                 <div class="listrow">
                     <div class="col_top" id='brd_div1'>

@@ -20,10 +20,9 @@
 
 
 <style>
-    .d {
-        float: left
-    }
-
+    body {
+            background: #f4f9fc;
+        }
    
 
     .td1 {
