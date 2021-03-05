@@ -100,7 +100,7 @@
 								<p>이곳도 바꾸길 원하시면 문의주세요</p>
 								<ul class="address-widget-list">
 									<li class="footer-mobile-number"><i class="fa fa-phone"></i>+(82) 125-4985-214</li>
-									<li class="footer-mobile-number"><i class="fa fa-envelope"></i>김태수@yoursite.com</li>
+									<li class="footer-mobile-number"><i class="fa fa-envelope"></i>명예의전당 💕손💕민💕구💕</li>
 									<li class="footer-mobile-number"><i class="fa fa-map-marker"></i>명예의전당 💕김💕태💕수💕</li>
 								</ul>
 							</div>		

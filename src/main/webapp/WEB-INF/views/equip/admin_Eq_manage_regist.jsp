@@ -16,106 +16,117 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
     <title>모델명 등록</title>
-    <style>
-        #board_content {
-            margin: 0 auto;
-            width: 1050px;
+        <style>
+       body {
+            background: #f4f9fc;
         }
-
-        a {
+    #board_content{
+            margin: 0 auto;
+            margin-top: 20px;
+            width: 850px;
+        }
+        
+        a{
             color: black;
             text-decoration: none;
         }
-
-        .board_container {
-            margin: 0 auto;
+        .board_container{
+            margin:0 auto;
             float: left;
-            width: 825px;
-
+            width: 650px;  
+            margin-top: 60px;          
         }
-
-        .listrow {
-            width: 825px;
-            clear: both;
+        .listrow{
+            width: 500px;
+            clear:both;
             text-align: center;
-
-
-
+            margin:0 auto;
+            
+            
+            
         }
-
-
-
-        .col_top {
+        .col_top{
             float: left;
-            background: #FA8072;
-            color: white;
+            color: #2e2751;
             font-weight: bold;
-
+            border-bottom:2px solid #2e2751;
+            border-top:2px solid #2e2751;
+            margin-bottom: 10px;
+            
         }
-
-        .col_list {
+        .col_list{
             float: left;
-            background: #FFF5EE;
+            border-bottom:1px solid #f0f0f0;
             padding: 0px 0px 0px 0px;
-
+           
         }
-
-        #brd_div1 {
+        
+       
+        .checkBox { 
+        float:left; 
+        }
+        
+        #brd_div1{
             width: 100px;
         }
-
-        #brd_div2 {
+        #brd_div2{
             width: 200px;
+            text-align: left;
         }
-
-        #brd_div3 {
-            width: 200px;
+        
+        #brd_div3{
+            width: 290px;
+            text-align: left;
         }
-
-        #brd_div4 {
-            width: 200px;
-            height: 100px;
-        }
-
-        #brd_div5 {
-            width: 300px;
-            height: 200px
-        }
-
-
-        #brd_div6 {
-            width: 300px;
-        }
-
-
-        #top_buttonbox {
-            min-width: 800px;
+        #brd_div4{
+            width: 100px;
             text-align: right;
-            padding-right: 50px;
-            margin-bottom: 8px;
         }
-
-        #brd_btn {
-            font-size: 0.5em;
-            width: 50px;
-            height: 30px;
-            padding: 2px;
-            line-height: 5px;
-
+       
+        #top_buttonbox{
+            max-width: 400px;
+            text-align: right;
+            padding-right: 20px;
+            margin:0 auto;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            
         }
-
-        #im1 {
-            height: 200px;
-            width: 300px;
+        .text_box01{
+           width: 201px;
+           height: 20px;
+           padding: 0;
         }
+        .img_box01{
+           width: 201px;
+           height: 30px;
+           vertical-align: top;
+           font-size: 16px;
+           padding: 0;
+        }
+        
+        #articlefrom1{
+           width: 400px;
+        }
+        .articlefrom001{
+           text-align: center;
+        }
+        .btn_box001{
+           width: 400px;
+           text-align: center;
+         margin-left: 50px;
+        }
+        .model_title{
+           text-align: left;
+           font-size: 25px;
+           margin-top: -53px;
+        }
+      
+        
 
     </style>
     <script src="${contextPath}/resources/js/jquery-3.5.1.min.js"> </script>
-    <script>
-
-
-    </script>
-
+   
 <script>
     
     $(function(){           
@@ -126,10 +137,10 @@
     
     function readURL(input) {
         if (input.files && input.files[0]) {
-  	      var reader = new FileReader();
-  	      reader.onload = function (e) {
-  	    	
-  	        $('#preview').attr('src', e.target.result);
+           var reader = new FileReader();
+           reader.onload = function (e) {
+            
+             $('#preview').attr('src', e.target.result);
             }
            reader.readAsDataURL(input.files[0]);
         }
@@ -150,40 +161,23 @@
 </head>
 
 <body>
+   <div id='board_content'>
+      <!--menu bar -->
+      <div id='menucontent'></div>
+      
+   
    <form action="${contextPath}/equip/addeqname.do" method="post" enctype="multipart/form-data">
-
-        <div>
-
-            <div>
-                <strong>모델 등록</strong>
-            </div>
-
 
             <!--board_container -->
             <div class="board_container">
-                <div id='top_buttonbox'>
-
-                    <input type="submit" value="분류명등록" /> <input type="reset" value="다시입력" />
-
-                </div>
+            <div class="listrow">
+                <p class="model_title">모델 등록</p>
+            </div>
                 <div class="listrow">
                     <div class="col_top" id='brd_div1'>
-                        분류코드
+                           분류코드
                     </div>
-                    <div class="col_top" id='brd_div2'>
-                        모델명
-                    </div>
-                    <div class="col_top" id='brd_div3'>
-                        제조사
-                    </div>
-                    <div class="col_top" id='brd_div6'>
-                        스펙
-                    </div>
-
-                </div>
-
-                <div class="listrow">
-                    <div class="col_list" id='brd_div1'>
+                     <div class="col_top" id='brd_div1'>
                         <select name="cate_name" >
                             <option selected>분류코드</option>
                              <c:forEach  var="cate" items="${cateList }" varStatus="cateNum" >
@@ -192,51 +186,97 @@
                               </c:forEach>
                         </select>
                     </div>
-                    <div class="col_list" id='brd_div2'>
-                        <input type="text" name="eq_name">
-                    </div>
-                    <div class="col_list" id='brd_div3'>
-                        <input type="text" name="eq_ma">
-                    </div>
-                    <div class="col_list" id='brd_div6'>
-                        <textarea name="eq_spec"></textarea>
-                    </div>
 
-                </div><br><br><br>
-
+                    <div class="col_top" id='brd_div1'>
+                           모델명
+                    </div>
+                     <div class="col_top" id='brd_div2'>
+                       <input type="text" name="eq_name" class="text_box01">
+                    </div>
+                    
+                  </div>
                 <div class="listrow">
-                    <div class="col_top" id='brd_div6'>
-                        상세이미지
+                    <div class="col_top" id='brd_div1'>
+                           &nbsp;
                     </div>
-                    <div class="col_top" id='brd_div6'>
-                        썸네일
+                     <div class="col_top" id='brd_div1'>
+                       &nbsp;
                     </div>
 
-
-                </div>
-
+                    <div class="col_top" id='brd_div1'>
+                           제조사
+                    </div>
+                     <div class="col_top" id='brd_div2'>
+                       <input type="text" name="eq_ma" class="text_box01">
+                    </div>
+                    
+                  </div>
                 <div class="listrow">
-                    <div class="col_list" id='brd_div5'>
-                        <input type="file" class="form-control" id="img" aria-describedby="inputGroupFileAddon03" name="eq_img" aria-label="Upload" onchange="readURL(this);"  multiple >
-                   <img  id="preview" src="#"   width=200 height=200/>
+                    <div class="col_top" id='brd_div1'>
+                           &nbsp;
                     </div>
-                   
-                    <div class="col_list" id='brd_div5'>
-                  <input type="file" class="form-control" id="thum" aria-describedby="inputGroupFileAddon04" name="eq_thumimg" aria-label="Upload2" onchange="readURL1(this);" multiple >
-                   <img  id="preview2" src="#"   width=200 height=200/>
-
-   
+                     <div class="col_top" id='brd_div1'>
+                       &nbsp;
                     </div>
 
+                    <div class="col_top" id='brd_div1'>
+                           스펙
+                    </div>
+                     <div class="col_top" id='brd_div2'>
+                       <input type="text" name="eq_spec" class="text_box01">
+                    </div>
+                    
+                  </div>
+                <div class="listrow">
+                    <div class="col_top" id='brd_div1'>
+                          상세이미지
+                    </div>
+                     <div class="col_top" id='brd_div1'>
+                      &nbsp;
+                    </div>
+                     <div class="col_top" id='brd_div1'>
+                      &nbsp;
+                    </div>
+                     <div class="col_top" id='brd_div2'>
+                      &nbsp;
+                    </div>
+                 </div>
+                 <div class="listrow">
+                           <input type="file" class="img_box01" id="img" aria-describedby="inputGroupFileAddon03" name="eq_img" aria-label="Upload" onchange="readURL(this);"  multiple >
+                           &nbsp; &nbsp;
+                         <img  id="preview" src="#"   width=200 height=200/>
+                  </div>
+                <div class="listrow">
+                    <div class="col_top" id='brd_div1'>
+                          썸네일
+                    </div>
+                     <div class="col_top" id='brd_div1'>
+                      &nbsp;
+                    </div>
+                     <div class="col_top" id='brd_div1'>
+                      &nbsp;
+                    </div>
+                     <div class="col_top" id='brd_div2'>
+                      &nbsp;
+                    </div>
+                 </div>
+                 <div class="listrow">
+                          <input type="file" class="img_box01" id="thum" aria-describedby="inputGroupFileAddon04" name="eq_thumimg" aria-label="Upload2" onchange="readURL1(this);" multiple >
+                          &nbsp; &nbsp;
+                         <img  id="preview2" src="#"   width=200 height=200/>
+                  </div>
 
-                </div>
+       
 
-
+           <div class="listrow">
+                    <input type="submit" class="btn btn-light " value="분류명등록" /> &nbsp;
+                    <input type="reset" class="btn btn-light " value="다시입력" /> &nbsp;
+               <input type="button" class="btn btn-light fs" id='brd_btn' value="이전페이지" onClick="history.back()" />      
             </div>
-
-        </div>
+            &nbsp;&nbsp;
     </form>
- <input type="button"   class="btn btn-light fs" id='brd_btn' value="이전페이지" onClick="history.back()" />
+ 
+ </div>
 </body>
 
 </html>

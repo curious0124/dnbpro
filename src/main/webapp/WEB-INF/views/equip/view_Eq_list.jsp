@@ -20,31 +20,17 @@
 
 
 <style>
-    .d {
+/*     .d {
         float: left
     }
 
-    .d1 {
-        width: 150px;
+ */   
 
-    }
-
-    .d2 {
-        width: 200px;
-    }
-
-    .d3 {
-        width: 550px;
-    }
-    .d4{
-        width: 32px;
-    }
-
-    .td1 {
+/*     .td1 {
         width: 100px;
         text-align: center;
         border: "1";
-    }
+    } */
    
             #admin_menu{
             margin: 0;
@@ -76,7 +62,7 @@
         }
         
          #co2{
-          width: 300px;
+          width: 250px;
           
            float: right;
             color: #2e2751;
@@ -95,13 +81,16 @@
         }
         
          #co4{
-          width: 300px;
+          width: 100px;
            float: left;
             color: #2e2751;
             font-weight: bold;
           
             
         }
+/*         #co4.col{
+           width: 200px;
+        } */
         .admin_menutitle{
             height: 35px;
             line-height: 35px;   
@@ -155,11 +144,55 @@
             color: white;
             text-indent: 40px;
         }
-        .col{
+/*         .col{
         color: #2e2751;
+        width: 200px;
+        
+        
+        }
+        */
+        .eq_list_view{
+        width: 1000px;
+        } 
+        
+        #preview{
+           width: 100px;
+          height: 100px;
+           
+            color: #2e2751;
+            font-weight: bold;
+          	
+        }
+        
+        .namec1{
+          font-weight: bold;
+          width: 250px;
+        }
+       
+       .namec2{
+          font-weight: bold;
+           width: 300px;
+        }
+        
+        .namec3{
+          font-weight: bold;
+           width: 300px;
+        }
+        
+        .namec4{
+          font-weight: bold;
+           width: 100px;
+        }
+        
+        .searchviewlist{
         
         }
         
+#eq_namelink{
+font-family: RIDIBatang;
+font-weight: bold;
+} 
+ 
        
 
 #eq_namelink{color: black; text-decoration: none;}
@@ -233,12 +266,7 @@
    
    <section class="features-area section-bg">
       <div class="container" id="edu_table">
-
-	
-
-  
- 
-
+ <div class="container eq_list_view">
 <form role="form" method="get">
  
     <div class="searchviewlist"> <select name="searchType">
@@ -263,52 +291,47 @@
     
                     </div>
                     </form>
-
-
-
-    
-
-<div class="container">
-
   
-  
+   <hr width="100%"  >
   <div class="row align-items-start">
-    <div class="col" id="co1" >
-     모델명
-    </div>
-    <div class="col" id="co2">
+     <div class="namec1">
      썸네일
     </div>
-     <div class="col" id="co3">
+    <div class="namec2"  >
+     모델명
+    </div>
+     <div class="namec3" >
      분류명
     </div>
   
-    <div class="col" id="co4">
+    <div class="namec4" >
    제조사
     </div>
   </div>
-    <hr width="100%" >
+    <hr width="100%" color="black" >
  
     <c:choose>
         <c:when test="${listequips !=null }">
             <c:forEach var="equip" items="${listequips }">
  
   <div class="row align-items-center">
-    <div class="col" id="co1">
-      <a id="eq_namelink" href="${contextPath}/equip/view_Eq_detail.do?eq_name=${equip.eq_name}">${equip.eq_name}&nbsp;</a>
-    </div>
-    <div class="col" id="co2">
+  
+    
+    <div  id="co2">
     <input  type= "hidden"   name="originalFileName" value="${equip.eq_thumimg}" /> 
    <img src="${contextPath}/equipthumimg_download.do?eq_name=${equip.eq_name}&eq_thumimg=${equip.eq_thumimg}" id="preview"  />
     </div>
-     <div class="col" id="co3">
+    <div id="co1">
+      <a id="eq_namelink" href="${contextPath}/equip/view_Eq_detail.do?eq_name=${equip.eq_name}">${equip.eq_name}&nbsp;</a>
+    </div>
+     <div  id="co3">
     ${equip.cate_name}
     </div>
-    <div class="col" id="co4">
+    <div  id="co4">
     ${equip.eq_ma}
     </div>
   </div>
-  
+   <hr width="100%" >
             </c:forEach>
               
         </c:when>
@@ -316,10 +339,10 @@
  <div class="row align-items-end">
     <div class="col">
     등록된장비가없습니다
-    </div>
+    </div></div>
       </c:when>
     </c:choose>
-    <hr width="100%">
+ 
     
     <div id="listPaging" >
             <ul>
@@ -340,7 +363,7 @@
 </div>
 
  
-
+</div>
 	</section>
 
 </body>
