@@ -2,14 +2,7 @@
 	pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!-- 줄 바꿈 시작 -->
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%> 
- 
-<%
-    pageContext.setAttribute("br", "<br/>");
-    pageContext.setAttribute("cn", "\n");
-%> 
-<!-- 줄 바꿈 끝 -->
+
 
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <%
@@ -276,7 +269,7 @@ background-size: 100% 100%;}
 						<div class="col-3 text-center detail_text_spa">
 						<b>모델스펙</b>
 						</div>
-						<div class="col detail_text_spa">${fn:replace(equipVO.eq_spec, cn, br)}</div>
+						<div style="white-space:pre;" class="col detail_text_spa">${equipVO.eq_spec}</div>
 						</div>
 						<hr>
 					
