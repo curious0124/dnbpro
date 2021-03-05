@@ -186,7 +186,7 @@
                               </c:forEach>
                         </select>
                     </div>
-<<<<<<< HEAD
+
                     <div class="col_list" id='brd_div2'>
                         <input type="text" name="eq_name">
                     </div>
@@ -196,8 +196,7 @@
                     <div class="col_list" id='brd_div6'>
                       <textarea  name="eq_spec"></textarea>
                     </div>
-=======
->>>>>>> branch 'develop' of https://github.com/curious0124/dnbpro.git
+
 
                     <div class="col_top" id='brd_div1'>
                        	 ¸ðµ¨¸í
