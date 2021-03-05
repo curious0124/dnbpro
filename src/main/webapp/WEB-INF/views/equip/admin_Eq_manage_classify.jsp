@@ -19,11 +19,11 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
     <title>분류명 등록</title>
     
-    <style>
+   <style>
     	body {
             background: #f4f9fc;
         }
-    #board_content{
+    	#board_content{
             margin: 0 auto;
             margin-top: 20px;
             width: 850px;
@@ -36,8 +36,8 @@
         .board_container{
             margin:0 auto;
             float: left;
-            width: 600px;  
-            margin-top: 20px;          
+            width: 650px;  
+            margin-top: 45px;          
         }
         .listrow{
             width: 500px;
@@ -96,7 +96,16 @@
             
         }
         .text_box01{
-        	width: 250px;
+        	width: 201px;
+        	height: 20px;
+        	padding: 0;
+        }
+        .img_box01{
+        	width: 201px;
+        	height: 30px;
+        	vertical-align: top;
+        	font-size: 16px;
+        	padding: 0;
         }
         
         #articlefrom1{
@@ -110,9 +119,13 @@
         	text-align: center;
 			margin-left: 50px;
         }
-        
-
+        .model_title{
+        	text-align: left;
+        	font-size: 25px;
+        	margin-top: -53px;
+        }
     </style>
+    
     <script src="${contextPath}/resources/js/jquery-3.5.1.min.js"> </script>
     <script>
     $(function(){
@@ -133,19 +146,12 @@
 		<!--board_container -->
 		<div class="board_container">
     <form  action="${contextPath}/equip/addcatename.do" method="post">
-
-        <div>
-
-  
-            <!--board_container -->
-            <div class="board_container">
-          
+               
                 <div class="listrow">
                    
                     <div class="col_top" id='brd_div2'>
                        		분류명 등록
                     </div>
-
 
                 </div>
                 
@@ -161,11 +167,7 @@
                     
 
                 </div>
-
-
-            </div>
-
-        </div>
+                    
     </form>
     
     <div class="btn_box001 board_container">
