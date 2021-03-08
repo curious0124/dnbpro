@@ -89,16 +89,14 @@
                               </div>
                               <div class="col-lg-6">
                                  <h2 class="blog-title">DNB 홍보영상</h2>
-                                 <h5>DNB는 이렇게 대단합니다.</h5>
+                                 <h5>DNB는 SW 연구개발 기업과 함께 함니다.</h5>
                                  <ul>
-                                    <li>모든 제품이 무료입니다.</li>
-                                    <li>모든 제품이 진짜 무료 입니다.</li>
-                                    <li>모든 제품이 진짜로 무료 입니다.</li>
-                                    <li>개발자를 위해 무상으로 했습니다.</li>
-                                    <li>모든 제품이 진짜로 무료 입니다.</li>
-                                    <li>모든 제품이 진짜 무료 입니다.</li>
-                                    <li>모든 제품이 무료입니다.</li>
-                                    <li>This is DNB(DEATH NO PPAGGU )</li>
+                                    <li>모든 제품이 무상 임대 입니다.</li>
+                                    <li>SW 연구개발 기업 창업지원</li>
+                                    <li>SW 연구개발 기업 지원제도 안내</li>
+                                    <li>쾌적한 연구환경 조성 지원</li>
+                                    <p>&nbsp;</p>
+                                    <li>This is DNB(Digital Network Basement )</li>
                                  </ul>
                               </div>
                            </div>
